@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserProfile, setLoading, setError } from '../redux/slices/userSlice';
-import { selectUserProfile, selectUserLoading, selectUserError } from '../redux/selectors';
+import { selectUserProfile, selectIsUserLoading, selectUserError } from '../redux/selectors';
 import { updateUserProfile, getUserProfile } from '../services/api';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
@@ -17,7 +17,7 @@ function Profile() {
   
   // Get current user from Redux
   const userProfile = useSelector(selectUserProfile);
-  const isLoading = useSelector(selectUserLoading);
+  const isLoading = useSelector(selectIsUserLoading);
   const error = useSelector(selectUserError);
   
   // Check if we're in edit mode (URL contains /edit or from route)
