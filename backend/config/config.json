@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "dating_app_user",
+    "password": "dating_app_password",
+    "database": "dating_app_db",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "logging": true
+  },
+  "test": {
+    "username": "dating_app_test_user",
+    "password": "dating_app_test_password",
+    "database": "dating_app_test_db",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "username": "dating_app_prod_user",
+    "password": "dating_app_prod_password",
+    "database": "dating_app_prod_db",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "logging": false
+  }
+}
