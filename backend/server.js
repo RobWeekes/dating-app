@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const models = require('./models');
+const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,9 +23,7 @@ models.sequelize
   });
 
 // Routes
-app.use('/api/health', (req, res) => {
-  res.json({ status: 'Backend server is running' });
-});
+app.use('/api', routes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

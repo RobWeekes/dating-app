@@ -59,7 +59,7 @@ export const updateUserProfile = async (userId, profileData) => {
  * @returns {Promise<object>} User preferences
  */
 export const getUserPreferences = async (userId) => {
-  return fetchAPI(`/users/${userId}/preferences`);
+  return fetchAPI(`/preferences/user/${userId}`);
 };
 
 /**
@@ -69,7 +69,7 @@ export const getUserPreferences = async (userId) => {
  * @returns {Promise<object>} Updated preferences
  */
 export const updateUserPreferences = async (userId, preferencesData) => {
-  return fetchAPI(`/users/${userId}/preferences`, {
+  return fetchAPI(`/preferences/user/${userId}`, {
     method: 'PUT',
     body: JSON.stringify(preferencesData),
   });
@@ -81,17 +81,16 @@ export const updateUserPreferences = async (userId, preferencesData) => {
  * @returns {Promise<object>} Questionnaire data
  */
 export const getUserQuestionnaire = async (userId) => {
-  return fetchAPI(`/users/${userId}/questionnaire`);
+  return fetchAPI(`/questionnaires/user/${userId}`);
 };
 
 /**
  * Submit user questionnaire
- * @param {number} userId - User ID
- * @param {object} questionnaireData - Questionnaire responses
+ * @param {object} questionnaireData - Questionnaire data with userId
  * @returns {Promise<object>} Submitted questionnaire
  */
-export const submitQuestionnaire = async (userId, questionnaireData) => {
-  return fetchAPI(`/users/${userId}/questionnaire`, {
+export const submitQuestionnaire = async (questionnaireData) => {
+  return fetchAPI(`/questionnaires`, {
     method: 'POST',
     body: JSON.stringify(questionnaireData),
   });
