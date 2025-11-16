@@ -1,19 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const config = require('../config/database');
+require('dotenv').config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || config.development.database,
-  process.env.DB_USER || config.development.username,
-  process.env.DB_PASSWORD || config.development.password,
-  {
-    host: process.env.DB_HOST || config.development.host,
-    port: process.env.DB_PORT || config.development.port,
-    dialect: process.env.DB_DIALECT || config.development.dialect,
-    logging: false,
-  }
-);
+// Use SQLite for development
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: path.join(__dirname, '../dating_app.db'),
+  logging: process.env.NODE_ENV === 'development' ? console.log : false,
+});
 
 const models = {};
 
