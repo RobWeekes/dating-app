@@ -39,10 +39,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.JSON,
         defaultValue: {},
       },
-      completedAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
