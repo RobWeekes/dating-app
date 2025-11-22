@@ -96,6 +96,19 @@ export const submitQuestionnaire = async (questionnaireData) => {
   });
 };
 
+/**
+ * Update user questionnaire by ID
+ * @param {number} questionnaireId - Questionnaire ID
+ * @param {object} questionnaireData - Updated questionnaire data
+ * @returns {Promise<object>} Updated questionnaire
+ */
+export const updateUserQuestionnaire = async (questionnaireId, questionnaireData) => {
+  return fetchAPI(`/questionnaires/${questionnaireId}`, {
+    method: 'PUT',
+    body: JSON.stringify(questionnaireData),
+  });
+};
+
 export default {
   getUserProfile,
   updateUserProfile,
@@ -103,4 +116,5 @@ export default {
   updateUserPreferences,
   getUserQuestionnaire,
   submitQuestionnaire,
+  updateUserQuestionnaire,
 };

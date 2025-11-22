@@ -1,11 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  profile: null,
+  profile: {
+    id: 1,
+    email: 'larry.dalton0@datingapp.com',
+    firstName: 'Larry',
+    lastName: 'Dalton',
+    age: 29,
+    bio: 'Gym rat dedicated to health and fitness.',
+    location: 'Glendale, Los Angeles, CA',
+    profilePhotoUrl: 'https://i.pravatar.cc/150?img=0',
+    createdAt: '2025-11-20T01:07:53.000Z',
+    updatedAt: '2025-11-20T01:07:53.000Z',
+  },
   questionnaire: null,
   isLoading: false,
   error: null,
-  isAuthenticated: false,
+  isAuthenticated: true,
 };
 
 const userSlice = createSlice({
