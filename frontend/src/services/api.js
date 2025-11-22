@@ -121,6 +121,68 @@ export const updateUserQuestionnaire = async (questionnaireId, questionnaireData
   });
 };
 
+/**
+ * Get matching users for discovery
+ * @param {number} userId - Current user ID
+ * @returns {Promise<array>} Array of matching users
+ */
+export const getDiscoveryUsers = async (userId) => {
+  return fetchAPI(`/users/discover/${userId}`);
+};
+
+/**
+ * Like a user
+ * @param {number} fromUserId - Current user ID
+ * @param {number} toUserId - User to like ID
+ * @returns {Promise<object>} Like object
+ */
+export const likeUser = async (fromUserId, toUserId) => {
+  return fetchAPI(`/likes`, {
+    method: 'POST',
+    body: JSON.stringify({ fromUserId, toUserId }),
+  });
+};
+
+/**
+ * Unlike a user
+ * @param {number} fromUserId - Current user ID
+ * @param {number} toUserId - User to unlike ID
+ * @returns {Promise<object>} Success message
+ */
+export const unlikeUser = async (fromUserId, toUserId) => {
+  return fetchAPI(`/likes/${fromUserId}/${toUserId}`, {
+    method: 'DELETE',
+  });
+};
+
+/**
+ * Get user's likes
+ * @param {number} userId - User ID
+ * @returns {Promise<array>} Array of likes
+ */
+export const getUserLikes = async (userId) => {
+  return fetchAPI(`/likes/user/${userId}`);
+};
+
+/**
+ * Get user's matches (mutual likes)
+ * @param {number} userId - User ID
+ * @returns {Promise<array>} Array of matches
+ */
+export const getMatches = async (userId) => {
+  return fetchAPI(`/likes/matches/${userId}`);
+};
+
+/**
+ * Check if user liked another user
+ * @param {number} fromUserId - Current user ID
+ * @param {number} toUserId - User to check ID
+ * @returns {Promise<object>} { liked: boolean }
+ */
+export const checkLike = async (fromUserId, toUserId) => {
+  return fetchAPI(`/likes/${fromUserId}/${toUserId}`);
+};
+
 export default {
   getUserProfile,
   updateUserProfile,
@@ -130,4 +192,10 @@ export default {
   getUserQuestionnaire,
   submitQuestionnaire,
   updateUserQuestionnaire,
+  getDiscoveryUsers,
+  likeUser,
+  unlikeUser,
+  getUserLikes,
+  getMatches,
+  checkLike,
 };

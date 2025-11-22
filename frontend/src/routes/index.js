@@ -3,6 +3,8 @@ import Home from '../pages/Home';
 import Questionnaire from '../pages/Questionnaire';
 import Profile from '../pages/Profile';
 import Preferences from '../pages/Preferences';
+import Discovery from '../pages/Discovery';
+import Matches from '../pages/Matches';
 import Layout from '../components/Layout';
 
 /**
@@ -33,6 +35,14 @@ export const routes = createBrowserRouter([
       {
         path: 'preferences',
         element: <Preferences />,
+      },
+      {
+        path: 'discover',
+        element: <Discovery />,
+      },
+      {
+        path: 'matches',
+        element: <Matches />,
       },
     ],
   },

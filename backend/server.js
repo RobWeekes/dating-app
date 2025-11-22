@@ -17,6 +17,11 @@ models.sequelize
   .authenticate()
   .then(() => {
     console.log('✓ Database connection successful');
+    // Sync models with database (create tables if they don't exist)
+    return models.sequelize.sync({ alter: true });
+  })
+  .then(() => {
+    console.log('✓ Database models synced');
   })
   .catch((err) => {
     console.error('✗ Database connection failed:', err);

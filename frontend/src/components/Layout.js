@@ -16,6 +16,12 @@ function Layout() {
               <Link to="/">Home</Link>
             </li>
             <li>
+              <Link to="/discover">Discover</Link>
+            </li>
+            <li>
+              <Link to="/matches">Matches</Link>
+            </li>
+            <li>
               <Link to="/questionnaire">Questionnaire</Link>
             </li>
             <li>

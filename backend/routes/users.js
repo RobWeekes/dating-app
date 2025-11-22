@@ -2,6 +2,56 @@ const express = require('express');
 const router = express.Router();
 const { User, Questionnaire, Preference } = require('../models');
 
+// GET matching users for discovery (filtered by current user's preferences)
+router.get('/discover/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Get current user's preferences
+    const userPreferences = await Preference.findOne({ where: { userId } });
+    if (!userPreferences) {
+      return res.status(404).json({ error: 'User preferences not found' });
+    }
+
+    // Get current user
+    const currentUser = await User.findByPk(userId);
+    if (!currentUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Get all other users with their questionnaires and preferences
+    const allUsers = await User.findAll({
+      where: { id: { [require('sequelize').Op.ne]: userId } },
+      attributes: { exclude: ['password'] },
+      include: [
+        { model: Questionnaire, attributes: ['id', 'personalityType', 'datingGoal', 'interests'] },
+        { model: Preference, attributes: ['id', 'interests', 'relationshipType'] }
+      ]
+    });
+
+    // Filter users based on preferences
+    const matchingUsers = allUsers.filter(user => {
+      // Check age range
+      if (user.age < userPreferences.minAge || user.age > userPreferences.maxAge) {
+        return false;
+      }
+
+      // Check relationship type if user has specified a preference
+      if (userPreferences.relationshipType && userPreferences.relationshipType !== 'Any') {
+        if (user.Preference && user.Preference.relationshipType !== userPreferences.relationshipType) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    res.json(matchingUsers);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // GET all users
 router.get('/', async (req, res) => {
   try {

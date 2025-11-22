@@ -301,40 +301,32 @@ function Preferences() {
         <div className="form-section">
           <h2>Age Range</h2>
           <div className="age-range-container">
-            <div className="range-input-group">
-              <label htmlFor="minAge">
-                Minimum Age: <span className="age-value">{formData.minAge}</span>
+            <div className="dual-range-wrapper">
+              <label className="age-label">
+                {formData.minAge} - {formData.maxAge} years old
               </label>
-              <input
-                type="range"
-                id="minAge"
-                name="minAge"
-                min="18"
-                max="120"
-                value={formData.minAge}
-                onChange={handleRangeChange}
-                className="range-slider"
-              />
-            </div>
-
-            <div className="range-input-group">
-              <label htmlFor="maxAge">
-                Maximum Age: <span className="age-value">{formData.maxAge}</span>
-              </label>
-              <input
-                type="range"
-                id="maxAge"
-                name="maxAge"
-                min="18"
-                max="120"
-                value={formData.maxAge}
-                onChange={handleRangeChange}
-                className="range-slider"
-              />
-            </div>
-
-            <div className="age-range-display">
-              {formData.minAge} - {formData.maxAge} years old
+              <div className="dual-range-sliders">
+                <input
+                  type="range"
+                  id="minAge"
+                  name="minAge"
+                  min="18"
+                  max="120"
+                  value={formData.minAge}
+                  onChange={handleRangeChange}
+                  className="range-slider range-slider-min"
+                />
+                <input
+                  type="range"
+                  id="maxAge"
+                  name="maxAge"
+                  min="18"
+                  max="120"
+                  value={formData.maxAge}
+                  onChange={handleRangeChange}
+                  className="range-slider range-slider-max"
+                />
+              </div>
             </div>
 
             {formErrors.ageRange && (
