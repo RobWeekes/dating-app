@@ -76,6 +76,18 @@ export const updateUserPreferences = async (userId, preferencesData) => {
 };
 
 /**
+ * Submit user preferences (create new)
+ * @param {object} preferencesData - Preferences data with userId
+ * @returns {Promise<object>} Submitted preferences
+ */
+export const submitPreferences = async (preferencesData) => {
+  return fetchAPI(`/preferences`, {
+    method: 'POST',
+    body: JSON.stringify(preferencesData),
+  });
+};
+
+/**
  * Get user questionnaire
  * @param {number} userId - User ID
  * @returns {Promise<object>} Questionnaire data
@@ -114,6 +126,7 @@ export default {
   updateUserProfile,
   getUserPreferences,
   updateUserPreferences,
+  submitPreferences,
   getUserQuestionnaire,
   submitQuestionnaire,
   updateUserQuestionnaire,
