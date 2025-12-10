@@ -30,8 +30,15 @@ function Profile() {
     firstName: '',
     lastName: '',
     age: '',
-    bio: '',
     location: '',
+    bodyType: '',
+    bmi: '',
+    politics: '',
+    religion: '',
+    ethnicity: '',
+    family: '',
+    familyGoals: '',
+    bio: '',
     profilePhotoUrl: ''
   });
   
@@ -46,8 +53,15 @@ function Profile() {
         firstName: userProfile.firstName || '',
         lastName: userProfile.lastName || '',
         age: userProfile.age || '',
-        bio: userProfile.bio || '',
         location: userProfile.location || '',
+        bodyType: userProfile.bodyType || '',
+        bmi: userProfile.bmi || '',
+        politics: userProfile.politics || '',
+        religion: userProfile.religion || '',
+        ethnicity: userProfile.ethnicity || '',
+        family: userProfile.family || '',
+        familyGoals: userProfile.familyGoals || '',
+        bio: userProfile.bio || '',
         profilePhotoUrl: userProfile.profilePhotoUrl || ''
       });
     }
@@ -73,6 +87,12 @@ function Profile() {
     
     if (formData.age && (isNaN(formData.age) || formData.age < 18 || formData.age > 120)) {
       errors.age = 'Age must be between 18 and 120';
+    }
+
+    if (formData.bmi && isNaN(formData.bmi)) {
+      errors.bmi = 'BMI must be a valid number';
+    } else if (formData.bmi && (parseFloat(formData.bmi) < 10 || parseFloat(formData.bmi) > 60)) {
+      errors.bmi = 'BMI must be between 10 and 60';
     }
     
     setFormErrors(errors);
@@ -135,8 +155,15 @@ function Profile() {
         firstName: userProfile.firstName || '',
         lastName: userProfile.lastName || '',
         age: userProfile.age || '',
-        bio: userProfile.bio || '',
         location: userProfile.location || '',
+        bodyType: userProfile.bodyType || '',
+        bmi: userProfile.bmi || '',
+        politics: userProfile.politics || '',
+        religion: userProfile.religion || '',
+        ethnicity: userProfile.ethnicity || '',
+        family: userProfile.family || '',
+        familyGoals: userProfile.familyGoals || '',
+        bio: userProfile.bio || '',
         profilePhotoUrl: userProfile.profilePhotoUrl || ''
       });
     }
@@ -191,6 +218,55 @@ function Profile() {
                 <div className="info-group">
                   <label>Location</label>
                   <p>{userProfile.location}</p>
+                </div>
+              )}
+              
+              {userProfile.bodyType && (
+                <div className="info-group">
+                  <label>Body Type</label>
+                  <p>{userProfile.bodyType}</p>
+                </div>
+              )}
+              
+              {userProfile.bmi && (
+                <div className="info-group">
+                  <label>BMI</label>
+                  <p>{parseFloat(userProfile.bmi).toFixed(2)}</p>
+                </div>
+              )}
+              
+              {userProfile.politics && (
+                <div className="info-group">
+                  <label>Politics</label>
+                  <p>{userProfile.politics}</p>
+                </div>
+              )}
+              
+              {userProfile.religion && (
+                <div className="info-group">
+                  <label>Religion</label>
+                  <p>{userProfile.religion}</p>
+                </div>
+              )}
+              
+              {userProfile.ethnicity && (
+                <div className="info-group">
+                  <label>Ethnicity</label>
+                  <p>{userProfile.ethnicity}</p>
+                </div>
+              )}
+              
+              {userProfile.family && (
+                <div className="info-group">
+                  <label>Family</label>
+                  <p>{userProfile.family}</p>
+                </div>
+              )}
+              
+              {userProfile.familyGoals && (
+                <div className="info-group">
+                  <label>Family Goals</label>
+                  <p>{userProfile.familyGoals}</p>
                 </div>
               )}
               
@@ -268,6 +344,122 @@ function Profile() {
           name="location"
           value={formData.location}
           onChange={handleInputChange}
+        />
+
+        <FormInput
+          label="Body Type"
+          type="select"
+          name="bodyType"
+          value={formData.bodyType}
+          onChange={handleInputChange}
+          options={[
+            { value: '', label: 'Select Body Type' },
+            { value: 'Thin', label: 'Thin' },
+            { value: 'Average', label: 'Average' },
+            { value: 'Athletic/Toned', label: 'Athletic/Toned' },
+            { value: 'Muscular', label: 'Muscular' },
+            { value: 'Curvy', label: 'Curvy' },
+            { value: 'Plump', label: 'Plump' },
+            { value: 'Big & Beautiful', label: 'Big & Beautiful' }
+          ]}
+        />
+
+        <FormInput
+          label="BMI"
+          type="number"
+          name="bmi"
+          value={formData.bmi}
+          onChange={handleInputChange}
+          error={formErrors.bmi}
+          step="0.01"
+          min="10"
+          max="60"
+          placeholder="e.g. 24.50"
+        />
+
+        <FormInput
+          label="Politics"
+          type="select"
+          name="politics"
+          value={formData.politics}
+          onChange={handleInputChange}
+          options={[
+            { value: '', label: 'Select Political View' },
+            { value: 'Progressive Left', label: 'Progressive Left' },
+            { value: 'Moderate Left', label: 'Moderate Left' },
+            { value: 'Independent', label: 'Independent' },
+            { value: 'Moderate Right', label: 'Moderate Right' },
+            { value: 'Traditional Conservative', label: 'Traditional Conservative' }
+          ]}
+        />
+
+        <FormInput
+          label="Religion"
+          type="select"
+          name="religion"
+          value={formData.religion}
+          onChange={handleInputChange}
+          options={[
+            { value: '', label: 'Select Religion' },
+            { value: 'Not religious', label: 'Not Religious' },
+            { value: 'Christian', label: 'Christian' },
+            { value: 'Catholic', label: 'Catholic' },
+            { value: 'Protestant', label: 'Protestant' },
+            { value: 'Baptist', label: 'Baptist' },
+            { value: 'Jewish Orthodox', label: 'Jewish Orthodox' },
+            { value: 'Jewish Reform', label: 'Jewish Reform' },
+            { value: 'Muslim', label: 'Muslim' },
+            { value: 'Hindu', label: 'Hindu' },
+            { value: 'Agnostic', label: 'Agnostic' },
+            { value: 'Atheist', label: 'Atheist' }
+          ]}
+        />
+
+        <FormInput
+          label="Ethnicity"
+          type="select"
+          name="ethnicity"
+          value={formData.ethnicity}
+          onChange={handleInputChange}
+          options={[
+            { value: '', label: 'Select Ethnicity' },
+            { value: 'White', label: 'White' },
+            { value: 'Black/African American', label: 'Black/African American' },
+            { value: 'Hispanic/Latino', label: 'Hispanic/Latino' },
+            { value: 'Asian', label: 'Asian' },
+            { value: 'Native American', label: 'Native American' },
+            { value: 'Pacific Islander', label: 'Pacific Islander' },
+            { value: 'Middle Eastern/North African', label: 'Middle Eastern/North African' },
+            { value: 'Mixed Race', label: 'Mixed Race' },
+            { value: 'Other', label: 'Other' }
+          ]}
+        />
+
+        <FormInput
+          label="Family Status"
+          type="select"
+          name="family"
+          value={formData.family}
+          onChange={handleInputChange}
+          options={[
+            { value: '', label: 'Select Family Status' },
+            { value: 'Single/Never Married', label: 'Single/Never Married' },
+            { value: 'Divorced with Children', label: 'Divorced with Children' },
+            { value: 'Divorced No Children', label: 'Divorced No Children' }
+          ]}
+        />
+
+        <FormInput
+          label="Family Goals"
+          type="select"
+          name="familyGoals"
+          value={formData.familyGoals}
+          onChange={handleInputChange}
+          options={[
+            { value: '', label: 'Select Family Goals' },
+            { value: "Don't Want Kids/Any More Kids", label: "Don't Want Kids/Any More Kids" },
+            { value: 'Want Kids/More Kids', label: 'Want Kids/More Kids' }
+          ]}
         />
 
         <FormInput

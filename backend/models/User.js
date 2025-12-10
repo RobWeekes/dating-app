@@ -77,6 +77,50 @@ module.exports = (sequelize, DataTypes) => {
       profilePhotoUrl: {
         type: DataTypes.STRING,
       },
+      bodyType: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [['Thin', 'Average', 'Athletic/Toned', 'Muscular', 'Curvy', 'Plump', 'Big & Beautiful']],
+        },
+      },
+      bmi: {
+        type: DataTypes.DECIMAL(5, 2),
+        validate: {
+          isDecimal: true,
+          min: 10,
+          max: 60,
+        },
+      },
+      politics: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [['Progressive Left', 'Moderate Left', 'Independent', 'Moderate Right', 'Traditional Conservative']],
+        },
+      },
+      religion: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [['Not religious', 'Christian', 'Catholic', 'Protestant', 'Baptist', 'Jewish Orthodox', 'Jewish Reform', 'Muslim', 'Hindu', 'Agnostic', 'Atheist']],
+        },
+      },
+      ethnicity: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [['White', 'Black/African American', 'Hispanic/Latino', 'Asian', 'Native American', 'Pacific Islander', 'Middle Eastern/North African', 'Mixed Race', 'Other']],
+        },
+      },
+      family: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [['Single/Never Married', 'Divorced with Children', 'Divorced No Children']],
+        },
+      },
+      familyGoals: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [["Don't Want Kids/Any More Kids", 'Want Kids/More Kids']],
+        },
+      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

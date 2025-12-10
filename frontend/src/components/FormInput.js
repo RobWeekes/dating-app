@@ -11,7 +11,9 @@ function FormInput({
   required = false,
   error = '',
   min,
-  max
+  max,
+  step,
+  options = []
 }) {
   return (
     <div className="form-group">
@@ -27,6 +29,21 @@ function FormInput({
           className={`form-input ${error ? 'error' : ''}`}
           rows="4"
         />
+      ) : type === 'select' ? (
+        <select
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          className={`form-input ${error ? 'error' : ''}`}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       ) : (
         <input
           id={name}
@@ -39,6 +56,7 @@ function FormInput({
           className={`form-input ${error ? 'error' : ''}`}
           min={min}
           max={max}
+          step={step}
         />
       )}
       {error && <span className="error-text">{error}</span>}

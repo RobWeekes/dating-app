@@ -137,7 +137,22 @@ router.put('/:id', authenticateToken, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const { email, firstName, lastName, age, bio, location, profilePhotoUrl } = req.body;
+    const { 
+      email, 
+      firstName, 
+      lastName, 
+      age, 
+      bio, 
+      location, 
+      profilePhotoUrl,
+      bodyType,
+      bmi,
+      politics,
+      religion,
+      ethnicity,
+      family,
+      familyGoals
+    } = req.body;
 
     // Check if new email already exists (if email is being changed)
     if (email && email !== user.email) {
@@ -154,7 +169,14 @@ router.put('/:id', authenticateToken, async (req, res) => {
       age: age || user.age,
       bio: bio || user.bio,
       location: location || user.location,
-      profilePhotoUrl: profilePhotoUrl || user.profilePhotoUrl
+      profilePhotoUrl: profilePhotoUrl || user.profilePhotoUrl,
+      bodyType: bodyType || user.bodyType,
+      bmi: bmi || user.bmi,
+      politics: politics || user.politics,
+      religion: religion || user.religion,
+      ethnicity: ethnicity || user.ethnicity,
+      family: family || user.family,
+      familyGoals: familyGoals || user.familyGoals
     });
 
     res.json(user.toPublicJSON());
