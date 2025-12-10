@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 import Questionnaire from '../pages/Questionnaire';
 import CompatibilityQuestionnaireSelector from '../components/CompatibilityQuestionnaireSelector';
 import Profile from '../pages/Profile';
@@ -7,16 +9,31 @@ import Preferences from '../pages/Preferences';
 import Discovery from '../pages/Discovery';
 import Matches from '../pages/Matches';
 import Layout from '../components/Layout';
-
+import ProtectedRoute from '../components/ProtectedRoute';
 
 /**
  * Route definitions for the application
  * Using React Router v6 with createBrowserRouter
  */
 export const routes = createBrowserRouter([
+  // Auth routes (no layout)
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+
+  // Protected routes with layout
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,

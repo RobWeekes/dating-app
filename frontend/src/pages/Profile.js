@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserProfile, setLoading, setError } from '../redux/slices/userSlice';
+import { setLoading, setError } from '../redux/slices/userSlice';
 import { selectUserProfile, selectIsUserLoading, selectUserError } from '../redux/selectors';
 import { updateUserProfile, getUserProfile } from '../services/api';
+import { updateUser } from '../redux/slices/authSlice';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import '../styles/profile.css';
@@ -109,8 +110,8 @@ function Profile() {
       // Update profile via API
       const updatedProfile = await updateUserProfile(userProfile.id, formData);
       
-      // Update Redux store
-      dispatch(setUserProfile(updatedProfile));
+      // Update Redux store (both auth and user slices)
+      dispatch(updateUser(updatedProfile));
       dispatch(setError(null));
       
       // Navigate back to profile view

@@ -49,6 +49,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: calc(var(--spacing-unit) * 2);
 }
 
 .navbar-brand {
@@ -81,6 +82,38 @@ body {
 .nav-menu a:hover {
   opacity: 0.8;
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Navbar User Section */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 1.5);
+  margin-left: auto;
+}
+
+.user-name {
+  color: white;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.logout-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .navbar h2 {

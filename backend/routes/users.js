@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Questionnaire, Preference } = require('../models');
+const { authenticateToken, optionalAuthenticateToken } = require('../middleware/authentication');
 
 // GET matching users for discovery (filtered by current user's preferences)
 router.get('/discover/:userId', async (req, res) => {
@@ -89,7 +90,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// CREATE new user
+// CREATE new user (deprecated - use /auth/register instead)
 router.post('/', async (req, res) => {
   try {
     const { email, firstName, lastName, age, bio, location, profilePhotoUrl } = req.body;
@@ -107,6 +108,7 @@ router.post('/', async (req, res) => {
 
     const user = await User.create({
       email,
+      password: 'temp_password', // Default password, user should change via auth
       firstName,
       lastName,
       age,
@@ -115,15 +117,20 @@ router.post('/', async (req, res) => {
       profilePhotoUrl
     });
 
-    res.status(201).json(user);
+    res.status(201).json(user.toPublicJSON());
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// UPDATE user by ID
-router.put('/:id', async (req, res) => {
+// UPDATE user by ID (requires authentication)
+router.put('/:id', authenticateToken, async (req, res) => {
   try {
+    // Ensure user can only update their own profile
+    if (parseInt(req.params.id) !== req.user.id) {
+      return res.status(403).json({ error: 'Unauthorized: Can only update your own profile' });
+    }
+
     const user = await User.findByPk(req.params.id);
 
     if (!user) {
@@ -150,15 +157,20 @@ router.put('/:id', async (req, res) => {
       profilePhotoUrl: profilePhotoUrl || user.profilePhotoUrl
     });
 
-    res.json(user);
+    res.json(user.toPublicJSON());
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// DELETE user by ID
-router.delete('/:id', async (req, res) => {
+// DELETE user by ID (requires authentication)
+router.delete('/:id', authenticateToken, async (req, res) => {
   try {
+    // Ensure user can only delete their own account
+    if (parseInt(req.params.id) !== req.user.id) {
+      return res.status(403).json({ error: 'Unauthorized: Can only delete your own account' });
+    }
+
     const user = await User.findByPk(req.params.id);
 
     if (!user) {

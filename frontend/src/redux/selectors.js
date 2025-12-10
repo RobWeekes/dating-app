@@ -1,11 +1,39 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-// User selectors
+// Auth selectors
+export const selectAuth = (state) => state.auth;
+
+export const selectAuthUser = createSelector(
+  [selectAuth],
+  (auth) => auth.user
+);
+
+export const selectAuthToken = createSelector(
+  [selectAuth],
+  (auth) => auth.token
+);
+
+export const selectIsAuthenticated = createSelector(
+  [selectAuth],
+  (auth) => auth.isAuthenticated
+);
+
+export const selectAuthLoading = createSelector(
+  [selectAuth],
+  (auth) => auth.isLoading
+);
+
+export const selectAuthError = createSelector(
+  [selectAuth],
+  (auth) => auth.error
+);
+
+// User selectors (now using auth state for profile)
 export const selectUser = (state) => state.user;
 
 export const selectUserProfile = createSelector(
-  [selectUser],
-  (user) => user.profile
+  [selectAuthUser],
+  (authUser) => authUser || null
 );
 
 export const selectUserQuestionnaire = createSelector(
@@ -21,11 +49,6 @@ export const selectIsUserLoading = createSelector(
 export const selectUserError = createSelector(
   [selectUser],
   (user) => user.error
-);
-
-export const selectIsAuthenticated = createSelector(
-  [selectUser],
-  (user) => user.isAuthenticated
 );
 
 // Preferences selectors

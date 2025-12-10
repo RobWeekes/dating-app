@@ -1,26 +1,41 @@
 import { API_BASE_URL } from '../constants';
 
 /**
- * Generic fetch wrapper with error handling
+ * Generic fetch wrapper with error handling and auth token
  * @param {string} endpoint - API endpoint
  * @param {object} options - Fetch options
  * @returns {Promise<object>} Response data
  */
 const fetchAPI = async (endpoint, options = {}) => {
   const url = `${API_BASE_URL}${endpoint}`;
+  const token = localStorage.getItem('authToken');
+
   const defaultOptions = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
+  // Add auth token if available
+  if (token) {
+    defaultOptions.headers['Authorization'] = `Bearer ${token}`;
+  }
+
   const config = { ...defaultOptions, ...options };
 
   try {
     const response = await fetch(url, config);
 
+    // If 401, token might be expired - clear it
+    if (response.status === 401) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('authUser');
+      window.location.href = '/login';
+    }
+
     if (!response.ok) {
-      throw new Error(`API Error: ${response.statusText}`);
+      const errorData = await response.json();
+      throw new Error(errorData.error || `API Error: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -32,6 +47,56 @@ const fetchAPI = async (endpoint, options = {}) => {
 };
 
 /**
+ * AUTHENTICATION API FUNCTIONS
+ */
+
+/**
+ * Register a new user
+ * @param {object} formData - Registration data
+ * @returns {Promise<object>} Token and user data
+ */
+export const registerUser = async (formData) => {
+  return fetchAPI('/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(formData),
+  });
+};
+
+/**
+ * Login user
+ * @param {object} credentials - Email and password
+ * @returns {Promise<object>} Token and user data
+ */
+export const loginUser = async (credentials) => {
+  return fetchAPI('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify(credentials),
+  });
+};
+
+/**
+ * Get current authenticated user
+ * @returns {Promise<object>} Current user data
+ */
+export const getCurrentUser = async () => {
+  return fetchAPI('/auth/me');
+};
+
+/**
+ * Logout user
+ * @returns {Promise<object>} Logout confirmation
+ */
+export const logoutUser = async () => {
+  return fetchAPI('/auth/logout', {
+    method: 'POST',
+  });
+};
+
+/**
+ * PROFILE API FUNCTIONS
+ */
+
+/**
  * Get user profile from API
  * @param {number} userId - User ID
  * @returns {Promise<object>} User profile data
@@ -41,7 +106,7 @@ export const getUserProfile = async (userId) => {
 };
 
 /**
- * Update user profile
+ * Update user profile (requires authentication)
  * @param {number} userId - User ID
  * @param {object} profileData - Updated profile data
  * @returns {Promise<object>} Updated profile

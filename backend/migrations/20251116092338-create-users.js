@@ -18,6 +18,32 @@ module.exports = {
           isEmail: true
         }
       },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          len: [8, 100],
+          isStrongPassword(value) {
+            const hasUpperCase = /[A-Z]/.test(value);
+            const hasLowerCase = /[a-z]/.test(value);
+            const hasNumber = /[0-9]/.test(value);
+            const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value);
+            
+            if (!hasUpperCase) {
+              throw new Error('Password must contain at least one uppercase letter');
+            }
+            if (!hasLowerCase) {
+              throw new Error('Password must contain at least one lowercase letter');
+            }
+            if (!hasNumber) {
+              throw new Error('Password must contain at least one number');
+            }
+            if (!hasSpecialChar) {
+              throw new Error('Password must contain at least one special character');
+            }
+          }
+        }
+      },
       firstName: {
         type: Sequelize.STRING,
         allowNull: true

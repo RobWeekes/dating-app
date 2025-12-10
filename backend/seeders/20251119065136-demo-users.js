@@ -1,9 +1,11 @@
 'use strict';
 
+const bcrypt = require('bcryptjs');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    // Sample data for generating random users
+    // sample data for generating random users
     const firstNames = [
       'James', 'Michael', 'Robert', 'John', 'David', 'Richard', 'Joseph', 'Thomas', 'Charles', 'Christopher',
       'Daniel', 'Matthew', 'Anthony', 'Donald', 'Mark', 'Steven', 'Paul', 'Andrew', 'Joshua', 'Kenneth',
@@ -70,21 +72,24 @@ module.exports = {
       'Brentwood', 'Pacific Palisades', 'Malibu', 'Redondo Beach', 'Hermosa Beach'
     ];
 
-    // Generate 100 random users
+    // generate 100 random users
     const users = [];
     for (let i = 0; i < 100; i++) {
       const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
       const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
       const neighborhood = neighborhoods[Math.floor(Math.random() * neighborhoods.length)];
       const bio = bios[Math.floor(Math.random() * bios.length)];
-      const age = Math.floor(Math.random() * (75 - 18 + 1)) + 18;
+      const age = Math.floor(Math.random() * (100 - 18 + 1)) + 18;  // age between 18 and 100
       
-      // Create unique email
+      // create unique email
       const emailBase = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i}`;
       const email = `${emailBase}@datingapp.com`;
+      const plainPassword = `Password${i+1}!`;  // simple demo passwords for seeding
+      const hashedPassword = await bcrypt.hash(plainPassword, 10);
 
       users.push({
         email: email,
+        password: hashedPassword,
         firstName: firstName,
         lastName: lastName,
         age: age,
