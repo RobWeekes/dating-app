@@ -45,6 +45,23 @@ function Profile() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Check if profile is complete
+  const isProfileComplete = () => {
+    if (!userProfile) return false;
+    return (
+      userProfile.age &&
+      userProfile.location &&
+      userProfile.bodyType &&
+      userProfile.bmi &&
+      userProfile.politics &&
+      userProfile.religion &&
+      userProfile.ethnicity &&
+      userProfile.family &&
+      userProfile.familyGoals &&
+      userProfile.bio
+    );
+  };
+
   // Initialize form with user data
   useEffect(() => {
     if (userProfile) {
@@ -277,6 +294,17 @@ function Profile() {
                 </div>
               )}
             </div>
+
+            {!isProfileComplete() && (
+              <div className="profile-incomplete-notice">
+                <Button 
+                  onClick={() => navigate('/profile/edit')}
+                  className="btn-link"
+                >
+                  Complete profile to unlock all Power Search options
+                </Button>
+              </div>
+            )}
           </div>
         ) : (
           <p>No profile data available. Please complete your profile.</p>

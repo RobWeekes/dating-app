@@ -195,6 +195,41 @@
   cursor: not-allowed;
 }
 
+.btn-link {
+  background-color: transparent;
+  color: var(--primary-color, #ff6b6b);
+  padding: 0.75rem 0;
+  border: none;
+  border-bottom: 2px solid var(--primary-color, #ff6b6b);
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.btn-link:hover:not(:disabled) {
+  opacity: 0.8;
+  color: #ff5252;
+  border-bottom-color: #ff5252;
+}
+
+.btn-link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-incomplete-notice {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color, #e0e0e0);
+  text-align: center;
+}
+
+.profile-incomplete-notice .btn-link {
+  display: inline-block;
+}
+
 /* Mobile Responsive */
 @media (max-width: 600px) {
   .profile-page {
