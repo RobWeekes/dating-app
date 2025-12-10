@@ -1,267 +1,350 @@
-# Questionnaire Feature - Quick Start Guide
+# Compatibility Questionnaire - Quick Start Guide
 
-## What Was Built
+Get the compatibility questionnaires up and running in 5 minutes.
 
-A complete personality and dating preference questionnaire with:
+---
 
-- 7 comprehensive questions (dropdowns, checkboxes, textareas)
-- View mode to display saved questionnaire
-- Edit mode to update responses
-- Full form validation with error messages
-- Redux state management
-- Mobile-responsive design
-- Backend API integration
-- Data persistence in SQLite database
+## Files to Copy
 
-## Files Created/Updated
+Copy these 6 files from the `frontend` directory:
 
+### Components (4 files)
 ```
-frontend/src/
-├── pages/
-│   └── Questionnaire.js (420 lines) ✨ COMPLETELY REWRITTEN
-├── services/
-│   └── api.js ✅ ADDED: updateUserQuestionnaire()
-└── styles/
-    └── questionnaire.css (340 lines) ✨ COMPLETELY REWRITTEN
-
-Documentation/
-├── QUESTIONNAIRE_FEATURE.md ✨ NEW - Testing guide
-└── QUESTIONNAIRE_IMPLEMENTATION.md ✨ NEW - Implementation details
+frontend/src/components/
+├── CompatibilityQuestionnaireShort.js
+├── CompatibilityQuestionnaireMediumCasual.js
+├── CompatibilityQuestionnaireLongTermShort.js
+└── CompatibilityQuestionnaireSelector.js
 ```
 
-## How to Test
-
-### Step 1: Start the Servers
-
-```bash
-# Terminal 1 - Frontend (runs on port 3000)
-cd frontend
-npm start
-
-# Terminal 2 - Backend (runs on port 3001)
-cd backend
-npm start
+### Styles (2 files)
+```
+frontend/src/styles/
+├── compatibility-questionnaire.css
+└── questionnaire-selector.css
 ```
 
-### Step 2: Navigate to Questionnaire
+---
 
-1. Open http://localhost:3000 in browser
-2. Click "Questionnaire" in navigation menu
-3. You should see the empty form (first-time user)
+## Step 1: Add Route (1 minute)
 
-### Step 3: Complete the Form
-
-1. **Personality**: Select "Introvert" (or your preference)
-2. **Dating Goal**: Select "Long-term relationship"
-3. **Relationship Type**: Select "Monogamous"
-4. **Interests**: Check at least 3 (e.g., Travel, Fitness, Art & Music)
-5. **Ideal Date**: Write something like "Coffee at a cozy cafe"
-6. **5-Year Goals**: Write future aspirations
-7. **About You**: Describe yourself
-8. Click **"Submit"**
-
-### Step 4: Verify Success
-
-- Should redirect to Profile page
-- Navigate back to Questionnaire
-- Should now show **View Mode** with all your data
-- Click **"Edit"** to modify responses
-
-### Step 5: Test Mobile
-
-1. Press F12 to open DevTools
-2. Click device toggle (mobile icon)
-3. Select iPhone or iPad size
-4. Verify form looks good and is readable
-
-## Key Features
-
-### 1. Smart View/Edit Modes
-
-- **First Time**: Shows form for input
-- **After Saving**: Shows view mode with edit button
-- **Click Edit**: Switches to form mode
-- **Click Cancel**: Reverts to last saved state
-
-### 2. Real-Time Validation
-
-```
-❌ All fields required
-❌ Minimum 3 interests must be selected
-❌ Errors show in red immediately
-✅ Errors clear when user starts typing
-✅ Submit disabled if validation fails
-```
-
-### 3. Beautiful UI
-
-- Professional card design
-- Smooth transitions
-- Color-coded elements (interest tags, error messages)
-- Responsive on all devices
-- Loading spinner on submit button
-
-### 4. Full-Stack Integration
-
-```
-React Form → Redux State → API Call → Express Backend → SQLite Database
-```
-
-## Testing in Browser Console
-
-### Copy and run this to test submission:
+In `frontend/src/routes/index.js` or your router configuration:
 
 ```javascript
-const testQuestionnaire = async () => {
-  const data = {
-    userId: 1,
-    personalityType: "Ambivert",
-    datingGoal: "Long-term relationship",
-    relationshipType: "Monogamous",
-    interests: ["Travel", "Fitness", "Art & Music", "Reading", "Gaming"],
-    responses: {
-      idealDate: "A cozy cafe date followed by a walk",
-      fiveYearGoal: "Settled down, traveling, pursuing dreams",
-      aboutYou: "I love adventure and meeting people!",
-    },
-  };
+import CompatibilityQuestionnaireSelector from '../components/CompatibilityQuestionnaireSelector';
 
-  const res = await fetch("http://localhost:3001/api/questionnaires", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+// Add this route:
+<Route 
+  path="/compatibility-questionnaire" 
+  element={<CompatibilityQuestionnaireSelector />} 
+/>
+```
+
+---
+
+## Step 2: Add Navigation Link (1 minute)
+
+In your navigation or profile component:
+
+```javascript
+import { Link } from 'react-router-dom';
+
+// Add button or link:
+<Link to="/compatibility-questionnaire" className="btn-primary">
+  Answer Compatibility Questions
+</Link>
+```
+
+---
+
+## Step 3: Create API Handler (2 minutes)
+
+In `frontend/src/services/api.js`:
+
+```javascript
+export async function submitCompatibilityQuestionnaire(data) {
+  const response = await fetch('/api/questionnaires/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${getAuthToken()}`,
+    },
     body: JSON.stringify(data),
   });
+  
+  if (!response.ok) {
+    throw new Error('Failed to submit questionnaire');
+  }
+  
+  return response.json();
+}
+```
 
-  console.log("Result:", await res.json());
+---
+
+## Step 4: Wire Up Submission (1 minute)
+
+Update `CompatibilityQuestionnaireSelector.js` to call your API:
+
+```javascript
+// Near the top, after imports:
+import { submitCompatibilityQuestionnaire } from '../services/api';
+
+// Find where the component handles onSubmit
+// Modify the onSubmit handler:
+const handleQuestionnaireSubmit = async (data) => {
+  try {
+    await submitCompatibilityQuestionnaire(data);
+    // Show success message
+    // Navigate to profile or success page
+  } catch (error) {
+    // Show error message
+  }
 };
 
-testQuestionnaire();
+// Pass to selector:
+<CompatibilityQuestionnaireSelector
+  onSubmit={handleQuestionnaireSubmit}
+  onCancel={() => navigate(-1)}
+/>
 ```
 
-## Expected Behavior
+---
 
-| Action                         | Expected Result               |
-| ------------------------------ | ----------------------------- |
-| Load page first time           | See empty form                |
-| Submit empty form              | See all error messages        |
-| Select only 2 interests        | See "select at least 3" error |
-| Fill form correctly and submit | Redirect to profile           |
-| Navigate back to questionnaire | See view mode with all data   |
-| Click Edit                     | Form shows with existing data |
-| Modify and click Update        | Updated data persists         |
-| Click Cancel                   | Returns to view mode          |
-| Refresh page                   | Data persists (from database) |
-| Test on mobile                 | Form stacks vertically        |
+## Done!
 
-## Code Highlights
+The questionnaires are now live. Visit:
+```
+http://localhost:3000/compatibility-questionnaire
+```
 
-### Question Configuration
+---
+
+## Testing
+
+Test each questionnaire:
+
+1. **Short Casual** - Fill out 10 questions (~2 min)
+2. **Medium Casual** - Fill out 25 questions in sections (~5 min)
+3. **Short Long-Term** - Fill out 15 questions (~3 min)
+
+Verify:
+- ✅ Questions display correctly
+- ✅ Radio buttons work
+- ✅ Progress bar advances (medium form)
+- ✅ Submit button sends data
+- ✅ Responsive on mobile
+
+---
+
+## Available Questionnaires
+
+### Ready to Use
+- ✅ **Short Form (10 Q)** - Casual dating - 5 min
+- ✅ **Medium Form (25 Q)** - Casual dating - 15 min  
+- ✅ **Short Form (15 Q)** - Long-term - 8 min
+
+### Coming Soon (Placeholder)
+- ⏳ **Medium Form (35 Q)** - Long-term - 20 min
+- ⏳ **Long Form (50 Q)** - Casual - 25 min
+- ⏳ **Long Form (100 Q)** - Long-term - 45 min
+
+---
+
+## Data Structure
+
+Each questionnaire returns:
 
 ```javascript
-const questionsConfig = [
-  {
-    id: "personality",
-    question: "What best describes your personality?",
-    type: "select",
-    options: ["Introvert", "Ambivert", "Extrovert"],
-    fieldName: "personalityType",
-  },
-  // ... 6 more questions
-];
-```
-
-### Validation Logic
-
-```javascript
-if (formData.interests.length < 3) {
-  errors.interests = "Please select at least 3 interests";
-}
-```
-
-### Form Submission
-
-```javascript
-const result = existingQuestionnaire
-  ? await updateUserQuestionnaire(existingQuestionnaire.id, data)
-  : await submitQuestionnaire(data);
-
-dispatch(setUserQuestionnaire(result));
-navigate("/profile");
-```
-
-## Architecture Pattern
-
-This questionnaire follows the **same proven pattern** as the Profile Edit feature:
-
-1. ✅ **Dual Mode**: View (read-only) + Edit (form)
-2. ✅ **Redux Integration**: Centralized state management
-3. ✅ **API Integration**: Fetches/saves via backend
-4. ✅ **Error Handling**: Validation + API error display
-5. ✅ **Responsive CSS**: Mobile-first design
-6. ✅ **Real-time UX**: Loading states, error clearing
-
-## Questions Included
-
-1. **Personality Type** (Dropdown) - Introvert/Ambivert/Extrovert
-2. **Dating Goal** (Dropdown) - Long-term/Casual/Friendship/Not sure
-3. **Relationship Type** (Dropdown) - Monogamous/Open/Not sure
-4. **Interests** (Checkboxes) - 12 options, minimum 3 required
-5. **Ideal First Date** (Textarea) - Open-ended response
-6. **5-Year Goals** (Textarea) - Personal vision
-7. **About You** (Textarea) - Personal description
-
-## Database Storage
-
-Data persists in `backend/dating_app.db` in the `Questionnaires` table:
-
-```json
 {
-  "id": 1,
-  "userId": 1,
-  "personalityType": "Introvert",
-  "datingGoal": "Long-term relationship",
-  "relationshipType": "Monogamous",
-  "interests": ["Travel", "Fitness", ...],
-  "responses": {
-    "idealDate": "...",
-    "fiveYearGoal": "...",
-    "aboutYou": "..."
+  type: 'SHORT',              // SHORT, MEDIUM, LONG
+  relationshipType: 'CASUAL', // CASUAL or LONG_TERM
+  responses: {
+    physicalChemistry: 'Essential',
+    intimacyFrequency: 'Regular (1-2 times weekly)',
+    // ... all responses
   },
-  "createdAt": "2025-11-20T...",
-  "updatedAt": "2025-11-20T..."
+  completedAt: '2024-11-28T12:34:56Z',
+  length: 'SHORT'
 }
 ```
 
-## Next Steps
+---
 
-After testing questionnaire:
+## Database Setup
 
-1. ✅ **Questionnaire** - COMPLETE
-2. ⏳ **Preferences** - Build similar feature for dating preferences
-3. ⏳ **Discovery** - Create interface to browse other users
-4. ⏳ **Matching** - Implement match-finding algorithm
-5. ⏳ **Messaging** - Add chat between matched users
+Optional: Create a table to store responses:
+
+```sql
+CREATE TABLE questionnaire_responses (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  questionnaire_type VARCHAR(50),
+  relationship_type VARCHAR(50),
+  responses JSONB,
+  completed_at TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## Customization
+
+### Change Colors
+Edit `compatibility-questionnaire.css`:
+```css
+/* Find these and change */
+--primary: #667eea;
+--secondary: #764ba2;
+```
+
+### Change Questions
+Edit each component's hardcoded questions, or import from a config file:
+```javascript
+// Create: frontend/src/config/questionnaires.js
+export const CASUAL_SHORT_QUESTIONS = [ ... ];
+
+// Import in component:
+import { CASUAL_SHORT_QUESTIONS } from '../config/questionnaires';
+```
+
+### Add More Questionnaires
+Create new component following this pattern:
+```javascript
+import { useState } from 'react';
+import Button from './Button';
+
+function CustomQuestionnaire({ onSubmit, onCancel }) {
+  const [formData, setFormData] = useState({ /* fields */ });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => { /* ... */ };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    
+    try {
+      setIsSubmitting(true);
+      await onSubmit({
+        type: 'YOUR_TYPE',
+        relationshipType: 'YOUR_TYPE',
+        responses: formData,
+        completedAt: new Date().toISOString(),
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="compatibility-questionnaire">
+      {/* Your form JSX */}
+    </div>
+  );
+}
+
+export default CustomQuestionnaire;
+```
+
+Then add to `CompatibilityQuestionnaireSelector.js`:
+```javascript
+import CustomQuestionnaire from './CustomQuestionnaire';
+
+// In questionnaires object:
+options: [
+  // ... existing options ...
+  {
+    id: 'YOUR_ID',
+    label: 'Your Label',
+    description: 'Your description',
+    time: '10 min',
+    component: CustomQuestionnaire,
+  },
+]
+```
+
+---
+
+## Integration Checklist
+
+- [ ] Routes updated with questionnaire path
+- [ ] Navigation link added
+- [ ] API handler created in services
+- [ ] Submission logic implemented
+- [ ] Components tested in browser
+- [ ] Mobile responsive verified
+- [ ] Error handling implemented
+- [ ] Success message displayed
+- [ ] Database table created (optional)
+- [ ] Backend endpoint ready
+
+---
 
 ## Troubleshooting
 
-| Issue                         | Solution                                         |
-| ----------------------------- | ------------------------------------------------ |
-| Form won't submit             | Check all fields are filled and interests ≥ 3    |
-| Data won't save               | Ensure backend is running on port 3001           |
-| Page won't load               | Check browser console (F12) for errors           |
-| Mobile looks broken           | Try without DevTools zoom (set to 100%)          |
-| Can't see "Edit" button       | Questionnaire must be successfully saved first   |
-| Validation errors won't clear | Errors clear when you start typing in that field |
+**Questionnaire doesn't load**
+- Check component import paths
+- Verify CSS files are imported
+- Check browser console for errors
 
-## Success Indicators
+**Styles look wrong**
+- Ensure CSS files are in correct directory
+- Check CSS imports in components
+- Clear browser cache
 
-✅ Form loads and renders all 7 questions
-✅ All input types work (selects, checkboxes, textareas)
-✅ Validation prevents submission with errors
-✅ Successful submission redirects to profile
-✅ View mode displays saved data
-✅ Edit mode allows updates
-✅ Cancel reverts unsaved changes
-✅ Data persists after page refresh
-✅ Mobile layout works properly
-✅ Browser console shows no errors
+**Submit doesn't work**
+- Check API endpoint is correct
+- Verify authentication token is included
+- Check backend endpoint exists
+- Look at network tab in dev tools
+
+**Questions not showing**
+- Check component is rendering
+- Verify state initialization
+- Check for JavaScript errors
+
+---
+
+## What's Next?
+
+1. **Add more questionnaires** - Use template above
+2. **Build matching algorithm** - Compare questionnaire responses
+3. **Create match discovery page** - Show compatible users
+4. **Add analytics** - Track completion and responses
+5. **Improve matching** - Use ML/AI for better matches
+
+---
+
+## Support
+
+- Review `COMPATIBILITY_QUESTIONNAIRES_IMPLEMENTATION.md` for detailed integration
+- Check `COMPATIBILITY_QUESTIONNAIRES.md` for all questions and options
+- See `QUESTIONNAIRE_COMPONENTS_SUMMARY.md` for technical details
+
+---
+
+## Quick Links
+
+**Documentation Files:**
+- COMPATIBILITY_QUESTIONNAIRES.md - Full questionnaire content
+- COMPATIBILITY_QUESTIONNAIRES_IMPLEMENTATION.md - Developer guide
+- QUESTIONNAIRE_COMPONENTS_SUMMARY.md - Technical overview
+
+**Component Files:**
+- CompatibilityQuestionnaireSelector.js - Main entry point
+- CompatibilityQuestionnaireShort.js - 10-question form
+- CompatibilityQuestionnaireMediumCasual.js - 25-question form
+- CompatibilityQuestionnaireLongTermShort.js - 15-question form
+
+**Style Files:**
+- compatibility-questionnaire.css - Form styles
+- questionnaire-selector.css - Selector styles
+
+---
+
+**Total setup time: ~5-10 minutes**
+**Time saved vs building from scratch: 8-10 hours**
+
+Enjoy your compatibility questionnaires! 🎉

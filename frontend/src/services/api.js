@@ -183,6 +183,28 @@ export const checkLike = async (fromUserId, toUserId) => {
   return fetchAPI(`/likes/${fromUserId}/${toUserId}`);
 };
 
+/**
+ * Submit compatibility questionnaire response
+ * @param {object} data - Questionnaire response data
+ * @returns {Promise<object>} Submitted questionnaire response
+ */
+export const submitCompatibilityQuestionnaire = async (data) => {
+  return fetchAPI(`/questionnaires/compatibility`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+};
+
+/**
+ * Get compatibility questionnaire responses for user
+ * @param {number} userId - User ID
+ * @param {string} relationshipType - CASUAL or LONG_TERM
+ * @returns {Promise<object>} Questionnaire response data
+ */
+export const getCompatibilityQuestionnaire = async (userId, relationshipType) => {
+  return fetchAPI(`/questionnaires/compatibility/${userId}?type=${relationshipType}`);
+};
+
 export default {
   getUserProfile,
   updateUserProfile,
@@ -198,4 +220,6 @@ export default {
   getUserLikes,
   getMatches,
   checkLike,
+  submitCompatibilityQuestionnaire,
+  getCompatibilityQuestionnaire,
 };

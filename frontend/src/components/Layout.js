@@ -25,6 +25,9 @@ function Layout() {
               <Link to="/questionnaire">Questionnaire</Link>
             </li>
             <li>
+              <Link to="/questionnaire/select">Compatibility Quiz</Link>
+            </li>
+            <li>
               <Link to="/profile">Profile</Link>
             </li>
             <li>
