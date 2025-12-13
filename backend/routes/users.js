@@ -25,7 +25,7 @@ router.get('/discover/:userId', async (req, res) => {
       where: { id: { [require('sequelize').Op.ne]: userId } },
       attributes: { exclude: ['password'] },
       include: [
-        { model: Questionnaire, attributes: ['id', 'personalityType', 'datingGoal', 'interests'] },
+        { model: Questionnaire, attributes: ['id', 'questionnaire', 'datingGoal', 'interests'] },
         { model: Preference, attributes: ['id', 'interests', 'relationshipType'] }
       ]
     });
@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
     const users = await User.findAll({
       attributes: { exclude: ['password'] },
       include: [
-        { model: Questionnaire, attributes: ['id', 'personalityType', 'datingGoal'] },
+        { model: Questionnaire, attributes: ['id', 'questionnaire', 'datingGoal'] },
         { model: Preference, attributes: ['id', 'minAge', 'maxAge', 'location'] }
       ]
     });

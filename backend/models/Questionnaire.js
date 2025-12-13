@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
-      personalityType: {
+      questionnaire: {
         type: DataTypes.STRING,
         allowNull: true,
       },

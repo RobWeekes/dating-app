@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Questionnaire, Answer } = require('../models');
+const { authenticateToken } = require('../middleware/authentication');
 
 // GET all questionnaires
 router.get('/', async (req, res) => {
@@ -50,30 +51,54 @@ router.get('/user/:userId', async (req, res) => {
 });
 
 // CREATE new questionnaire
-router.post('/', async (req, res) => {
+// Handles both original questionnaire format and Essential Questionnaire
+router.post('/', authenticateToken, async (req, res) => {
   try {
-    const { userId, personalityType, interests, datingGoal, relationshipType, responses } = req.body;
+    const { type, relationshipType, responses, completedAt } = req.body;
+    const userId = req.user?.id || req.body.userId;
 
     if (!userId) {
       return res.status(400).json({ error: 'User ID is required' });
     }
 
-    // Check if questionnaire already exists for this user
-    const existingQuestionnaire = await Questionnaire.findOne({ where: { userId } });
-    if (existingQuestionnaire) {
-      return res.status(409).json({ error: 'Questionnaire already exists for this user' });
+    // Determine questionnaire type
+    if (type === 'ESSENTIAL') {
+      // Handle Essential Questionnaire (new format)
+      const questionnaire = await Questionnaire.create({
+        userId,
+        questionnaire: 'ESSENTIAL',
+        relationshipType: relationshipType || 'ALL',
+        responses: responses,
+        datingGoal: null,
+        interests: responses?.entertainment || []
+      });
+
+      return res.status(201).json({
+        success: true,
+        message: 'Essential Questionnaire saved successfully',
+        questionnaire
+      });
+    } else {
+      // Handle original questionnaire format
+      const { questionnaire, interests, datingGoal } = req.body;
+
+      // Check if questionnaire already exists for this user
+      const existingQuestionnaire = await Questionnaire.findOne({ where: { userId } });
+      if (existingQuestionnaire) {
+        return res.status(409).json({ error: 'Questionnaire already exists for this user' });
+      }
+
+      const q = await Questionnaire.create({
+        userId,
+        questionnaire,
+        interests,
+        datingGoal,
+        relationshipType,
+        responses
+      });
+
+      return res.status(201).json(q);
     }
-
-    const questionnaire = await Questionnaire.create({
-      userId,
-      personalityType,
-      interests,
-      datingGoal,
-      relationshipType,
-      responses
-    });
-
-    res.status(201).json(questionnaire);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -88,10 +113,10 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Questionnaire not found' });
     }
 
-    const { personalityType, interests, datingGoal, relationshipType, responses } = req.body;
+    const { questionnaire: questionnaireType, interests, datingGoal, relationshipType, responses } = req.body;
 
     await questionnaire.update({
-      personalityType: personalityType || questionnaire.personalityType,
+      questionnaire: questionnaireType || questionnaire.questionnaire,
       interests: interests || questionnaire.interests,
       datingGoal: datingGoal || questionnaire.datingGoal,
       relationshipType: relationshipType || questionnaire.relationshipType,
@@ -176,7 +201,7 @@ router.post('/compatibility', async (req, res) => {
     // This should be in a separate table in production
     const questionnaire = await Questionnaire.create({
       userId,
-      personalityType: null,
+      questionnaire: null,
       datingGoal: relationshipType === 'CASUAL' ? 'Casual dating' : 'Long-term relationship',
       relationshipType: relationshipType,
       responses: compatibilityResponse,

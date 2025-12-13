@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Questionnaire from '../pages/Questionnaire';
 import CompatibilityQuestionnaireSelector from '../components/CompatibilityQuestionnaireSelector';
+import EssentialQuestionnairePage from '../pages/EssentialQuestionnairePage';
 import Profile from '../pages/Profile';
 import Preferences from '../pages/Preferences';
 import Discovery from '../pages/Discovery';
@@ -38,6 +39,10 @@ export const routes = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: 'questionnaire/essential',
+        element: <EssentialQuestionnairePage />,
       },
       {
         path: 'questionnaire',
