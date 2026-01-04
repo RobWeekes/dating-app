@@ -163,7 +163,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = (models) => {
-    User.hasOne(models.Questionnaire, {
+    User.hasMany(models.QuestionnaireResponse, {
       foreignKey: 'userId',
       onDelete: 'CASCADE',
     });

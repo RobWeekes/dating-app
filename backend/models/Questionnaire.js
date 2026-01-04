@@ -1,6 +1,6 @@
 /**
  * Questionnaire Model
- * Stores user's personality and dating questionnaire responses
+ * Stores questionnaire templates/definitions (reusable across users)
  */
 module.exports = (sequelize, DataTypes) => {
   const Questionnaire = sequelize.define(
@@ -11,33 +11,41 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      userId: {
-        type: DataTypes.INTEGER,
+      type: {
+        type: DataTypes.STRING,
         allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id',
+        unique: true,
+        validate: {
+          notEmpty: true,
+        },
+        comment: 'e.g., "essential", "compatibility", "interests"',
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+          len: [1, 255],
         },
       },
-      questionnaire: {
-        type: DataTypes.STRING,
+      description: {
+        type: DataTypes.TEXT,
         allowNull: true,
       },
-      interests: {
-        type: DataTypes.JSON,
-        defaultValue: [],
-      },
-      datingGoal: {
+      category: {
         type: DataTypes.STRING,
         allowNull: true,
+        comment: 'For organization/grouping questionnaires',
       },
-      relationshipType: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      version: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+        comment: 'Track changes to questionnaire over time',
       },
-      responses: {
-        type: DataTypes.JSON,
-        defaultValue: {},
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        comment: 'Can deactivate without deleting',
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -57,8 +65,12 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Questionnaire.associate = (models) => {
-    Questionnaire.belongsTo(models.User, {
-      foreignKey: 'userId',
+    Questionnaire.hasMany(models.Question, {
+      foreignKey: 'questionnaireId',
+      onDelete: 'CASCADE',
+    });
+    Questionnaire.hasMany(models.QuestionnaireResponse, {
+      foreignKey: 'questionnaireId',
       onDelete: 'CASCADE',
     });
   };

@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { Questionnaire, Answer } = require('../models');
+const { Questionnaire, Question, QuestionnaireResponse, Answer, User } = require('../models');
 const { authenticateToken } = require('../middleware/authentication');
 
-// GET all questionnaires
+/**
+ * QUESTIONNAIRE TEMPLATE ROUTES
+ * These manage the questionnaire definitions (templates)
+ */
+
+// GET all questionnaires (templates)
 router.get('/', async (req, res) => {
   try {
     const questionnaires = await Questionnaire.findAll({
-      include: [{ model: Answer }]
+      include: [
+        {
+          model: Question,
+          attributes: ['id', 'text', 'type', 'options', 'order'],
+        },
+      ],
+      where: { isActive: true },
     });
     res.json(questionnaires);
   } catch (error) {
@@ -15,11 +26,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET questionnaire by ID
+// GET questionnaire template by ID
 router.get('/:id', async (req, res) => {
   try {
     const questionnaire = await Questionnaire.findByPk(req.params.id, {
-      include: [{ model: Answer }]
+      include: [
+        {
+          model: Question,
+          attributes: ['id', 'text', 'type', 'options', 'required', 'order'],
+        },
+      ],
     });
 
     if (!questionnaire) {
@@ -32,16 +48,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// GET questionnaire by user ID
-router.get('/user/:userId', async (req, res) => {
+// GET questionnaire template by type
+router.get('/type/:type', async (req, res) => {
   try {
     const questionnaire = await Questionnaire.findOne({
-      where: { userId: req.params.userId },
-      include: [{ model: Answer }]
+      where: { type: req.params.type },
+      include: [
+        {
+          model: Question,
+          attributes: ['id', 'text', 'type', 'options', 'required', 'order'],
+        },
+      ],
     });
 
     if (!questionnaire) {
-      return res.status(404).json({ error: 'Questionnaire not found for this user' });
+      return res.status(404).json({ error: `Questionnaire type "${req.params.type}" not found` });
     }
 
     res.json(questionnaire);
@@ -50,196 +71,275 @@ router.get('/user/:userId', async (req, res) => {
   }
 });
 
-// CREATE new questionnaire
-// Handles both original questionnaire format and Essential Questionnaire
+/**
+ * USER QUESTIONNAIRE RESPONSE ROUTES
+ * These manage user submissions of questionnaires
+ */
+
+// GET user's response to a questionnaire
+router.get('/responses/user/:userId/questionnaire/:questionnaireId', async (req, res) => {
+  try {
+    const { userId, questionnaireId } = req.params;
+
+    const response = await QuestionnaireResponse.findOne({
+      where: { userId, questionnaireId },
+      include: [
+        {
+          model: Answer,
+          include: [
+            {
+              model: Question,
+              attributes: ['id', 'text', 'type'],
+            },
+          ],
+        },
+      ],
+      order: [[Answer, Question, 'order', 'ASC']],
+    });
+
+    if (!response) {
+      return res.status(404).json({ error: 'No response found for this user and questionnaire' });
+    }
+
+    res.json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET all of user's responses
+router.get('/responses/user/:userId', async (req, res) => {
+  try {
+    const responses = await QuestionnaireResponse.findAll({
+      where: { userId: req.params.userId },
+      include: [
+        {
+          model: Questionnaire,
+          attributes: ['id', 'type', 'title', 'description'],
+        },
+      ],
+      order: [['completedAt', 'DESC']],
+    });
+
+    res.json(responses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// CREATE new questionnaire response (user submits a questionnaire)
 router.post('/', authenticateToken, async (req, res) => {
   try {
     const { type, relationshipType, responses, completedAt } = req.body;
-    const userId = req.user?.id || req.body.userId;
+    const userId = req.user?.id;
 
     if (!userId) {
       return res.status(400).json({ error: 'User ID is required' });
     }
 
-    // Determine questionnaire type
-    if (type === 'ESSENTIAL') {
-      // Handle Essential Questionnaire (new format)
-      const questionnaire = await Questionnaire.create({
-        userId,
-        questionnaire: 'ESSENTIAL',
-        relationshipType: relationshipType || 'ALL',
-        responses: responses,
-        datingGoal: null,
-        interests: responses?.entertainment || []
-      });
-
-      return res.status(201).json({
-        success: true,
-        message: 'Essential Questionnaire saved successfully',
-        questionnaire
-      });
-    } else {
-      // Handle original questionnaire format
-      const { questionnaire, interests, datingGoal } = req.body;
-
-      // Check if questionnaire already exists for this user
-      const existingQuestionnaire = await Questionnaire.findOne({ where: { userId } });
-      if (existingQuestionnaire) {
-        return res.status(409).json({ error: 'Questionnaire already exists for this user' });
-      }
-
-      const q = await Questionnaire.create({
-        userId,
-        questionnaire,
-        interests,
-        datingGoal,
-        relationshipType,
-        responses
-      });
-
-      return res.status(201).json(q);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// UPDATE questionnaire by ID
-router.put('/:id', async (req, res) => {
-  try {
-    const questionnaire = await Questionnaire.findByPk(req.params.id);
-
-    if (!questionnaire) {
-      return res.status(404).json({ error: 'Questionnaire not found' });
+    if (!type) {
+      return res.status(400).json({ error: 'Questionnaire type is required' });
     }
 
-    const { questionnaire: questionnaireType, interests, datingGoal, relationshipType, responses } = req.body;
-
-    await questionnaire.update({
-      questionnaire: questionnaireType || questionnaire.questionnaire,
-      interests: interests || questionnaire.interests,
-      datingGoal: datingGoal || questionnaire.datingGoal,
-      relationshipType: relationshipType || questionnaire.relationshipType,
-      responses: responses || questionnaire.responses
+    // Find the questionnaire template by type
+    const questionnaire = await Questionnaire.findOne({
+      where: { type, isActive: true },
+      include: [{ model: Question }],
     });
 
-    res.json(questionnaire);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// DELETE questionnaire by ID
-router.delete('/:id', async (req, res) => {
-  try {
-    const questionnaire = await Questionnaire.findByPk(req.params.id);
-
     if (!questionnaire) {
-      return res.status(404).json({ error: 'Questionnaire not found' });
+      return res.status(404).json({ error: `Questionnaire type "${type}" not found` });
     }
 
-    await questionnaire.destroy();
-    res.json({ message: 'Questionnaire deleted successfully' });
+    // Check if user already has a completed response for this questionnaire
+    const existingResponse = await QuestionnaireResponse.findOne({
+      where: { userId, questionnaireId: questionnaire.id, status: 'completed' },
+    });
+
+    if (existingResponse) {
+      // Update existing response instead of creating new one
+      await existingResponse.update({
+        status: 'completed',
+        completedAt: new Date(),
+      });
+
+      // Delete old answers
+      await Answer.destroy({ where: { questionnaireResponseId: existingResponse.id } });
+
+      questionnaireResponse = existingResponse;
+    } else {
+      // Create new response record
+      var questionnaireResponse = await QuestionnaireResponse.create({
+        userId,
+        questionnaireId: questionnaire.id,
+        status: 'completed',
+        completedAt: new Date(),
+      });
+    }
+
+    // Create answer records for each question
+    if (responses && typeof responses === 'object') {
+      const answerPromises = Object.entries(responses).map(([questionId, value]) => {
+        // Handle both string questionIds and numeric
+        const qId = isNaN(questionId) ? questionId : parseInt(questionId);
+        return Answer.create({
+          questionnaireResponseId: questionnaireResponse.id,
+          questionId: qId,
+          value: typeof value === 'string' ? value : JSON.stringify(value),
+        });
+      });
+
+      await Promise.all(answerPromises);
+    }
+
+    // Fetch the complete response with answers
+    const completeResponse = await QuestionnaireResponse.findByPk(questionnaireResponse.id, {
+      include: [
+        {
+          model: Answer,
+          include: [
+            {
+              model: Question,
+              attributes: ['id', 'text', 'type'],
+            },
+          ],
+        },
+        {
+          model: Questionnaire,
+          attributes: ['id', 'type', 'title'],
+        },
+      ],
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Questionnaire submitted successfully',
+      data: completeResponse,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// CREATE answer for a questionnaire
-router.post('/:id/answers', async (req, res) => {
+// UPDATE questionnaire response
+router.put('/:responseId', async (req, res) => {
   try {
-    const { questionId, answer } = req.body;
+    const response = await QuestionnaireResponse.findByPk(req.params.responseId);
+
+    if (!response) {
+      return res.status(404).json({ error: 'Questionnaire response not found' });
+    }
+
+    const { status, completedAt } = req.body;
+
+    await response.update({
+      status: status || response.status,
+      completedAt: completedAt || response.completedAt,
+    });
+
+    res.json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// DELETE questionnaire response
+router.delete('/:responseId', async (req, res) => {
+  try {
+    const response = await QuestionnaireResponse.findByPk(req.params.responseId);
+
+    if (!response) {
+      return res.status(404).json({ error: 'Questionnaire response not found' });
+    }
+
+    await response.destroy();
+    res.json({ message: 'Questionnaire response deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+/**
+ * ANSWER ROUTES
+ */
+
+// GET answers for a response
+router.get('/:responseId/answers', async (req, res) => {
+  try {
+    const answers = await Answer.findAll({
+      where: { questionnaireResponseId: req.params.responseId },
+      include: [
+        {
+          model: Question,
+          attributes: ['id', 'text', 'type', 'options'],
+        },
+      ],
+      order: [[Question, 'order', 'ASC']],
+    });
+
+    res.json(answers);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// CREATE answer for a response
+router.post('/:responseId/answers', async (req, res) => {
+  try {
+    const { questionId, value } = req.body;
 
     if (!questionId) {
       return res.status(400).json({ error: 'Question ID is required' });
     }
 
-    const questionnaire = await Questionnaire.findByPk(req.params.id);
-    if (!questionnaire) {
-      return res.status(404).json({ error: 'Questionnaire not found' });
+    const response = await QuestionnaireResponse.findByPk(req.params.responseId);
+    if (!response) {
+      return res.status(404).json({ error: 'Questionnaire response not found' });
     }
 
-    const newAnswer = await Answer.create({
-      questionnaireId: req.params.id,
+    const answer = await Answer.create({
+      questionnaireResponseId: req.params.responseId,
       questionId,
-      answer
+      value: typeof value === 'string' ? value : JSON.stringify(value),
     });
 
-    res.status(201).json(newAnswer);
+    res.status(201).json(answer);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// COMPATIBILITY QUESTIONNAIRE ENDPOINTS
-
-// POST - Submit compatibility questionnaire response
-router.post('/compatibility', async (req, res) => {
+// UPDATE answer
+router.put('/answers/:answerId', async (req, res) => {
   try {
-    const { userId, type, relationshipType, responses, completedAt, length } = req.body;
+    const { value } = req.body;
 
-    if (!userId) {
-      return res.status(400).json({ error: 'User ID is required' });
+    const answer = await Answer.findByPk(req.params.answerId);
+    if (!answer) {
+      return res.status(404).json({ error: 'Answer not found' });
     }
 
-    if (!relationshipType) {
-      return res.status(400).json({ error: 'Relationship type is required' });
-    }
-
-    // For now, store in a simple JSON response
-    // In production, create a dedicated CompatibilityQuestionnaire model
-    const compatibilityResponse = {
-      userId,
-      type,
-      relationshipType,
-      responses,
-      completedAt: completedAt || new Date().toISOString(),
-      length,
-    };
-
-    // Store in questionnaire responses (temporary solution)
-    // This should be in a separate table in production
-    const questionnaire = await Questionnaire.create({
-      userId,
-      questionnaire: null,
-      datingGoal: relationshipType === 'CASUAL' ? 'Casual dating' : 'Long-term relationship',
-      relationshipType: relationshipType,
-      responses: compatibilityResponse,
-      interests: []
+    await answer.update({
+      value: typeof value === 'string' ? value : JSON.stringify(value),
     });
 
-    res.status(201).json(questionnaire);
+    res.json(answer);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// GET - Retrieve compatibility questionnaire response for a user
-router.get('/compatibility/:userId', async (req, res) => {
+// DELETE answer
+router.delete('/answers/:answerId', async (req, res) => {
   try {
-    const { userId } = req.params;
-    const { type } = req.query;
+    const answer = await Answer.findByPk(req.params.answerId);
 
-    if (!userId) {
-      return res.status(400).json({ error: 'User ID is required' });
+    if (!answer) {
+      return res.status(404).json({ error: 'Answer not found' });
     }
 
-    // Find questionnaire with compatibility responses
-    const questionnaire = await Questionnaire.findOne({
-      where: { userId },
-      order: [['createdAt', 'DESC']]
-    });
-
-    if (!questionnaire) {
-      return res.status(404).json({ error: 'No questionnaire found for this user' });
-    }
-
-    // Filter by type if specified
-    if (type && questionnaire.responses?.relationshipType !== type) {
-      return res.status(404).json({ error: `No ${type} questionnaire found for this user` });
-    }
-
-    res.json(questionnaire);
+    await answer.destroy();
+    res.json({ message: 'Answer deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

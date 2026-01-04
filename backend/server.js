@@ -12,20 +12,98 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database connection
+// Database connection and initialization
 models.sequelize
   .authenticate()
   .then(() => {
     console.log('✓ Database connection successful');
-    // Sync models with database (create tables if they don't exist)
-    return models.sequelize.sync({ alter: true });
+    // Sync database schema
+    console.log('\n🔄 Initializing database...');
+    console.log('📋 Creating database schema...');
+    return models.sequelize.sync({ force: false, alter: false });
   })
   .then(() => {
-    console.log('✓ Database models synced');
+    console.log('✅ Database schema created');
+    // Seed questionnaire templates
+    console.log('📋 Seeding questionnaire templates...');
+    return seedQuestionnaireTemplates();
+  })
+  .then(() => {
+    console.log('✅ Database initialization complete\n');
   })
   .catch((err) => {
-    console.error('✗ Database connection failed:', err);
+    console.error('✗ Database error:', err.message);
+    console.error('💡 If you see SQLITE_IOERR, try: rm -rf dating_app.db* && npm run dev');
   });
+
+// Seed questionnaire templates on startup
+async function seedQuestionnaireTemplates() {
+  const existingCount = await models.Questionnaire.count();
+  if (existingCount === 0) {
+    // Create Essential Questionnaire template
+    const essentialQ = await models.Questionnaire.create({
+      type: 'essential',
+      title: 'Essential Questionnaire',
+      description: 'Find out what matters most to you in a relationship',
+      category: 'Essential',
+      version: 1,
+      isActive: true,
+    });
+
+    console.log(`  ✓ Created Essential Questionnaire (ID: ${essentialQ.id})`);
+
+    // Create questions
+    const essentialQuestions = [
+      {
+        questionnaireId: essentialQ.id,
+        text: 'What are you looking for?',
+        type: 'radio',
+        options: ['Something serious', 'Casual dating', 'Not sure'],
+        required: true,
+        order: 1,
+      },
+      {
+        questionnaireId: essentialQ.id,
+        text: 'Do you want kids?',
+        type: 'radio',
+        options: ['Yes', 'No', 'Maybe'],
+        required: true,
+        order: 2,
+      },
+      {
+        questionnaireId: essentialQ.id,
+        text: 'What is your relationship style?',
+        type: 'radio',
+        options: ['Monogamous', 'Open relationship', 'Exploring options'],
+        required: true,
+        order: 3,
+      },
+      {
+        questionnaireId: essentialQ.id,
+        text: 'What are your interests?',
+        type: 'checkbox',
+        options: [
+          'Travel',
+          'Fitness',
+          'Art',
+          'Music',
+          'Cooking',
+          'Gaming',
+          'Reading',
+          'Sports',
+        ],
+        required: false,
+        order: 4,
+      },
+    ];
+
+    await models.Question.bulkCreate(essentialQuestions);
+    console.log(`  ✓ Created ${essentialQuestions.length} questions`);
+    console.log('✅ Questionnaire templates seeded');
+  } else {
+    console.log(`✅ Database already initialized (${existingCount} questionnaires found)`);
+  }
+}
 
 // Routes
 app.use('/api', routes);

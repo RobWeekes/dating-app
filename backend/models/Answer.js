@@ -1,6 +1,6 @@
 /**
  * Answer Model
- * Stores individual questionnaire question responses
+ * Stores individual user responses to specific questions
  */
 module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define(
@@ -11,21 +11,26 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      questionnaireId: {
+      questionnaireResponseId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'questionnaires',
+          model: 'questionnaire_responses',
           key: 'id',
         },
       },
       questionId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'questions',
+          key: 'id',
+        },
       },
-      answer: {
+      value: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
+        comment: 'The actual answer - can be text, number, or JSON',
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -45,8 +50,12 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Answer.associate = (models) => {
-    Answer.belongsTo(models.Questionnaire, {
-      foreignKey: 'questionnaireId',
+    Answer.belongsTo(models.QuestionnaireResponse, {
+      foreignKey: 'questionnaireResponseId',
+      onDelete: 'CASCADE',
+    });
+    Answer.belongsTo(models.Question, {
+      foreignKey: 'questionId',
       onDelete: 'CASCADE',
     });
   };
