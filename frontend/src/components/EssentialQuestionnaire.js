@@ -4,93 +4,37 @@ import '../styles/compatibility-questionnaire.css';
 
 /**
  * Essential Questionnaire Component
- * Personality and lifestyle questionnaire focusing on core attributes
- * Single-page form with 27 questions covering:
- * - Love languages, political compass, birth order
- * - Sleep patterns, personality archetypes, social inclination
- * - Humor and entertainment preferences
- * - Activities and social habits
- * - Substance use and pets
- * - Personality era, conflict style
- * - Financial and family relationships
- * - Timeline expectations for engagement
+ * Comprehensive 27-question form for dating compatibility
  */
 function EssentialQuestionnaire({ onSubmit, onCancel }) {
   const [formData, setFormData] = useState({
-    // Love Languages
-    loveLangs: [],
-    
-    // Political Compass
-    politicalCompass: '',
-    
-    // Birth Order
-    birthOrder: '',
-    
-    // Sleep Tendency
-    sleepTendency: '',
-    
-    // Personality Archetype
-    personalityArchetype: '',
-    
-    // Social Inclination (Slider)
-    socialInclination: 50,
-    
-    // Sense of Humor
-    senseOfHumor: '',
-    
-    // Laughter Frequency
-    laughFrequency: '',
-    
-    // Musical Tastes
-    musicalTastes: [],
-    
-    // Indoor vs Outdoor (Slider)
-    indoorOutdoor: 50,
-    
-    // Entertainment Preferences
-    entertainment: [],
-    
-    // Hobbies
-    hobbies: [],
-    
-    // Outdoor Activities
-    outdoorActivities: [],
-    
-    // Socialization Frequency
-    socializationFrequency: '',
-    
-    // Drinking Habits
-    drinkingHabits: '',
-    
-    // Smoking
-    smoking: '',
-    
-    // Recreational Drugs
-    recreationalDrugs: '',
-    
-    // Pets
-    pets: '',
-    
-    // Personality Era
-    personalityEra: '',
-    
-    // Conflict Style
-    conflictStyle: '',
-    
-    // Problem Handling
-    problemHandling: '',
-    
-    // Financial Habits
-    financialHabits: '',
-    
-    // Family Relationship
-    familyRelationship: '',
-    
-    // Dating Duration Before Engagement
-    datingDuration: '',
-    
-    // Engagement Duration Before Wedding
-    engagementDuration: '',
+    1: [],  // Love languages (checkbox)
+    2: '',  // Political views (radio)
+    3: '',  // Birth order (radio)
+    4: '',  // Sleep pattern (radio)
+    5: '',  // Personality archetype (radio)
+    6: 50,  // Social inclination (range)
+    7: '',  // Sense of humor (radio)
+    8: '',  // Laughter frequency (radio)
+    9: [],  // Music genres (checkbox)
+    10: 50, // Indoor vs outdoor (range)
+    11: [], // Entertainment preferences (checkbox)
+    12: [], // Hobbies (checkbox)
+    13: [], // Outdoor activities (checkbox)
+    14: '', // Socialization frequency (radio)
+    15: '', // Drinking habits (radio)
+    16: '', // Smoking (radio)
+    17: '', // Recreational drugs (radio)
+    18: '', // Pets (radio)
+    19: '', // Personality era (radio)
+    20: '', // Conflict style (radio)
+    21: '', // Problem handling (radio)
+    22: '', // Financial habits (radio)
+    23: '', // Family relationship (radio)
+    24: '', // Dating duration (radio)
+    25: '', // Engagement duration (radio)
+    26: '', // What are you looking for (radio)
+    27: '', // Do you want kids (radio)
   });
 
   const [errors, setErrors] = useState({});
@@ -99,85 +43,74 @@ function EssentialQuestionnaire({ onSubmit, onCancel }) {
   const validateForm = () => {
     const newErrors = {};
     
-    if (formData.loveLangs.length === 0) newErrors.loveLangs = 'Select at least 1 love language';
-    if (!formData.politicalCompass) newErrors.politicalCompass = 'Required';
-    if (!formData.birthOrder) newErrors.birthOrder = 'Required';
-    if (!formData.sleepTendency) newErrors.sleepTendency = 'Required';
-    if (!formData.personalityArchetype) newErrors.personalityArchetype = 'Required';
-    if (!formData.senseOfHumor) newErrors.senseOfHumor = 'Required';
-    if (!formData.laughFrequency) newErrors.laughFrequency = 'Required';
-    if (formData.musicalTastes.length === 0) newErrors.musicalTastes = 'Select at least 1 genre';
-    if (!formData.entertainment || formData.entertainment.length === 0) newErrors.entertainment = 'Select at least 1 activity';
-    if (formData.hobbies.length === 0) newErrors.hobbies = 'Select at least 1 hobby';
-    if (formData.outdoorActivities.length === 0) newErrors.outdoorActivities = 'Select at least 1 activity';
-    if (!formData.socializationFrequency) newErrors.socializationFrequency = 'Required';
-    if (!formData.drinkingHabits) newErrors.drinkingHabits = 'Required';
-    if (!formData.smoking) newErrors.smoking = 'Required';
-    if (!formData.recreationalDrugs) newErrors.recreationalDrugs = 'Required';
-    if (!formData.pets) newErrors.pets = 'Required';
-    if (!formData.personalityEra) newErrors.personalityEra = 'Required';
-    if (!formData.conflictStyle) newErrors.conflictStyle = 'Required';
-    if (!formData.problemHandling) newErrors.problemHandling = 'Required';
-    if (!formData.financialHabits) newErrors.financialHabits = 'Required';
-    if (!formData.familyRelationship) newErrors.familyRelationship = 'Required';
-    if (!formData.datingDuration) newErrors.datingDuration = 'Required';
-    if (!formData.engagementDuration) newErrors.engagementDuration = 'Required';
+    // Check all required fields
+    for (let i = 1; i <= 27; i++) {
+      const value = formData[i.toString()];
+      if (Array.isArray(value)) {
+        if (value.length === 0) newErrors[i] = 'Required';
+      } else if (!value) {
+        newErrors[i] = 'Required';
+      }
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleRadioChange = (questionId, value) => {
     setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [questionId]: value,
     }));
-    if (errors[name]) {
+    if (errors[questionId]) {
       setErrors(prev => {
         const updated = { ...prev };
-        delete updated[name];
+        delete updated[questionId];
         return updated;
       });
     }
   };
 
-  const handleSliderChange = (e) => {
-    const { name, value } = e.target;
+  const handleCheckboxChange = (questionId, value) => {
     setFormData(prev => ({
       ...prev,
-      [name]: parseInt(value, 10),
+      [questionId]: prev[questionId].includes(value)
+        ? prev[questionId].filter(item => item !== value)
+        : [...prev[questionId], value],
     }));
-  };
-
-  const handleCheckboxChange = (e, fieldName) => {
-    const { value, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [fieldName]: checked
-        ? [...prev[fieldName], value]
-        : prev[fieldName].filter(item => item !== value),
-    }));
-    if (errors[fieldName]) {
+    if (errors[questionId]) {
       setErrors(prev => {
         const updated = { ...prev };
-        delete updated[fieldName];
+        delete updated[questionId];
         return updated;
       });
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSliderChange = (questionId, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [questionId]: parseInt(value, 10),
+    }));
+    if (errors[questionId]) {
+      setErrors(prev => {
+        const updated = { ...prev };
+        delete updated[questionId];
+        return updated;
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
     
     try {
       setIsSubmitting(true);
-      await onSubmit({
-        type: 'ESSENTIAL',
-        relationshipType: 'ALL',
+      onSubmit({
+        type: 'essential',
+        relationshipType: 'monogamous',
         responses: formData,
-        completedAt: new Date().toISOString(),
       });
     } catch (err) {
       console.error('Error submitting questionnaire:', err);
@@ -186,43 +119,17 @@ function EssentialQuestionnaire({ onSubmit, onCancel }) {
     }
   };
 
-  const loveLanguages = ['Words of Affirmation', 'Quality Time', 'Physical Touch', 'Acts of Service', 'Receiving Gifts'];
-  const politicalCompassOptions = ['Left/Progressive', 'Center-Left', 'Center-Right', 'Right/Conservative'];
-  const birthOrderOptions = ['Only child', 'First born', 'Middle child', 'Baby of the family'];
-  const sleepOptions = ['Early bird', 'Standard (sleep around midnight)', 'Night owl', 'Vampire'];
-  const archetypeOptions = ['The Hero', 'The Shadow', 'The Wise Old Man/Woman', 'The Innocent', 'The Explorer', 'The Lover', 'The Creator', 'The Caregiver', 'The Everyman', 'The Jester', 'The Sage', 'The Magician'];
-  const humorOptions = ['Slapstick', 'Playful/Silly', 'Dry/Sarcastic', 'Serious/Only when in mood', "I don't like jokes"];
-  const laughOptions = ['Easily & often', 'Sometimes', 'Only in the right company', 'Life is serious, I take it serious'];
-  const musicGenres = ['Pop', 'Rock', 'Hip-Hop/Rap', 'Country', 'R&B/Soul', 'Jazz', 'Electronic/EDM', 'Classical', 'Indie', 'Metal', 'Latin', 'Folk', 'K-Pop', 'Disco', 'Reggae'];
-  const entertainmentOptions = ['Travel', 'Movies', 'TV/Shows', 'Music/Concerts', 'Gaming', 'Exercise/Gym', 'Outdoor activities', 'Reading', 'Cooking', 'Art/Museums', 'Dining out', 'Nightlife/Clubs'];
-  const hobbiesOptions = ['Photography', 'Painting/Drawing', 'Writing', 'Music (playing)', 'Sports', 'Yoga', 'Meditation', 'DIY/Crafts', 'Cooking', 'Gardening', 'Collecting', 'Volunteering', 'Gaming', 'Movies', 'Reading'];
-  const outdoorActivitiesOptions = ['Hiking', 'Camping', 'Rock climbing', 'Water sports', 'Cycling', 'Picnicking', 'Beach activities', 'Skiing/Snowboarding', 'Fishing', 'Kayaking', 'Skateboarding', 'Running/Jogging'];
-  const socializationOptions = ['Occasionally', 'Once a month', 'Once a week', 'More than once per week'];
-  const drinkingOptions = ["I don't drink", 'Recovered alcoholic', 'Once in a while', 'Social drinker', 'Party animal'];
-  const smokingOptions = ['No', 'Rarely', 'Weekly', 'Daily'];
-  const drugsOptions = ['None', 'Cannabis', 'Psychedelics', 'Heavy user'];
-  const petsOptions = ['Have pets', 'Want pets', "Don't want pets"];
-  const eraOptions = ["'50s", "'60s", "'70s/'80s", "'90s"];
-  const conflictOptions = ['Opinionated/Speak my mind', "Don't talk unless I have something to say", 'I prefer to avoid conflict'];
-  const problemOptions = ['Avoid problems/do something else', 'Plan solutions methodically', "Tackle problems head on/'wing it'"];
-  const financeOptions = ['Budget everything in advance', 'Check finances occasionally', "Don't worry about spending"];
-  const familyOptions = ['Not speaking', 'Talk occasionally on the phone', 'Regular phone calls', 'Regular visits'];
-  const datingDurationOptions = ['6 months or less', '6-12 months', '1-2 years', '3-4 years', '5 years+'];
-  const engagementDurationOptions = ['6 months or less', '6-12 months', '1-2 years', '3-4 years', '5 years+'];
-
-  const getSocialInclinationLabel = (value) => {
+  const getSocialLabel = (value) => {
     if (value < 25) return 'Introvert - Shy';
-    if (value < 50) return 'Introvert - Shy to Ambivert';
-    if (value < 75) return 'Ambivert - Versatile';
-    if (value < 100) return 'Extrovert';
-    return 'Extrovert - Life of the party';
+    if (value < 50) return 'Introvert to Ambivert';
+    if (value < 75) return 'Ambivert';
+    return 'Extrovert';
   };
 
-  const getIndoorOutdoorLabel = (value) => {
+  const getIndoorLabel = (value) => {
     if (value < 25) return 'Homebody';
     if (value < 50) return 'Prefer indoors';
-    if (value < 75) return 'Combination';
-    if (value < 100) return 'Prefer outdoors';
+    if (value < 75) return 'Mixed';
     return 'Adventurer';
   };
 
@@ -235,372 +142,351 @@ function EssentialQuestionnaire({ onSubmit, onCancel }) {
 
       <form onSubmit={handleSubmit} className="compatibility-form">
         
-        {/* Section 1: Love Languages */}
+        {/* Section 1: Love & Connection */}
         <div className="form-section">
           <h3>Love & Connection</h3>
-          
           <div className="question-block">
             <label className="question-label">What is your love language? (Select top 2)</label>
             <div className="checkbox-group">
-              {loveLanguages.map(lang => (
+              {['Words of Affirmation', 'Quality Time', 'Physical Touch', 'Acts of Service', 'Receiving Gifts'].map(lang => (
                 <label key={lang} className="checkbox-option">
                   <input
                     type="checkbox"
-                    value={lang}
-                    checked={formData.loveLangs.includes(lang)}
-                    onChange={(e) => handleCheckboxChange(e, 'loveLangs')}
+                    checked={formData[1].includes(lang)}
+                    onChange={() => handleCheckboxChange(1, lang)}
                   />
                   <span>{lang}</span>
                 </label>
               ))}
             </div>
-            {errors.loveLangs && <span className="error-text">{errors.loveLangs}</span>}
+            {errors[1] && <span className="error-text">{errors[1]}</span>}
           </div>
         </div>
 
-        {/* Section 2: Political & Background */}
+        {/* Section 2: Core Beliefs */}
         <div className="form-section">
-          <h3>Values & Background</h3>
+          <h3>Core Beliefs & Values</h3>
           
           <div className="question-block">
-            <label className="question-label">What is your political compass? (Choose 1)</label>
+            <label className="question-label">My political views are:</label>
             <div className="radio-group">
-              {politicalCompassOptions.map(opt => (
+              {['Left/Progressive', 'Center-Left', 'Center-Right', 'Right/Conservative'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="politicalCompass"
+                    name="political"
                     value={opt}
-                    checked={formData.politicalCompass === opt}
-                    onChange={handleChange}
+                    checked={formData[2] === opt}
+                    onChange={() => handleRadioChange(2, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.politicalCompass && <span className="error-text">{errors.politicalCompass}</span>}
+            {errors[2] && <span className="error-text">{errors[2]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">What is your birth order?</label>
+            <label className="question-label">Birth order:</label>
             <div className="radio-group">
-              {birthOrderOptions.map(opt => (
+              {['Only child', 'First born', 'Middle child', 'Baby of the family'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="birthOrder"
+                    name="birth-order"
                     value={opt}
-                    checked={formData.birthOrder === opt}
-                    onChange={handleChange}
+                    checked={formData[3] === opt}
+                    onChange={() => handleRadioChange(3, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.birthOrder && <span className="error-text">{errors.birthOrder}</span>}
+            {errors[3] && <span className="error-text">{errors[3]}</span>}
           </div>
         </div>
 
-        {/* Section 3: Sleep & Personality */}
+        {/* Section 3: Sleep & Rest */}
         <div className="form-section">
-          <h3>Sleep & Personality</h3>
+          <h3>Sleep & Rest</h3>
+          <div className="question-block">
+            <label className="question-label">Sleep pattern:</label>
+            <div className="radio-group">
+              {['Early bird', 'Standard (sleep around midnight)', 'Night owl', 'Vampire'].map(opt => (
+                <label key={opt} className="radio-option">
+                  <input
+                    type="radio"
+                    name="sleep"
+                    value={opt}
+                    checked={formData[4] === opt}
+                    onChange={() => handleRadioChange(4, opt)}
+                  />
+                  <span>{opt}</span>
+                </label>
+              ))}
+            </div>
+            {errors[4] && <span className="error-text">{errors[4]}</span>}
+          </div>
+        </div>
+
+        {/* Section 4: Personality */}
+        <div className="form-section">
+          <h3>Personality & Demeanor</h3>
           
           <div className="question-block">
-            <label className="question-label">What is your sleep tendency?</label>
+            <label className="question-label">My personality archetype is:</label>
             <div className="radio-group">
-              {sleepOptions.map(opt => (
+              {['The Hero', 'The Shadow', 'The Wise Old Man/Woman', 'The Innocent', 'The Explorer', 'The Lover', 'The Creator', 'The Caregiver', 'The Everyman', 'The Jester', 'The Sage', 'The Magician'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="sleepTendency"
+                    name="archetype"
                     value={opt}
-                    checked={formData.sleepTendency === opt}
-                    onChange={handleChange}
+                    checked={formData[5] === opt}
+                    onChange={() => handleRadioChange(5, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.sleepTendency && <span className="error-text">{errors.sleepTendency}</span>}
+            {errors[5] && <span className="error-text">{errors[5]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">What is your personality archetype?</label>
-            <div className="radio-group">
-              {archetypeOptions.map(opt => (
-                <label key={opt} className="radio-option">
-                  <input
-                    type="radio"
-                    name="personalityArchetype"
-                    value={opt}
-                    checked={formData.personalityArchetype === opt}
-                    onChange={handleChange}
-                  />
-                  <span>{opt}</span>
-                </label>
-              ))}
-            </div>
-            {errors.personalityArchetype && <span className="error-text">{errors.personalityArchetype}</span>}
-          </div>
-
-          <div className="question-block">
-            <label className="question-label">
-              Social Inclination: {getSocialInclinationLabel(formData.socialInclination)}
-            </label>
+            <label className="question-label">Social inclination: <strong>{getSocialLabel(formData[6])}</strong></label>
             <input
               type="range"
-              name="socialInclination"
               min="0"
               max="100"
-              value={formData.socialInclination}
-              onChange={handleSliderChange}
+              value={formData[6]}
+              onChange={(e) => handleSliderChange(6, e.target.value)}
               className="slider"
             />
-            <div className="slider-labels">
-              <span>Introvert - Shy</span>
-              <span>Ambivert - Versatile</span>
-              <span>Extrovert - Life of the party</span>
-            </div>
+            {errors[6] && <span className="error-text">{errors[6]}</span>}
           </div>
-        </div>
 
-        {/* Section 4: Humor & Laughter */}
-        <div className="form-section">
-          <h3>Humor & Laughter</h3>
-          
           <div className="question-block">
-            <label className="question-label">What is your sense of humor?</label>
+            <label className="question-label">My sense of humor is:</label>
             <div className="radio-group">
-              {humorOptions.map(opt => (
+              {['Slapstick', 'Playful/Silly', 'Dry/Sarcastic', 'Serious/Only when in mood', "I don't like jokes"].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="senseOfHumor"
+                    name="humor"
                     value={opt}
-                    checked={formData.senseOfHumor === opt}
-                    onChange={handleChange}
+                    checked={formData[7] === opt}
+                    onChange={() => handleRadioChange(7, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.senseOfHumor && <span className="error-text">{errors.senseOfHumor}</span>}
+            {errors[7] && <span className="error-text">{errors[7]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">I like to laugh:</label>
+            <label className="question-label">How often do you laugh?</label>
             <div className="radio-group">
-              {laughOptions.map(opt => (
+              {['Easily & often', 'Sometimes', 'Only in the right company', 'Life is serious, I take it serious'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="laughFrequency"
+                    name="laugh"
                     value={opt}
-                    checked={formData.laughFrequency === opt}
-                    onChange={handleChange}
+                    checked={formData[8] === opt}
+                    onChange={() => handleRadioChange(8, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.laughFrequency && <span className="error-text">{errors.laughFrequency}</span>}
+            {errors[8] && <span className="error-text">{errors[8]}</span>}
           </div>
         </div>
 
-        {/* Section 5: Entertainment & Hobbies */}
+        {/* Section 5: Entertainment & Activities */}
         <div className="form-section">
-          <h3>Entertainment & Hobbies</h3>
+          <h3>Entertainment & Activities</h3>
           
           <div className="question-block">
-            <label className="question-label">Musical Tastes (Choose more than 1)</label>
+            <label className="question-label">What music genres do you enjoy?</label>
             <div className="checkbox-group">
-              {musicGenres.map(genre => (
+              {['Pop', 'Rock', 'Hip-Hop/Rap', 'Country', 'R&B/Soul', 'Jazz', 'Electronic/EDM', 'Classical', 'Indie', 'Metal', 'Latin', 'Folk', 'K-Pop', 'Disco', 'Reggae'].map(genre => (
                 <label key={genre} className="checkbox-option">
                   <input
                     type="checkbox"
-                    value={genre}
-                    checked={formData.musicalTastes.includes(genre)}
-                    onChange={(e) => handleCheckboxChange(e, 'musicalTastes')}
+                    checked={formData[9].includes(genre)}
+                    onChange={() => handleCheckboxChange(9, genre)}
                   />
                   <span>{genre}</span>
                 </label>
               ))}
             </div>
-            {errors.musicalTastes && <span className="error-text">{errors.musicalTastes}</span>}
+            {errors[9] && <span className="error-text">{errors[9]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">
-              Do you prefer: {getIndoorOutdoorLabel(formData.indoorOutdoor)}
-            </label>
+            <label className="question-label">Indoor vs Outdoor: <strong>{getIndoorLabel(formData[10])}</strong></label>
             <input
               type="range"
-              name="indoorOutdoor"
               min="0"
               max="100"
-              value={formData.indoorOutdoor}
-              onChange={handleSliderChange}
+              value={formData[10]}
+              onChange={(e) => handleSliderChange(10, e.target.value)}
               className="slider"
             />
-            <div className="slider-labels">
-              <span>Homebody</span>
-              <span>Combination</span>
-              <span>Adventurer</span>
-            </div>
+            {errors[10] && <span className="error-text">{errors[10]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">Select your preferred entertainment (Choose more than 1)</label>
+            <label className="question-label">Entertainment preferences:</label>
             <div className="checkbox-group">
-              {entertainmentOptions.map(opt => (
+              {['Travel', 'Movies', 'TV/Shows', 'Music/Concerts', 'Gaming', 'Exercise/Gym', 'Outdoor activities', 'Reading', 'Cooking', 'Art/Museums', 'Dining out', 'Nightlife/Clubs'].map(opt => (
                 <label key={opt} className="checkbox-option">
                   <input
                     type="checkbox"
-                    value={opt}
-                    checked={formData.entertainment.includes(opt)}
-                    onChange={(e) => handleCheckboxChange(e, 'entertainment')}
+                    checked={formData[11].includes(opt)}
+                    onChange={() => handleCheckboxChange(11, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.entertainment && <span className="error-text">{errors.entertainment}</span>}
+            {errors[11] && <span className="error-text">{errors[11]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">Select your hobbies (Choose more than 1)</label>
+            <label className="question-label">What are your hobbies?</label>
             <div className="checkbox-group">
-              {hobbiesOptions.map(hobby => (
-                <label key={hobby} className="checkbox-option">
+              {['Photography', 'Painting/Drawing', 'Writing', 'Music (playing)', 'Sports', 'Yoga', 'Meditation', 'DIY/Crafts', 'Cooking', 'Gardening', 'Collecting', 'Volunteering', 'Gaming', 'Movies', 'Reading'].map(opt => (
+                <label key={opt} className="checkbox-option">
                   <input
                     type="checkbox"
-                    value={hobby}
-                    checked={formData.hobbies.includes(hobby)}
-                    onChange={(e) => handleCheckboxChange(e, 'hobbies')}
+                    checked={formData[12].includes(opt)}
+                    onChange={() => handleCheckboxChange(12, opt)}
                   />
-                  <span>{hobby}</span>
+                  <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.hobbies && <span className="error-text">{errors.hobbies}</span>}
+            {errors[12] && <span className="error-text">{errors[12]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">List any outdoor activities you enjoy (Choose more than 1)</label>
+            <label className="question-label">Outdoor activities:</label>
             <div className="checkbox-group">
-              {outdoorActivitiesOptions.map(activity => (
-                <label key={activity} className="checkbox-option">
+              {['Hiking', 'Camping', 'Rock climbing', 'Water sports', 'Cycling', 'Picnicking', 'Beach activities', 'Skiing/Snowboarding', 'Fishing', 'Kayaking', 'Skateboarding', 'Running/Jogging'].map(opt => (
+                <label key={opt} className="checkbox-option">
                   <input
                     type="checkbox"
-                    value={activity}
-                    checked={formData.outdoorActivities.includes(activity)}
-                    onChange={(e) => handleCheckboxChange(e, 'outdoorActivities')}
+                    checked={formData[13].includes(opt)}
+                    onChange={() => handleCheckboxChange(13, opt)}
                   />
-                  <span>{activity}</span>
+                  <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.outdoorActivities && <span className="error-text">{errors.outdoorActivities}</span>}
+            {errors[13] && <span className="error-text">{errors[13]}</span>}
           </div>
         </div>
 
-        {/* Section 6: Social & Substance Habits */}
+        {/* Section 6: Social & Lifestyle */}
         <div className="form-section">
-          <h3>Lifestyle & Habits</h3>
+          <h3>Social & Lifestyle Habits</h3>
           
           <div className="question-block">
-            <label className="question-label">How often do you socialize with friends or family?</label>
+            <label className="question-label">How often do you socialize?</label>
             <div className="radio-group">
-              {socializationOptions.map(opt => (
+              {['Occasionally', 'Once a month', 'Once a week', 'More than once per week'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="socializationFrequency"
+                    name="social"
                     value={opt}
-                    checked={formData.socializationFrequency === opt}
-                    onChange={handleChange}
+                    checked={formData[14] === opt}
+                    onChange={() => handleRadioChange(14, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.socializationFrequency && <span className="error-text">{errors.socializationFrequency}</span>}
+            {errors[14] && <span className="error-text">{errors[14]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">How often do you drink?</label>
+            <label className="question-label">Drinking habits:</label>
             <div className="radio-group">
-              {drinkingOptions.map(opt => (
+              {["I don't drink", 'Recovered alcoholic', 'Once in a while', 'Social drinker', 'Party animal'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="drinkingHabits"
+                    name="drinking"
                     value={opt}
-                    checked={formData.drinkingHabits === opt}
-                    onChange={handleChange}
+                    checked={formData[15] === opt}
+                    onChange={() => handleRadioChange(15, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.drinkingHabits && <span className="error-text">{errors.drinkingHabits}</span>}
+            {errors[15] && <span className="error-text">{errors[15]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">Are you a smoker?</label>
+            <label className="question-label">Do you smoke?</label>
             <div className="radio-group">
-              {smokingOptions.map(opt => (
+              {['No', 'Rarely', 'Weekly', 'Daily'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
                     name="smoking"
                     value={opt}
-                    checked={formData.smoking === opt}
-                    onChange={handleChange}
+                    checked={formData[16] === opt}
+                    onChange={() => handleRadioChange(16, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.smoking && <span className="error-text">{errors.smoking}</span>}
+            {errors[16] && <span className="error-text">{errors[16]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">Other recreational drugs?</label>
+            <label className="question-label">Recreational drugs:</label>
             <div className="radio-group">
-              {drugsOptions.map(opt => (
+              {['None', 'Cannabis', 'Psychedelics', 'Heavy user'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="recreationalDrugs"
+                    name="drugs"
                     value={opt}
-                    checked={formData.recreationalDrugs === opt}
-                    onChange={handleChange}
+                    checked={formData[17] === opt}
+                    onChange={() => handleRadioChange(17, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.recreationalDrugs && <span className="error-text">{errors.recreationalDrugs}</span>}
+            {errors[17] && <span className="error-text">{errors[17]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">Do you: (Pets)</label>
+            <label className="question-label">Regarding pets:</label>
             <div className="radio-group">
-              {petsOptions.map(opt => (
+              {['Have pets', 'Want pets', "Don't want pets"].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
                     name="pets"
                     value={opt}
-                    checked={formData.pets === opt}
-                    onChange={handleChange}
+                    checked={formData[18] === opt}
+                    onChange={() => handleRadioChange(18, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.pets && <span className="error-text">{errors.pets}</span>}
+            {errors[18] && <span className="error-text">{errors[18]}</span>}
           </div>
         </div>
 
@@ -611,58 +497,58 @@ function EssentialQuestionnaire({ onSubmit, onCancel }) {
           <div className="question-block">
             <label className="question-label">My personality is most like the:</label>
             <div className="radio-group">
-              {eraOptions.map(opt => (
+              {["'50s", "'60s", "'70s/'80s", "'90s"].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="personalityEra"
+                    name="era"
                     value={opt}
-                    checked={formData.personalityEra === opt}
-                    onChange={handleChange}
+                    checked={formData[19] === opt}
+                    onChange={() => handleRadioChange(19, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.personalityEra && <span className="error-text">{errors.personalityEra}</span>}
+            {errors[19] && <span className="error-text">{errors[19]}</span>}
           </div>
 
           <div className="question-block">
             <label className="question-label">Conflict preference style:</label>
             <div className="radio-group">
-              {conflictOptions.map(opt => (
+              {['Opinionated/Speak my mind', "Don't talk unless I have something to say", 'I prefer to avoid conflict'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="conflictStyle"
+                    name="conflict"
                     value={opt}
-                    checked={formData.conflictStyle === opt}
-                    onChange={handleChange}
+                    checked={formData[20] === opt}
+                    onChange={() => handleRadioChange(20, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.conflictStyle && <span className="error-text">{errors.conflictStyle}</span>}
+            {errors[20] && <span className="error-text">{errors[20]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">How do you handle problems / stress?</label>
+            <label className="question-label">How do you handle problems/stress?</label>
             <div className="radio-group">
-              {problemOptions.map(opt => (
+              {['Avoid problems/do something else', 'Plan solutions methodically', "Tackle problems head on/'wing it'"].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="problemHandling"
+                    name="problems"
                     value={opt}
-                    checked={formData.problemHandling === opt}
-                    onChange={handleChange}
+                    checked={formData[21] === opt}
+                    onChange={() => handleRadioChange(21, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.problemHandling && <span className="error-text">{errors.problemHandling}</span>}
+            {errors[21] && <span className="error-text">{errors[21]}</span>}
           </div>
         </div>
 
@@ -671,41 +557,41 @@ function EssentialQuestionnaire({ onSubmit, onCancel }) {
           <h3>Finances & Family</h3>
           
           <div className="question-block">
-            <label className="question-label">How are you with finances?</label>
+            <label className="question-label">Financial approach:</label>
             <div className="radio-group">
-              {financeOptions.map(opt => (
+              {['Budget everything in advance', 'Check finances occasionally', "Don't worry about spending"].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="financialHabits"
+                    name="finance"
                     value={opt}
-                    checked={formData.financialHabits === opt}
-                    onChange={handleChange}
+                    checked={formData[22] === opt}
+                    onChange={() => handleRadioChange(22, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.financialHabits && <span className="error-text">{errors.financialHabits}</span>}
+            {errors[22] && <span className="error-text">{errors[22]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">How do you get along with your parents & family?</label>
+            <label className="question-label">Family relationship:</label>
             <div className="radio-group">
-              {familyOptions.map(opt => (
+              {['Not speaking', 'Talk occasionally on the phone', 'Regular phone calls', 'Regular visits'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="familyRelationship"
+                    name="family"
                     value={opt}
-                    checked={formData.familyRelationship === opt}
-                    onChange={handleChange}
+                    checked={formData[23] === opt}
+                    onChange={() => handleRadioChange(23, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.familyRelationship && <span className="error-text">{errors.familyRelationship}</span>}
+            {errors[23] && <span className="error-text">{errors[23]}</span>}
           </div>
         </div>
 
@@ -714,41 +600,84 @@ function EssentialQuestionnaire({ onSubmit, onCancel }) {
           <h3>Relationship Timeline Expectations</h3>
           
           <div className="question-block">
-            <label className="question-label">How long would you like to date someone before getting engaged?</label>
+            <label className="question-label">Dating duration before engagement:</label>
             <div className="radio-group">
-              {datingDurationOptions.map(opt => (
+              {['6 months or less', '6-12 months', '1-2 years', '3-4 years', '5 years+'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="datingDuration"
+                    name="dating-duration"
                     value={opt}
-                    checked={formData.datingDuration === opt}
-                    onChange={handleChange}
+                    checked={formData[24] === opt}
+                    onChange={() => handleRadioChange(24, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.datingDuration && <span className="error-text">{errors.datingDuration}</span>}
+            {errors[24] && <span className="error-text">{errors[24]}</span>}
           </div>
 
           <div className="question-block">
-            <label className="question-label">How long would you like to be engaged before a wedding date?</label>
+            <label className="question-label">Engagement duration before wedding:</label>
             <div className="radio-group">
-              {engagementDurationOptions.map(opt => (
+              {['6 months or less', '6-12 months', '1-2 years', '3-4 years', '5 years+'].map(opt => (
                 <label key={opt} className="radio-option">
                   <input
                     type="radio"
-                    name="engagementDuration"
+                    name="engagement-duration"
                     value={opt}
-                    checked={formData.engagementDuration === opt}
-                    onChange={handleChange}
+                    checked={formData[25] === opt}
+                    onChange={() => handleRadioChange(25, opt)}
                   />
                   <span>{opt}</span>
                 </label>
               ))}
             </div>
-            {errors.engagementDuration && <span className="error-text">{errors.engagementDuration}</span>}
+            {errors[25] && <span className="error-text">{errors[25]}</span>}
+          </div>
+        </div>
+
+        {/* Section 10: Relationship Expectations */}
+        <div className="form-section">
+          <h3>Relationship Expectations</h3>
+          
+          <div className="question-block">
+            <label className="question-label">What are you looking for?</label>
+            <div className="radio-group">
+              {['Something serious', 'Casual dating', 'Not sure'].map(opt => (
+                <label key={opt} className="radio-option">
+                  <input
+                    type="radio"
+                    name="looking-for"
+                    value={opt}
+                    checked={formData[26] === opt}
+                    onChange={() => handleRadioChange(26, opt)}
+                  />
+                  <span>{opt}</span>
+                </label>
+              ))}
+            </div>
+            {errors[26] && <span className="error-text">{errors[26]}</span>}
+          </div>
+
+          <div className="question-block">
+            <label className="question-label">Do you want kids?</label>
+            <div className="radio-group">
+              {['Yes', 'No', 'Maybe'].map(opt => (
+                <label key={opt} className="radio-option">
+                  <input
+                    type="radio"
+                    name="kids"
+                    value={opt}
+                    checked={formData[27] === opt}
+                    onChange={() => handleRadioChange(27, opt)}
+                  />
+                  <span>{opt}</span>
+                </label>
+              ))}
+            </div>
+            {errors[27] && <span className="error-text">{errors[27]}</span>}
           </div>
         </div>
 

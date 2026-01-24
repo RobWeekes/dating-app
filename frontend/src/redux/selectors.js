@@ -31,10 +31,9 @@ export const selectAuthError = createSelector(
 // User selectors (now using auth state for profile)
 export const selectUser = (state) => state.user;
 
-export const selectUserProfile = createSelector(
-  [selectAuthUser],
-  (authUser) => authUser || null
-);
+// Directly use selectAuthUser instead of wrapping it with createSelector
+// since it's just returning the input without transformation
+export const selectUserProfile = selectAuthUser;
 
 export const selectUserQuestionnaire = createSelector(
   [selectUser],

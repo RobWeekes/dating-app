@@ -11,15 +11,14 @@ function EssentialQuestionnairePage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  let questionMap = null; // Cache in closure
 
   const handleSubmit = async (data) => {
     try {
       setIsLoading(true);
       setError(null);
 
-      // DEBUG: Log submission attempt
       console.log('📝 Form submission started');
-      console.log('Data being submitted:', data);
 
       // Get token from localStorage
       const token = localStorage.getItem('authToken');
@@ -29,7 +28,39 @@ function EssentialQuestionnairePage() {
         throw new Error('Authentication token not found. Please log in again.');
       }
 
-      // DEBUG: Log API call
+      // Fetch template if not cached
+      if (!questionMap) {
+        console.log('📋 Fetching questionnaire template...');
+        const response = await fetch('http://localhost:3001/api/questionnaires/type/essential');
+        if (!response.ok) throw new Error('Failed to fetch questionnaire');
+        
+        const template = await response.json();
+        console.log('✅ Template fetched, questions:', template.Questions?.length);
+        
+        // Create map of question order -> actual question ID
+        if (template.Questions) {
+          questionMap = {};
+          template.Questions.forEach(q => {
+            questionMap[q.order] = q.id;
+          });
+          console.log('Question map created:', questionMap);
+        }
+      }
+
+      if (!questionMap) {
+        throw new Error('Could not load questionnaire template');
+      }
+
+      // Map form field indices to actual question IDs
+      const mappedResponses = {};
+      Object.entries(data.responses).forEach(([fieldIndex, value]) => {
+        const actualQuestionId = questionMap[fieldIndex];
+        if (actualQuestionId) {
+          mappedResponses[actualQuestionId] = value;
+        }
+      });
+
+      console.log('📍 Mapped responses:', mappedResponses);
       console.log('🌐 Sending POST to /api/questionnaires');
 
       // Submit questionnaire to API
@@ -39,13 +70,14 @@ function EssentialQuestionnairePage() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          type: data.type,
+          relationshipType: data.relationshipType,
+          responses: mappedResponses,
+        }),
       });
 
       console.log('📡 Response status:', response.status);
-      console.log('📡 Response headers:', {
-        'content-type': response.headers.get('content-type'),
-      });
 
       if (!response.ok) {
         const errorText = await response.text();
