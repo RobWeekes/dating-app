@@ -14,18 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id',
-        },
       },
       questionnaireId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'questionnaires',
-          key: 'id',
-        },
       },
       status: {
         type: DataTypes.ENUM('in_progress', 'completed'),

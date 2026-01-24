@@ -133,6 +133,9 @@ router.post('/', authenticateToken, async (req, res) => {
     const { type, relationshipType, responses, completedAt } = req.body;
     const userId = req.user?.id;
 
+    console.log('POST /questionnaires - req.user:', req.user);
+    console.log('userId extracted:', userId);
+
     if (!userId) {
       return res.status(400).json({ error: 'User ID is required' });
     }
@@ -141,12 +144,22 @@ router.post('/', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Questionnaire type is required' });
     }
 
+    // Verify user exists
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    console.log('User verified:', { id: user.id, email: user.email });
+
     // Find the questionnaire template by type
+    console.log(`Looking for questionnaire type: "${type}"`);
     const questionnaire = await Questionnaire.findOne({
       where: { type, isActive: true },
       include: [{ model: Question }],
     });
 
+    console.log('Found questionnaire:', questionnaire ? { id: questionnaire.id, type: questionnaire.type } : null);
+    
     if (!questionnaire) {
       return res.status(404).json({ error: `Questionnaire type "${type}" not found` });
     }
@@ -169,12 +182,14 @@ router.post('/', authenticateToken, async (req, res) => {
       questionnaireResponse = existingResponse;
     } else {
       // Create new response record
+      console.log(`Creating new QuestionnaireResponse: userId=${userId}, questionnaireId=${questionnaire.id}`);
       var questionnaireResponse = await QuestionnaireResponse.create({
         userId,
         questionnaireId: questionnaire.id,
         status: 'completed',
         completedAt: new Date(),
       });
+      console.log(`Created QuestionnaireResponse ID: ${questionnaireResponse.id}`);
     }
 
     // Create answer records for each question
@@ -182,6 +197,7 @@ router.post('/', authenticateToken, async (req, res) => {
       const answerPromises = Object.entries(responses).map(([questionId, value]) => {
         // Handle both string questionIds and numeric
         const qId = isNaN(questionId) ? questionId : parseInt(questionId);
+        console.log(`Creating answer: responseId=${questionnaireResponse.id}, questionId=${qId}, value=${typeof value === 'string' ? value : JSON.stringify(value)}`);
         return Answer.create({
           questionnaireResponseId: questionnaireResponse.id,
           questionId: qId,
@@ -217,7 +233,9 @@ router.post('/', authenticateToken, async (req, res) => {
       data: completeResponse,
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Questionnaire submission error:', error);
+    console.error('Stack:', error.stack);
+    res.status(500).json({ error: error.message, details: error.sql });
   }
 });
 

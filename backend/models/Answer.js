@@ -14,18 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       questionnaireResponseId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'questionnaire_responses',
-          key: 'id',
-        },
       },
       questionId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'questions',
-          key: 'id',
-        },
       },
       value: {
         type: DataTypes.TEXT,
