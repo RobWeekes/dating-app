@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import EssentialQuestionnaire from '../components/EssentialQuestionnaire';
+import LifestyleQuestionnaire from '../components/LifestyleQuestionnaire';
 
 /**
- * EssentialQuestionnairePage
- * Wrapper page component for the Essential Questionnaire
+ * LifestyleQuestionnairePage
+ * Wrapper page component for the Lifestyle Questionnaire
  * Handles form submission and navigation
  */
-function EssentialQuestionnairePage() {
+function LifestyleQuestionnairePage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,8 +21,8 @@ function EssentialQuestionnairePage() {
         const token = localStorage.getItem('authToken');
         if (!token) return;
 
-        console.log('📋 Fetching existing questionnaire responses...');
-        const response = await fetch('http://localhost:3001/api/questionnaires/type/essential', {
+        console.log('📋 Fetching existing lifestyle questionnaire responses...');
+        const response = await fetch('http://localhost:3001/api/questionnaires/type/lifestyle', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -46,14 +46,14 @@ function EssentialQuestionnairePage() {
 
         if (userResponse.ok) {
           const existingData = await userResponse.json();
-          console.log('✅ Existing responses found:', existingData);
+          console.log('✅ Existing lifestyle responses found:', existingData);
           console.log('Answers array:', existingData.Answers);
 
-          // Map answers to question order (1-27) not database ID
+          // Map answers to question order (1-21) not database ID (28-48)
           const answersMap = {};
           if (existingData.Answers) {
             existingData.Answers.forEach(answer => {
-              // Use the question's order field as the key, not the database ID
+              // Use the question's order field (1-21) as the key, not the database ID
               const questionOrder = answer.Question?.order?.toString() || answer.questionId.toString();
               // Check if it's a JSON array (for checkboxes)
               try {
@@ -94,7 +94,11 @@ function EssentialQuestionnairePage() {
       // Fetch template if not cached
       if (!questionMap) {
         console.log('📋 Fetching questionnaire template...');
-        const response = await fetch('http://localhost:3001/api/questionnaires/type/essential');
+        const response = await fetch('http://localhost:3001/api/questionnaires/type/lifestyle', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
         if (!response.ok) throw new Error('Failed to fetch questionnaire');
         
         const template = await response.json();
@@ -177,7 +181,7 @@ function EssentialQuestionnairePage() {
 
   return (
     <div style={{ opacity: isLoading ? 0.6 : 1, pointerEvents: isLoading ? 'none' : 'auto' }}>
-      <EssentialQuestionnaire
+      <LifestyleQuestionnaire
         onSubmit={handleSubmit}
         onCancel={handleCancel}
         initialResponses={existingResponses}
@@ -187,4 +191,4 @@ function EssentialQuestionnairePage() {
   );
 }
 
-export default EssentialQuestionnairePage;
+export default LifestyleQuestionnairePage;

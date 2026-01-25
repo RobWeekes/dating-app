@@ -67,7 +67,8 @@ function EssentialQuestionnaire({ onSubmit, onCancel, initialResponses }) {
       const value = formData[i.toString()];
       if (Array.isArray(value)) {
         if (value.length === 0) newErrors[i] = 'Required';
-      } else if (!value) {
+      } else if (value === '' || value === null || value === undefined) {
+        // Use strict equality check to allow 0 for range sliders
         newErrors[i] = 'Required';
       }
     }

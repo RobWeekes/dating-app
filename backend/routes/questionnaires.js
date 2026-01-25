@@ -94,7 +94,7 @@ router.get('/responses/user/me/questionnaire/:questionnaireId', authenticateToke
           include: [
             {
               model: Question,
-              attributes: ['id', 'text', 'type'],
+              attributes: ['id', 'text', 'type', 'order'],
             },
           ],
         },
@@ -125,7 +125,7 @@ router.get('/responses/user/:userId/questionnaire/:questionnaireId', async (req,
           include: [
             {
               model: Question,
-              attributes: ['id', 'text', 'type'],
+              attributes: ['id', 'text', 'type', 'order'],
             },
           ],
         },
@@ -252,7 +252,7 @@ router.post('/', authenticateToken, async (req, res) => {
           include: [
             {
               model: Question,
-              attributes: ['id', 'text', 'type'],
+              attributes: ['id', 'text', 'type', 'order'],
             },
           ],
         },
