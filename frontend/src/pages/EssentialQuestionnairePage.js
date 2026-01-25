@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EssentialQuestionnaire from '../components/EssentialQuestionnaire';
 
@@ -11,7 +11,73 @@ function EssentialQuestionnairePage() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [existingResponses, setExistingResponses] = useState(null);
   let questionMap = null; // Cache in closure
+
+  // Fetch existing responses if user has already submitted this questionnaire
+  useEffect(() => {
+    const fetchExistingResponses = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        if (!token) return;
+
+        console.log('📋 Fetching existing questionnaire responses...');
+        const response = await fetch('http://localhost:3001/api/questionnaires/type/essential', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) return;
+
+        // Get the questionnaire template to find the ID
+        const template = await response.json();
+        const questionnaireId = template.id;
+
+        // Fetch user's responses for this questionnaire
+        const userResponse = await fetch(
+          `http://localhost:3001/api/questionnaires/responses/user/me/questionnaire/${questionnaireId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (userResponse.ok) {
+          const existingData = await userResponse.json();
+          console.log('✅ Existing responses found:', existingData);
+          console.log('Answers array:', existingData.Answers);
+
+          // Map answers to question IDs
+          const answersMap = {};
+          if (existingData.Answers) {
+            existingData.Answers.forEach(answer => {
+              const questionId = answer.questionId.toString();
+              // console.log(`Processing answer - questionId: ${questionId}, value: ${answer.value}`);
+              // Check if it's a JSON array (for checkboxes)
+              try {
+                const parsed = JSON.parse(answer.value);
+                answersMap[questionId] = parsed;
+                // console.log(`  Parsed as JSON: ${JSON.stringify(parsed)}`);
+              } catch {
+                // Not JSON, use as-is
+                answersMap[questionId] = answer.value;
+                // console.log(`  Kept as string: ${answer.value}`);
+              }
+            });
+          }
+          // console.log('Final answersMap:', answersMap);
+          setExistingResponses(answersMap);
+        }
+      } catch (err) {
+        console.error('❌ Error fetching existing responses:', err);
+        // Don't set error state, just continue with blank form
+      }
+    };
+
+    fetchExistingResponses();
+  }, []);
 
   const handleSubmit = async (data) => {
     try {
@@ -117,6 +183,7 @@ function EssentialQuestionnairePage() {
       <EssentialQuestionnaire
         onSubmit={handleSubmit}
         onCancel={handleCancel}
+        initialResponses={existingResponses}
       />
       {isLoading && <p style={{ textAlign: 'center', marginTop: '20px' }}>Submitting...</p>}
     </div>

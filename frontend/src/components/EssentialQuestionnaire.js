@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from './Button';
 import '../styles/compatibility-questionnaire.css';
 
@@ -6,39 +6,58 @@ import '../styles/compatibility-questionnaire.css';
  * Essential Questionnaire Component
  * Comprehensive 27-question form for dating compatibility
  */
-function EssentialQuestionnaire({ onSubmit, onCancel }) {
-  const [formData, setFormData] = useState({
-    1: [],  // Love languages (checkbox)
-    2: '',  // Political views (radio)
-    3: '',  // Birth order (radio)
-    4: '',  // Sleep pattern (radio)
-    5: '',  // Personality archetype (radio)
-    6: 50,  // Social inclination (range)
-    7: '',  // Sense of humor (radio)
-    8: '',  // Laughter frequency (radio)
-    9: [],  // Music genres (checkbox)
-    10: 50, // Indoor vs outdoor (range)
-    11: [], // Entertainment preferences (checkbox)
-    12: [], // Hobbies (checkbox)
-    13: [], // Outdoor activities (checkbox)
-    14: '', // Socialization frequency (radio)
-    15: '', // Drinking habits (radio)
-    16: '', // Smoking (radio)
-    17: '', // Recreational drugs (radio)
-    18: '', // Pets (radio)
-    19: '', // Personality era (radio)
-    20: '', // Conflict style (radio)
-    21: '', // Problem handling (radio)
-    22: '', // Financial habits (radio)
-    23: '', // Family relationship (radio)
-    24: '', // Dating duration (radio)
-    25: '', // Engagement duration (radio)
-    26: '', // What are you looking for (radio)
-    27: '', // Do you want kids (radio)
-  });
+function EssentialQuestionnaire({ onSubmit, onCancel, initialResponses }) {
+  const getInitialState = () => {
+    const defaults = {
+      1: [],  // Love languages (checkbox)
+      2: '',  // Political views (radio)
+      3: '',  // Birth order (radio)
+      4: '',  // Sleep pattern (radio)
+      5: '',  // Personality archetype (radio)
+      6: 50,  // Social inclination (range)
+      7: '',  // Sense of humor (radio)
+      8: '',  // Laughter frequency (radio)
+      9: [],  // Music genres (checkbox)
+      10: 50, // Indoor vs outdoor (range)
+      11: [], // Entertainment preferences (checkbox)
+      12: [], // Hobbies (checkbox)
+      13: [], // Outdoor activities (checkbox)
+      14: '', // Socialization frequency (radio)
+      15: '', // Drinking habits (radio)
+      16: '', // Smoking (radio)
+      17: '', // Recreational drugs (radio)
+      18: '', // Pets (radio)
+      19: '', // Personality era (radio)
+      20: '', // Conflict style (radio)
+      21: '', // Problem handling (radio)
+      22: '', // Financial habits (radio)
+      23: '', // Family relationship (radio)
+      24: '', // Dating duration (radio)
+      25: '', // Engagement duration (radio)
+      26: '', // What are you looking for (radio)
+      27: '', // Do you want kids (radio)
+    };
+
+    // If we have existing responses, merge them in
+    if (initialResponses) {
+      return { ...defaults, ...initialResponses };
+    }
+
+    return defaults;
+  };
+
+  const [formData, setFormData] = useState(getInitialState());
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Update form when initialResponses arrive
+  useEffect(() => {
+    if (initialResponses) {
+      console.log('Updating form with existing responses:', initialResponses);
+      setFormData(prev => ({ ...prev, ...initialResponses }));
+    }
+  }, [initialResponses]);
 
   const validateForm = () => {
     const newErrors = {};
