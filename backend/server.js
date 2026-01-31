@@ -44,6 +44,7 @@ models.sequelize
 async function seedQuestionnaireTemplates() {
   const existingCount = await models.Questionnaire.count();
   const lifestyleExists = await models.Questionnaire.count({ where: { type: 'lifestyle' } });
+  const mvpExists = await models.Questionnaire.count({ where: { type: 'MVP' } });
   
   if (existingCount === 0) {
     // ============ Create Essential Questionnaire ============
@@ -346,6 +347,34 @@ async function seedQuestionnaireTemplates() {
 
     await models.Question.bulkCreate(lifestyleQuestions);
     console.log(`  ✓ Created ${lifestyleQuestions.length} lifestyle questions`);
+
+    // ============ Create MVP Questionnaire ============
+    const mvpQ = await models.Questionnaire.create({
+      type: 'MVP',
+      title: 'MVP Questionnaire - 50 Essential Questions',
+      description: 'Minimum Viable Product questionnaire for compatibility scoring (50 questions across 8 dimensions)',
+      category: 'MVP',
+      version: 1,
+      isActive: true,
+    });
+
+    console.log(`  ✓ Created MVP Questionnaire (ID: ${mvpQ.id})`);
+
+    // Create minimal question records to satisfy foreign key constraints
+    const mvpQuestions = [];
+    for (let i = 1; i <= 50; i++) {
+      mvpQuestions.push({
+        questionnaireId: mvpQ.id,
+        text: `Question ${i}`,
+        type: 'text',
+        order: i,
+        required: true,
+      });
+    }
+    
+    await models.Question.bulkCreate(mvpQuestions);
+    console.log(`  ✓ Created ${mvpQuestions.length} MVP question records`);
+
     console.log('✅ Questionnaire templates seeded');
   } else if (lifestyleExists === 0) {
     // Add lifestyle questionnaire if it doesn't exist
@@ -387,7 +416,78 @@ async function seedQuestionnaireTemplates() {
 
     await models.Question.bulkCreate(lifestyleQuestions);
     console.log(`  ✓ Created ${lifestyleQuestions.length} lifestyle questions`);
-    console.log('✅ Lifestyle Questionnaire added');
+    console.log('✅ Questionnaire templates seeded');
+  } else if (lifestyleExists === 0) {
+    // Add lifestyle questionnaire if it doesn't exist
+    console.log('📋 Adding Lifestyle Questionnaire...');
+    const lifestyleQ = await models.Questionnaire.create({
+      type: 'lifestyle',
+      title: 'Lifestyle & Values Questionnaire',
+      description: 'Explore lifestyle choices, financial attitudes, work-life balance, health values, and family planning',
+      category: 'Lifestyle',
+      version: 1,
+      isActive: true,
+    });
+
+    console.log(`  ✓ Created Lifestyle Questionnaire (ID: ${lifestyleQ.id})`);
+
+    const lifestyleQuestions = [
+      { questionnaireId: lifestyleQ.id, text: 'In life, what matters most to me:', type: 'radio', options: ['Personal growth and self-improvement', 'Close relationships and family', 'Making a difference in the world', 'Enjoying life and having fun', 'Security and stability'], required: true, order: 1 },
+      { questionnaireId: lifestyleQ.id, text: 'When facing a major decision, I:', type: 'radio', options: ['Play it safe and minimize risk', 'Take measured risks after careful thought', 'Trust my gut and go for it', 'Seek advice from people I trust', 'Research thoroughly before deciding'], required: true, order: 2 },
+      { questionnaireId: lifestyleQ.id, text: 'I feel my best when:', type: 'radio', options: ['Alone or with my close partner', 'With a small group of close friends', 'With larger groups and meeting new people', 'Balancing alone time and social time equally', 'At large social events and gatherings'], required: true, order: 3 },
+      { questionnaireId: lifestyleQ.id, text: 'I identify most as:', type: 'radio', options: ['Highly independent, self-reliant', 'Mostly independent with some interdependence', 'Balanced between independence and togetherness', 'Strong family/community ties are central', 'Family/group needs come before personal wants'], required: true, order: 4 },
+      { questionnaireId: lifestyleQ.id, text: 'My focus on self-improvement is:', type: 'radio', options: ['Constant, always working on myself', 'Important, regularly focused on growth', 'Moderate, work on issues as they arise', 'Low priority, content with who I am', 'Not important, I am who I am'], required: true, order: 5 },
+      { questionnaireId: lifestyleQ.id, text: 'I approach traditions and customs as:', type: 'radio', options: ['Important to maintain as passed down', 'Worth keeping but can modernize', 'Fine if they serve a purpose, otherwise discard', 'Would prefer to create new traditions'], required: true, order: 6 },
+      { questionnaireId: lifestyleQ.id, text: 'My approach to money is mostly:', type: 'radio', options: ['Save for future security', 'Enjoy life now, save moderately', 'Spend freely, don\'t worry about money', 'Balanced between spending and saving'], required: true, order: 7 },
+      { questionnaireId: lifestyleQ.id, text: 'Regarding finances in a relationship, I believe:', type: 'radio', options: ['Complete transparency, combined accounts', 'Mostly transparent with some personal spending money', 'Mostly separate finances with shared household expenses', 'Completely separate finances'], required: true, order: 8 },
+      { questionnaireId: lifestyleQ.id, text: 'My comfort level with debt is:', type: 'radio', options: ['Avoid debt at all costs', 'Acceptable for large purchases (home, education)', 'Comfortable with credit cards for flexibility', 'Finances are complex, use various debt tools'], required: true, order: 9 },
+      { questionnaireId: lifestyleQ.id, text: 'Regarding money and risk, I prefer:', type: 'radio', options: ['Safe, conservative investments', 'Moderate, diversified approach', 'Growth-oriented, willing to take calculated risks', 'High-risk, high-reward opportunities'], required: true, order: 10 },
+      { questionnaireId: lifestyleQ.id, text: 'Career importance to me is:', type: 'radio', options: ['Primary life focus, willing to sacrifice for advancement', 'Very important, but balanced with personal life', 'Important, but secondary to family/relationships', 'Just a job, doesn\'t define me'], required: true, order: 11 },
+      { questionnaireId: lifestyleQ.id, text: 'Ideal weekly work situation for me is:', type: 'radio', options: ['30-35 hours (part-time emphasis on other life areas)', '35-40 hours (standard, clear boundaries)', '40-50 hours (career-focused but some personal time)', '50+ hours (very career-focused)'], required: true, order: 12 },
+      { questionnaireId: lifestyleQ.id, text: 'I require flexibility in my work because:', type: 'radio', options: ['I don\'t need flexibility, I prefer structure', 'Family responsibilities may require some flexibility', 'Health/wellness needs require flexible schedule', 'I prefer autonomy in when/where I work'], required: true, order: 13 },
+      { questionnaireId: lifestyleQ.id, text: 'When my partner\'s career demands time, I:', type: 'radio', options: ['Expect them to prioritize our relationship', 'Understand periods of high demand and adapt', 'Support them fully even if it stresses our time together', 'Would struggle with this regularly'], required: true, order: 14 },
+      { questionnaireId: lifestyleQ.id, text: 'My approach to health is:', type: 'radio', options: ['Preventative/proactive, health is top priority', 'Moderate attention, reasonable healthy habits', 'Casual, I react when health issues arise', 'I don\'t think much about health'], required: true, order: 15 },
+      { questionnaireId: lifestyleQ.id, text: 'My comfort with alcohol/drugs is:', type: 'radio', options: ['None, prefer not to use', 'Social use only, occasional', 'Regular social use, part of my lifestyle', 'Frequent use is normal and acceptable'], required: true, order: 16 },
+      { questionnaireId: lifestyleQ.id, text: 'Regarding therapy/mental health support, I:', type: 'radio', options: ['See it as important tool, would use if needed', 'Open to it but prefer to handle things myself', 'Skeptical of therapy\'s value', 'Don\'t believe in psychological issues needing professional help'], required: true, order: 17 },
+      { questionnaireId: lifestyleQ.id, text: 'My feelings about having children:', type: 'radio', options: ['Want children, planning to have them', 'Open to children, would be happy either way', 'Uncertain about children', 'Prefer not to have children'], required: true, order: 18 },
+      { questionnaireId: lifestyleQ.id, text: 'Regarding extended family involvement in my life:', type: 'radio', options: ['Very close, important regular involvement', 'Moderate involvement, family is important', 'Limited involvement by preference', 'Minimal involvement, independence priority'], required: true, order: 19 },
+      { questionnaireId: lifestyleQ.id, text: 'If I become a parent, my approach would be:', type: 'radio', options: ['Structured, rules-focused (authoritarian)', 'Balanced rules with warm engagement (authoritative)', 'Permissive, child-focused, flexible', 'Uncertain/would figure out with partner'], required: true, order: 20 },
+      { questionnaireId: lifestyleQ.id, text: 'I\'m most energized and productive:', type: 'radio', options: ['Very early morning person (5-6 AM wake)', 'Morning person (6-7 AM wake)', 'Midday (8-9 AM wake)', 'Evening person (9+ AM wake)', 'Night person (midnight or later)'], required: true, order: 21 },
+    ];
+
+    await models.Question.bulkCreate(lifestyleQuestions);
+    console.log(`  ✓ Created ${lifestyleQuestions.length} lifestyle questions`);
+    console.log('✅ Questionnaire templates seeded');
+  } else if (mvpExists === 0) {
+    // Add MVP questionnaire if it doesn't exist
+    console.log('📋 Adding MVP Questionnaire...');
+    const mvpQ = await models.Questionnaire.create({
+      type: 'MVP',
+      title: 'MVP Questionnaire - 50 Essential Questions',
+      description: 'Minimum Viable Product questionnaire for compatibility scoring (50 questions across 8 dimensions)',
+      category: 'MVP',
+      version: 1,
+      isActive: true,
+    });
+
+    console.log(`  ✓ Created MVP Questionnaire (ID: ${mvpQ.id})`);
+
+    // Create minimal question records to satisfy foreign key constraints
+    // We don't need to create all 50 individual question records since the MVP uses direct answer mapping
+    const mvpQuestions = [];
+    for (let i = 1; i <= 50; i++) {
+      mvpQuestions.push({
+        questionnaireId: mvpQ.id,
+        text: `Question ${i}`,
+        type: 'text',
+        order: i,
+        required: true,
+      });
+    }
+    
+    await models.Question.bulkCreate(mvpQuestions);
+    console.log(`  ✓ Created ${mvpQuestions.length} MVP question records`);
+    console.log('✅ MVP Questionnaire added');
   } else {
     console.log(`✅ Database already initialized (${existingCount} questionnaires found)`);
   }

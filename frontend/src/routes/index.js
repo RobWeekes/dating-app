@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import MVPQuestionnaire from '../pages/MVPQuestionnaire';
 import Questionnaire from '../pages/Questionnaire';
 import CompatibilityQuestionnaireSelector from '../components/CompatibilityQuestionnaireSelector';
 import EssentialQuestionnairePage from '../pages/EssentialQuestionnairePage';
@@ -51,7 +52,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: 'questionnaire',
-        element: <Questionnaire />,
+        element: <MVPQuestionnaire />,
       },
       {
         path: 'questionnaire/select',

@@ -230,16 +230,37 @@ router.post('/', authenticateToken, async (req, res) => {
 
     // Create answer records for each question
     if (responses && typeof responses === 'object') {
-      const answerPromises = Object.entries(responses).map(([questionId, value]) => {
-        // Handle both string questionIds and numeric
-        const qId = isNaN(questionId) ? questionId : parseInt(questionId);
-        console.log(`Creating answer: responseId=${questionnaireResponse.id}, questionId=${qId}, value=${typeof value === 'string' ? value : JSON.stringify(value)}`);
+      // For MVP questionnaire, map q1, q2, etc. to actual question IDs
+      const answerPromises = Object.entries(responses).map(([questionKey, value]) => {
+        // Extract question number from key (e.g., "q1" -> 1)
+        let questionId;
+        
+        if (questionKey.startsWith('q') && !isNaN(parseInt(questionKey.substring(1)))) {
+          // This is MVP format (q1, q2, etc.)
+          const questionOrder = parseInt(questionKey.substring(1));
+          // Find the question with this order in the questionnaire
+          const question = questionnaire.Questions.find(q => q.order === questionOrder);
+          if (question) {
+            questionId = question.id;
+          } else {
+            console.warn(`Warning: Question with order ${questionOrder} not found`);
+            return null;
+          }
+        } else {
+          // Assume numeric ID
+          questionId = isNaN(questionKey) ? questionKey : parseInt(questionKey);
+        }
+        
+        console.log(`Creating answer: responseId=${questionnaireResponse.id}, questionKey=${questionKey}, questionId=${questionId}, value=${typeof value === 'string' ? value : JSON.stringify(value)}`);
+        
+        if (!questionId) return null;
+        
         return Answer.create({
           questionnaireResponseId: questionnaireResponse.id,
-          questionId: qId,
+          questionId: questionId,
           value: typeof value === 'string' ? value : JSON.stringify(value),
         });
-      });
+      }).filter(p => p !== null);
 
       await Promise.all(answerPromises);
     }
