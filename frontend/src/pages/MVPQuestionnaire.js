@@ -552,6 +552,24 @@ function MVPQuestionnaire() {
     visibleQuestions.forEach((q) => {
       if (!formData[q.id]) {
         errors[q.id] = 'This question is required';
+      } else if (q.id === 'q47') {
+        // Special validation for age range
+        const range = formData[q.id];
+        if (typeof range === 'object') {
+          const min = range.min;
+          const max = range.max;
+          
+          // Check if both values exist
+          if (min === '' || max === '' || min === undefined || max === undefined) {
+            errors[q.id] = 'Please enter both minimum and maximum ages';
+          } else if (min < 18) {
+            errors[q.id] = 'Minimum age must be at least 18';
+          } else if (max < min) {
+            errors[q.id] = 'Maximum age must be greater than minimum age';
+          } else if (max > 99) {
+            errors[q.id] = 'Maximum age must be 99 or less';
+          }
+        }
       }
     });
 
@@ -728,35 +746,169 @@ function MVPQuestionnaire() {
             <div className="range-inputs">
               <div className="range-field">
                 <label>Min age:</label>
-                <input
-                  type="number"
-                  min="18"
-                  max="99"
-                  value={(value && value.min) || 18}
-                  onChange={(e) =>
-                    handleAnswer(question.id, {
-                      min: parseInt(e.target.value),
-                      max: (value && value.max) || 99,
-                    })
-                  }
-                  className="form-input"
-                />
+                <div className="age-input-wrapper">
+                  <input
+                    type="number"
+                    value={(value && value.min !== undefined) ? value.min : ''}
+                    onChange={(e) => {
+                      const inputValue = e.target.value;
+                      // Allow empty string for deletion
+                      if (inputValue === '') {
+                        handleAnswer(question.id, {
+                          min: '',
+                          max: (value && value.max) || '',
+                        });
+                      } else {
+                        const numValue = parseInt(inputValue);
+                        if (!isNaN(numValue)) {
+                          handleAnswer(question.id, {
+                            min: numValue,
+                            max: (value && value.max) || '',
+                          });
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const inputValue = e.target.value;
+                      if (inputValue !== '') {
+                        const numValue = parseInt(inputValue);
+                        if (!isNaN(numValue) && numValue < 18) {
+                          // Reset to 18 and show error
+                          handleAnswer(question.id, {
+                            min: 18,
+                            max: (value && value.max) || '',
+                          });
+                          setFormErrors((prev) => ({
+                            ...prev,
+                            'q47-min': 'Minimum age must be at least 18',
+                          }));
+                          // Clear error after 3 seconds
+                          setTimeout(() => {
+                            setFormErrors((prev) => {
+                              const updated = { ...prev };
+                              delete updated['q47-min'];
+                              return updated;
+                            });
+                          }, 3000);
+                        }
+                      }
+                    }}
+                    placeholder="18"
+                    className="form-input"
+                  />
+                  <div className="age-controls">
+                    <button
+                      type="button"
+                      className="age-btn age-up"
+                      onClick={() => {
+                        const currentMin = (value && value.min !== undefined) ? value.min : 18;
+                        handleAnswer(question.id, {
+                          min: currentMin + 1,
+                          max: (value && value.max) || '',
+                        });
+                      }}
+                      title="Increase min age"
+                    >
+                      ▲
+                    </button>
+                    <button
+                      type="button"
+                      className="age-btn age-down"
+                      onClick={() => {
+                        const currentMin = (value && value.min !== undefined) ? value.min : 18;
+                        const newMin = currentMin - 1;
+                        if (newMin < 18) {
+                          // Reset to 18 and show error
+                          handleAnswer(question.id, {
+                            min: 18,
+                            max: (value && value.max) || '',
+                          });
+                          setFormErrors((prev) => ({
+                            ...prev,
+                            'q47-min': 'Minimum age must be at least 18',
+                          }));
+                          // Clear error after 3 seconds
+                          setTimeout(() => {
+                            setFormErrors((prev) => {
+                              const updated = { ...prev };
+                              delete updated['q47-min'];
+                              return updated;
+                            });
+                          }, 3000);
+                        } else if (newMin > 0) {
+                          handleAnswer(question.id, {
+                            min: newMin,
+                            max: (value && value.max) || '',
+                          });
+                        }
+                      }}
+                      title="Decrease min age"
+                    >
+                      ▼
+                    </button>
+                  </div>
+                </div>
               </div>
               <div className="range-field">
                 <label>Max age:</label>
-                <input
-                  type="number"
-                  min="18"
-                  max="99"
-                  value={(value && value.max) || 99}
-                  onChange={(e) =>
-                    handleAnswer(question.id, {
-                      min: (value && value.min) || 18,
-                      max: parseInt(e.target.value),
-                    })
-                  }
-                  className="form-input"
-                />
+                <div className="age-input-wrapper">
+                  <input
+                    type="number"
+                    value={(value && value.max !== undefined) ? value.max : ''}
+                    onChange={(e) => {
+                      const inputValue = e.target.value;
+                      // Allow empty string for deletion
+                      if (inputValue === '') {
+                        handleAnswer(question.id, {
+                          min: (value && value.min) || '',
+                          max: '',
+                        });
+                      } else {
+                        const numValue = parseInt(inputValue);
+                        if (!isNaN(numValue)) {
+                          handleAnswer(question.id, {
+                            min: (value && value.min) || '',
+                            max: numValue,
+                          });
+                        }
+                      }
+                    }}
+                    placeholder="99"
+                    className="form-input"
+                  />
+                  <div className="age-controls">
+                    <button
+                      type="button"
+                      className="age-btn age-up"
+                      onClick={() => {
+                        const currentMax = (value && value.max !== undefined) ? value.max : 99;
+                        handleAnswer(question.id, {
+                          min: (value && value.min) || '',
+                          max: currentMax + 1,
+                        });
+                      }}
+                      title="Increase max age"
+                    >
+                      ▲
+                    </button>
+                    <button
+                      type="button"
+                      className="age-btn age-down"
+                      onClick={() => {
+                        const currentMax = (value && value.max !== undefined) ? value.max : 99;
+                        if (currentMax > 0) {
+                          handleAnswer(question.id, {
+                            min: (value && value.min) || '',
+                            max: currentMax - 1,
+                          });
+                        }
+                      }}
+                      title="Decrease max age"
+                    >
+                      ▼
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -764,6 +916,9 @@ function MVPQuestionnaire() {
 
         {formErrors[question.id] && (
           <span className="error-text">{formErrors[question.id]}</span>
+        )}
+        {formErrors['q47-min'] && question.id === 'q47' && (
+          <span className="error-text">{formErrors['q47-min']}</span>
         )}
       </div>
     );
