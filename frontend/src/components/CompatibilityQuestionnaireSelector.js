@@ -16,7 +16,7 @@ import '../styles/questionnaire-selector.css';
 function CompatibilityQuestionnaireSelector() {
   const navigate = useNavigate();
   const userProfile = useSelector(selectUserProfile);
-  
+
   const [step, setStep] = useState('choose'); // choose, select-length, questionnaire
   const [relationshipType, setRelationshipType] = useState(null);
   const [questionnnaireLength, setQuestionnaireLength] = useState(null);
@@ -93,7 +93,7 @@ function CompatibilityQuestionnaireSelector() {
 
       // Show success message and navigate
       setTimeout(() => {
-        navigate('/profile', { 
+        navigate('/profile', {
           state: { message: 'Compatibility questionnaire submitted successfully!' }
         });
       }, 500);
@@ -213,7 +213,7 @@ function CompatibilityQuestionnaireSelector() {
   if (step === 'questionnaire') {
     const questionnaire = questionnaires[relationshipType];
     const option = questionnaire.options.find(o => o.id === questionnnaireLength);
-    
+
     if (!option.component) {
       return (
         <div className="questionnaire-selector coming-soon">
@@ -244,7 +244,8 @@ function CompatibilityQuestionnaireSelector() {
             </Button>
             <Button
               type="button"
-              onClick={onCancel}
+              // onClick={onCancel} // This would be handled by the parent component's onCancel prop - not defined yet
+              onClick={() => setStep('choose')}
               className="btn-secondary"
             >
               Cancel

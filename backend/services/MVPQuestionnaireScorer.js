@@ -1,7 +1,7 @@
 /**
  * MVP Questionnaire Scoring Service
  * Calculates compatibility scores between users based on MVP questionnaire responses
- * 
+ *
  * MVP SCORING WEIGHTS:
  * - Personality: 25%
  * - Core Values: 30%
@@ -59,13 +59,18 @@ class MVPQuestionnaireScorer {
       // Adjust score if critical incompatibilities
       let adjustedScore = overallScore;
       if (redFlags.length > 0) {
-        redFlags.forEach((flag) => {
-          if (flag.severity === 'critical') {
-            adjustedScore *= 0.7; // 30% penalty for each critical flag
-          } else if (flag.severity === 'significant') {
-            adjustedScore *= 0.85; // 15% penalty for significant flags
-          }
-        });
+        // Use additive penalties instead of cascading multipliers
+        const criticalCount = redFlags.filter(f => f.severity === 'critical').length;
+        const significantCount = redFlags.filter(f => f.severity === 'significant').length;
+
+        // Calculate penalty: -30 points per critical, -15 per significant
+        const penaltyPoints = (criticalCount * 30) + (significantCount * 15);
+        adjustedScore = Math.max(0, overallScore - penaltyPoints);
+
+        // // If critical flags exist, cap at 2-star match (40 points)
+        // if (criticalCount > 0) {
+        //   adjustedScore = Math.min(adjustedScore, 40);
+        // }
       }
 
       return {
@@ -546,26 +551,31 @@ class MVPQuestionnaireScorer {
 
   /**
    * Calculate overall weighted compatibility score
+   * All weights must sum to 1.0 for accurate scoring
    */
   static calculateOverallScore(scores) {
     const weights = {
-      personalityScore: 0.25,
-      valuesScore: 0.3,
-      familyScore: 0.25,
-      financialScore: 0.2,
+      personalityScore: 0.25,      // 25%
+      valuesScore: 0.30,           // 30%
+      familyScore: 0.25,           // 25%
+      financialScore: 0.13,        // 13% (reduced from 20% to make room for adjustments)
+      lifestyleScore: 0.04,        // 4% (increased from 2.5%)
+      workLifeScore: 0.02,         // 2% (increased from 2.5%)
+      healthScore: 0.01,           // 1% (increased from 1.25%)
     };
+    // Note: physicalScore not included in overall calculation as it requires
+    // actual age/location validation that happens at user filtering stage
 
-    let overallScore =
-      scores.personalityScore * weights.personalityScore +
-      scores.valuesScore * weights.valuesScore +
-      scores.familyScore * weights.familyScore +
-      scores.financialScore * weights.financialScore;
+    // Verify weights sum to 1.0 (for debugging)
+    const totalWeight = Object.values(weights).reduce((sum, w) => sum + w, 0);
+    if (Math.abs(totalWeight - 1.0) > 0.001) {
+      console.warn(`Warning: Compatibility weights sum to ${totalWeight}, not 1.0`);
+    }
 
-    // Add adjustments (smaller weights)
-    overallScore += scores.lifestyleScore * 0.025;
-    overallScore += scores.workLifeScore * 0.025;
-    overallScore += scores.healthScore * 0.0125;
-    overallScore += scores.physicalScore * 0.0125;
+    let overallScore = 0;
+    for (const [key, weight] of Object.entries(weights)) {
+      overallScore += (scores[key] || 0) * weight;
+    }
 
     return Math.min(100, Math.max(0, overallScore));
   }
@@ -657,10 +667,10 @@ class MVPQuestionnaireScorer {
 
     // Check extreme extraversion mismatch (CAUTION)
     const user1Social = [5, 6].includes(parseInt(user1Responses.Q5)) ? 'high' :
-                       [1, 2].includes(parseInt(user1Responses.Q6)) ? 'high' : 'low';
+      [1, 2].includes(parseInt(user1Responses.Q6)) ? 'high' : 'low';
     const user2Social = [5, 6].includes(parseInt(user2Responses.Q5)) ? 'high' :
-                       [1, 2].includes(parseInt(user2Responses.Q6)) ? 'high' : 'low';
-    
+      [1, 2].includes(parseInt(user2Responses.Q6)) ? 'high' : 'low';
+
     if (
       (user1Social === 'high' && user2Social === 'low') ||
       (user1Social === 'low' && user2Social === 'high')
