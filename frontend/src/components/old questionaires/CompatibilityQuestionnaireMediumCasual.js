@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import '../styles/compatibility-questionnaire.css';
 
 /**
@@ -15,28 +15,28 @@ function CompatibilityQuestionnaireMediumCasual({ onSubmit, onCancel }) {
     physicalAffection: '',
     sexualBoundariesComfort: '',
     emotionalPhysicalConnection: '',
-    
+
     // Emotional Intimacy & Communication (5)
     emotionalOpenness: '',
     supportReceiving: '',
     supportGiving: '',
     disagreementHandling: '',
     beingHeard: '',
-    
+
     // Lifestyle & Time (5)
     timeFrequency: '',
     dateActivities: '',
     sharedInterests: '',
     activityLevelCompatibility: '',
     scheduleCompatibility: '',
-    
+
     // Values & Compatibility (5)
     coreValues: '',
     beliefAlignment: '',
     financialResponsibility: '',
     longTermCompatibility: '',
     mutualRespect: '',
-    
+
     // Honesty, Expectations & Growth (5)
     upfrontAboutWants: '',
     exclusivityPreference: '',
@@ -274,10 +274,10 @@ function CompatibilityQuestionnaireMediumCasual({ onSubmit, onCancel }) {
       </div>
 
       <form onSubmit={handleSubmit} className="compatibility-form">
-        
+
         <div className="form-section">
           <h3>{section.title}</h3>
-          
+
           {section.questions.map(q => (
             <div key={q.name} className="question-block">
               <label className="question-label">
@@ -314,7 +314,7 @@ function CompatibilityQuestionnaireMediumCasual({ onSubmit, onCancel }) {
               Previous
             </Button>
           )}
-          
+
           {currentSection < sections.length - 1 ? (
             <Button
               type="button"
@@ -334,7 +334,7 @@ function CompatibilityQuestionnaireMediumCasual({ onSubmit, onCancel }) {
               {isSubmitting ? 'Submitting...' : 'Submit Questionnaire'}
             </Button>
           )}
-          
+
           <Button
             type="button"
             onClick={onCancel}

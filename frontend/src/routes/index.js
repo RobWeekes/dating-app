@@ -4,7 +4,6 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import MVPQuestionnaire from '../pages/MVPQuestionnaire';
 import Questionnaire from '../pages/Questionnaire';
-import CompatibilityQuestionnaireSelector from '../components/CompatibilityQuestionnaireSelector';
 import EssentialQuestionnairePage from '../pages/EssentialQuestionnairePage';
 import LifestyleQuestionnairePage from '../pages/LifestyleQuestionnairePage';
 import Profile from '../pages/Profile';
@@ -53,10 +52,6 @@ export const routes = createBrowserRouter([
       {
         path: 'questionnaire',
         element: <MVPQuestionnaire />,
-      },
-      {
-        path: 'questionnaire/select',
-        element: <CompatibilityQuestionnaireSelector />,
       },
       {
         path: 'profile',

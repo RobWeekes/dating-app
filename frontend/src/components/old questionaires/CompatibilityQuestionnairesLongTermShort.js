@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import '../styles/compatibility-questionnaire.css';
 
 /**
@@ -12,22 +12,22 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
     trustImportance: '',
     partnerCommitmentKnowing: '',
     seekingLongTerm: '',
-    
+
     // Intimacy Dimensions (4)
     sexualCompatibility: '',
     emotionalIntimacy: '',
     intellectualCompatibility: '',
     sharedActivities: '',
-    
+
     // Communication & Conflict (2)
     communicationImportance: '',
     defensiveResponse: '',
-    
+
     // Values & Future Alignment (3)
     financialAlignment: '',
     parentingAlignment: '',
     majorLifeGoals: '',
-    
+
     // Emotional Health & Growth (3)
     attachmentSecurity: '',
     bestSelfBringing: '',
@@ -46,11 +46,11 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
       'financialAlignment', 'parentingAlignment', 'majorLifeGoals',
       'attachmentSecurity', 'bestSelfBringing', 'workThroughDifficulty',
     ];
-    
+
     requiredFields.forEach(field => {
       if (!formData[field]) newErrors[field] = 'Required';
     });
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -97,11 +97,11 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
       </div>
 
       <form onSubmit={handleSubmit} className="compatibility-form">
-        
+
         {/* Section 1: Trust & Commitment Foundation */}
         <div className="form-section">
           <h3>Trust & Commitment Foundation</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is absolute trust in a long-term partner?
@@ -169,7 +169,7 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
         {/* Section 2: Intimacy Dimensions */}
         <div className="form-section">
           <h3>Intimacy Dimensions</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is sexual compatibility and regular intimacy?
@@ -258,7 +258,7 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
         {/* Section 3: Communication & Conflict */}
         <div className="form-section">
           <h3>Communication & Conflict</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is healthy communication and conflict resolution?
@@ -305,7 +305,7 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
         {/* Section 4: Values & Future Alignment */}
         <div className="form-section">
           <h3>Values & Future Alignment</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is alignment on financial values and goals?
@@ -373,7 +373,7 @@ function CompatibilityQuestionnaireLongTermShort({ onSubmit, onCancel }) {
         {/* Section 5: Emotional Health & Growth */}
         <div className="form-section">
           <h3>Emotional Health & Growth</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is your partner having secure attachment and emotional stability?

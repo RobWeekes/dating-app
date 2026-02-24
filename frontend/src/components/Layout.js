@@ -24,25 +24,19 @@ function Layout() {
           </Link>
           <ul className="nav-menu">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/preferences">Preferences</Link>
+            </li>
+            <li>
+              <Link to="/questionnaire">Questionnaires</Link>
             </li>
             <li>
               <Link to="/discover">Discover</Link>
             </li>
             <li>
               <Link to="/matches">Matches</Link>
-            </li>
-            <li>
-              <Link to="/questionnaire">Questionnaire</Link>
-            </li>
-            <li>
-              <Link to="/questionnaire/select">Compatibility Quiz</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/preferences">Preferences</Link>
             </li>
           </ul>
           <div className="navbar-user">

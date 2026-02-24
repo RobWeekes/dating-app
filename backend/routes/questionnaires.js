@@ -195,7 +195,7 @@ router.post('/', authenticateToken, async (req, res) => {
     });
 
     console.log('Found questionnaire:', questionnaire ? { id: questionnaire.id, type: questionnaire.type } : null);
-    
+
     if (!questionnaire) {
       return res.status(404).json({ error: `Questionnaire type "${type}" not found` });
     }
@@ -234,7 +234,7 @@ router.post('/', authenticateToken, async (req, res) => {
       const answerPromises = Object.entries(responses).map(([questionKey, value]) => {
         // Extract question number from key (e.g., "q1" -> 1)
         let questionId;
-        
+
         if (questionKey.startsWith('q') && !isNaN(parseInt(questionKey.substring(1)))) {
           // This is MVP format (q1, q2, etc.)
           const questionOrder = parseInt(questionKey.substring(1));
@@ -250,11 +250,11 @@ router.post('/', authenticateToken, async (req, res) => {
           // Assume numeric ID
           questionId = isNaN(questionKey) ? questionKey : parseInt(questionKey);
         }
-        
+
         console.log(`Creating answer: responseId=${questionnaireResponse.id}, questionKey=${questionKey}, questionId=${questionId}, value=${typeof value === 'string' ? value : JSON.stringify(value)}`);
-        
+
         if (!questionId) return null;
-        
+
         return Answer.create({
           questionnaireResponseId: questionnaireResponse.id,
           questionId: questionId,
@@ -359,6 +359,7 @@ router.get('/:responseId/answers', async (req, res) => {
 });
 
 // CREATE answer for a response
+// Key feature: The POST endpoint handles both MVP format (q1, q2, etc.) and ID-based question references, maps them to actual question IDs, and stores answers. If a user resubmits, it updates their existing response instead of creating duplicates.
 router.post('/:responseId/answers', async (req, res) => {
   try {
     const { questionId, value } = req.body;

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectUserProfile } from '../redux/selectors';
-import { submitCompatibilityQuestionnaire } from '../services/api';
+import { selectUserProfile } from '../../redux/selectors';
+import { submitCompatibilityQuestionnaire } from '../../services/api';
 import CompatibilityQuestionnaireShort from './CompatibilityQuestionnaireShort';
 import CompatibilityQuestionnaireMediumCasual from './CompatibilityQuestionnaireMediumCasual';
 import CompatibilityQuestionnaireLongTermShort from './CompatibilityQuestionnairesLongTermShort';
-import Button from './Button';
+import Button from '../Button';
 import '../styles/questionnaire-selector.css';
 
 /**

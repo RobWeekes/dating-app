@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import '../styles/compatibility-questionnaire.css';
 
 /**
@@ -11,21 +11,21 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
     // Physical Intimacy & Attraction
     physicalChemistry: '',
     intimacyFrequency: '',
-    
+
     // Emotional Connection & Communication
     emotionalOpenness: '',
     communicationImportance: '',
-    
+
     // Lifestyle & Time Commitment
     timeSpent: '',
-    
+
     // Values & Life Goals
     sharedValues: '',
-    
+
     // Honesty & Clarity
     upfrontHonesty: '',
     exclusivityExpectation: '',
-    
+
     // Future Intentions
     seriousEvolution: '',
     compatibilityView: '',
@@ -46,7 +46,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
     if (!formData.exclusivityExpectation) newErrors.exclusivityExpectation = 'Required';
     if (!formData.seriousEvolution) newErrors.seriousEvolution = 'Required';
     if (!formData.compatibilityView) newErrors.compatibilityView = 'Required';
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -69,7 +69,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     try {
       setIsSubmitting(true);
       await onSubmit({
@@ -93,11 +93,11 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
       </div>
 
       <form onSubmit={handleSubmit} className="compatibility-form">
-        
+
         {/* Section 1: Physical Intimacy & Attraction */}
         <div className="form-section">
           <h3>Physical Intimacy & Attraction</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is physical chemistry and sexual attraction in a potential partner?
@@ -144,7 +144,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
         {/* Section 2: Emotional Connection & Communication */}
         <div className="form-section">
           <h3>Emotional Connection & Communication</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How emotionally open do you prefer your dating partner to be?
@@ -191,7 +191,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
         {/* Section 3: Lifestyle & Time Commitment */}
         <div className="form-section">
           <h3>Lifestyle & Time Commitment</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How much time do you want to spend with a casual dating partner?
@@ -217,7 +217,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
         {/* Section 4: Values & Life Goals */}
         <div className="form-section">
           <h3>Values & Life Goals</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               How important is it that your partner shares your core values?
@@ -243,7 +243,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
         {/* Section 5: Honesty & Clarity About Intentions */}
         <div className="form-section">
           <h3>Honesty & Clarity About Intentions</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               Do you prefer partners who are explicit about what they want from dating?
@@ -290,7 +290,7 @@ function CompatibilityQuestionnaireShort({ onSubmit, onCancel }) {
         {/* Section 6: Future Intentions */}
         <div className="form-section">
           <h3>Future Intentions</h3>
-          
+
           <div className="question-block">
             <label className="question-label">
               Are you open to a relationship eventually becoming serious?
