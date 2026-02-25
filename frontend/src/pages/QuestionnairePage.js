@@ -109,17 +109,12 @@ function QuestionnairePage() {
 
   const handleSubmit = async (values) => {
     try {
-      setSubmitting(true);
       setError(null);
-
       await submitQuestionnaire({ type, responses: values });
-
       setSubmitted(true);
       navigate('/profile');
     } catch (err) {
       setError(err.message || 'Failed to submit questionnaire');
-    } finally {
-      setSubmitting(false);
     }
   };
 
