@@ -27,16 +27,17 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       type: {
-        type: DataTypes.ENUM('text', 'radio', 'checkbox', 'slider'),
+        type: DataTypes.STRING,
         defaultValue: 'text',
         validate: {
-          isIn: [['text', 'radio', 'checkbox', 'slider']],
+          isIn: [['text', 'single', 'multi', 'likert', 'slider', 'range', 'radio', 'checkbox']],
         },
+        comment: 'Canonical types: single, multi, likert, slider, range, text',
       },
       options: {
         type: DataTypes.JSON,
         defaultValue: [],
-        comment: 'Array of options for radio, checkbox types',
+        comment: 'Array of choices, or config object for slider/range types',
       },
       required: {
         type: DataTypes.BOOLEAN,
@@ -46,6 +47,31 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         comment: 'Display order within questionnaire',
+      },
+      section: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        comment: 'Section title for grouping questions',
+      },
+      sectionDescription: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        comment: 'Section subtitle/description',
+      },
+      reversed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        comment: 'Whether scoring is reverse-coded (for likert scales)',
+      },
+      critical: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        comment: 'Deal-breaker question for compatibility',
+      },
+      conditional: {
+        type: DataTypes.JSON,
+        allowNull: true,
+        comment: 'Conditional display rules: { questionOrder, values }',
       },
       createdAt: {
         type: DataTypes.DATE,

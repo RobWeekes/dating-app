@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Questionnaire, Question, QuestionnaireResponse, Answer, User } = require('../models');
+const sequelize = require('../models').sequelize;
+const { Op } = require('sequelize');
 const { authenticateToken } = require('../middleware/authentication');
 
 /**
@@ -15,7 +17,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Question,
-          attributes: ['id', 'text', 'type', 'options', 'order'],
+          attributes: ['id', 'text', 'type', 'options', 'order', 'section', 'sectionDescription', 'reversed', 'critical', 'conditional'],
         },
       ],
       where: { isActive: true },
@@ -33,7 +35,7 @@ router.get('/:id', async (req, res) => {
       include: [
         {
           model: Question,
-          attributes: ['id', 'text', 'type', 'options', 'required', 'order'],
+          attributes: ['id', 'text', 'type', 'options', 'required', 'order', 'section', 'sectionDescription', 'reversed', 'critical', 'conditional'],
         },
       ],
     });
@@ -52,11 +54,14 @@ router.get('/:id', async (req, res) => {
 router.get('/type/:type', async (req, res) => {
   try {
     const questionnaire = await Questionnaire.findOne({
-      where: { type: req.params.type },
+      where: sequelize.where(
+        sequelize.fn('LOWER', sequelize.col('type')),
+        req.params.type.toLowerCase()
+      ),
       include: [
         {
           model: Question,
-          attributes: ['id', 'text', 'type', 'options', 'required', 'order'],
+          attributes: ['id', 'text', 'type', 'options', 'required', 'order', 'section', 'sectionDescription', 'reversed', 'critical', 'conditional'],
         },
       ],
     });
@@ -229,35 +234,18 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 
     // Create answer records for each question
+    // All frontends must send numeric questionIds as keys
     if (responses && typeof responses === 'object') {
-      // For MVP questionnaire, map q1, q2, etc. to actual question IDs
-      const answerPromises = Object.entries(responses).map(([questionKey, value]) => {
-        // Extract question number from key (e.g., "q1" -> 1)
-        let questionId;
-
-        if (questionKey.startsWith('q') && !isNaN(parseInt(questionKey.substring(1)))) {
-          // This is MVP format (q1, q2, etc.)
-          const questionOrder = parseInt(questionKey.substring(1));
-          // Find the question with this order in the questionnaire
-          const question = questionnaire.Questions.find(q => q.order === questionOrder);
-          if (question) {
-            questionId = question.id;
-          } else {
-            console.warn(`Warning: Question with order ${questionOrder} not found`);
-            return null;
-          }
-        } else {
-          // Assume numeric ID
-          questionId = isNaN(questionKey) ? questionKey : parseInt(questionKey);
+      const answerPromises = Object.entries(responses).map(([questionId, value]) => {
+        const id = parseInt(questionId);
+        if (isNaN(id)) {
+          console.warn(`Warning: Non-numeric question key "${questionId}" — skipping`);
+          return null;
         }
-
-        console.log(`Creating answer: responseId=${questionnaireResponse.id}, questionKey=${questionKey}, questionId=${questionId}, value=${typeof value === 'string' ? value : JSON.stringify(value)}`);
-
-        if (!questionId) return null;
 
         return Answer.create({
           questionnaireResponseId: questionnaireResponse.id,
-          questionId: questionId,
+          questionId: id,
           value: typeof value === 'string' ? value : JSON.stringify(value),
         });
       }).filter(p => p !== null);
@@ -359,7 +347,6 @@ router.get('/:responseId/answers', async (req, res) => {
 });
 
 // CREATE answer for a response
-// Key feature: The POST endpoint handles both MVP format (q1, q2, etc.) and ID-based question references, maps them to actual question IDs, and stores answers. If a user resubmits, it updates their existing response instead of creating duplicates.
 router.post('/:responseId/answers', async (req, res) => {
   try {
     const { questionId, value } = req.body;

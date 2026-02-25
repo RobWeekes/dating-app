@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const models = require('./models');
 const routes = require('./routes');
+const { getQuestionnaireTemplates } = require('./data/questionnaire-templates');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -28,6 +29,10 @@ models.sequelize
   })
   .then(() => {
     console.log('✅ Database schema created');
+    // Patch schema: add new Question columns if missing (SQLite)
+    return patchQuestionSchema();
+  })
+  .then(() => {
     // Seed questionnaire templates
     console.log('📋 Seeding questionnaire templates...');
     return seedQuestionnaireTemplates();
@@ -40,457 +45,83 @@ models.sequelize
     console.error('💡 If you see SQLITE_IOERR, try: rm -rf dating_app.db* && npm run dev');
   });
 
-// Seed questionnaire templates on startup
-async function seedQuestionnaireTemplates() {
-  const existingCount = await models.Questionnaire.count();
-  const lifestyleExists = await models.Questionnaire.count({ where: { type: 'lifestyle' } });
-  const mvpExists = await models.Questionnaire.count({ where: { type: 'MVP' } });
-  
-  if (existingCount === 0) {
-    // ============ Create Essential Questionnaire ============
-    const essentialQ = await models.Questionnaire.create({
-      type: 'essential',
-      title: 'Essential Questionnaire',
-      description: 'Find out what matters most to you in a relationship',
-      category: 'Essential',
-      version: 1,
-      isActive: true,
-    });
-
-    console.log(`  ✓ Created Essential Questionnaire (ID: ${essentialQ.id})`);
-
-    // Create questions - comprehensive Essential Questionnaire (27 questions)
-    const essentialQuestions = [
-      // Love & Connection (1)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What is your love language? (Select top 2)',
-        type: 'checkbox',
-        options: ['Words of Affirmation', 'Quality Time', 'Physical Touch', 'Acts of Service', 'Receiving Gifts'],
-        required: true,
-        order: 1,
-      },
-      // Political Compass (2)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'My political views are:',
-        type: 'radio',
-        options: ['Left/Progressive', 'Center-Left', 'Center-Right', 'Right/Conservative'],
-        required: true,
-        order: 2,
-      },
-      // Birth Order (3)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Birth order:',
-        type: 'radio',
-        options: ['Only child', 'First born', 'Middle child', 'Baby of the family'],
-        required: true,
-        order: 3,
-      },
-      // Sleep Tendency (4)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Sleep pattern:',
-        type: 'radio',
-        options: ['Early bird', 'Standard (sleep around midnight)', 'Night owl', 'Vampire'],
-        required: true,
-        order: 4,
-      },
-      // Personality Archetype (5)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'My personality archetype is:',
-        type: 'radio',
-        options: ['The Hero', 'The Shadow', 'The Wise Old Man/Woman', 'The Innocent', 'The Explorer', 'The Lover', 'The Creator', 'The Caregiver', 'The Everyman', 'The Jester', 'The Sage', 'The Magician'],
-        required: true,
-        order: 5,
-      },
-      // Social Inclination (6) - stored as number 0-100
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Social inclination (Introvert to Extrovert):',
-        type: 'range',
-        options: ['0', '100'],
-        required: true,
-        order: 6,
-      },
-      // Sense of Humor (7)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'My sense of humor is:',
-        type: 'radio',
-        options: ['Slapstick', 'Playful/Silly', 'Dry/Sarcastic', 'Serious/Only when in mood', "I don't like jokes"],
-        required: true,
-        order: 7,
-      },
-      // Laughter Frequency (8)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'How often do you laugh?',
-        type: 'radio',
-        options: ['Easily & often', 'Sometimes', 'Only in the right company', 'Life is serious, I take it serious'],
-        required: true,
-        order: 8,
-      },
-      // Musical Tastes (9)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What music genres do you enjoy?',
-        type: 'checkbox',
-        options: ['Pop', 'Rock', 'Hip-Hop/Rap', 'Country', 'R&B/Soul', 'Jazz', 'Electronic/EDM', 'Classical', 'Indie', 'Metal', 'Latin', 'Folk', 'K-Pop', 'Disco', 'Reggae'],
-        required: true,
-        order: 9,
-      },
-      // Indoor vs Outdoor (10)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Indoor vs Outdoor preference:',
-        type: 'range',
-        options: ['0', '100'],
-        required: true,
-        order: 10,
-      },
-      // Entertainment Preferences (11)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Entertainment preferences:',
-        type: 'checkbox',
-        options: ['Travel', 'Movies', 'TV/Shows', 'Music/Concerts', 'Gaming', 'Exercise/Gym', 'Outdoor activities', 'Reading', 'Cooking', 'Art/Museums', 'Dining out', 'Nightlife/Clubs'],
-        required: true,
-        order: 11,
-      },
-      // Hobbies (12)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What are your hobbies?',
-        type: 'checkbox',
-        options: ['Photography', 'Painting/Drawing', 'Writing', 'Music (playing)', 'Sports', 'Yoga', 'Meditation', 'DIY/Crafts', 'Cooking', 'Gardening', 'Collecting', 'Volunteering', 'Gaming', 'Movies', 'Reading'],
-        required: true,
-        order: 12,
-      },
-      // Outdoor Activities (13)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Outdoor activities:',
-        type: 'checkbox',
-        options: ['Hiking', 'Camping', 'Rock climbing', 'Water sports', 'Cycling', 'Picnicking', 'Beach activities', 'Skiing/Snowboarding', 'Fishing', 'Kayaking', 'Skateboarding', 'Running/Jogging'],
-        required: true,
-        order: 13,
-      },
-      // Socialization Frequency (14)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'How often do you socialize?',
-        type: 'radio',
-        options: ['Occasionally', 'Once a month', 'Once a week', 'More than once per week'],
-        required: true,
-        order: 14,
-      },
-      // Drinking Habits (15)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Drinking habits:',
-        type: 'radio',
-        options: ["I don't drink", 'Recovered alcoholic', 'Once in a while', 'Social drinker', 'Party animal'],
-        required: true,
-        order: 15,
-      },
-      // Smoking (16)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Do you smoke?',
-        type: 'radio',
-        options: ['No', 'Rarely', 'Weekly', 'Daily'],
-        required: true,
-        order: 16,
-      },
-      // Recreational Drugs (17)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Recreational drugs:',
-        type: 'radio',
-        options: ['None', 'Cannabis', 'Psychedelics', 'Heavy user'],
-        required: true,
-        order: 17,
-      },
-      // Pets (18)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Regarding pets:',
-        type: 'radio',
-        options: ['Have pets', 'Want pets', "Don't want pets"],
-        required: true,
-        order: 18,
-      },
-      // Personality Era (19)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'My personality is most like the:',
-        type: 'radio',
-        options: ["'50s", "'60s", "'70s/'80s", "'90s"],
-        required: true,
-        order: 19,
-      },
-      // Conflict Style (20)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Conflict preference style:',
-        type: 'radio',
-        options: ['Opinionated/Speak my mind', "Don't talk unless I have something to say", 'I prefer to avoid conflict'],
-        required: true,
-        order: 20,
-      },
-      // Problem Handling (21)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'How do you handle problems/stress?',
-        type: 'radio',
-        options: ['Avoid problems/do something else', 'Plan solutions methodically', "Tackle problems head on/'wing it'"],
-        required: true,
-        order: 21,
-      },
-      // Financial Habits (22)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Financial approach:',
-        type: 'radio',
-        options: ['Budget everything in advance', 'Check finances occasionally', "Don't worry about spending"],
-        required: true,
-        order: 22,
-      },
-      // Family Relationship (23)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Family relationship:',
-        type: 'radio',
-        options: ['Not speaking', 'Talk occasionally on the phone', 'Regular phone calls', 'Regular visits'],
-        required: true,
-        order: 23,
-      },
-      // Dating Duration (24)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Dating duration before engagement:',
-        type: 'radio',
-        options: ['6 months or less', '6-12 months', '1-2 years', '3-4 years', '5 years+'],
-        required: true,
-        order: 24,
-      },
-      // Engagement Duration (25)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Engagement duration before wedding:',
-        type: 'radio',
-        options: ['6 months or less', '6-12 months', '1-2 years', '3-4 years', '5 years+'],
-        required: true,
-        order: 25,
-      },
-      // What are you looking for? (26)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What are you looking for?',
-        type: 'radio',
-        options: ['Something serious', 'Casual dating', 'Not sure'],
-        required: true,
-        order: 26,
-      },
-      // Do you want kids? (27)
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Do you want kids?',
-        type: 'radio',
-        options: ['Yes', 'No', 'Maybe'],
-        required: true,
-        order: 27,
-      },
-    ];
-
-    await models.Question.bulkCreate(essentialQuestions);
-    console.log(`  ✓ Created ${essentialQuestions.length} essential questions`);
-
-    // ============ Create Lifestyle Questionnaire ============
-    const lifestyleQ = await models.Questionnaire.create({
-      type: 'lifestyle',
-      title: 'Lifestyle & Values Questionnaire',
-      description: 'Explore lifestyle choices, financial attitudes, work-life balance, health values, and family planning',
-      category: 'Lifestyle',
-      version: 1,
-      isActive: true,
-    });
-
-    console.log(`  ✓ Created Lifestyle Questionnaire (ID: ${lifestyleQ.id})`);
-
-    const lifestyleQuestions = [
-      { questionnaireId: lifestyleQ.id, text: 'In life, what matters most to me:', type: 'radio', options: ['Personal growth and self-improvement', 'Close relationships and family', 'Making a difference in the world', 'Enjoying life and having fun', 'Security and stability'], required: true, order: 1 },
-      { questionnaireId: lifestyleQ.id, text: 'When facing a major decision, I:', type: 'radio', options: ['Play it safe and minimize risk', 'Take measured risks after careful thought', 'Trust my gut and go for it', 'Seek advice from people I trust', 'Research thoroughly before deciding'], required: true, order: 2 },
-      { questionnaireId: lifestyleQ.id, text: 'I feel my best when:', type: 'radio', options: ['Alone or with my close partner', 'With a small group of close friends', 'With larger groups and meeting new people', 'Balancing alone time and social time equally', 'At large social events and gatherings'], required: true, order: 3 },
-      { questionnaireId: lifestyleQ.id, text: 'I identify most as:', type: 'radio', options: ['Highly independent, self-reliant', 'Mostly independent with some interdependence', 'Balanced between independence and togetherness', 'Strong family/community ties are central', 'Family/group needs come before personal wants'], required: true, order: 4 },
-      { questionnaireId: lifestyleQ.id, text: 'My focus on self-improvement is:', type: 'radio', options: ['Constant, always working on myself', 'Important, regularly focused on growth', 'Moderate, work on issues as they arise', 'Low priority, content with who I am', 'Not important, I am who I am'], required: true, order: 5 },
-      { questionnaireId: lifestyleQ.id, text: 'I approach traditions and customs as:', type: 'radio', options: ['Important to maintain as passed down', 'Worth keeping but can modernize', 'Fine if they serve a purpose, otherwise discard', 'Would prefer to create new traditions'], required: true, order: 6 },
-      { questionnaireId: lifestyleQ.id, text: 'My approach to money is mostly:', type: 'radio', options: ['Save for future security', 'Enjoy life now, save moderately', 'Spend freely, don\'t worry about money', 'Balanced between spending and saving'], required: true, order: 7 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding finances in a relationship, I believe:', type: 'radio', options: ['Complete transparency, combined accounts', 'Mostly transparent with some personal spending money', 'Mostly separate finances with shared household expenses', 'Completely separate finances'], required: true, order: 8 },
-      { questionnaireId: lifestyleQ.id, text: 'My comfort level with debt is:', type: 'radio', options: ['Avoid debt at all costs', 'Acceptable for large purchases (home, education)', 'Comfortable with credit cards for flexibility', 'Finances are complex, use various debt tools'], required: true, order: 9 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding money and risk, I prefer:', type: 'radio', options: ['Safe, conservative investments', 'Moderate, diversified approach', 'Growth-oriented, willing to take calculated risks', 'High-risk, high-reward opportunities'], required: true, order: 10 },
-      { questionnaireId: lifestyleQ.id, text: 'Career importance to me is:', type: 'radio', options: ['Primary life focus, willing to sacrifice for advancement', 'Very important, but balanced with personal life', 'Important, but secondary to family/relationships', 'Just a job, doesn\'t define me'], required: true, order: 11 },
-      { questionnaireId: lifestyleQ.id, text: 'Ideal weekly work situation for me is:', type: 'radio', options: ['30-35 hours (part-time emphasis on other life areas)', '35-40 hours (standard, clear boundaries)', '40-50 hours (career-focused but some personal time)', '50+ hours (very career-focused)'], required: true, order: 12 },
-      { questionnaireId: lifestyleQ.id, text: 'I require flexibility in my work because:', type: 'radio', options: ['I don\'t need flexibility, I prefer structure', 'Family responsibilities may require some flexibility', 'Health/wellness needs require flexible schedule', 'I prefer autonomy in when/where I work'], required: true, order: 13 },
-      { questionnaireId: lifestyleQ.id, text: 'When my partner\'s career demands time, I:', type: 'radio', options: ['Expect them to prioritize our relationship', 'Understand periods of high demand and adapt', 'Support them fully even if it stresses our time together', 'Would struggle with this regularly'], required: true, order: 14 },
-      { questionnaireId: lifestyleQ.id, text: 'My approach to health is:', type: 'radio', options: ['Preventative/proactive, health is top priority', 'Moderate attention, reasonable healthy habits', 'Casual, I react when health issues arise', 'I don\'t think much about health'], required: true, order: 15 },
-      { questionnaireId: lifestyleQ.id, text: 'My comfort with alcohol/drugs is:', type: 'radio', options: ['None, prefer not to use', 'Social use only, occasional', 'Regular social use, part of my lifestyle', 'Frequent use is normal and acceptable'], required: true, order: 16 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding therapy/mental health support, I:', type: 'radio', options: ['See it as important tool, would use if needed', 'Open to it but prefer to handle things myself', 'Skeptical of therapy\'s value', 'Don\'t believe in psychological issues needing professional help'], required: true, order: 17 },
-      { questionnaireId: lifestyleQ.id, text: 'My feelings about having children:', type: 'radio', options: ['Want children, planning to have them', 'Open to children, would be happy either way', 'Uncertain about children', 'Prefer not to have children'], required: true, order: 18 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding extended family involvement in my life:', type: 'radio', options: ['Very close, important regular involvement', 'Moderate involvement, family is important', 'Limited involvement by preference', 'Minimal involvement, independence priority'], required: true, order: 19 },
-      { questionnaireId: lifestyleQ.id, text: 'If I become a parent, my approach would be:', type: 'radio', options: ['Structured, rules-focused (authoritarian)', 'Balanced rules with warm engagement (authoritative)', 'Permissive, child-focused, flexible', 'Uncertain/would figure out with partner'], required: true, order: 20 },
-      { questionnaireId: lifestyleQ.id, text: 'I\'m most energized and productive:', type: 'radio', options: ['Very early morning person (5-6 AM wake)', 'Morning person (6-7 AM wake)', 'Midday (8-9 AM wake)', 'Evening person (9+ AM wake)', 'Night person (midnight or later)'], required: true, order: 21 },
-    ];
-
-    await models.Question.bulkCreate(lifestyleQuestions);
-    console.log(`  ✓ Created ${lifestyleQuestions.length} lifestyle questions`);
-
-    // ============ Create MVP Questionnaire ============
-    const mvpQ = await models.Questionnaire.create({
-      type: 'MVP',
-      title: 'MVP Questionnaire - 50 Essential Questions',
-      description: 'Minimum Viable Product questionnaire for compatibility scoring (50 questions across 8 dimensions)',
-      category: 'MVP',
-      version: 1,
-      isActive: true,
-    });
-
-    console.log(`  ✓ Created MVP Questionnaire (ID: ${mvpQ.id})`);
-
-    // Create minimal question records to satisfy foreign key constraints
-    const mvpQuestions = [];
-    for (let i = 1; i <= 50; i++) {
-      mvpQuestions.push({
-        questionnaireId: mvpQ.id,
-        text: `Question ${i}`,
-        type: 'text',
-        order: i,
-        required: true,
-      });
+// Patch Question schema: add new columns if missing (SQLite doesn't support ALTER COLUMN)
+async function patchQuestionSchema() {
+  const columns = await models.sequelize.query('PRAGMA table_info(questions)', { type: models.sequelize.QueryTypes.SELECT });
+  const columnNames = columns.map(c => c.name);
+  const patches = [
+    { name: 'section', sql: 'ALTER TABLE questions ADD COLUMN section VARCHAR(255)' },
+    { name: 'sectionDescription', sql: 'ALTER TABLE questions ADD COLUMN sectionDescription VARCHAR(255)' },
+    { name: 'reversed', sql: 'ALTER TABLE questions ADD COLUMN reversed BOOLEAN DEFAULT 0' },
+    { name: 'critical', sql: 'ALTER TABLE questions ADD COLUMN critical BOOLEAN DEFAULT 0' },
+    { name: 'conditional', sql: 'ALTER TABLE questions ADD COLUMN conditional JSON' },
+  ];
+  for (const patch of patches) {
+    if (!columnNames.includes(patch.name)) {
+      await models.sequelize.query(patch.sql);
+      console.log(`  ✓ Added column: questions.${patch.name}`);
     }
-    
-    await models.Question.bulkCreate(mvpQuestions);
-    console.log(`  ✓ Created ${mvpQuestions.length} MVP question records`);
-
-    console.log('✅ Questionnaire templates seeded');
-  } else if (lifestyleExists === 0) {
-    // Add lifestyle questionnaire if it doesn't exist
-    console.log('📋 Adding Lifestyle Questionnaire...');
-    const lifestyleQ = await models.Questionnaire.create({
-      type: 'lifestyle',
-      title: 'Lifestyle & Values Questionnaire',
-      description: 'Explore lifestyle choices, financial attitudes, work-life balance, health values, and family planning',
-      category: 'Lifestyle',
-      version: 1,
-      isActive: true,
-    });
-
-    console.log(`  ✓ Created Lifestyle Questionnaire (ID: ${lifestyleQ.id})`);
-
-    const lifestyleQuestions = [
-      { questionnaireId: lifestyleQ.id, text: 'In life, what matters most to me:', type: 'radio', options: ['Personal growth and self-improvement', 'Close relationships and family', 'Making a difference in the world', 'Enjoying life and having fun', 'Security and stability'], required: true, order: 1 },
-      { questionnaireId: lifestyleQ.id, text: 'When facing a major decision, I:', type: 'radio', options: ['Play it safe and minimize risk', 'Take measured risks after careful thought', 'Trust my gut and go for it', 'Seek advice from people I trust', 'Research thoroughly before deciding'], required: true, order: 2 },
-      { questionnaireId: lifestyleQ.id, text: 'I feel my best when:', type: 'radio', options: ['Alone or with my close partner', 'With a small group of close friends', 'With larger groups and meeting new people', 'Balancing alone time and social time equally', 'At large social events and gatherings'], required: true, order: 3 },
-      { questionnaireId: lifestyleQ.id, text: 'I identify most as:', type: 'radio', options: ['Highly independent, self-reliant', 'Mostly independent with some interdependence', 'Balanced between independence and togetherness', 'Strong family/community ties are central', 'Family/group needs come before personal wants'], required: true, order: 4 },
-      { questionnaireId: lifestyleQ.id, text: 'My focus on self-improvement is:', type: 'radio', options: ['Constant, always working on myself', 'Important, regularly focused on growth', 'Moderate, work on issues as they arise', 'Low priority, content with who I am', 'Not important, I am who I am'], required: true, order: 5 },
-      { questionnaireId: lifestyleQ.id, text: 'I approach traditions and customs as:', type: 'radio', options: ['Important to maintain as passed down', 'Worth keeping but can modernize', 'Fine if they serve a purpose, otherwise discard', 'Would prefer to create new traditions'], required: true, order: 6 },
-      { questionnaireId: lifestyleQ.id, text: 'My approach to money is mostly:', type: 'radio', options: ['Save for future security', 'Enjoy life now, save moderately', 'Spend freely, don\'t worry about money', 'Balanced between spending and saving'], required: true, order: 7 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding finances in a relationship, I believe:', type: 'radio', options: ['Complete transparency, combined accounts', 'Mostly transparent with some personal spending money', 'Mostly separate finances with shared household expenses', 'Completely separate finances'], required: true, order: 8 },
-      { questionnaireId: lifestyleQ.id, text: 'My comfort level with debt is:', type: 'radio', options: ['Avoid debt at all costs', 'Acceptable for large purchases (home, education)', 'Comfortable with credit cards for flexibility', 'Finances are complex, use various debt tools'], required: true, order: 9 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding money and risk, I prefer:', type: 'radio', options: ['Safe, conservative investments', 'Moderate, diversified approach', 'Growth-oriented, willing to take calculated risks', 'High-risk, high-reward opportunities'], required: true, order: 10 },
-      { questionnaireId: lifestyleQ.id, text: 'Career importance to me is:', type: 'radio', options: ['Primary life focus, willing to sacrifice for advancement', 'Very important, but balanced with personal life', 'Important, but secondary to family/relationships', 'Just a job, doesn\'t define me'], required: true, order: 11 },
-      { questionnaireId: lifestyleQ.id, text: 'Ideal weekly work situation for me is:', type: 'radio', options: ['30-35 hours (part-time emphasis on other life areas)', '35-40 hours (standard, clear boundaries)', '40-50 hours (career-focused but some personal time)', '50+ hours (very career-focused)'], required: true, order: 12 },
-      { questionnaireId: lifestyleQ.id, text: 'I require flexibility in my work because:', type: 'radio', options: ['I don\'t need flexibility, I prefer structure', 'Family responsibilities may require some flexibility', 'Health/wellness needs require flexible schedule', 'I prefer autonomy in when/where I work'], required: true, order: 13 },
-      { questionnaireId: lifestyleQ.id, text: 'When my partner\'s career demands time, I:', type: 'radio', options: ['Expect them to prioritize our relationship', 'Understand periods of high demand and adapt', 'Support them fully even if it stresses our time together', 'Would struggle with this regularly'], required: true, order: 14 },
-      { questionnaireId: lifestyleQ.id, text: 'My approach to health is:', type: 'radio', options: ['Preventative/proactive, health is top priority', 'Moderate attention, reasonable healthy habits', 'Casual, I react when health issues arise', 'I don\'t think much about health'], required: true, order: 15 },
-      { questionnaireId: lifestyleQ.id, text: 'My comfort with alcohol/drugs is:', type: 'radio', options: ['None, prefer not to use', 'Social use only, occasional', 'Regular social use, part of my lifestyle', 'Frequent use is normal and acceptable'], required: true, order: 16 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding therapy/mental health support, I:', type: 'radio', options: ['See it as important tool, would use if needed', 'Open to it but prefer to handle things myself', 'Skeptical of therapy\'s value', 'Don\'t believe in psychological issues needing professional help'], required: true, order: 17 },
-      { questionnaireId: lifestyleQ.id, text: 'My feelings about having children:', type: 'radio', options: ['Want children, planning to have them', 'Open to children, would be happy either way', 'Uncertain about children', 'Prefer not to have children'], required: true, order: 18 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding extended family involvement in my life:', type: 'radio', options: ['Very close, important regular involvement', 'Moderate involvement, family is important', 'Limited involvement by preference', 'Minimal involvement, independence priority'], required: true, order: 19 },
-      { questionnaireId: lifestyleQ.id, text: 'If I become a parent, my approach would be:', type: 'radio', options: ['Structured, rules-focused (authoritarian)', 'Balanced rules with warm engagement (authoritative)', 'Permissive, child-focused, flexible', 'Uncertain/would figure out with partner'], required: true, order: 20 },
-      { questionnaireId: lifestyleQ.id, text: 'I\'m most energized and productive:', type: 'radio', options: ['Very early morning person (5-6 AM wake)', 'Morning person (6-7 AM wake)', 'Midday (8-9 AM wake)', 'Evening person (9+ AM wake)', 'Night person (midnight or later)'], required: true, order: 21 },
-    ];
-
-    await models.Question.bulkCreate(lifestyleQuestions);
-    console.log(`  ✓ Created ${lifestyleQuestions.length} lifestyle questions`);
-    console.log('✅ Questionnaire templates seeded');
-  } else if (lifestyleExists === 0) {
-    // Add lifestyle questionnaire if it doesn't exist
-    console.log('📋 Adding Lifestyle Questionnaire...');
-    const lifestyleQ = await models.Questionnaire.create({
-      type: 'lifestyle',
-      title: 'Lifestyle & Values Questionnaire',
-      description: 'Explore lifestyle choices, financial attitudes, work-life balance, health values, and family planning',
-      category: 'Lifestyle',
-      version: 1,
-      isActive: true,
-    });
-
-    console.log(`  ✓ Created Lifestyle Questionnaire (ID: ${lifestyleQ.id})`);
-
-    const lifestyleQuestions = [
-      { questionnaireId: lifestyleQ.id, text: 'In life, what matters most to me:', type: 'radio', options: ['Personal growth and self-improvement', 'Close relationships and family', 'Making a difference in the world', 'Enjoying life and having fun', 'Security and stability'], required: true, order: 1 },
-      { questionnaireId: lifestyleQ.id, text: 'When facing a major decision, I:', type: 'radio', options: ['Play it safe and minimize risk', 'Take measured risks after careful thought', 'Trust my gut and go for it', 'Seek advice from people I trust', 'Research thoroughly before deciding'], required: true, order: 2 },
-      { questionnaireId: lifestyleQ.id, text: 'I feel my best when:', type: 'radio', options: ['Alone or with my close partner', 'With a small group of close friends', 'With larger groups and meeting new people', 'Balancing alone time and social time equally', 'At large social events and gatherings'], required: true, order: 3 },
-      { questionnaireId: lifestyleQ.id, text: 'I identify most as:', type: 'radio', options: ['Highly independent, self-reliant', 'Mostly independent with some interdependence', 'Balanced between independence and togetherness', 'Strong family/community ties are central', 'Family/group needs come before personal wants'], required: true, order: 4 },
-      { questionnaireId: lifestyleQ.id, text: 'My focus on self-improvement is:', type: 'radio', options: ['Constant, always working on myself', 'Important, regularly focused on growth', 'Moderate, work on issues as they arise', 'Low priority, content with who I am', 'Not important, I am who I am'], required: true, order: 5 },
-      { questionnaireId: lifestyleQ.id, text: 'I approach traditions and customs as:', type: 'radio', options: ['Important to maintain as passed down', 'Worth keeping but can modernize', 'Fine if they serve a purpose, otherwise discard', 'Would prefer to create new traditions'], required: true, order: 6 },
-      { questionnaireId: lifestyleQ.id, text: 'My approach to money is mostly:', type: 'radio', options: ['Save for future security', 'Enjoy life now, save moderately', 'Spend freely, don\'t worry about money', 'Balanced between spending and saving'], required: true, order: 7 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding finances in a relationship, I believe:', type: 'radio', options: ['Complete transparency, combined accounts', 'Mostly transparent with some personal spending money', 'Mostly separate finances with shared household expenses', 'Completely separate finances'], required: true, order: 8 },
-      { questionnaireId: lifestyleQ.id, text: 'My comfort level with debt is:', type: 'radio', options: ['Avoid debt at all costs', 'Acceptable for large purchases (home, education)', 'Comfortable with credit cards for flexibility', 'Finances are complex, use various debt tools'], required: true, order: 9 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding money and risk, I prefer:', type: 'radio', options: ['Safe, conservative investments', 'Moderate, diversified approach', 'Growth-oriented, willing to take calculated risks', 'High-risk, high-reward opportunities'], required: true, order: 10 },
-      { questionnaireId: lifestyleQ.id, text: 'Career importance to me is:', type: 'radio', options: ['Primary life focus, willing to sacrifice for advancement', 'Very important, but balanced with personal life', 'Important, but secondary to family/relationships', 'Just a job, doesn\'t define me'], required: true, order: 11 },
-      { questionnaireId: lifestyleQ.id, text: 'Ideal weekly work situation for me is:', type: 'radio', options: ['30-35 hours (part-time emphasis on other life areas)', '35-40 hours (standard, clear boundaries)', '40-50 hours (career-focused but some personal time)', '50+ hours (very career-focused)'], required: true, order: 12 },
-      { questionnaireId: lifestyleQ.id, text: 'I require flexibility in my work because:', type: 'radio', options: ['I don\'t need flexibility, I prefer structure', 'Family responsibilities may require some flexibility', 'Health/wellness needs require flexible schedule', 'I prefer autonomy in when/where I work'], required: true, order: 13 },
-      { questionnaireId: lifestyleQ.id, text: 'When my partner\'s career demands time, I:', type: 'radio', options: ['Expect them to prioritize our relationship', 'Understand periods of high demand and adapt', 'Support them fully even if it stresses our time together', 'Would struggle with this regularly'], required: true, order: 14 },
-      { questionnaireId: lifestyleQ.id, text: 'My approach to health is:', type: 'radio', options: ['Preventative/proactive, health is top priority', 'Moderate attention, reasonable healthy habits', 'Casual, I react when health issues arise', 'I don\'t think much about health'], required: true, order: 15 },
-      { questionnaireId: lifestyleQ.id, text: 'My comfort with alcohol/drugs is:', type: 'radio', options: ['None, prefer not to use', 'Social use only, occasional', 'Regular social use, part of my lifestyle', 'Frequent use is normal and acceptable'], required: true, order: 16 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding therapy/mental health support, I:', type: 'radio', options: ['See it as important tool, would use if needed', 'Open to it but prefer to handle things myself', 'Skeptical of therapy\'s value', 'Don\'t believe in psychological issues needing professional help'], required: true, order: 17 },
-      { questionnaireId: lifestyleQ.id, text: 'My feelings about having children:', type: 'radio', options: ['Want children, planning to have them', 'Open to children, would be happy either way', 'Uncertain about children', 'Prefer not to have children'], required: true, order: 18 },
-      { questionnaireId: lifestyleQ.id, text: 'Regarding extended family involvement in my life:', type: 'radio', options: ['Very close, important regular involvement', 'Moderate involvement, family is important', 'Limited involvement by preference', 'Minimal involvement, independence priority'], required: true, order: 19 },
-      { questionnaireId: lifestyleQ.id, text: 'If I become a parent, my approach would be:', type: 'radio', options: ['Structured, rules-focused (authoritarian)', 'Balanced rules with warm engagement (authoritative)', 'Permissive, child-focused, flexible', 'Uncertain/would figure out with partner'], required: true, order: 20 },
-      { questionnaireId: lifestyleQ.id, text: 'I\'m most energized and productive:', type: 'radio', options: ['Very early morning person (5-6 AM wake)', 'Morning person (6-7 AM wake)', 'Midday (8-9 AM wake)', 'Evening person (9+ AM wake)', 'Night person (midnight or later)'], required: true, order: 21 },
-    ];
-
-    await models.Question.bulkCreate(lifestyleQuestions);
-    console.log(`  ✓ Created ${lifestyleQuestions.length} lifestyle questions`);
-    console.log('✅ Questionnaire templates seeded');
-  } else if (mvpExists === 0) {
-    // Add MVP questionnaire if it doesn't exist
-    console.log('📋 Adding MVP Questionnaire...');
-    const mvpQ = await models.Questionnaire.create({
-      type: 'MVP',
-      title: 'MVP Questionnaire - 50 Essential Questions',
-      description: 'Minimum Viable Product questionnaire for compatibility scoring (50 questions across 8 dimensions)',
-      category: 'MVP',
-      version: 1,
-      isActive: true,
-    });
-
-    console.log(`  ✓ Created MVP Questionnaire (ID: ${mvpQ.id})`);
-
-    // Create minimal question records to satisfy foreign key constraints
-    // We don't need to create all 50 individual question records since the MVP uses direct answer mapping
-    const mvpQuestions = [];
-    for (let i = 1; i <= 50; i++) {
-      mvpQuestions.push({
-        questionnaireId: mvpQ.id,
-        text: `Question ${i}`,
-        type: 'text',
-        order: i,
-        required: true,
-      });
-    }
-    
-    await models.Question.bulkCreate(mvpQuestions);
-    console.log(`  ✓ Created ${mvpQuestions.length} MVP question records`);
-    console.log('✅ MVP Questionnaire added');
-  } else {
-    console.log(`✅ Database already initialized (${existingCount} questionnaires found)`);
   }
+}
+
+// Seed questionnaire templates on startup using templates data file
+async function seedQuestionnaireTemplates() {
+  const templates = getQuestionnaireTemplates();
+
+  for (const template of templates) {
+    // Find or create the questionnaire
+    const [questionnaire, created] = await models.Questionnaire.findOrCreate({
+      where: { type: template.type },
+      defaults: {
+        title: template.title,
+        description: template.description,
+        category: template.category,
+        version: 1,
+        isActive: true,
+      },
+    });
+
+    if (created) {
+      console.log(`  ✓ Created ${template.type} questionnaire (ID: ${questionnaire.id})`);
+    }
+
+    // Upsert questions by (questionnaireId, order)
+    let upserted = 0;
+    for (const q of template.questions) {
+      const [question, qCreated] = await models.Question.findOrCreate({
+        where: { questionnaireId: questionnaire.id, order: q.order },
+        defaults: {
+          text: q.text,
+          type: q.type,
+          options: q.options,
+          required: q.required,
+          section: q.section,
+          sectionDescription: q.sectionDescription,
+          reversed: q.reversed,
+          critical: q.critical,
+          conditional: q.conditional,
+        },
+      });
+
+      if (!qCreated) {
+        // Update existing question with latest template data
+        await question.update({
+          text: q.text,
+          type: q.type,
+          options: q.options,
+          required: q.required,
+          section: q.section,
+          sectionDescription: q.sectionDescription,
+          reversed: q.reversed,
+          critical: q.critical,
+          conditional: q.conditional,
+        });
+      }
+      upserted++;
+    }
+    console.log(`  ✓ ${template.type}: ${upserted} questions synced`);
+  }
+  console.log('✅ Questionnaire templates seeded');
 }
 
 // Routes

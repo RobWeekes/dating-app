@@ -25,6 +25,7 @@ function MVPQuestionnaire() {
   const [formErrors, setFormErrors] = useState({});
   const [showProgress, setShowProgress] = useState(true);
   const [responseId, setResponseId] = useState(null);
+  const [questionMap, setQuestionMap] = useState(null); // order → questionId mapping
 
   // Load existing responses on component mount
   useEffect(() => {
@@ -46,6 +47,15 @@ function MVPQuestionnaire() {
 
         const template = await templateResponse.json();
         const questionnaireId = template.id;
+
+        // Build order → questionId map for submission
+        if (template.Questions) {
+          const qMap = {};
+          template.Questions.forEach(q => {
+            qMap[q.order] = q.id;
+          });
+          setQuestionMap(qMap);
+        }
 
         // Fetch user's responses for MVP questionnaire
         const userResponse = await fetch(
@@ -577,16 +587,51 @@ function MVPQuestionnaire() {
     return Object.keys(errors).length === 0;
   };
 
+  // Convert formData (q1, q2, ...) to numeric questionId format for submission
+  const mapResponsesToQuestionIds = async () => {
+    let map = questionMap;
+
+    // Fetch template if map isn't available yet
+    if (!map) {
+      const token = localStorage.getItem('authToken');
+      const response = await fetch('http://localhost:3001/api/questionnaires/type/MVP', {
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      if (!response.ok) throw new Error('Failed to fetch questionnaire template');
+      const template = await response.json();
+      if (template.Questions) {
+        map = {};
+        template.Questions.forEach(q => {
+          map[q.order] = q.id;
+        });
+        setQuestionMap(map);
+      }
+    }
+
+    if (!map) throw new Error('Could not load questionnaire template');
+
+    const mappedResponses = {};
+    Object.entries(formData).forEach(([key, value]) => {
+      const order = parseInt(key.substring(1));
+      const questionId = map[order];
+      if (questionId) {
+        mappedResponses[questionId] = value;
+      }
+    });
+    return mappedResponses;
+  };
+
   // Navigate sections
   const handleNext = async () => {
     if (validateSection()) {
       try {
         setIsSubmitting(true);
 
-        // Save current section's answers
+        // Save current section's answers mapped to numeric questionIds
+        const mappedResponses = await mapResponsesToQuestionIds();
         const submissionData = {
           type: 'MVP',
-          responses: formData,
+          responses: mappedResponses,
         };
 
         const result = await submitQuestionnaire(submissionData);
@@ -629,10 +674,11 @@ function MVPQuestionnaire() {
       setIsSubmitting(true);
       dispatch(setLoading(true));
 
-      // Save final section's answers
+      // Save final section's answers mapped to numeric questionIds
+      const mappedResponses = await mapResponsesToQuestionIds();
       const submissionData = {
         type: 'MVP',
-        responses: formData,
+        responses: mappedResponses,
       };
 
       const result = await submitQuestionnaire(submissionData);

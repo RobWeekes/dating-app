@@ -13,7 +13,7 @@
  * - Physical Preferences: 2.5% (adjustment)
  */
 
-const { QuestionnaireResponse, Answer, Question, User, MVPQuestionnaireScore } = require('../models');
+const { QuestionnaireResponse, Answer, Question, Questionnaire, User, MVPQuestionnaireScore } = require('../models');
 
 class MVPQuestionnaireScorer {
   /**
@@ -102,10 +102,12 @@ class MVPQuestionnaireScorer {
    */
   static async getUserResponses(userId, questionnaireType = 'MVP Questionnaire') {
     const questionnaireResponse = await QuestionnaireResponse.findOne({
-      where: {
-        userId,
-      },
+      where: { userId },
       include: [
+        {
+          model: Questionnaire,
+          where: { type: 'MVP' },
+        },
         {
           model: Answer,
           include: [
@@ -125,7 +127,7 @@ class MVPQuestionnaireScorer {
     const responses = {};
     questionnaireResponse.Answers.forEach((answer) => {
       // Extract question number from question text or use questionId
-      const questionNum = answer.Question.id;
+      const questionNum = answer.Question.order;
       responses[`Q${questionNum}`] = answer.value;
     });
 
