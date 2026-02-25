@@ -35,11 +35,6 @@ export const selectUser = (state) => state.user;
 // since it's just returning the input without transformation
 export const selectUserProfile = selectAuthUser;
 
-export const selectUserQuestionnaire = createSelector(
-  [selectUser],
-  (user) => user.questionnaire
-);
-
 export const selectIsUserLoading = createSelector(
   [selectUser],
   (user) => user.isLoading

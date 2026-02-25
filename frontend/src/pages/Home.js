@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 /**
  * Home page - Main landing page
  */
@@ -7,15 +9,15 @@ function Home() {
       <h1>Welcome to Dating App</h1>
       <p>Find your perfect match today.</p>
       <div className="home-actions">
-        <a href="/questionnaire" className="btn btn-primary">
+        <Link to="/questionnaire/MVP" className="btn btn-primary">
           Complete Questionnaire
-        </a>
-        <a href="/profile" className="btn btn-secondary">
+        </Link>
+        <Link to="/profile" className="btn btn-secondary">
           View Profile
-        </a>
-        <a href="/preferences" className="btn btn-secondary">
+        </Link>
+        <Link to="/preferences" className="btn btn-secondary">
           Set Preferences
-        </a>
+        </Link>
       </div>
     </div>
   );
