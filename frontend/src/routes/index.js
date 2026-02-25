@@ -2,7 +2,6 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import Questionnaire from '../pages/Questionnaire';
 import QuestionnairePage from '../pages/QuestionnairePage';
 import Profile from '../pages/Profile';
 import Preferences from '../pages/Preferences';

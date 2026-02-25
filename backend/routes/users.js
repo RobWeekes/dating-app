@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Questionnaire, Preference } = require('../models');
+const { User, Preference } = require('../models');
 const { authenticateToken, optionalAuthenticateToken } = require('../middleware/authentication');
 
 // GET matching users for discovery (filtered by current user's preferences)
@@ -25,7 +25,6 @@ router.get('/discover/:userId', async (req, res) => {
       where: { id: { [require('sequelize').Op.ne]: userId } },
       attributes: { exclude: ['password'] },
       include: [
-        { model: Questionnaire, attributes: ['id', 'questionnaire', 'datingGoal', 'interests'] },
         { model: Preference, attributes: ['id', 'interests', 'relationshipType'] }
       ]
     });
@@ -59,7 +58,6 @@ router.get('/', async (req, res) => {
     const users = await User.findAll({
       attributes: { exclude: ['password'] },
       include: [
-        { model: Questionnaire, attributes: ['id', 'questionnaire', 'datingGoal'] },
         { model: Preference, attributes: ['id', 'minAge', 'maxAge', 'location'] }
       ]
     });
@@ -75,7 +73,6 @@ router.get('/:id', async (req, res) => {
     const user = await User.findByPk(req.params.id, {
       attributes: { exclude: ['password'] },
       include: [
-        { model: Questionnaire },
         { model: Preference }
       ]
     });

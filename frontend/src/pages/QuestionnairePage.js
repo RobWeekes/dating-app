@@ -17,7 +17,6 @@ function QuestionnairePage() {
   const [initialValues, setInitialValues] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   // Fetch questionnaire template on mount

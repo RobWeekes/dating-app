@@ -115,7 +115,7 @@ router.post('/login', async (req, res) => {
 router.get('/me', authenticateToken, async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id, {
-      include: ['Questionnaire', 'Preference'],
+      include: ['Preference'],
     });
 
     if (!user) {
