@@ -127,7 +127,7 @@ Global styles are in `src/styles/global.css`. The styling uses CSS custom proper
 
 ## Documentation
 
-Refer to `.copilot-instructions.md` for detailed development guidelines including:
+Refer to `AGENTS.md` for detailed development guidelines including:
 
 - Redux patterns
 - Component best practices

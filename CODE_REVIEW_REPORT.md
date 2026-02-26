@@ -45,7 +45,7 @@ And 40+ more...
 
 2. Keep only these in root:
    - `README.md` (overview, quick start)
-   - `.copilot-instructions.md`
+   - `AGENTS.md`
    - `package.json`
    - `DIRECTORY_STRUCTURE.md`
 

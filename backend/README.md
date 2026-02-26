@@ -83,4 +83,4 @@ Routes will be added to the `routes/` folder following REST conventions:
 
 ## Documentation
 
-Refer to `.copilot-instructions.md` in the root directory for detailed development guidelines.
+Refer to `AGENTS.md` in the root directory for detailed development guidelines.

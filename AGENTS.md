@@ -7,7 +7,7 @@ A responsive React-based dating application that allows users to:
 - Fill out personality and dating-related questionnaires
 - Edit their own profile details
 - Manage and edit their dating preferences
-- Find compatible matches based on questionnaire responses
+- Find compatible matches based on questionnaire responses and automated scoring services
 
 ## Technology Stack
 
@@ -20,119 +20,31 @@ A responsive React-based dating application that allows users to:
 - **Backend Database**: Sequelize ORM with PostgreSQL/MySQL
 - **API**: REST API (Express.js recommended)
 
-## Project Structure
-
-```
 # Directory Structure
-
-```
 
 dating-app/
 ├── frontend/ # React frontend application
 ├── backend/ # Node/Express backend server
-├── .copilot-instructions.md
+├── AGENTS.md
 ├── SETUP.md
-├── DIRECTORY_STRUCTURE.md (this file)
 ├── package.json
 └── README.md
 
-```
+Ignore other markdown files in root, some are obsolete
 
 ## Frontend Directory
-
-```
-
-frontend/
-├── public/
-│ ├── index.html # Main HTML entry point
-│ ├── manifest.json # PWA manifest
-│ └── robots.txt # SEO robots file
-├── src/
-│ ├── components/ # Reusable React components
-│ │ ├── Layout.js
-│ │ ├── Button.js
-│ │ ├── FormInput.js
-│ │ └── Notification.js
-│ ├── pages/ # Page-level components
-│ │ ├── Home.js
-│ │ ├── Questionnaire.js
-│ │ ├── Profile.js
-│ │ └── Preferences.js
-│ ├── redux/ # Redux state management
-│ │ ├── slices/ # Redux Toolkit slices
-│ │ │ ├── userSlice.js
-│ │ │ ├── preferencesSlice.js
-│ │ │ └── uiSlice.js
-│ │ ├── store.js # Redux store configuration
-│ │ └── selectors.js # Memoized selectors
-│ ├── routes/ # Route definitions
-│ │ └── index.js
-│ ├── services/ # API services and calls
-│ │ └── api.js
-│ ├── utils/ # Utility functions
-│ │ └── validation.js
-│ ├── styles/ # Global CSS files
-│ │ └── global.css
-│ ├── constants/ # Application constants
-│ │ └── index.js
-│ ├── App.js # Main App component
-│ ├── App.css # App component styles
-│ ├── App.test.js # App component tests
-│ ├── index.js # React entry point (Redux Provider)
-│ ├── index.css # Global styles
-│ ├── reportWebVitals.js
-│ ├── setupTests.js
-│ └── logo.svg
-├── package.json
-├── .env.example # Environment variables template
-├── .gitignore
-└── README.md
-
-```
+note file structure
 
 ## Backend Directory
+note file structure
 
-```
+## Important Notes
 
-backend/
-├── config/
-│ └── database.js # Sequelize connection configuration
-├── models/ # Sequelize ORM models
-│ ├── User.js
-│ ├── Questionnaire.js
-│ ├── Preference.js
-│ ├── Answer.js
-│ └── index.js
-├── migrations/ # Database migration files
-│ ├── YYYYMMDDHHMMSS-create-user.js
-│ ├── YYYYMMDDHHMMSS-create-questionnaire.js
-│ └── ...
-├── seeders/ # Database seed files
-│ ├── YYYYMMDDHHMMSS-seed-demo-users.js
-│ ├── YYYYMMDDHHMMSS-seed-questionnaire-templates.js
-│ └── ...
-├── routes/ # API route handlers
-│ ├── users.js
-│ ├── questionnaires.js
-│ ├── preferences.js
-│ └── index.js
-├── controllers/ # Route handler logic
-│ ├── userController.js
-│ ├── questionnaireController.js
-│ ├── preferenceController.js
-│ └── answerController.js
-├── middleware/ # Express middleware
-│ ├── errorHandler.js
-│ ├── authentication.js
-│ └── validation.js
-├── server.js # Main server entry point
-├── package.json
-├── .env.example # Environment variables template
-├── .sequelizerc # Sequelize CLI configuration
-├── .gitignore
-└── README.md
-
-````
+- Use **JavaScript only** - no TypeScript
+- Maintain scalability in folder structure
+- Keep Redux slice logic focused and DRY
+- Test responsiveness during development
+- Follow single responsibility principle (SRP)
 
 ## Core Principles
 
@@ -152,11 +64,13 @@ backend/
 
 ### 3. Best Practices
 
+- Implement solutions with scalability efficiency for tens of millions of users
 - Use functional components with hooks exclusively
 - Implement proper error handling and loading states
 - Follow React naming conventions (PascalCase for components)
 - Use meaningful commit messages
 - Write self-documenting code with clear intent
+- Write markdown documents only when requested
 
 ## Redux State Management Structure
 
@@ -295,7 +209,7 @@ export default userSlice.reducer;
 - **ORM**: Sequelize for database abstraction
 - **Database**: PostgreSQL or MySQL (recommended: PostgreSQL)
 - **Config File**: `server/config/database.js` - Contains database connection settings
-- **Environment Variables**: Use `.env` file for database credentials (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT)
+- **Environment Variables**: Use `.env` file for database credentials
 
 ### Migration Strategy
 
@@ -307,14 +221,14 @@ export default userSlice.reducer;
 - Include both `up()` (apply changes) and `down()` (revert changes) methods
 - Ensure migrations are idempotent and reversible
 
-#### Migration Files Location
+#### Migration Files
 
 - Path: `server/migrations/`
-- Never manually modify executed migrations
-- Create new migrations for schema changes, not edits
+- Create a new migration file for each model in the proper sequence
+- Edit existing migration files for small changes, instead of adding new migrations (development mode)
 - Always test `up()` and `down()` migrations locally
 
-#### Common Migration Examples
+#### Common Migration Format Example (shortened)
 
 ```javascript
 // Migration: Create Users table
@@ -332,20 +246,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-      },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      age: {
-        type: Sequelize.INTEGER,
-      },
-      bio: {
-        type: Sequelize.TEXT,
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
@@ -366,7 +266,7 @@ module.exports = {
 - Example: `20250115120000-seed-demo-users.js`
 - Location: `server/seeders/`
 
-#### Seed File Structure
+#### Seed File Format Example (shortened)
 
 ```javascript
 // Seeder: Initial demo user data
@@ -381,15 +281,6 @@ module.exports = {
         lastName: "Doe",
         age: 28,
         bio: "Adventure enthusiast and coffee lover",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        email: "user2@example.com",
-        firstName: "Jane",
-        lastName: "Smith",
-        age: 26,
-        bio: "Foodie and travel blogger",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -409,7 +300,6 @@ module.exports = {
 - Run seeders in logical order (dependencies first)
 - Use `npx sequelize-cli db:seed:all` to run all seeders
 - Use `npx sequelize-cli db:seed:undo:all` to rollback all seeders
-- Document what each seeder does
 
 ### Sequelize Models
 
@@ -422,96 +312,27 @@ module.exports = {
 - Include validations at model level
 - Define associations (relationships) between models
 
-#### Core Models to Create
+#### Core Models
 
-1. **User** - Profile information (email, name, age, bio, photos, location)
-2. **Questionnaire** - User's personality and dating responses
-3. **Preference** - User's dating preferences (age range, interests, location)
-4. **Answer** - Individual questionnaire answers (links to Questionnaire)
-
-#### Model Example
-
-```javascript
-// models/User.js
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    "User",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: true,
-        },
-      },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      age: {
-        type: DataTypes.INTEGER,
-        validate: {
-          min: 18,
-          max: 120,
-        },
-      },
-      bio: DataTypes.TEXT,
-      location: DataTypes.STRING,
-    },
-    {
-      timestamps: true,
-    }
-  );
-
-  User.associate = (models) => {
-    User.hasOne(models.Questionnaire);
-    User.hasOne(models.Preference);
-  };
-
-  return User;
-};
-```
+**User** - Profile information (email, name, age, bio, photos, location, etc.)
+**Questionnaire** - various personality & dating questionnaires (links to User, 1-to-many: 1 user, many questionnaires)
+**Question** - questionnaire questions (links to Questionnaire, 1-to-many: 1 questionnaire, many questions)
+**Answer** - Individual questionnaire answers (links to Questionnaire, 1-to-many: 1 questionnaire, many answers)
+**Preference** - User's dating preferences (age range, interests, location range, etc. 1-to-1)
 
 ### Database Workflow
 
-#### Development Setup
+#### Adding & Updating Features
 
-1. Create `.env` file with database credentials
-2. Run migrations: `npx sequelize-cli db:migrate`
-3. Seed development data: `npx sequelize-cli db:seed:all`
-4. Verify database tables and data
-
-#### Adding Features
-
-1. Create new migration for schema changes
-2. Run migration: `npx sequelize-cli db:migrate`
-3. Update corresponding model if needed
-4. Create seeder for new test data if required
-5. Run seeder: `npx sequelize-cli db:seed:all` or target specific seeder
+Maintain and edit 1 migration file for each schema column.
+How to run migration: `npx sequelize-cli db:migrate`
+How to run seeder: `npx sequelize-cli db:seed:all` or target specific seeder
 
 #### Reverting Changes
 
 - Undo last migration: `npx sequelize-cli db:migrate:undo`
 - Undo all migrations: `npx sequelize-cli db:migrate:undo:all`
 - Undo all seeders: `npx sequelize-cli db:seed:undo:all`
-
-#### Production Considerations
-
-- Never use seeders in production (or use only for initial setup)
-- Test all migrations in development first
-- Keep migration history intact for reproducibility
-- Use transactions in migrations for critical changes
-- Back up database before running migrations on production
 
 ## Mobile Responsiveness
 
@@ -547,25 +368,3 @@ module.exports = (sequelize, DataTypes) => {
 - Lazy load pages with React.lazy() and Suspense
 - Memoize selectors with `createSelector`
 - Avoid unnecessary re-renders with proper hook dependencies
-
-## Version Control
-
-- Use descriptive branch names: `feature/user-profile`, `fix/form-validation`
-- Create meaningful commits: "Add questionnaire form validation"
-- Avoid generic messages like "update", "fix", "changes"
-
-## Development Workflow
-
-1. Create feature branch from `main`
-2. Implement feature following guidelines
-3. Test thoroughly on mobile and desktop
-4. Submit PR with clear description
-5. Merge after review
-
-## Important Notes
-
-- Use **JavaScript only** - no TypeScript
-- Maintain scalability in folder structure
-- Keep Redux slice logic focused and DRY
-- Test responsiveness during development
-- Follow single responsibility principle

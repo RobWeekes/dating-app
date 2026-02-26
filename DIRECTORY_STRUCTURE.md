@@ -49,7 +49,7 @@ Updates to Existing Files
 dating-app/
 ├── frontend/              # React frontend application
 ├── backend/               # Node/Express backend server
-├── .copilot-instructions.md
+├── AGENTS.md
 ├── SETUP.md
 ├── DIRECTORY_STRUCTURE.md (this file)
 ├── package.json
@@ -317,7 +317,7 @@ Express middleware functions:
 2. **Single Responsibility**: Each file/component should have one clear purpose
 3. **Organize by Feature**: Group related code together (routes, controllers, models)
 4. **Use Descriptive Names**: File names should clearly describe their purpose
-5. **Follow Conventions**: Stick to naming conventions defined in `.copilot-instructions.md`
+5. **Follow Conventions**: Stick to naming conventions defined in `AGENTS.md`
 6. **Environment Variables**: Use `.env` files for configuration, never hardcode secrets
 7. **Documentation**: Add JSDoc comments to complex functions and components
 
@@ -328,4 +328,4 @@ Express middleware functions:
 - Use Redux selectors consistently throughout components
 - Keep components under 300 lines of code
 - Test on mobile and desktop regularly
-- Refer to `.copilot-instructions.md` for detailed guidelines
+- Refer to `AGENTS.md` for detailed guidelines
