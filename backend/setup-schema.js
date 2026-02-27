@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const { getQuestionnaireTemplates } = require('./data/questionnaire-templates');
 
 const dbPath = path.join(__dirname, 'dating_app.db');
 
@@ -54,71 +55,41 @@ async function setup() {
     await sequelize.sync({ force: true });
     console.log('✅ New schema created\n');
 
-    // Step 3: Seed questionnaire templates
+    // Step 3: Seed questionnaire templates from central data file
     console.log('📋 Step 3: Seeding questionnaire templates...');
 
-    const Questionnaire = models.Questionnaire;
-    const Question = models.Question;
+    const templates = getQuestionnaireTemplates();
+    let totalQuestions = 0;
 
-    // Create Essential Questionnaire template
-    const essentialQ = await Questionnaire.create({
-      type: 'essential',
-      title: 'Essential Questionnaire',
-      description: 'Find out what matters most to you in a relationship',
-      category: 'Essential',
-      version: 1,
-      isActive: true,
-    });
+    for (const template of templates) {
+      const questionnaire = await models.Questionnaire.create({
+        type: template.type,
+        title: template.title,
+        description: template.description,
+        category: template.category,
+        version: 1,
+        isActive: true,
+      });
 
-    console.log(`  ✓ Created Essential Questionnaire (ID: ${essentialQ.id})`);
+      const questions = template.questions.map(q => ({
+        questionnaireId: questionnaire.id,
+        text: q.text,
+        type: q.type,
+        options: q.options,
+        required: q.required,
+        order: q.order,
+        section: q.section,
+        sectionDescription: q.sectionDescription,
+        reversed: q.reversed,
+        critical: q.critical,
+        conditional: q.conditional,
+      }));
 
-    // Create questions for Essential Questionnaire
-    const essentialQuestions = [
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What are you looking for?',
-        type: 'radio',
-        options: JSON.stringify(['Something serious', 'Casual dating', 'Not sure']),
-        required: true,
-        order: 1,
-      },
-      {
-        questionnaireId: essentialQ.id,
-        text: 'Do you want kids?',
-        type: 'radio',
-        options: JSON.stringify(['Yes', 'No', 'Maybe']),
-        required: true,
-        order: 2,
-      },
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What is your relationship style?',
-        type: 'radio',
-        options: JSON.stringify(['Monogamous', 'Open relationship', 'Exploring options']),
-        required: true,
-        order: 3,
-      },
-      {
-        questionnaireId: essentialQ.id,
-        text: 'What are your interests?',
-        type: 'checkbox',
-        options: JSON.stringify([
-          'Travel',
-          'Fitness',
-          'Art',
-          'Music',
-          'Cooking',
-          'Gaming',
-          'Reading',
-          'Sports',
-        ]),
-        required: false,
-        order: 4,
-      },
-    ];
+      await models.Question.bulkCreate(questions);
+      totalQuestions += questions.length;
+      console.log(`  ✓ Created ${template.type} questionnaire (${questions.length} questions)`);
+    }
 
-    await Question.bulkCreate(essentialQuestions);
-    console.log(`  ✓ Created ${essentialQuestions.length} questions`);
     console.log('✅ Questionnaire templates seeded\n');
 
     // Step 4: Verify schema
@@ -137,8 +108,8 @@ async function setup() {
     console.log('\n📊 Database Summary:');
     console.log(`  Location: ${dbPath}`);
     console.log(`  Tables: ${tables.length}`);
-    console.log(`  Questionnaires: 1 (Essential)`);
-    console.log(`  Questions: 4\n`);
+    console.log(`  Questionnaires: ${templates.length}`);
+    console.log(`  Questions: ${totalQuestions}\n`);
 
     console.log('🚀 Next Steps:');
     console.log('  1. Start backend: npm run dev (in backend/)\n');

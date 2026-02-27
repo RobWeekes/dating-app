@@ -30,9 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: 'text',
         validate: {
-          isIn: [['text', 'single', 'multi', 'likert', 'slider', 'range', 'radio', 'checkbox']],
-        },
-        comment: 'Canonical types: single, multi, likert, slider, range, text',
+          isIn: [['text', 'single', 'multi', 'likert', 'slider', 'range']],
+          },
+          comment: 'Canonical types: single, multi, likert, slider, range, text',
       },
       options: {
         type: DataTypes.JSON,

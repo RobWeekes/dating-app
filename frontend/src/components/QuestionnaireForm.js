@@ -2,14 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import Button from './Button';
 import '../styles/questionnaire-form.css';
 
-function normalizeType(type) {
-  if (type === 'radio') return 'single';
-  if (type === 'checkbox') return 'multi';
-  if (type === 'likert5') return 'likert';
-  if (type === 'slider10') return 'slider';
-  return type;
-}
-
 /**
  * QuestionnaireForm - Generic, reusable questionnaire renderer.
  * Renders any questionnaire from API question data.
@@ -43,7 +35,7 @@ function QuestionnaireForm({ questions, initialValues, onSubmit, onCancel, secti
   useEffect(() => {
     const init = {};
     questions.forEach(q => {
-      const type = normalizeType(q.type);
+      const type = q.type;
       if (initialValues && initialValues[q.id] !== undefined) {
         init[q.id] = initialValues[q.id];
       } else if (type === 'multi') {
@@ -75,7 +67,7 @@ function QuestionnaireForm({ questions, initialValues, onSubmit, onCancel, secti
       const next = { ...prev };
       questions.forEach(q => {
         if (q.conditional && !isVisible(q)) {
-          const type = normalizeType(q.type);
+          const type = q.type;
           const blank = type === 'multi' ? [] : type === 'range' ? { min: '', max: '' } : '';
           if (JSON.stringify(next[q.id]) !== JSON.stringify(blank)) {
             next[q.id] = blank;
@@ -121,7 +113,7 @@ function QuestionnaireForm({ questions, initialValues, onSubmit, onCancel, secti
     const newErrors = {};
     questionsList.forEach(q => {
       if (!q.required || !isVisible(q)) return;
-      const type = normalizeType(q.type);
+      const type = q.type;
       const val = values[q.id];
 
       if (type === 'multi') {
@@ -164,7 +156,7 @@ function QuestionnaireForm({ questions, initialValues, onSubmit, onCancel, secti
   // Progress calculation
   const answeredCount = questions.filter(q => {
     if (!isVisible(q)) return true;
-    const type = normalizeType(q.type);
+    const type = q.type;
     const val = values[q.id];
     if (type === 'multi') return Array.isArray(val) && val.length > 0;
     if (type === 'range') return val && val.min !== '' && val.max !== '';
@@ -174,7 +166,7 @@ function QuestionnaireForm({ questions, initialValues, onSubmit, onCancel, secti
 
   // Render a single question
   const renderQuestion = (question) => {
-    const type = normalizeType(question.type);
+    const type = question.type;
     const opts = question.options;
 
     switch (type) {

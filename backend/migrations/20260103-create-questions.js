@@ -24,7 +24,7 @@ module.exports = {
         allowNull: false,
       },
       type: {
-        type: Sequelize.ENUM('text', 'radio', 'checkbox', 'slider'),
+        type: Sequelize.ENUM('text', 'single', 'multi', 'likert', 'slider', 'range'),
         defaultValue: 'text',
       },
       options: {
