@@ -29,8 +29,6 @@ models.sequelize
   })
   .then(() => {
     console.log('✅ Database schema created');
-    // Patch schema: add new Question columns if missing (SQLite)
-    return patchQuestionSchema();
   })
   .then(() => {
     // Seed questionnaire templates
@@ -44,25 +42,6 @@ models.sequelize
     console.error('✗ Database error:', err.message);
     console.error('💡 If you see SQLITE_IOERR, try: rm -rf dating_app.db* && npm run dev');
   });
-
-// Patch Question schema: add new columns if missing (SQLite doesn't support ALTER COLUMN)
-async function patchQuestionSchema() {
-  const columns = await models.sequelize.query('PRAGMA table_info(questions)', { type: models.sequelize.QueryTypes.SELECT });
-  const columnNames = columns.map(c => c.name);
-  const patches = [
-    { name: 'section', sql: 'ALTER TABLE questions ADD COLUMN section VARCHAR(255)' },
-    { name: 'sectionDescription', sql: 'ALTER TABLE questions ADD COLUMN sectionDescription VARCHAR(255)' },
-    { name: 'reversed', sql: 'ALTER TABLE questions ADD COLUMN reversed BOOLEAN DEFAULT 0' },
-    { name: 'critical', sql: 'ALTER TABLE questions ADD COLUMN critical BOOLEAN DEFAULT 0' },
-    { name: 'conditional', sql: 'ALTER TABLE questions ADD COLUMN conditional JSON' },
-  ];
-  for (const patch of patches) {
-    if (!columnNames.includes(patch.name)) {
-      await models.sequelize.query(patch.sql);
-      console.log(`  ✓ Added column: questions.${patch.name}`);
-    }
-  }
-}
 
 // Seed questionnaire templates on startup using templates data file
 async function seedQuestionnaireTemplates() {

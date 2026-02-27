@@ -1,67 +1,60 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('Preferences', {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('preferences', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true,
+        allowNull: false
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         unique: true,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id'
         },
         onDelete: 'CASCADE'
       },
       minAge: {
         type: Sequelize.INTEGER,
-        allowNull: true,
         defaultValue: 18
       },
       maxAge: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 65
+        defaultValue: 100
       },
       location: {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.STRING
       },
       locationRadius: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-        comment: 'Search radius in miles'
+        defaultValue: 50
       },
       interests: {
         type: Sequelize.JSON,
-        allowNull: true,
         defaultValue: []
       },
       relationshipType: {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.STRING
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Preferences');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('preferences');
   }
 };

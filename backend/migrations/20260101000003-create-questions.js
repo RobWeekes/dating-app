@@ -1,62 +1,77 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('questions', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
         type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
       },
       questionnaireId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Questionnaires',
-          key: 'id',
+          model: 'questionnaires',
+          key: 'id'
         },
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       text: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: false
       },
       type: {
-        type: Sequelize.ENUM('text', 'single', 'multi', 'likert', 'slider', 'range'),
-        defaultValue: 'text',
+        type: Sequelize.STRING,
+        defaultValue: 'text'
       },
       options: {
         type: Sequelize.JSON,
-        defaultValue: [],
+        defaultValue: []
       },
       required: {
         type: Sequelize.BOOLEAN,
-        defaultValue: true,
+        defaultValue: true
       },
       order: {
         type: Sequelize.INTEGER,
-        defaultValue: 0,
+        defaultValue: 0
+      },
+      section: {
+        type: Sequelize.STRING
+      },
+      sectionDescription: {
+        type: Sequelize.STRING
+      },
+      reversed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      critical: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      conditional: {
+        type: Sequelize.JSON
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      }
     });
 
-    // Create index for common queries
     await queryInterface.addIndex('questions', ['questionnaireId']);
     await queryInterface.addIndex('questions', ['order']);
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('questions');
-  },
+  }
 };
