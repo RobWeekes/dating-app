@@ -588,6 +588,140 @@
   margin-top: 6px;
 }
 
+/* Summary Page */
+.summary-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.summary-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.summary-subtitle {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.summary-progress {
+  color: #764ba2;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summary-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.summary-card:hover {
+  border-color: #764ba2;
+  box-shadow: 0 4px 16px rgba(118, 75, 162, 0.15);
+  transform: translateY(-2px);
+}
+
+.summary-card.completed {
+  border-color: #4caf50;
+  background: #f8fdf8;
+}
+
+.summary-card.completed:hover {
+  border-color: #388e3c;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.15);
+}
+
+.summary-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.summary-card-info {
+  flex: 1;
+}
+
+.summary-card-info h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 6px 0;
+}
+
+.summary-card-description {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.summary-card-meta {
+  color: #999;
+  font-size: 13px;
+}
+
+.summary-card-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-pending {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-date {
+  color: #888;
+  font-size: 12px;
+}
+
+.status-action {
+  color: #764ba2;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #764ba2;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  color: #5c3a80;
+}
+
 /* Responsive - Tablet */
 @media (max-width: 768px) {
   .questionnaire-container {
@@ -654,6 +788,15 @@
   .form-section {
     padding: 1rem;
     margin-bottom: 1.5rem;
+  }
+
+  .summary-card-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-card-status {
+    align-items: flex-start;
   }
 }
 

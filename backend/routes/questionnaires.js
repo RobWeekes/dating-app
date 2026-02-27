@@ -81,6 +81,31 @@ router.get('/type/:type', async (req, res) => {
  * These manage user submissions of questionnaires
  */
 
+// GET all responses for the authenticated user
+router.get('/responses/me', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
+
+    const responses = await QuestionnaireResponse.findAll({
+      where: { userId },
+      include: [
+        {
+          model: Questionnaire,
+          attributes: ['id', 'type', 'title', 'description'],
+        },
+      ],
+      order: [['completedAt', 'DESC']],
+    });
+
+    res.json(responses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // GET authenticated user's response to a questionnaire (must come BEFORE generic :userId route)
 router.get('/responses/user/me/questionnaire/:questionnaireId', authenticateToken, async (req, res) => {
   try {

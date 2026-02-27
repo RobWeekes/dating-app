@@ -9,8 +9,8 @@ function Home() {
       <h1>Welcome to Dating App</h1>
       <p>Find your perfect match today.</p>
       <div className="home-actions">
-        <Link to="/questionnaire/MVP" className="btn btn-primary">
-          Complete Questionnaire
+        <Link to="/questionnaires" className="btn btn-primary">
+          Complete Questionnaires
         </Link>
         <Link to="/profile" className="btn btn-secondary">
           View Profile

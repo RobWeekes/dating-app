@@ -1,7 +1,8 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Questionnaires from '../pages/Questionnaires';
 import QuestionnairePage from '../pages/QuestionnairePage';
 import Profile from '../pages/Profile';
 import Preferences from '../pages/Preferences';
@@ -39,12 +40,12 @@ export const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'questionnaire/:type',
-        element: <QuestionnairePage />,
+        path: 'questionnaires',
+        element: <Questionnaires />,
       },
       {
-        path: 'questionnaire',
-        element: <Navigate to="/questionnaire/MVP" replace />,
+        path: 'questionnaire/:type',
+        element: <QuestionnairePage />,
       },
       {
         path: 'profile',

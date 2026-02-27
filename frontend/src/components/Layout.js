@@ -30,7 +30,7 @@ function Layout() {
               <Link to="/preferences">Preferences</Link>
             </li>
             <li>
-              <Link to="/questionnaire">Questionnaires</Link>
+              <Link to="/questionnaires">Questionnaires</Link>
             </li>
             <li>
               <Link to="/discover">Discover</Link>
