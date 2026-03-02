@@ -4,7 +4,7 @@ import QuestionnaireForm from '../components/QuestionnaireForm';
 import { submitQuestionnaire } from '../services/api';
 import '../styles/questionnaire-form.css';
 
-const QUESTION_COUNTS = { essential: 27, lifestyle: 21, MVP: 50 };
+const QUESTION_COUNTS = { essential: 27, lifestyle: 21, MVP: 50, communication: 18, lifestage: 16, cultural: 19, romance: 17, future: 18 };
 
 /**
  * Questionnaires - Summary page listing all available questionnaires
