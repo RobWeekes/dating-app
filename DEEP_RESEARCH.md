@@ -407,10 +407,9 @@ Based on this research, the most effective compatibility questionnaires should:
 2. **Include scenario-based trade-offs** — e.g., "If your career required relocating, how would you handle it?"
 3. **Measure stress reactions, not just ideals** — how someone behaves under pressure reveals more than what they say they value
 4. **Assess relationship-specific perceptions** — perceived partner commitment, appreciation, and sexual satisfaction are 2–3× more predictive than individual characteristics
-5. **Cover all eight categories** — no single dimension is sufficient; relationship outcomes emerge from the interaction of all eight
-6. **Weight categories by relationship stage** — attachment and values matter most for initial compatibility; communication, equity, and shared meaning matter most for long-term success
-7. **Include "dealbreaker" identification** — some value mismatches (children, religion, substance use) are non-negotiable and should be identified early
-8. **Distinguish critical from non-critical items** — contempt, avoidant attachment, and value mismatches on core issues are much more consequential than preferences about hobbies or food
+5. **Weight categories by relationship stage** — attachment and values matter most for initial compatibility; communication, equity, and shared meaning matter most for long-term success
+6. **Include "dealbreaker" identification** — some value mismatches (children, religion, substance use) are non-negotiable and should be identified early
+7. **Distinguish critical from non-critical items** — contempt, avoidant attachment, and value mismatches on core issues are much more consequential than preferences about hobbies or food
 
 ---
 
