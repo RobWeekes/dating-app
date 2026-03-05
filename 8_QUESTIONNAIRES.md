@@ -81,6 +81,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 ### Q1.7 — I worry about being abandoned or rejected in romantic relationships.
 **Format:** likert
 
+**Q7.** Scenario: You and your partner have a great week, then they get busy and are less available for 10 days. You…
+- **Format:** single | **Weight:** critical
+- **Options:** A) trust it and stay warm · B) seek a conversation to reconnect · C) become anxious and need reassurance · D) detach emotionally to protect myself · E) assume they're losing interest and prepare to end it
+- **Measures:** stability of bond; protest/withdraw strategies
+
 ### Q1.8 — When a relationship starts getting serious, I tend to:
 **Format:** single
 - (A) Feel excited and lean in closer
@@ -88,6 +93,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) Feel an urge to slow things down or create some distance
 - (D) Feel anxious about whether they're as committed as I am
 - (E) Analyze the relationship constantly to decide if it's "right"
+
+**Q8.** How quickly do you usually feel comfortable relying on someone (sharing worries, asking for help)?
+- **Format:** single | **Weight:** standard
+- **Options:** A) within days · B) within a few weeks · C) within 2–3 months · D) after 6+ months · E) I rarely rely on partners
+- **Measures:** intimacy pacing; avoidant tendencies
 
 ### Q1.9 — How important is it that a partner regularly expresses love and affection verbally?
 **Format:** slider
@@ -123,12 +133,21 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Pull away myself to protect my feelings
 - (E) Assume the relationship is ending and start mentally preparing
 
+**Q15.** When I feel my partner pulling away, I'm likely to…
+- **Format:** single | **Weight:** critical
+- **Options:** A) check in calmly · B) become clingy/pursuing · C) become distant too · D) criticize them for not caring · E) end things quickly to avoid rejection
+
 ### Q1.14 — How easily do you trust a new romantic partner?
 **Format:** slider
 - 1 = Very difficult — trust must be earned over a long time
 - 4 = Cautious but open — I give measured trust
 - 7 = Fairly easily — I extend trust unless given reason not to
 - 10 = Very easily — I tend to trust people from the start
+
+**Q14.** How important is daily contact (text/call) when you're in a committed relationship?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Not important" · 10 = "Very important"
+- **Measures:** contact needs; reassurance frequency
 
 ### Q1.15 — Scenario: Your partner forgot a date that was important to you (anniversary, birthday). What is your most likely reaction?
 **Format:** single
@@ -193,6 +212,15 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 ### Q2.2 — During an argument, when my partner makes a valid point, I am able to acknowledge it even when I'm upset.
 **Format:** likert
 
+**Q3.** Scenario: You and your partner are late because of them. You're irritated. Your opener is closest to…
+- **Format:** single | **Weight:** critical
+- **Options:** A) "Hey—can we plan differently next time?" · B) "I felt stressed when we were late." · C) "You always do this." · D) (silent coldness) · E) "Unbelievable… you don't care."
+- **Measures:** soft vs harsh startup; criticism/stonewalling
+
+**Q4.** If a conversation gets heated, I'm willing to take a break and return within a set time.
+- **Format:** likert | **Weight:** critical
+- **Measures:** repair + physiological flooding management
+
 ### Q2.3 — Scenario: You and your partner are arguing about something that matters to both of you. Your heart is racing and you feel yourself getting flooded with emotion. What do you do? ⚠️ CRITICAL
 **Format:** single
 - (A) Take a deep breath and ask for a 20-minute break to calm down before continuing
@@ -232,6 +260,15 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Avoiding the disagreement altogether
 - (E) Expressing how the disagreement makes me feel
 
+**Q7.** When I'm overwhelmed, my body signs usually are…
+- **Format:** multi | **Weight:** standard
+- **Options:** A) racing heart · B) tight chest · C) shaky voice · D) numb/blank · E) urge to leave · F) urge to attack verbally
+- **Measures:** flooding awareness; self-regulation readiness
+
+**Q8.** Scenario: Your partner brings up a recurring issue for the 4th time. You…
+- **Format:** single | **Weight:** critical
+- **Options:** A) listen and look for a concrete plan · B) feel ashamed but stay engaged · C) argue that it's not a big deal · D) withdraw to avoid it · E) mock them for "being dramatic"
+
 ### Q2.8 — In past disagreements, how often have you done any of the following? Select all that apply. ⚠️ CRITICAL — FOUR HORSEMEN
 **Format:** multi
 - [ ] Mocked or used sarcasm to belittle my partner's feelings (contempt)
@@ -250,6 +287,15 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) Strong defensiveness — I feel attacked
 - (D) Agreement — I tend to go along with what they want
 - (E) Dismissal — they're probably being oversensitive
+
+**Q9.** In disagreements, I try to understand my partner's point before defending mine.
+- **Format:** likert | **Weight:** standard
+- **Measures:** active listening; collaboration
+
+**Q10.** How do you prefer to resolve conflict?
+- **Format:** single | **Weight:** standard
+- **Options:** A) talk it out immediately · B) cool down then talk same day · C) schedule a time · D) write/message first · E) avoid unless it's severe
+- **Measures:** conflict approach; avoidance risk
 
 ### Q2.10 — How do you feel about ongoing, unresolvable differences in a relationship (e.g., one person is a saver, the other a spender)?
 **Format:** single
@@ -285,6 +331,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - 7 = Good — I can usually stay grounded even when things are tense
 - 10 = Excellent — I rarely lose emotional control during disagreements
 
+**Q15.** How comfortable are you discussing uncomfortable topics (money, sex, jealousy) calmly?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Avoid strongly" · 10 = "Very comfortable"
+- **Measures:** difficult conversation tolerance
+
 ### Q2.15 — Scenario: Your partner raises a concern about your relationship in front of friends. How do you handle it?
 **Format:** single
 - (A) Deflect publicly, then address it privately — public isn't the place for this
@@ -296,6 +347,9 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 ### Q2.16 — I believe my partner's complaints usually have at least some validity, even when they're hard to hear.
 **Format:** likert
 
+**Q17.** I believe partners should influence each other (I'm open to changing my mind).
+- **Format:** likert | **Weight:** standard
+
 ### Q2.17 — When your partner influences a decision you were initially set on (e.g., changing plans, reconsidering a purchase), how does that feel?
 **Format:** single
 - (A) Fine — relationships involve mutual influence and I value their input
@@ -303,6 +357,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) Frustrating — I prefer to make my own decisions
 - (D) Depends entirely on whether their point was valid
 - (E) I tend to defer to my partner's preferences anyway
+
+**Q18.** What's your default repair attempt after an argument?
+- **Format:** single | **Weight:** standard
+- **Options:** A) apologize + plan · B) affection/physical closeness · C) humor/lightness · D) acts of service · E) wait until it blows over
+- **Measures:** repair strategy; reconnection preference
 
 ### Q2.18 — How do you prefer to communicate about everyday logistics and planning in a relationship?
 **Format:** single
@@ -334,6 +393,16 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 **Importance weight: VERY HIGH for initial compatibility; HIGH for long-term success**
 
 ---
+
+**Q3.1** Do you want children? ⚠️ DEALBREAKER
+- **Format:** single | **Weight:** critical
+- **Options:** A) Yes · B) No · C) Unsure · D) Open to partner preference · E) Already have and want more · F) Already have and don't want more
+- **Measures:** parenting goal dealbreaker
+
+**Q3.2** If a partner couldn't have children biologically, you would…
+- **Format:** single | **Weight:** critical
+- **Options:** A) be open to adoption/fostering · B) be open to IVF/surrogacy · C) be okay child-free · D) likely end the relationship · E) unsure
+- **Measures:** flexibility on major life goal
 
 ### Q3.1 — How important is religion or spirituality in your daily life? ⚠️ DEALBREAKER CANDIDATE
 **Format:** slider
@@ -420,6 +489,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Money reflects success — I'm motivated to earn and grow wealth
 - (E) Money is a source of anxiety — I struggle with financial decisions
 
+**Q3.10** Scenario: Your partner wants to support aging parents financially or by cohabitation. Your likely stance is…
+- **Format:** single | **Weight:** critical
+- **Options:** A) strongly supportive · B) supportive with boundaries · C) unsure—depends on situation · D) resistant but negotiable · E) not acceptable
+- **Measures:** family obligation values; boundary expectations
+
 ### Q3.11 — How do you feel about combining finances with a long-term partner?
 **Format:** single
 - (A) Fully combined — joint accounts for everything
@@ -435,6 +509,16 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - 7 = Important — I want a partner with a college degree or equivalent
 - 10 = Very important — advanced education is strongly preferred
 
+**Q3.12** Which best describes your long-term ambition?
+- **Format:** single | **Weight:** standard
+- **Options:** A) career growth/achievement · B) balanced life · C) family-centered · D) freedom/travel · E) service/community impact
+- **Measures:** life direction alignment
+
+**Q3.13** Scenario: You and your partner disagree on how to spend extra income. You tend to prioritize…
+- **Format:** single | **Weight:** standard
+- **Options:** A) saving/investing · B) experiences/travel · C) paying down debt · D) helping family/community · E) lifestyle upgrades
+- **Measures:** resource allocation values
+
 ### Q3.13 — Scenario: You and your partner fundamentally disagree on how to raise children (e.g., discipline approach, schooling choice, religious upbringing). How would you handle it?
 **Format:** single
 - (A) Research together and find an evidence-based approach we can both support
@@ -443,6 +527,10 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) This would be a serious relationship problem — we need to agree on this before having kids
 - (E) Go with whatever approach was used in my own upbringing
 
+**Q3.14** How important is marriage as a goal (not just a relationship)?
+- **Format:** slider | **Weight:** critical
+- **Anchors:** 1 = "Not important" · 10 = "Very important"
+
 ### Q3.14 — How do you feel about the role of extended family (parents, siblings, in-laws) in your relationship?
 **Format:** single
 - (A) Very important — family is central and I want them closely involved in our lives
@@ -450,6 +538,21 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) Moderate — cordial relationships but clear boundaries
 - (D) Minimal — I prefer to keep extended family at a distance
 - (E) Complex — my family relationships are strained and this is a sensitive area
+
+**Q3.15** Dealbreaker check: Which would end a relationship for you?
+- **Format:** multi | **Weight:** critical
+- **Options:** A) wants/doesn't want kids mismatch · B) mismatched religion · C) mismatched politics on core issues · D) substance misuse · E) non-monogamy mismatch · F) incompatible financial ethics · G) incompatible lifestyle (e.g., party vs quiet)
+- **Measures:** non-negotiables for early filtering
+
+**Q3.16** How do you define "a good life" most?
+- **Format:** single | **Weight:** standard
+- **Options:** A) love/family · B) achievement · C) freedom · D) stability · E) growth/learning · F) contribution/meaning
+- **Measures:** guiding values (Schwartz-like)
+
+**Q3.17** Scenario: A partner changes beliefs over time (religion/politics). You are likely to…
+- **Format:** single | **Weight:** standard
+- **Options:** A) adapt if respect remains · B) discuss deeply and renegotiate · C) tolerate only small shifts · D) feel betrayed and disengage · E) end relationship
+- **Measures:** value flexibility vs rigidity
 
 ### Q3.15 — Where do you see yourself living long-term? ⚠️ DEALBREAKER CANDIDATE
 **Format:** single
@@ -498,6 +601,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - 4 = Somewhat preferred
 - 7 = Important — we should be generally aligned
 - 10 = Essential — this reflects fundamental character
+
+**Q3.20** How important is sexual exclusivity to you?
+- **Format:** slider | **Weight:** critical
+- **Anchors:** 1 = "Not important" · 10 = "Essential"
+- **Measures:** exclusivity value (ties to relationship model)
 
 ### Q3.21 — Which best describes your long-term relationship goal?
 **Format:** single
@@ -557,6 +665,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) I tend to shut down emotionally and go numb
 - (E) I remain fairly calm — not much rattles me
 
+**Q4.** How quickly do you typically recover after a stressful event?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Days/weeks" · 10 = "Minutes/hours"
+- **Measures:** emotional recovery speed
+
 ### Q4.2 — I would describe my general mood as: ⚠️ CRITICAL
 **Format:** single
 - (A) Consistently positive and optimistic
@@ -585,6 +698,10 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) I snap or respond irritably — my patience is gone
 - (D) I go along but feel resentful and withdraw emotionally
 - (E) I recognize I'm depleted and honestly communicate my limits
+
+**Q10.** I tend to interpret neutral behavior (short texts, quiet mood) as negative.
+- **Format:** likert | **Weight:** critical
+- **Measures:** threat sensitivity (neuroticism)
 
 ### Q4.5 — How quickly do you typically recover from negative emotions (anger, sadness, frustration)?
 **Format:** slider
@@ -702,6 +819,10 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 
 ---
 
+**Q1.** What are you looking for right now?
+- **Format:** single | **Weight:** critical
+- **Options:** A) casual dating · B) dating but open-ended · C) committed relationship · D) life partner/marriage-minded · E) unsure
+
 ### Q5.1 — When I think about the purpose of a committed relationship, it is primarily about:
 **Format:** single
 - (A) Building a shared life together — partnership, family, mutual goals
@@ -756,10 +877,24 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) I believe in soulmates — the right person makes everything easy
 - (E) I'm not sure what I believe about this
 
+**Q11.** Scenario: Your partner's mental health dips (anxiety/depression) and affects the relationship. You…
+- **Format:** single | **Weight:** critical
+- **Options:** A) support + encourage treatment while holding boundaries · B) support unconditionally even if it hurts me · C) get frustrated and withdraw · D) consider leaving quickly · E) minimize it ("snap out of it")
+- **Measures:** supportive commitment vs avoidance; resilience under stress
+
 ### Q5.9 — What's the longest committed romantic relationship you've been in?
 **Format:** range
 - Minimum: 0 months
 - Maximum: 360 months (30 years)
+
+**Q10.** If my partner needs to make a major life decision (career, health, family), I'm willing to adjust my plans.
+- **Format:** likert | **Weight:** standard
+- **Measures:** willingness to sacrifice/support
+
+**Q14.** What best describes your view of long-term relationships?
+- **Format:** single | **Weight:** standard
+- **Options:** A) passion should stay high naturally · B) love requires effort/maintenance · C) relationships mostly fade · D) depends on the partner · E) unsure
+- **Measures:** maintenance beliefs; effort expectations
 
 ### Q5.10 — How important is it that your partner demonstrates their commitment through actions (not just words)?
 **Format:** slider
@@ -884,8 +1019,23 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) This would be a significant problem that might make me question the relationship
 - (E) I'd hope it works itself out over time
 
+**Q3.** Scenario: Your partner wants sex more often than you do. You are most likely to…
+- **Format:** single | **Weight:** critical
+- **Options:** A) discuss and find a workable compromise · B) comply but build resentment · C) avoid the conversation · D) feel pressured and withdraw · E) end relationship
+- **Measures:** desire discrepancy management
+
+**Q4.** How often do you prefer physical affection (non-sexual)?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Rarely" · 10 = "Multiple times daily"
+- **Measures:** affection frequency need
+
 ### Q6.5 — Physical affection and sexual connection are primarily how I feel loved and bonded in a relationship.
 **Format:** likert
+
+**Q7.** Scenario: Something happens during sex that doesn't feel good for you. You…
+- **Format:** single | **Weight:** critical
+- **Options:** A) speak up in the moment · B) redirect gently without words · C) tolerate it but feel bad later · D) avoid sex next time · E) become upset/angry
+- **Measures:** consent communication; boundary setting
 
 ### Q6.6 — How important is it that a partner initiates intimacy (not always waiting for you to make the first move)?
 **Format:** slider
@@ -918,6 +1068,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - [ ] Acts of service (doing things for them, helping with tasks)
 - [ ] Giving gifts or thoughtful gestures
 - [ ] Deep conversation and emotional sharing
+
+**Q13.** Scenario: Your partner requests more affection. Your first reaction is…
+- **Format:** single | **Weight:** standard
+- **Options:** A) curious and willing to adjust · B) willing but needs reminders · C) feel criticized and defensive · D) feel controlled and withdraw · E) dismiss it as needy
+- **Measures:** responsiveness; avoidant reaction risk
 
 ### Q6.10 — How do you most prefer to receive romantic love? Select your top responses.
 **Format:** multi
@@ -977,6 +1132,16 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) I need physical intimacy to feel emotionally connected (it works the other direction for me)
 - (E) It varies depending on the context and relationship
 
+**Q16.** In a typical week in a committed relationship, how many times would you ideally want sex?
+- **Format:** range | **Weight:** critical
+- **Range:** 0–14+ times/week
+- **Measures:** desire level (behavioral preference)
+
+**Q17.** Which are dealbreakers for you sexually/romantically?
+- **Format:** multi | **Weight:** critical
+- **Options:** A) no affection · B) major libido mismatch · C) unwillingness to discuss sex · D) porn use mismatch · E) kink mismatch · F) non-monogamy mismatch · G) sexual selfishness/lack of reciprocity
+- **Measures:** non-negotiables; early filtering
+
 ### Q6.16 — How would you feel if your partner watched pornography?
 **Format:** single
 - (A) Completely fine — it's normal and healthy
@@ -999,6 +1164,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - 4 = Moderate — some boundaries but close friendships are fine
 - 7 = Important — primary emotional intimacy should be with my partner
 - 10 = Very important — my partner should be my primary confidant
+
+**Q19.** Scenario: Your partner shares a new desire/fantasy. You…
+- **Format:** single | **Weight:** standard
+- **Options:** A) respond with curiosity and discuss boundaries · B) feel awkward but open · C) judge it and shut it down · D) agree then later resent · E) withdraw
+- **Measures:** openness; shame/judgment risk
 
 ---
 
@@ -1055,6 +1225,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - **Options:** A) strict 50/50 split · B) proportional contributions · C) shared pool regardless of income · D) separate finances only · E) unsure
 - **Measures:** fairness philosophy; money conflict risk
 
+**Q6.** Alcohol drinks per week (typical)
+- **Format:** range | **Weight:** critical
+- **Range:** 0–30+
+- **Measures:** substance pattern; lifestyle match
+
 ### Q7.6 — How often do you drink alcohol? ⚠️ DEALBREAKER CANDIDATE
 **Format:** single
 - (A) Never — I don't drink
@@ -1085,13 +1260,17 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - **Format:** likert | **Weight:** critical
 - **Measures:** equity maintenance; conflict prevention
 
-
 ### Q7.8 — How important is physical fitness and health in your own life?
 **Format:** slider
 - 1 = Not a priority
 - 4 = I make some effort but it's not central to my identity
 - 7 = Important — I exercise regularly and eat reasonably well
 - 10 = Very important — fitness and nutrition are core parts of my lifestyle
+
+**Q10.** Social energy: In a typical week, you prefer…
+- **Format:** single | **Weight:** standard
+- **Options:** A) lots of outings/people · B) moderate social time · C) mostly quiet/at home · D) varies widely · E) depends on partner
+- **Measures:** introversion/extraversion lifestyle (behavioral)
 
 ### Q7.9 — How important is it that your partner shares your level of health/fitness commitment?
 **Format:** slider
@@ -1112,6 +1291,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - **Format:** single | **Weight:** standard
 - **Options:** A) tidy partner adapts down · B) messy partner adapts up · C) negotiate zones/standards · D) hire help if possible · E) it won't work
 - **Measures:** negotiation flexibility; cohabitation viability
+
+**Q13.** How important is regular exercise/health routine to you?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Not important" · 10 = "Very important"
+- **Measures:** health lifestyle alignment
 
 ### Q7.11 — How much personal alone time do you need in a typical week?
 **Format:** slider
