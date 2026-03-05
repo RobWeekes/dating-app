@@ -262,7 +262,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 
 **Q2.16** In past relationships, what were your tendencies during conflict? (Select all that apply)
 - **Format:** multi | **Weight:** critical
-- **Options:** A) criticism ("always/never") · B) sarcasm/eye-rolling · C) defensiveness · D) shutting down · E) quick repair attempts · F) stonewalling for days
+- **Options:** A) sharp criticism ("always/never") · B) sarcasm/eye-rolling · C) denial of faults · D) shutting down · E) quick repair attempts · F) stonewalling for days
 - **Measures:** Four Horsemen + repair history
 
 **Q2.17** When your partner influences a decision you were initially set on (e.g., changing plans, reconsidering a purchase), how does that feel?
@@ -309,17 +309,7 @@ Core values alignment (religion, politics, ethics), life ambitions, desired life
 
 ### Questions (22)
 
-**Q3.1** Do you want children? ⚠️ DEALBREAKER
-- **Format:** single | **Weight:** critical
-- **Options:** A) Yes · B) No · C) Unsure · D) Open to partner preference · E) Already have and want more · F) Already have and don't want more
-- **Measures:** parenting goal dealbreaker
-
-**Q3.2** If a partner couldn't have children biologically, you would…
-- **Format:** single | **Weight:** critical
-- **Options:** A) be open to adoption/fostering · B) be open to IVF/surrogacy · C) be okay child-free · D) likely end the relationship · E) unsure
-- **Measures:** flexibility on major life goal
-
-**Q3.3** How important is religion or spirituality in your daily life? ⚠️ DEALBREAKER CANDIDATE
+**Q3.1** How important is religion or spirituality in your daily life? ⚠️ DEALBREAKER CANDIDATE
 - **Format:** slider | **Weight:** critical
 - **Anchors:**
 - 1 = Not at all important — I am not religious or spiritual
@@ -328,104 +318,136 @@ Core values alignment (religion, politics, ethics), life ambitions, desired life
 - 10 = Central — my faith/spirituality is the foundation of my life
 - **Measures:** religiosity centrality; assortative mating
 
-**Q3.4** Would you date/marry someone with very different political values than you?
+**Q3.2** How important is it that your partner shares your religious or spiritual beliefs? ⚠️ DEALBREAKER CANDIDATE
+**Format:** slider | **Weight:** critical
+- 1 = Not important at all
+- 4 = Somewhat preferred but not required
+- 7 = Important — we should be generally aligned
+- 10 = Essential — this is a dealbreaker for me
+
+**Q3.3** Which best describes your political orientation?
+- **Format:** single | **Weight:** standard
+- (A) Very progressive/liberal
+- (B) Somewhat progressive/liberal
+- (C) Moderate/centristindependent
+- (D) Somewhat conservative
+- (E) Very conservative
+- (F) Libertarian
+- (G) Not politically engaged
+
+**Q3.4** How important is it that your partner shares your political views?
 - **Format:** single | **Weight:** critical
-- **Options:** A) Yes, easily · B) Yes, if mutual respect · C) Maybe, depends on which issues · D) Unlikely · E) No
+- **Options:** A) Doesn't matter/ not political · B) Prefer alignment but can tolerate differences · C) Important — we should agree on major issues · D) Essential — significant disagreement is a dealbreaker
 - **Measures:** political values tolerance (high assortative mating)
 
-**Q3.5** Scenario: You get a dream job that requires relocating for 2–4 years. You would prefer to…
+**Q3.5** Do you want children? ⚠️ DEALBREAKER
 - **Format:** single | **Weight:** critical
-- **Options:** A) move together prioritizing the job · B) do long-distance temporarily · C) decline the job for relationship stability · D) decide based on partner's career needs · E) end relationship if it blocks the job
+- **Options:** A) Yes · B) No · C) Unsure · D) Open to partner preference · E) Already have and want more · F) Already have and don't want more
+- **Measures:** parenting goal dealbreaker
+
+**Q3.6** If you want children, how many do you envision?
+- **Format:** single | **Weight:** standard
+- **Options:** A) Don't want children B) 1 child · C) 2-3 · D) 4-5 · E) 6+
+
+**Q3.7** Scenario: You get a dream job offerthat requires relocating for 2–4 years. You would prefer to…
+- **Format:** single | **Weight:** critical
+- **Options:** A) move together prioritizing the job · B) do long-distance temporarily · C) decline the job for relationship stability · D) decide based on partner's career needs · E) end relationship if it blocks the job opportunity
 - **Measures:** career–relationship priority; relocation flexibility
 
-**Q3.6** My ideal long-term relationship structure is…
+**Q3.8** My ideal long-term relationship model is…
 - **Format:** single | **Weight:** critical
 - **Options:** A) monogamous · B) monogamish (some flexibility) · C) open relationship · D) polyamorous · E) unsure
 - **Measures:** relationship model dealbreaker
 
-**Q3.7** How do you feel about traditional gender roles in household/parenting?
+**Q3.9** How do you view the ideal division of career and family responsibilities between partners?
 - **Format:** single | **Weight:** critical
-- **Options:** A) prefer traditional roles · B) flexible but some tradition · C) egalitarian/shared roles · D) roles should be based on strengths, not gender · E) unsure
+- (A) Nearly equal — both partners share career and family work 50/50
+- (B) Flexible — whoever is better suited or more available takes on more, subject to change
+- (C) Division of labor — one partner focuses more on career, the other more on home/family
+- (D) Strictly traditional — the man provides financially, the woman manages the home
+- (E) No strong opinion — I'd figure it out with my partner
 - **Measures:** role ideology; equity expectations
 
-**Q3.8** What best matches your approach to money in partnership?
-- **Format:** single | **Weight:** critical
+**Q3.10** What best matches your approach to money in a long-term relationship?
+- **Format:** single | **Weight:** standard
 - **Options:** A) fully merged finances · B) mostly merged with some personal accounts · C) mostly separate with shared bills · D) fully separate · E) unsure/depends
 - **Measures:** financial integration preference; money script alignment
 
-**Q3.9** In your view, "financial security" means…
+**Q3.11** In your view, "financial security" means… (Select your top 3)
 - **Format:** multi | **Weight:** standard
 - **Options:** A) low debt · B) emergency fund · C) home ownership · D) high income growth · E) low spending/simple living · F) investing/retirement focus
 - **Measures:** money values; risk tolerance proxies
 
-**Q3.10** Scenario: Your partner wants to support aging parents financially or by cohabitation. Your likely stance is…
-- **Format:** single | **Weight:** critical
-- **Options:** A) strongly supportive · B) supportive with boundaries · C) unsure—depends on situation · D) resistant but negotiable · E) not acceptable
-- **Measures:** family obligation values; boundary expectations
+**Q3.12** What level of education do you want in your partner?
+- **Format:** single | **Weight:** standard
+- **Options:** A) Doesn't matter · B) high school graduate · C) college degree or equivalent · D) advanced degree - MA/MS/PhD
 
-**Q3.11** How important is living near family/community long-term?
+**Q3.13** Long term, how important is involvement with extended family and/or community?
 - **Format:** slider | **Weight:** standard
 - **Anchors:** 1 = "Not important" · 10 = "Very important"
 - **Measures:** rootedness vs mobility
 
-**Q3.12** Which best describes your long-term ambition?
-- **Format:** single | **Weight:** standard
-- **Options:** A) career growth/achievement · B) balanced life · C) family-centered · D) freedom/travel · E) service/community impact
-- **Measures:** life direction alignment
+**Q3.14** Which best describes your long-term goals?(Select your top 3):
+- **Format:** multi | **Weight:** standard
+- **Options:** A) career growth/achievement · B) balanced life · C) family-centered · D) freedom/travel · E) service/community impact · F) growth/learning
+- **Measures:** life direction alignment, guiding values (Schwartz-like)
 
-**Q3.13** Scenario: You and your partner disagree on how to spend extra income. You tend to prioritize…
-- **Format:** single | **Weight:** standard
-- **Options:** A) saving/investing · B) experiences/travel · C) paying down debt · D) helping family/community · E) lifestyle upgrades
-- **Measures:** resource allocation values
+**Q3.15** How important is ambition and career drive in a partner?
+**Format:** slider | **Weight:** standard
+- 1 = Not important — I don't care about their career status
+- 4 = Somewhat important — they should be employed and responsible
+- 7 = Important — I want a partner who is driven and goal-oriented
+- 10 = Very important — high ambition is strongly attractive to me
 
-**Q3.14** How important is marriage as a goal (not just a relationship)?
-- **Format:** slider | **Weight:** critical
-- **Anchors:** 1 = "Not important" · 10 = "Very important"
+**Q3.16** Which best describes your long-term relationship goal?
+**Format:** single | **Weight:** critical
+- (A) Marriage / lifelong legal partnership
+- (B) Long-term committed partnership without necessarily marrying
+- (C) Serious relationship — let's see where it goes, no specific endpoint in mind
+- (D) Casual dating — not looking for anything serious right now
+- (E) I don't know yet — I'm figuring out what I want
 - **Measures:** institution orientation; commitment pathway
 
-**Q3.15** Dealbreaker check: Which would end a relationship for you?
-- **Format:** multi | **Weight:** critical
-- **Options:** A) wants/doesn't want kids mismatch · B) mismatched religion · C) mismatched politics on core issues · D) substance misuse · E) non-monogamy mismatch · F) incompatible financial ethics · G) incompatible lifestyle (e.g., party vs quiet)
-- **Measures:** non-negotiables for early filtering
-
-**Q3.16** How do you define "a good life" most?
-- **Format:** single | **Weight:** standard
-- **Options:** A) love/family · B) achievement · C) freedom · D) stability · E) growth/learning · F) contribution/meaning
-- **Measures:** guiding values (Schwartz-like)
-
-**Q3.17** Scenario: A partner changes beliefs over time (religion/politics). You are likely to…
-- **Format:** single | **Weight:** standard
-- **Options:** A) adapt if respect remains · B) discuss deeply and renegotiate · C) tolerate only small shifts · D) feel betrayed and disengage · E) end relationship
-- **Measures:** value flexibility vs rigidity
+**Q3.17** Where do you see yourself living long-term? ⚠️ DEALBREAKER CANDIDATE
+**Format:** single | **Weight:** critical
+- (A) Major city / urban area
+- (B) Suburb near a city
+- (C) Small town or rural area
+- (D) I want to move abroad or live internationally
+- (E) I'm flexible — I could be happy in different settings
+- (F) Near my family of origin — location is tied to family proximity
 
 **Q3.18** How important is ethical alignment (e.g., honesty, fairness, how you treat others)?
 - **Format:** slider | **Weight:** standard
 - **Anchors:** 1 = "Not a big focus" · 10 = "Non-negotiable"
 - **Measures:** moral values importance
 
-**Q3.19** Scenario: Parenting philosophy — If you had kids, you'd lean toward…
+**Q3.19** If you had kids, you'd lean toward which parenting philosophy?
 - **Format:** single | **Weight:** critical
-- **Options:** A) gentle/authoritative · B) strict/structured · C) child-led/flexible · D) mixed/depends · E) I don't want kids
+- **Options:** A) strict/disciplined · B) structured · C) gentle/flexible · D) mixed/depends · E) I don't want kids
 - **Measures:** parenting style alignment
 
-**Q3.20** How important is sexual exclusivity to you?
-- **Format:** slider | **Weight:** critical
-- **Anchors:** 1 = "Not important" · 10 = "Essential"
-- **Measures:** exclusivity value (ties to relationship model)
-
-**Q3.21** What is your preferred pace for building a life together (cohabitation/merging routines)?
+**Q3.20** What is your preferred pace for building a life together (cohabitation/merging routines)?
 - **Format:** single | **Weight:** standard
 - **Options:** A) <6 months · B) 6–12 months · C) 1–2 years · D) 2+ years · E) prefer not to cohabit
 - **Measures:** life-merge pacing; stability preferences
 
-**Q3.22** When values conflict, I prefer to…
+**Q3.21** When values conflict, I prefer to…
 - **Format:** single | **Weight:** standard
 - **Options:** A) find a compromise · B) take turns/prioritize context · C) maintain differences respectfully · D) persuade/argue until agreement · E) avoid the topic
 - **Measures:** value-conflict management style
 
+**Q3.22** How do you feel about pets in the household? ⚠️ DEALBREAKER CANDIDATE
+- **Format:** single | **Weight:** critical
+- (A) Love pets — they're family members (dogs, cats, etc.)
+- (B) Open to pets with some limits
+- (C) Prefer no pets
+- (D) Allergic or have strict constraints around pets
+- (E) No strong opinion
+
 ---
 
-## Questionnaire 4: Emotional Regulation & Personality
+## Questionnaire 4: Personality & Emotional Regulation
 
 ### What this measures
 Emotional stability (low neuroticism), impulse control, conscientious follow-through, stress coping, and capacity for self-soothing during emotional flooding. Neuroticism is the strongest personality predictor of dissatisfaction (r = −0.24) and stress reactivity drives conflict spirals.
@@ -438,94 +460,100 @@ Emotional stability (low neuroticism), impulse control, conscientious follow-thr
 
 ### Questions (20)
 
-**Q1.** When plans change last-minute, I usually…
+**Q4.1** When plans change last-minute, I usually…
 - **Format:** single | **Weight:** standard
-- **Options:** A) adapt easily · B) feel stressed but manage · C) get irritable · D) shut down · E) blame others
+- **Options:** A) adapt easily · B) feel stressed but manage · C) get irritable/upset · D) shut down/go numb · E) blame others
 - **Measures:** flexibility; stress reactivity
 
-**Q2.** I often replay conversations in my head and assume the worst.
+**Q4.2** I often replay conversations in my head and assume the worst.
 - **Format:** likert | **Weight:** critical
 - **Measures:** rumination/anxiety (neuroticism facet)
 
-**Q3.** When I'm very upset, my most common impulse is to…
+**Q4.3** When I'm very upset with someone, my most common impulse is to…
 - **Format:** single | **Weight:** critical
 - **Options:** A) talk it out immediately · B) withdraw and self-soothe · C) lash out verbally · D) seek reassurance repeatedly · E) distract with substances/escape
 - **Measures:** regulation strategy; risk behaviors
 
-**Q4.** How quickly do you typically recover after a stressful event?
-- **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Days/weeks" · 10 = "Minutes/hours"
-- **Measures:** emotional recovery speed
+**Q4.4** I would describe my general mood as:
+- **Format:** single | **Weight:** critical
+- (A) Consistently positive and optimistic
+- (B) Generally stable with normal ups and downs
+- (C) Variable — my mood shifts noticeably throughout the day or week
+- (D) Often anxious or worried
+- (E) Often low or irritable
 
-**Q5.** In conflict, I can notice when I'm "flooded" and pause before I say something harmful.
+**Q4.5** In conflict, I notice when I'm "flooded" and pause before I say something harmful.
 - **Format:** likert | **Weight:** critical
 - **Measures:** self-monitoring; de-escalation capacity
 
-**Q6.** Scenario: You had a terrible day. Your partner makes a small mistake (forgets to text back). You…
+**Q4.6** Scenario: You had a terrible day. Your partner makes a small mistake (forgets something). You…
 - **Format:** single | **Weight:** critical
 - **Options:** A) assume good intent · B) ask calmly · C) snap/criticize · D) withdraw and go cold · E) spiral into "they don't care"
 - **Measures:** stress spillover; negativity bias
 
-**Q7.** How consistent are you with responsibilities (appointments, bills, promises)?
+**Q4.7** How consistent are you with responsibilities (appointments, bills, promises)?
 - **Format:** slider | **Weight:** standard
 - **Anchors:** 1 = "Often inconsistent" · 10 = "Very consistent"
 - **Measures:** conscientiousness; reliability
 
-**Q8.** I can accept feedback without feeling personally attacked.
+**Q4.8** I can accept feedback without feeling personally attacked.
 - **Format:** likert | **Weight:** standard
 - **Measures:** emotional defensiveness; ego resilience
 
-**Q9.** When I'm anxious, what helps most?
+**Q4.9** When I'm anxious, what helps most?
 - **Format:** multi | **Weight:** standard
 - **Options:** A) exercise · B) talking to someone · C) journaling/therapy tools · D) sleep · E) alcohol/weed · F) scrolling/avoidance · G) problem-solving plan
 - **Measures:** coping toolkit; avoidant coping flags
 
-**Q10.** I tend to interpret neutral behavior (short texts, quiet mood) as negative.
-- **Format:** likert | **Weight:** critical
-- **Measures:** threat sensitivity (neuroticism)
+**Q4.10** How quickly do you typically recover from negative emotions (anger, sadness, frustration)?
+- **Format:** slider
+- 1 = Very slowly — negative feelings linger for days
+- 4 = Within a day — I need time to process
+- 7 = Within a few hours — I bounce back fairly quickly
+- 10 = Very quickly — I rarely dwell on negative emotions
 
-**Q11.** Scenario: You're behind on work and your partner wants attention. You typically…
+**Q4.11** Scenario: You're behind on work and your partner wants attention. You typically…
 - **Format:** single | **Weight:** standard
-- **Options:** A) communicate clearly and schedule time · B) try to do both and get stressed · C) get irritated at them · D) disappear until work is done · E) people-please then resent
+- **Options:** A) communicate clearly and schedule time · B) try to do both and get stressed · C) get irritated at them · D) disappear until work is done · E) comply but feel resentment
 - **Measures:** boundary setting; stress management
 
-**Q12.** How often do you raise your voice during conflict?
+**Q4.12** How often do you raise your voice during conflict?
 - **Format:** single | **Weight:** critical
 - **Options:** A) never/almost never · B) rarely · C) sometimes · D) often · E) frequently
 - **Measures:** escalation tendency
 
-**Q13.** When I've hurt someone, I feel motivated to repair it quickly.
+**Q4.13** When I've hurt someone, I feel motivated to repair it quickly.
 - **Format:** likert | **Weight:** standard
 - **Measures:** agreeableness; repair motivation
 
-**Q14.** I keep my commitments even when I don't "feel like it."
+**Q4.14** I keep my commitments even when I don't "feel like it."
 - **Format:** likert | **Weight:** standard
 - **Measures:** conscientiousness; follow-through
 
-**Q15.** Scenario: Your partner is in a bad mood. You're likely to…
+**Q4.15** Scenario: Your partner is in a bad mood. You're likely to…
 - **Format:** single | **Weight:** standard
 - **Options:** A) not take it personally · B) check in and offer support · C) feel blamed and get defensive · D) mirror the mood · E) avoid them
 - **Measures:** co-regulation vs contagion
 
-**Q16.** I can talk about difficult feelings without blaming.
-- **Format:** likert | **Weight:** standard
+**Q4.16** I am able to recognize and name my emotions as they come up ("I'm feeling anxious right now" vs. just feeling "bad").
+**Format:** likert | **Weight:** standard
 - **Measures:** emotional articulation; non-defensive expression
 
-**Q17.** When I'm stressed, I'm more likely to become…
+**Q4.17** When I'm stressed, I'm more likely to become…
 - **Format:** multi | **Weight:** standard
 - **Options:** A) controlling · B) withdrawn · C) irritable · D) tearful · E) hyper-productive · F) avoidant/procrastinating · G) affectionate-seeking
 - **Measures:** stress signature; relationship impact
 
-**Q18.** I struggle with jealousy in close relationships.
+**Q4.18** I struggle with jealousy in close relationships.
 - **Format:** likert | **Weight:** critical
 - **Measures:** insecurity; anxious attachment-linked reactivity
 
-**Q19.** How open are you to therapy/coaching/self-improvement if a relationship is struggling?
+**Q4.19** How open are you to therapy, coaching, or self-improvement if your relationship is struggling?
 - **Format:** slider | **Weight:** standard
 - **Anchors:** 1 = "Not open" · 10 = "Very open"
 - **Measures:** growth mindset; adaptive capacity
 
-**Q20.** In past relationships, partners most often said my emotional patterns were…
+**Q4.20** In past relationships, partners described my emotional patterns as…
 - **Format:** single | **Weight:** standard
 - **Options:** A) steady/calm · B) intense/passionate · C) sensitive/easily hurt · D) unpredictable · E) distant/unavailable
 - **Measures:** behavioral reflection of traits (reduces abstract self-labeling)
@@ -545,104 +573,115 @@ Commitment as a relationship-maintenance engine: dedication, willingness to sacr
 
 ### Questions (20)
 
-**Q1.** What are you looking for right now?
-- **Format:** single | **Weight:** critical
-- **Options:** A) casual dating · B) dating but open-ended · C) committed relationship · D) life partner/marriage-minded · E) unsure
+**Q5.1** For me, the purpose of a committed relationship is mostly about (Select your top 2):
+- **Format:** multi | **Weight:** standard
+- (A) Building a shared life together — partnership, family, mutual goals
+- (B) Deep emotional connection and companionship
+- (C) Personal growth — relationships challenge me to become better
+- (D) Security and stability — having someone I can count on
+- (E) All of the above in roughly equal measure
 - **Measures:** relationship intent alignment
 
-**Q2.** Scenario: Your relationship hits a rough patch for 2–3 months (stress, less romance). You're most likely to…
+**Q5.2** Scenario: Your relationship hits a rough patch for 2–3 months (more stress, less romance). You're most likely to…
 - **Format:** single | **Weight:** critical
 - **Options:** A) work on it actively · B) suggest help/tools (books/therapy) · C) wait and see · D) emotionally detach · E) start looking elsewhere
 - **Measures:** dedication vs alternatives orientation
 
-**Q3.** When I commit, I change my behavior to protect the relationship (boundaries, time, priorities).
+**Q5.3** When I commit to a relationship, I change my behavior to protect it (boundaries, time, priorities).
 - **Format:** likert | **Weight:** critical
 - **Measures:** commitment enactment (maintenance behaviors)
 
-**Q4.** How strongly do you agree: "If I'm unhappy, it's reasonable to leave rather than work on it."
+**Q5.4** How strongly do you agree: "If I'm unhappy, it's reasonable to leave rather than work on it."
 - **Format:** likert | **Weight:** critical
 - **Measures:** persistence threshold; exit orientation
 
-**Q5.** How important is exclusivity once you're "official"?
+**Q5.5** How important is exclusivity once you're "official"?
 - **Format:** slider | **Weight:** critical
 - **Anchors:** 1 = "Flexible" · 10 = "Non-negotiable"
 - **Measures:** exclusivity expectation
 
-**Q6.** I am comfortable discussing timelines (exclusivity, moving in, marriage) without feeling trapped.
+**Q5.6** I am comfortable discussing timelines (exclusivity, moving in, marriage) without feeling trapped.
 - **Format:** likert | **Weight:** standard
 - **Measures:** future talk tolerance; avoidant commitment anxiety
 
-**Q7.** Scenario: An attractive ex or new person shows interest while you're committed. You…
+**Q5.7** Scenario: An attractive ex or new person shows interest while you're committed. Your response is to…
 - **Format:** single | **Weight:** critical
 - **Options:** A) create distance and reinforce boundaries · B) mention it transparently to partner · C) enjoy attention but keep it platonic · D) flirt privately · E) pursue it
 - **Measures:** derogation of alternatives; boundary discipline
 
-**Q8.** How do you usually handle the "defining the relationship" conversation?
+**Q5.8** How do you like to handle "defining the relationship?"
 - **Format:** single | **Weight:** standard
 - **Options:** A) initiate early · B) wait for partner · C) avoid until forced · D) prefer actions over labels · E) unsure
 - **Measures:** clarity-seeking; ambiguity tolerance
 
-**Q9.** I see commitment as a choice you keep making, not just a feeling.
+**Q5.9** I see commitment as a choice you keep making, not just a feeling.
 - **Format:** likert | **Weight:** standard
 - **Measures:** dedication mindset
 
-**Q10.** If my partner needs to make a major life decision (career, health, family), I'm willing to adjust my plans.
-- **Format:** likert | **Weight:** standard
-- **Measures:** willingness to sacrifice/support
+**Q5.10** How important is it that your partner demonstrates their commitment through actions (not just words)?
+- **Format:** slider
+- 1 = Words are enough — I don't need grand gestures
+- 4 = Moderate importance — some demonstration is nice
+- 7 = Important — I need to see consistent effort
+- 10 = Essential — actions are the only way I believe commitment is real
 
-**Q11.** Scenario: Your partner's mental health dips (anxiety/depression) and affects the relationship. You…
-- **Format:** single | **Weight:** critical
-- **Options:** A) support + encourage treatment while holding boundaries · B) support unconditionally even if it hurts me · C) get frustrated and withdraw · D) consider leaving quickly · E) minimize it ("snap out of it")
-- **Measures:** supportive commitment vs avoidance; resilience under stress
+**Q5.11** What's the longest committed romantic relationship you've been in?
+- **Format:** single | **Weight:** standard
+- **Options:** A) Haven't had one · B) less than a year · C) 1-5 years · D) 6-15 years · E) 16-25 years · F) 25+ years
 
-**Q12.** How often do you keep "backup options" while dating someone you like?
+**Q5.12** How often do you keep "backup options" while dating someone you like?
 - **Format:** single | **Weight:** critical
 - **Options:** A) never · B) rarely · C) sometimes · D) often · E) always
 - **Measures:** alternatives salience
 
-**Q13.** I'm comfortable merging parts of life over time (friends, routines, holidays).
+**Q5.13** I'm comfortable merging parts of life over time (friends, routines, holidays, living space).
 - **Format:** likert | **Weight:** standard
 - **Measures:** investment-building readiness
 
-**Q14.** What best describes your view of long-term relationships?
-- **Format:** single | **Weight:** standard
-- **Options:** A) passion should stay high naturally · B) love requires effort/maintenance · C) relationships mostly fade · D) depends on the partner · E) unsure
-- **Measures:** maintenance beliefs; effort expectations
+**Q5.14** How important is it that your partner demonstrates their commitment through actions (not just words)?
+- **Format:** slider
+- 1 = Words are enough — I don't need grand gestures
+- 4 = Moderate importance — some demonstration is nice
+- 7 = Important — I need to see consistent effort
+- 10 = Essential — actions are the only way I believe commitment is real
 
-**Q15.** Scenario: Your partner asks for reassurance about your commitment. You…
+**Q5.15** Scenario: Your partner asks for reassurance about your commitment. You…
 - **Format:** single | **Weight:** critical
 - **Options:** A) reassure warmly and specifically · B) reassure but feel annoyed · C) avoid the talk · D) criticize them for insecurity · E) become distant
 - **Measures:** perceived partner commitment signaling (top predictor)
 
-**Q16.** How important is it to you that a partner is "all-in" (clear commitment)?
+**Q5.16** How important is it to you that a partner is "all-in" (clear commitment)?
 - **Format:** slider | **Weight:** critical
 - **Anchors:** 1 = "Not important" · 10 = "Extremely important"
 - **Measures:** commitment needs; mismatch risk
 
-**Q17.** I tend to invest (time, care, planning) once I decide someone matters to me.
+**Q5.17** I tend to invest (time, care, planning) once I decide someone matters to me.
 - **Format:** likert | **Weight:** standard
 - **Measures:** investment size tendency
 
-**Q18.** If my partner and I disagree on a major issue, I'm willing to negotiate rather than issue ultimatums.
+**Q5.18** If my partner and I disagree on a major issue, I'm willing to negotiate rather than issue ultimatums.
 - **Format:** likert | **Weight:** standard
 - **Measures:** commitment + collaboration
 
-**Q19.** In previous relationships, I typically ended things when…
-- **Format:** single | **Weight:** standard
-- **Options:** A) values didn't align · B) trust broke · C) conflict felt constant · D) I lost feelings · E) I felt controlled · F) I felt neglected
-- **Measures:** exit triggers; pattern recognition
-
-**Q20.** How do you prefer to show commitment day-to-day?
+**Q5.19** How do you prefer to show commitment day-to-day? (Select your top 3):
 - **Format:** multi | **Weight:** standard
-- **Options:** A) consistent communication · B) reliability/keeping promises · C) affection · D) making plans for the future · E) acts of service · F) public "we" identity
+- **Options:** A) consistent communication · B) reliability/keeping promises · C) physical affection · D) making plans for the future · E) acts of service · F) public "we" identity
 - **Measures:** commitment expression style (relationship-specific perception)
+
+**Q5.20** How do you feel about making a lifelong commitment (marriage or equivalent)?
+- **Format:** single
+- (A) It's something I deeply want and am working toward
+- (B) I'm open to it with the right person
+- (C) I'm cautious — I've seen too many marriages fail
+- (D) I don't believe lifelong commitment is realistic
+- (E) I'm not interested in traditional commitment structures
 
 ---
 
 ## Questionnaire 6: Intimacy, Sexuality & Affection
 
 ### What this measures
-Sexual compatibility, affection needs, openness discussing desires, exclusivity expectations, and willingness to maintain passion through novelty. **Sexual satisfaction is the #3 predictor** of relationship quality (Joel & Eastwick, 2020).
+Sexual desire and compatibility, affection needs, openness discussing desires, exclusivity expectations, and willingness to maintain passion through novelty. **Sexual satisfaction is the #3 predictor** of relationship quality (Joel & Eastwick, 2020).
 
 ### Research basis
 - Lust/attraction/attachment systems: **Fisher et al. (2006)**
@@ -653,97 +692,110 @@ Sexual compatibility, affection needs, openness discussing desires, exclusivity 
 
 ### Questions (20)
 
-**Q1.** How important is a satisfying sex life to your overall relationship happiness?
+**Q6.1** How important is physical affection (hand-holding, hugging, cuddling) in your daily relationship?
+- **Format:** slider
+- 1 = Not important — I'm not a physically affectionate person
+- 4 = Nice but not essential
+- 7 = Important — regular physical connection matters to me
+- 10 = Essential — I need daily physical affection to feel connected
+
+**Q6.2** How important is a satisfying sex life to your overall relationship happiness?
 - **Format:** slider | **Weight:** critical
 - **Anchors:** 1 = "Not very important" · 10 = "Extremely important"
 - **Measures:** sex centrality; expectation alignment
 
-**Q2.** When I'm not in the mood, I can communicate that kindly without avoiding my partner.
+**Q6.3** How often do you desire sexual intimacy in a committed relationship?
+- **Format:** single | **Weight:** standard
+- (A) Multiple times a week
+- (B) About once a week
+- (C) A few times a month
+- (D) A few times a year or less
+- (E) It depends on the phase of the relationship — frequency naturally changes
+- (F) Abstinence / wait until marriage
+
+**Q6.4** When I'm not in the mood, I can communicate that kindly without avoiding my partner.
 - **Format:** likert | **Weight:** critical
 - **Measures:** sexual communication; avoidance prevention
 
-**Q3.** Scenario: Your partner wants sex more often than you do. You are most likely to…
-- **Format:** single | **Weight:** critical
-- **Options:** A) discuss and find a workable compromise · B) comply but build resentment · C) avoid the conversation · D) feel pressured and withdraw · E) end relationship
-- **Measures:** desire discrepancy management
-
-**Q4.** How often do you prefer physical affection (non-sexual)?
-- **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Rarely" · 10 = "Multiple times daily"
-- **Measures:** affection frequency need
-
-**Q5.** Which affection styles matter most to you?
+**Q6.5** What kind of affection matters most to you? (Select your top 3):
 - **Format:** multi | **Weight:** standard
-- **Options:** A) cuddling · B) kissing · C) hand-holding · D) verbal affirmation · E) playful touch · F) thoughtful gestures · G) quality time
+- **Options:** A) cuddling · B) kissing · C) hand-holding · D) verbal affirmation · E) playful touch/tickling · F) back rub/scratch · G) caressing
 - **Measures:** love/affection language behaviors
 
-**Q6.** I feel comfortable talking about sexual likes/dislikes without shame.
+**Q6.6** I feel comfortable talking about sexual likes & dislikes with my partner.
 - **Format:** likert | **Weight:** critical
 - **Measures:** openness; communication about sex
 
-**Q7.** Scenario: Something happens during sex that doesn't feel good for you. You…
-- **Format:** single | **Weight:** critical
-- **Options:** A) speak up in the moment · B) redirect gently without words · C) tolerate it but feel bad later · D) avoid sex next time · E) become upset/angry
-- **Measures:** consent communication; boundary setting
+**Q6.7** How important is it that a partner initiates intimacy (not always waiting for you to make the first move)?
+- **Format:** slider
+- 1 = Doesn't matter — I'm happy to always initiate
+- 4 = Somewhat important
+- 7 = Important — mutual initiation shows mutual desire
+- 10 = Very important — I need to feel wanted and pursued
 
-**Q8.** What best describes your ideal sexual pace early in dating?
+**Q6.8** Early in dating, when it comes to sex, I like to take it _____.
 - **Format:** single | **Weight:** standard
-- **Options:** A) very slow · B) slow-to-moderate · C) moderate · D) fast · E) varies a lot by person
+- **Options:** A) very slow - wait over a month · B) slow - wait a month · C) moderate - 5 dates · D) fast / jump in if sparks fly · E) varies a lot by the person
 - **Measures:** pacing preference; mismatch risk
 
-**Q9.** Do you prefer novelty/experimentation in intimacy?
+**Q6.9** Do you enjoy novelty / experimentation in bed?
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Prefer familiar/routine" · 10 = "Love novelty/variety"
+- **Anchors:** 1 = "Prefer what's familiar" · 4 = "Mix it up now and then" · 7 = "I like trying new things" · 10 = "I'm kinky!"
 - **Measures:** novelty seeking (ties to passion maintenance)
 
-**Q10.** Scenario: After conflict, your partner wants physical closeness. You typically…
+**Q6.10** Scenario: After conflict, your partner wants physical closeness. You typically…
 - **Format:** single | **Weight:** standard
 - **Options:** A) welcome it as reconnection · B) need to talk first · C) need time/space first · D) feel turned off and withdraw · E) use sex to avoid talking
 - **Measures:** intimacy-as-repair style; avoidance
 
-**Q11.** How important is sexual exclusivity for you in a committed relationship?
+**Q6.11** How important is sexual exclusivity for you in a committed relationship?
 - **Format:** slider | **Weight:** critical
 - **Anchors:** 1 = "Not important" · 10 = "Essential"
 - **Measures:** exclusivity expectation (dealbreaker for many)
 
-**Q12.** I can give affection even when I'm stressed (not just when things are perfect).
+**Q6.12** I can give affection even when I'm stressed (not just when things are perfect).
 - **Format:** likert | **Weight:** standard
 - **Measures:** consistency of warmth; long-term resilience
 
-**Q13.** Scenario: Your partner requests more affection. Your first reaction is…
-- **Format:** single | **Weight:** standard
-- **Options:** A) curious and willing to adjust · B) willing but needs reminders · C) feel criticized and defensive · D) feel controlled and withdraw · E) dismiss it as needy
-- **Measures:** responsiveness; avoidant reaction risk
+**Q6.13** How do you prefer to express romantic love? (Select your top 3):
+- **Format:** multi
+- [ ] Physical affection (touch, holding, kissing)
+- [ ] Verbal affirmation ("I love you," compliments, appreciation)
+- [ ] Quality time (focused attention, shared activities)
+- [ ] Acts of service (doing things for them, helping with tasks)
+- [ ] Giving gifts or thoughtful gestures
+- [ ] Deep conversation and emotional sharing
 
-**Q14.** How do you prefer to initiate sex?
+**Q6.14** How do you prefer to initiate sex?
 - **Format:** multi | **Weight:** standard
-- **Options:** A) direct ask · B) flirting throughout the day · C) physical touch escalation · D) planned date-night · E) spontaneity only · F) I prefer partner to initiate
+- **Options:** A) ask directly · B) flirt throughout the day · C) physical touch · D) planned date-night · E) spontaneously · F) I prefer my partner to initiate
 - **Measures:** initiation style compatibility
 
-**Q15.** When sex frequency drops (busy season, stress), I'm able to address it without blame.
+**Q6.15** When sex frequency drops (busy season, stress), I'm able to discuss it without blame.
 - **Format:** likert | **Weight:** critical
 - **Measures:** sexual problem-solving vs criticism
 
-**Q16.** In a typical week in a committed relationship, how many times would you ideally want sex?
-- **Format:** range | **Weight:** critical
-- **Range:** 0–14+ times/week
-- **Measures:** desire level (behavioral preference)
+**Q6.16** How do you feel if your partner watches adult videos?
+**Format:** single
+- (A) Completely fine — it's normal and healthy
+- (B) Fine in moderation, as long as it doesn't affect our relationship
+- (C) Uncomfortable — I'd prefer they didn't
+- (D) Strongly opposed — this would be a problem for me
+- (E) I'd want to discuss boundaries around it together
 
-**Q17.** Which are dealbreakers for you sexually/romantically?
-- **Format:** multi | **Weight:** critical
-- **Options:** A) no affection · B) major libido mismatch · C) unwillingness to discuss sex · D) porn use mismatch · E) kink mismatch · F) non-monogamy mismatch · G) sexual selfishness/lack of reciprocity
-- **Measures:** non-negotiables; early filtering
+**Q6.17** How do you feel about public displays of affection (PDA)?
+- **Format:** single
+- (A) Love it — holding hands, kissing, being visibly affectionate in public
+- (B) Comfortable with subtle PDA (hand-holding, arm around shoulder)
+- (C) Prefer to keep affection private
+- (D) Depends on the context and setting
+- (E) No strong opinion
 
-**Q18.** I prioritize my partner's pleasure and check in during intimacy.
+**Q6.18** I prioritize my partner's pleasure and check in during intimacy.
 - **Format:** likert | **Weight:** standard
 - **Measures:** mutuality; empathy
 
-**Q19.** Scenario: Your partner shares a new desire/fantasy. You…
-- **Format:** single | **Weight:** standard
-- **Options:** A) respond with curiosity and discuss boundaries · B) feel awkward but open · C) judge it and shut it down · D) agree then later resent · E) withdraw
-- **Measures:** openness; shame/judgment risk
-
-**Q20.** How important are shared novel experiences (travel, new activities) for keeping romance alive?
+**Q6.19** How important are shared novel experiences (travel, new activities) for keeping romance alive?
 - **Format:** slider | **Weight:** standard
 - **Anchors:** 1 = "Not important" · 10 = "Very important"
 - **Measures:** self-expansion/novelty maintenance (Aron)
@@ -753,7 +805,7 @@ Sexual compatibility, affection needs, openness discussing desires, exclusivity 
 ## Questionnaire 7: Lifestyle Compatibility & Equity
 
 ### What this measures
-Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health, substance use) plus perceived fairness in labor and finances. Inequity breeds resentment and is especially toxic during major stressors like parenthood—division of labor is the #1 stressor for new parents.
+Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health, substance use), division of household labor, finances. Inequity breeds resentment and is especially toxic during major stressors like parenthood—division of labor is the #1 stressor for new parents.
 
 ### Research basis
 - Equity theory (perceived fairness predicts satisfaction): **Walster et al. (1978)**
@@ -765,112 +817,135 @@ Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health
 
 ### Questions (22)
 
-**Q1.** Typical bedtime (most nights)
+**Q7.1** My typical bedtime is around:
 - **Format:** range | **Weight:** standard
 - **Range:** 8pm–3am
 - **Measures:** sleep schedule compatibility
 
-**Q2.** My home cleanliness standard is…
+**Q7.2** My home is usually...
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Relaxed/mess is fine" · 10 = "Very tidy/organized"
+- **Anchors:** 1 = "Messy" · 4 = "Relaxed" · 7 = "Mostly organized" · 10 = "Very tidy & clean"
 - **Measures:** orderliness expectations
 
-**Q3.** Scenario: You move in together. Dishes pile up. Your likely behavior is…
+**Q7.3** Scenario: You move in together. Dishes pile up. Your likely behavior is…
 - **Format:** single | **Weight:** critical
 - **Options:** A) do them and discuss later · B) ask for a chore system · C) wait to see if partner does them · D) get resentful and passive-aggressive · E) criticize partner's character
 - **Measures:** equity response; resentment/criticism risk
 
-**Q4.** How do you prefer to split household labor?
+**Q7.4** How do you prefer to split household labor?
 - **Format:** single | **Weight:** critical
 - **Options:** A) 50/50 always · B) proportional to work hours · C) based on strengths/preferences · D) one partner leads home tasks · E) depends/figure it out later
 - **Measures:** fairness model; cohabitation fit
 
-**Q5.** Dealbreaker check: Substance use that would be a dealbreaker for you
+**Q7.5** Dealbreaker check: Substance use/habits that would be a dealbreaker for you are (Select your top 3):
 - **Format:** multi | **Weight:** critical
-- **Options:** A) smoking nicotine · B) frequent cannabis · C) heavy drinking · D) any recreational drugs · E) gambling · F) none
+- **Options:** A) vape/cigarettes · B) frequent cannabis · C) heavy drinking · D) other recreational drugs · E) gambling · F) none are a dealbreaker
 - **Measures:** lifestyle dealbreakers; assortative mating on substance behaviors
 
-**Q6.** Alcohol drinks per week (typical)
-- **Format:** range | **Weight:** critical
-- **Range:** 0–30+
-- **Measures:** substance pattern; lifestyle match
-
-**Q7.** Scenario: Your partner earns significantly more. How should finances feel?
+**Q7.6** How often do you drink alcohol? ⚠️ DEALBREAKER CANDIDATE
 - **Format:** single | **Weight:** critical
-- **Options:** A) strict 50/50 split · B) proportional contributions · C) shared pool regardless of income · D) separate finances only · E) unsure
-- **Measures:** fairness philosophy; money conflict risk
+- (A) Never — I don't drink
+- (B) Rarely — a few times a year / special occasions
+- (C) Occasionally — a few times a month
+- (D) Regularly — a few times a week
+- (E) Daily / near-daily
 
-**Q8.** How do you prefer to manage shared spending?
-- **Format:** single | **Weight:** standard
-- **Options:** A) detailed budget · B) loose budget · C) no budget but regular check-ins · D) separate and don't discuss much · E) one person manages it
-- **Measures:** financial process style
+**Q7.7** How social are you?
+- **Format:** slider
+- 1 = Very introverted — I need a lot of "me" time, small social doses
+- 4 = Somewhat introverted — I enjoy socializing but need time to recharge
+- 7 = Somewhat extroverted — I enjoy regular social activity
+- 10 = Very extroverted — I thrive on social interaction and feel bored when alone
 
-**Q9.** When I feel things are unfair, I raise it early (before resentment builds).
-- **Format:** likert | **Weight:** critical
-- **Measures:** equity maintenance; conflict prevention
+**Q7.8** How important is health & physical fitness in your own life?
+- **Format:** slider | **Weight:** standard
+- 1 = Not a priority
+- 4 = I make some effort but it's not central to my identity
+- 7 = Important — I exercise regularly and eat reasonably well
+- 10 = Very important — fitness and nutrition are core parts of my lifestyle
 
-**Q10.** Social energy: In a typical week, you prefer…
-- **Format:** single | **Weight:** standard
-- **Options:** A) lots of outings/people · B) moderate social time · C) mostly quiet/at home · D) varies widely · E) depends on partner
-- **Measures:** introversion/extraversion lifestyle (behavioral)
+**Q7.9** How important is it that your partner shares your level of health/fitness commitment?
+- **Format:** slider | **Weight:** standard
+- 1 = Not important at all
+- 4 = Somewhat preferred
+- 7 = Important — I want a partner who takes care of their health
+- 10 = Very important — this is a major compatibility factor for me
 
-**Q11.** Nights out per week you'd like in a relationship
+**Q7.10** How many nights out per week would you like in a relationship?
 - **Format:** range | **Weight:** standard
 - **Range:** 0–7
 - **Measures:** routine match; potential conflict frequency
 
-**Q12.** Scenario: One partner is messy; one is tidy. Best approach is…
-- **Format:** single | **Weight:** standard
-- **Options:** A) tidy partner adapts down · B) messy partner adapts up · C) negotiate zones/standards · D) hire help if possible · E) it won't work
-- **Measures:** negotiation flexibility; cohabitation viability
-
-**Q13.** How important is regular exercise/health routine to you?
-- **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Not important" · 10 = "Very important"
-- **Measures:** health lifestyle alignment
-
-**Q14.** Scenario: Your partner works long hours for a season. You expect them to…
+**Q7.11** Scenario: Your partner works long hours for a season. You expect them to…
 - **Format:** single | **Weight:** critical
-- **Options:** A) still contribute at home · B) contribute less temporarily with a plan · C) focus on work; home tasks can wait · D) pay for help · E) unsure
+- **Options:** A) still contribute at home · B) contribute less, temporarily · C) focus on work; home tasks can wait · D) pay for help · E) unsure
 - **Measures:** equity under stress; VSA stress response
 
-**Q15.** I'm comfortable discussing money regularly without it turning into conflict.
+**Q7.12** I'm comfortable discussing money regularly without it turning into conflict.
 - **Format:** likert | **Weight:** standard
 - **Measures:** financial communication readiness
 
-**Q16.** How often do you cook vs prefer takeout?
+**Q7.13** How often do you cook vs alternatives?
 - **Format:** single | **Weight:** standard
-- **Options:** A) cook most meals · B) mix · C) mostly takeout · D) depends on schedule · E) I dislike cooking
+- **Options:** A) cook most meals · B) mix · C) depends on schedule · D) mostly takeout/delivery · E) I dislike cooking
 - **Measures:** daily routine compatibility
 
-**Q17.** Scenario: Your partner forgets their chores repeatedly. You…
+**Q7.14** Scenario: Your partner forgets their chores repeatedly. You…
 - **Format:** single | **Weight:** critical
-- **Options:** A) reset the system and clarify expectations · B) remind gently each time · C) do it and resent · D) shame/criticize them · E) withdraw affection
+- **Options:** A) reset the system and clarify expectations · B) remind gently each time · C) do it and resent them · D) shame/criticize them · E) withdraw affection
 - **Measures:** resentment, contempt risk; repair vs escalation
 
-**Q18.** Work hours per week (typical)
+**Q7.15** How many hours is your typical work week?
 - **Format:** range | **Weight:** standard
 - **Range:** 0–80+
 - **Measures:** time availability; stress exposure (VSA)
 
-**Q19.** How important is alone time (without partner) weekly?
+**Q7.16** How much personal alone time do you need in an average week?
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Very little" · 10 = "A lot"
-- **Measures:** autonomy needs; cohabitation fit
+- 1 = Very little — I'd rather always be with my partner or others
+- 4 = A few hours per week
+- 7 = A significant amount — daily alone time is important
+- 10 = A lot — I need extended periods of solitude to function well
 
-**Q20.** If you had kids, how should childcare be split?
+**Q7.17** If you had kids, how should childcare be split between partners?
 - **Format:** single | **Weight:** critical
-- **Options:** A) equal time/effort · B) proportional to work hours · C) one primary caregiver · D) extended family support focus · E) I don't want kids
+- **Options:** A) equal time & effort · B) proportional to work hours · C) one primary caregiver · D) extended family support focus · E) I don't want kids
 - **Measures:** equity expectations in parenting (high-stress phase)
 
-**Q21.** I notice and appreciate invisible labor (planning, remembering, emotional support).
+**Q7.18** I notice and appreciate intangible labor (planning, remembering, emotional support).
 - **Format:** likert | **Weight:** standard
 - **Measures:** emotional labor awareness; equity perception
 
-**Q22.** When I'm stressed, my household standards…
+**Q7.19**  How do you feel about spending time with friends vs. couple time?
+**Format:** single
+- (A) I need weekly time with my friends
+- (B) A mix — some couple time, some friend time, some mutual friend time
+- (C) I'd want to develop shared friendships and spend most social time together
+- (D) I spend most free time with my partner
+- (E) No strong preference
+
+**Q7.20** How do you feel about screens and tech use at home (TV during dinner, phones in bed, gaming)?
 - **Format:** single | **Weight:** standard
-- **Options:** A) stay the same · B) I get stricter/controlling · C) I let things slide · D) I avoid and procrastinate · E) I become critical of others
-- **Measures:** stress behavior affecting equity and conflict
+- (A) Relaxed — I don't have strong feelings about screen time
+- (B) Some boundaries are important — no phones at dinner, for example
+- (C) I prefer less screen time & more face-to-face interaction
+- (D) I'm a heavy tech user and wouldn't want to be restricted
+- (E) I'd want to discuss and agree on boundaries together
+
+**Q7.21** How do you feel about travel and vacations?
+- **Format:** single | **Weight:** standard
+- (A) I love to travel / want to explore the world with my partner
+- (B) I enjoy occasional vacations but not a frequent traveler
+- (C) I prefer staycations / local trips — travel is stressful
+- (D) I travel a lot for work & want vacations to be restful
+- (E) Budget-conscious — I'd rather save money than spend on travel
+
+**Q7.22** How important is it that a partner maintains a similar standard of living to yours (income level, lifestyle expectations)?
+**Format:** slider
+- 1 = Not important — love transcends economics
+- 4 = Some compatibility preferred but not essential
+- 7 = Important — significant income disparity creates challenges
+- 10 = Very important — I need a partner at a similar financial level
 
 ---
 
@@ -888,97 +963,118 @@ The "relationship glue": friendship quality, fondness/admiration, responsiveness
 
 ### Questions (20)
 
-**Q1.** I regularly express appreciation for small things (not just big gestures).
+**Q8.1** I regularly thank my romantic partner for small things (not just big gestures).
 - **Format:** likert | **Weight:** critical
 - **Measures:** appreciation frequency (top predictor)
 
-**Q2.** Scenario: Your partner shares good news. You typically…
+**Q8.2** Scenario: Your partner shares good news. You typically…
 - **Format:** single | **Weight:** critical
-- **Options:** A) celebrate enthusiastically and ask questions · B) say "nice" but stay focused on my task · C) feel competitive/one-up · D) minimize it · E) change subject
+- **Options:** A) celebrate enthusiastically and ask questions · B) congratulate warmly · C) acknowledge it but move on · D) feel happy but envious · E) change the subject
 - **Measures:** active-constructive responding; turning toward
 
-**Q3.** When my partner is stressed, I try to make life easier in concrete ways.
+**Q8.3** When my partner is stressed, I try to make their life easier in concrete ways.
 - **Format:** likert | **Weight:** standard
 - **Measures:** supportive behaviors; friendship maintenance
 
-**Q4.** How important is it that your partner feels like your best friend?
+**Q8.4** How important is it that your partner feels like your best friend?
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Not important" · 10 = "Essential"
+- 1 = Not important — romantic partners & best friends serve different roles
+- 4 = Nice, but not necessary
+- 7 = Important — I want my partner to be one of my closest friends
+- 10 = Essential — my partner should be my best friend above anyone else
 - **Measures:** friendship centrality
 
-**Q5.** Scenario: Your partner makes a "bid" (shows a meme, touches your arm, asks a small question) while you're busy. You…
+**Q8.5** Scenario: Your partner makes a "bid for connection" (shows a meme, touches your arm, asks a small question) while you're busy. You…
 - **Format:** single | **Weight:** critical
-- **Options:** A) respond warmly even briefly · B) say "later" and follow up · C) ignore unintentionally often · D) respond annoyed · E) mock/dismiss
+- **Options:** A) respond warmly even if briefly · B) say "later" and follow up · C) ignore unintentionally · D) respond annoyed · E) mock/dismiss
 - **Measures:** turning toward vs turning away/against
 
-**Q6.** I can name specific things I admire in my partner (not generic).
-- **Format:** likert | **Weight:** standard
-- **Measures:** fondness/admiration specificity
+**Q8.6** What do you appreciate most in a romantic partner? (Select your top 5):
+- **Format:** multi | **Weight:** standard
+- [ ] Their kindness and how they treat others
+- [ ] Their intelligence and curiosity
+- [ ] Their sense of humor
+- [ ] Their resilience and strength
+- [ ] Their passion and drive
+- [ ] Their integrity and honesty
+- [ ] Their warmth and emotional openness
+- [ ] Their creativity and uniqueness
+- [ ] Their reliability and dependability
+- [ ] Their ability to make me laugh and feel at ease
 
-**Q7.** How often do you like to do shared "rituals" (weekly date night, Sunday walk, etc.)?
+**Q8.7** How important are shared rituals and traditions in a relationship (weekly date night, morning coffee together, holiday traditions, inside jokes)?
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Rarely" · 10 = "Very often"
-- **Measures:** ritual orientation; shared meaning
+- 1 = Not important — spontaneity is better than routine
+- 4 = Nice to have but not essential
+- 7 = Important — rituals create a sense of "us"
+- 10 = Very important — shared rituals are the heartbeat of a relationship
 
-**Q8.** Scenario: You're annoyed with your partner, but they attempt a small repair (smile, joke, touch). You…
+**Q8.8** Scenario: You're annoyed with your partner, but they attempt a small repair (smile, joke, touch). You…
 - **Format:** single | **Weight:** critical
 - **Options:** A) accept it and soften · B) accept later after a minute · C) reject it and stay cold · D) punish with sarcasm · E) escalate
 - **Measures:** repair receptivity; positivity ratio support
 
-**Q9.** When I'm unhappy, I still try to be kind (I don't "withhold warmth" to punish).
+**Q8.9** When I'm unhappy, I still try to be kind (I don't "withhold warmth" to punish).
 - **Format:** likert | **Weight:** critical
 - **Measures:** emotional punishment avoidance; positive perspective
 
-**Q10.** Which shared meaning areas matter most to you?
-- **Format:** multi | **Weight:** standard
-- **Options:** A) family traditions · B) travel/adventure · C) spirituality · D) community/service · E) building a home · F) learning/growth · G) creativity/play
-- **Measures:** meaning domains; couple identity alignment
-
-**Q11.** How do you prefer to receive appreciation?
-- **Format:** multi | **Weight:** standard
-- **Options:** A) words · B) affection · C) quality time · D) acts of service · E) gifts · F) public praise/pride
-- **Measures:** appreciation channel fit
-
-**Q12.** Scenario: Your partner has a dream that's inconvenient for you (school, career shift). You…
+**Q8.10** Scenario: Your partner has a dream that's inconvenient for you (school, career change). You…
 - **Format:** single | **Weight:** critical
 - **Options:** A) support and plan together · B) support emotionally but worry about logistics · C) discourage to protect stability · D) feel threatened and resist · E) insist they choose you over it
 - **Measures:** "make life dreams come true" (Gottman)
 
-**Q13.** I enjoy learning my partner's inner world (fears, hopes, history) over time.
+**Q8.11** I enjoy learning my partner's inner world (hopes, fears, history) over time.
 - **Format:** likert | **Weight:** standard
 - **Measures:** love maps; curiosity
 
-**Q14.** When my partner does something small that annoys me, I can keep a positive view of them overall.
+**Q8.12** When my partner does something small that annoys me, I can keep a positive view of them overall.
 - **Format:** likert | **Weight:** critical
 - **Measures:** positive sentiment override; negativity buffering
 
-**Q15.** How often do you laugh with a partner in daily life?
+**Q8.13** I regularly tell my partner specific things I admire or appreciate about them (not just "I love you" but "I admire how you handled that" or "I appreciate that you always...").
+- **Format:** likert | **Weight:** standard
+
+**Q8.14** How often do you laugh with your partner in daily life?
 - **Format:** slider | **Weight:** standard
 - **Anchors:** 1 = "Rarely" · 10 = "Very often"
 - **Measures:** friendship affect; positive interaction frequency
 
-**Q16.** Scenario: Your partner forgets something minor. Your default framing is…
+**Q8.15** Scenario: Your partner forgets something minor. Your usual thinking is…
 - **Format:** single | **Weight:** critical
 - **Options:** A) "They're human; no big deal" · B) "We should make a system" · C) "They don't care" · D) "They're incompetent" · E) sarcasm/eye-roll
 - **Measures:** attribution style; contempt risk proxy
 
-**Q17.** I like sharing everyday updates (even boring ones) with my partner.
+**Q8.16** I like sharing and hearing everyday updates (even boring ones) from my partner.
 - **Format:** likert | **Weight:** standard
 - **Measures:** companionship; closeness maintenance
 
-**Q18.** What makes you feel most "we-ness" as a couple?
-- **Format:** single | **Weight:** standard
-- **Options:** A) shared goals · B) shared rituals · C) shared friends/community · D) shared challenges overcome · E) shared hobbies · F) shared family traditions
+**Q8.17** What makes you feel the most "we-ness" as a couple? (Select your top 3):
+- **Format:** multi | **Weight:** standard
+- **Options:** A) shared goals · B) shared weekly rituals · C) shared friends/community · D) shared challenges · E) shared hobbies · F) shared family traditions
 - **Measures:** couple identity construction
 
-**Q19.** When my partner expresses a need, I try to respond rather than debate whether it's "valid."
+**Q8.18** When my partner expresses a need, I try to respond rather than debate if it's "valid."
 - **Format:** likert | **Weight:** critical
 - **Measures:** responsiveness; emotional validation (supports satisfaction)
 
-**Q20.** How important is building shared traditions/holidays/rituals together long-term?
+**Q8.19** How important is humor and playfulness in your daily interactions with a partner?
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = "Not important" · 10 = "Very important"
-- **Measures:** shared meaning orientation; long-term cohesion
+- 1 = Not important / I'm not a joker
+- 4 = Nice but not a priority
+- 7 = Important — laughter keeps the relationship fun
+- 10 = Essential — humor & playfulness are the top of my list
+
+**Q8.20** What kind of activities do you most enjoy sharing with a partner? (Select your top 5):
+- **Format:** multi | **Weight:** standard
+- [ ] Outdoor recreation (camping, beach, motor/water sports)
+- [ ] Physical activities (hiking, sports, gym, dancing)
+- [ ] Adventures and travel (road trips, exploring new places)
+- [ ] Cultural experiences (concerts, conferences, museums, theater)
+- [ ] Creative projects (art, music, writing, building)
+- [ ] Social gatherings (parties, dinner w/ friends, game nights)
+- [ ] Quiet home activities (cooking, reading, puzzles, gardening)
+- [ ] Learning together (classes, documentaries, new skills)
+- [ ] Low-key relaxation (TV/movies, lounging, naps)
 
 ---
 

@@ -787,6 +787,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 ### Q5.13 — I tend to mentally compare my current relationship to potential alternatives (other people I could be with, being single).
 **Format:** likert
 
+**Q14.** What best describes your view of long-term relationships?
+- **Format:** single | **Weight:** standard
+- **Options:** A) passion should stay high naturally · B) love requires effort/maintenance · C) relationships mostly fade · D) depends on the partner · E) unsure
+- **Measures:** maintenance beliefs; effort expectations
+
 ### Q5.14 — How do you feel about sharing your life long-term with one person (living together, shared finances, daily life)?
 **Format:** slider
 - 1 = Somewhat daunting — I value my independence highly
@@ -830,6 +835,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - [ ] Defending and supporting me to others
 - [ ] Being transparent and honest, even when it's difficult
 - [ ] Saying "I love you" and expressing feelings regularly
+
+**Q19.** In previous relationships, I typically ended things when…
+- **Format:** single | **Weight:** standard
+- **Options:** A) values didn't align · B) trust broke · C) conflict felt constant · D) I lost feelings · E) I felt controlled · F) I felt neglected
+- **Measures:** exit triggers; pattern recognition
 
 ---
 
@@ -934,6 +944,21 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Feel pressured and worry they'll be unsatisfied
 - (E) Try it even if I'm not into it — their happiness matters
 
+**Q6.19** Scenario: Your partner shares a new desire/fantasy. You…
+- **Format:** single | **Weight:** standard
+- **Options:** A) respond with curiosity and discuss boundaries · B) feel awkward but open · C) judge it and shut it down · D) agree then later resent · E) withdraw
+- **Measures:** openness; shame/judgment risk
+
+**Q6.17** Which are dealbreakers for you sexually/romantically?
+- **Format:** multi | **Weight:** critical
+- **Options:** A) no affection · B) major libido mismatch · C) unwillingness to discuss sex · D) porn use mismatch · E) kink mismatch · F) non-monogamy mismatch · G) sexual selfishness/lack of reciprocity
+- **Measures:** non-negotiables; early filtering
+
+**Q6.13** Scenario: Your partner requests more affection. Your first reaction is…
+- **Format:** single | **Weight:** standard
+- **Options:** A) curious and willing to adjust · B) willing but needs reminders · C) feel criticized and defensive · D) feel controlled and withdraw · E) dismiss it as needy
+- **Measures:** responsiveness; avoidant reaction risk
+
 ### Q6.13 — How important is maintaining romantic gestures (date nights, surprises, love notes) in a long-term relationship?
 **Format:** slider
 - 1 = Not important — stable love doesn't need constant romance
@@ -1025,6 +1050,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - 7 = Somewhat extroverted — I enjoy regular social activity
 - 10 = Very extroverted — I thrive on social interaction and feel drained when alone
 
+**Q7.** Scenario: Your partner earns significantly more. How should finances feel?
+- **Format:** single | **Weight:** critical
+- **Options:** A) strict 50/50 split · B) proportional contributions · C) shared pool regardless of income · D) separate finances only · E) unsure
+- **Measures:** fairness philosophy; money conflict risk
+
 ### Q7.6 — How often do you drink alcohol? ⚠️ DEALBREAKER CANDIDATE
 **Format:** single
 - (A) Never — I don't drink
@@ -1033,6 +1063,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Regularly — a few times a week
 - (E) Daily or near-daily
 
+**Q6.** You typically have __ alcohol drinks per week:
+- **Format:** multi | **Weight:** critical
+- **Options:** A) 0-1 · B) 2-4 · C) 5-8 · D) 9-12 · E) 13+
+- **Measures:** substance pattern; lifestyle match
+
 ### Q7.7 — How do you feel about marijuana use? ⚠️ DEALBREAKER CANDIDATE
 **Format:** single
 - (A) I use it regularly
@@ -1040,6 +1075,16 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) I don't use it but don't mind if my partner does
 - (D) I prefer a partner who doesn't use it
 - (E) I'm strongly opposed — this is a dealbreaker for me
+
+**Q8.** How do you prefer to manage shared spending?
+- **Format:** single | **Weight:** standard
+- **Options:** A) detailed budget · B) loose budget · C) no budget but regular check-ins · D) separate and don't discuss much · E) one person manages it
+- **Measures:** financial process style
+
+**Q9.** When I feel things are unfair, I raise it early (before resentment builds).
+- **Format:** likert | **Weight:** critical
+- **Measures:** equity maintenance; conflict prevention
+
 
 ### Q7.8 — How important is physical fitness and health in your own life?
 **Format:** slider
@@ -1063,12 +1108,27 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Accept the difference and avoid talking about money
 - (E) This would be a major source of stress and conflict for me
 
+**Q12.** Scenario: One partner is messy; one is tidy. Best approach is…
+- **Format:** single | **Weight:** standard
+- **Options:** A) tidy partner adapts down · B) messy partner adapts up · C) negotiate zones/standards · D) hire help if possible · E) it won't work
+- **Measures:** negotiation flexibility; cohabitation viability
+
 ### Q7.11 — How much personal alone time do you need in a typical week?
 **Format:** slider
 - 1 = Very little — I'd rather always be with my partner or others
 - 4 = A few hours per week
 - 7 = A significant amount — daily alone time is important
 - 10 = A lot — I need extended periods of solitude to function well
+
+**Q19.** How important is alone time (without your partner) weekly?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Very little" · 10 = "A lot"
+- **Measures:** autonomy needs; cohabitation fit
+
+**Q22.** When I'm stressed, my household standards…
+- **Format:** single | **Weight:** standard
+- **Options:** A) stay the same · B) I get stricter/controlling · C) I let things slide · D) I avoid and procrastinate · E) I become critical of others
+- **Measures:** stress behavior affecting equity and conflict
 
 ### Q7.12 — How do you feel about screens and technology use at home (phones during dinner, TV in bed, gaming)?
 **Format:** single
@@ -1109,6 +1169,11 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) I'm career-driven and frequently work long hours or weekends
 - (D) I'm still finding my balance
 - (E) Work-life balance is my top priority — I would never sacrifice personal life for career
+
+**Q18.** How many hours is your typical work week?
+- **Format:** range | **Weight:** standard
+- **Range:** 0–80+
+- **Measures:** time availability; stress exposure (VSA)
 
 ### Q7.17 — How do you feel about travel and vacations?
 **Format:** single
@@ -1195,6 +1260,10 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (D) Rarely — I show appreciation through actions, not words
 - (E) I struggle with expressing appreciation even when I feel it
 
+**Q6.** I can name specific things I admire in my partner (not generic).
+- **Format:** likert | **Weight:** standard
+- **Measures:** fondness/admiration specificity
+
 ### Q8.4 — What do you admire most in a romantic partner? Select all that apply.
 **Format:** multi
 - [ ] Their kindness and how they treat others
@@ -1208,12 +1277,10 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - [ ] Their reliability and dependability
 - [ ] Their ability to make me laugh and feel at ease
 
-### Q8.5 — How important are shared rituals and traditions in a relationship (weekly date night, morning coffee together, holiday traditions, inside jokes)?
-**Format:** slider
-- 1 = Not important — spontaneity is better than routine
-- 4 = Nice to have but not essential
-- 7 = Important — rituals create a sense of "us"
-- 10 = Very important — shared rituals are the heartbeat of a relationship
+**Q7.** How often do you like to do shared "rituals" (weekly date night, Sunday walk, etc.)?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = "Rarely" · 10 = "Very often"
+- **Measures:** ritual orientation; shared meaning
 
 ### Q8.6 — Scenario: You're deeply interested in something your partner doesn't care about at all (a hobby, a sport, a genre of music). How would you want them to engage with it? ⚠️ CRITICAL
 **Format:** single
@@ -1230,6 +1297,16 @@ Based on the Deep Research Report: *The Science of Romantic Compatibility, Relat
 - (C) Acknowledge it but move on — I don't make a big deal of things
 - (D) Feel genuinely happy but might also feel competitive or envious
 - (E) It depends on what it is
+
+**Q10.** Which shared meaning areas matter most to you?
+- **Format:** multi | **Weight:** standard
+- **Options:** A) family traditions · B) travel/adventure · C) spirituality · D) community/service · E) building a home · F) learning/growth · G) creativity/play
+- **Measures:** meaning domains; couple identity alignment
+
+**Q11.** How do you prefer to receive appreciation?
+- **Format:** multi | **Weight:** standard
+- **Options:** A) words · B) affection · C) quality time · D) acts of service · E) gifts · F) public praise/pride
+- **Measures:** appreciation channel fit
 
 ### Q8.8 — How well do you typically know the details of a close partner's inner world (their worries, dreams, daily experiences, important relationships)? ⚠️ CRITICAL — LOVE MAPS
 **Format:** slider
