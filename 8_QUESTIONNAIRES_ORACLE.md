@@ -74,10 +74,10 @@ Attachment orientation (secure vs. anxious vs. avoidant), comfort with emotional
 - **Measures:** support needs; co-regulation preferences
 
 **Q1.7** I worry about being abandoned or rejected in romantic relationships.
-**Format:** likert | **Weight:** standard
+- **Format:** likert | **Weight:** standard
 
 **Q1.8** When a relationship starts getting serious, I tend to:
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) Feel excited and lean in closer
 - (B) Feel a mix of excitement and nervousness but stay engaged
 - (C) Feel an urge to slow things down or create some distance
@@ -109,7 +109,7 @@ Attachment orientation (secure vs. anxious vs. avoidant), comfort with emotional
 - **Measures:** repair readiness; humility
 
 **Q1.14** How easily do you trust a new romantic partner?
-**Format:** slider
+- **Format:** slider
 - 1 = Very difficult — trust must be earned over a long time
 - 4 = Cautious but open — I give measured trust
 - 7 = Fairly easily — I extend trust unless given reason not to
@@ -117,7 +117,7 @@ Attachment orientation (secure vs. anxious vs. avoidant), comfort with emotional
 - **Measures:**
 
 **Q1.15** When I sense my partner is pulling away, I: ⚠️ CRITICAL
-**Format:** single
+- **Format:** single
 - (A) Calmly address it and ask what's going on
 - (B) Give them space but make sure they know I'm available
 - (C) Pursue them more intensely — increase texts, affection, or emotional demands
@@ -173,7 +173,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** contempt prevention; emotional control in communication
 
 **Q2.3** Scenario: You and your partner are arguing about something. Your heart is racing and you feel yourself getting flooded with emotion. What do you do?
-**Format:** single **Weight:** critical ⚠️
+- **Format:** single **Weight:** critical ⚠️
 - (A) Take a deep breath and ask for a 20-minute break to calm down before continuing
 - (B) Push through the conversation — stopping feels like giving up
 - (C) Shut down and go silent — I can't think clearly when I'm this activated
@@ -182,7 +182,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** criticism/stonewalling
 
 **Q2.4** After a fight with my partner, I am usually the one to initiate repair (apologize, reach out, make a joke to reconnect).
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) Yes — I almost always initiate repair
 - (B) About equally — we both reach out
 - (C) Rarely — I wait for them to come to me
@@ -200,7 +200,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** repair attempt style
 
 **Q2.7** When my partner and I disagree, I tend to focus on:
-**Format:** single | **Weight:** critical ⚠️
+- **Format:** single | **Weight:** critical ⚠️
 - (A) Understanding their perspective, even if I disagree
 - (B) Proving that my point is correct
 - (C) Finding a compromise as quickly as possible
@@ -209,7 +209,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** repair + emotional management
 
 **Q2.8** When my partner suggests I change something about my behavior, my first reaction is usually:
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) Curiosity — I want to understand their perspective
 - (B) Mild defensiveness, but I can usually get past it and listen
 - (C) Strong defensiveness — I feel attacked
@@ -218,7 +218,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** accept influence; contempt/stonewall risk
 
 **Q2.9** How comfortable are you bringing up difficult or sensitive topics with a romantic partner?
-**Format:** slider | **Weight:** standard
+- **Format:** slider | **Weight:** standard
 - 1 = Extremely uncomfortable — I avoid it as long as possible
 - 4 = Uncomfortable but I'll do it if I have to
 - 7 = Moderately comfortable — I can raise important things
@@ -226,7 +226,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** assertiveness; collaboration
 
 **Q2.10** How do you feel about ongoing, major differences in a relationship (e.g., one person is a saver, the other a spender)?
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) They're normal — many relationship problems are persistent but manageable through dialogue
 - (B) They're frustrating but I can live with them if the relationship is otherwise good
 - (C) They're a warning that we might not be compatible
@@ -252,7 +252,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** repair bids; stonewalling counter-patterns
 
 **Q2.15** Scenario: Your partner raises a concern about your relationship in front of friends. How do you handle it?
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) Deflect publicly, then address it privately — public isn't the place for this
 - (B) Address it briefly and calmly in the moment, then discuss fully in private
 - (C) Feel embarrassed and shut down
@@ -266,7 +266,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** Four Horsemen + repair history
 
 **Q2.17** When your partner influences a decision you were initially set on (e.g., changing plans, reconsidering a purchase), how does that feel?
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) Fine — relationships involve mutual influence and I value their input
 - (B) Mildly annoying but I understand it's part of partnership
 - (C) Frustrating — I prefer to make my own decisions
@@ -275,7 +275,7 @@ How someone handles disagreement—especially Four Horsemen risk (criticism, con
 - **Measures:** partner influence acceptance
 
 **Q2.18** How do you prefer to communicate about everyday logistics and planning in a relationship?
-**Format:** single | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - (A) Frequent, proactive check-ins — I like us to be on the same page
 - (B) As needed — I communicate when something comes up
 - (C) Minimal — I prefer autonomy and only coordinate when necessary
@@ -319,7 +319,7 @@ Core values alignment (religion, politics, ethics), life ambitions, desired life
 - **Measures:** religiosity centrality; assortative mating
 
 **Q3.2** How important is it that your partner shares your religious or spiritual beliefs? ⚠️ DEALBREAKER CANDIDATE
-**Format:** slider | **Weight:** critical
+- **Format:** slider | **Weight:** critical
 - 1 = Not important at all
 - 4 = Somewhat preferred but not required
 - 7 = Important — we should be generally aligned
@@ -393,14 +393,14 @@ Core values alignment (religion, politics, ethics), life ambitions, desired life
 - **Measures:** life direction alignment, guiding values (Schwartz-like)
 
 **Q3.15** How important is ambition and career drive in a partner?
-**Format:** slider | **Weight:** standard
+- **Format:** slider | **Weight:** standard
 - 1 = Not important — I don't care about their career status
 - 4 = Somewhat important — they should be employed and responsible
 - 7 = Important — I want a partner who is driven and goal-oriented
 - 10 = Very important — high ambition is strongly attractive to me
 
 **Q3.16** Which best describes your long-term relationship goal?
-**Format:** single | **Weight:** critical
+- **Format:** single | **Weight:** critical
 - (A) Marriage / lifelong legal partnership
 - (B) Long-term committed partnership without necessarily marrying
 - (C) Serious relationship — let's see where it goes, no specific endpoint in mind
@@ -409,7 +409,7 @@ Core values alignment (religion, politics, ethics), life ambitions, desired life
 - **Measures:** institution orientation; commitment pathway
 
 **Q3.17** Where do you see yourself living long-term? ⚠️ DEALBREAKER CANDIDATE
-**Format:** single | **Weight:** critical
+- **Format:** single | **Weight:** critical
 - (A) Major city / urban area
 - (B) Suburb near a city
 - (C) Small town or rural area
@@ -536,7 +536,7 @@ Emotional stability (low neuroticism), impulse control, conscientious follow-thr
 - **Measures:** co-regulation vs contagion
 
 **Q4.16** I am able to recognize and name my emotions as they come up ("I'm feeling anxious right now" vs. just feeling "bad").
-**Format:** likert | **Weight:** standard
+- **Format:** likert | **Weight:** standard
 - **Measures:** emotional articulation; non-defensive expression
 
 **Q4.17** When I'm stressed, I'm more likely to become…
@@ -776,7 +776,7 @@ Sexual desire and compatibility, affection needs, openness discussing desires, e
 - **Measures:** sexual problem-solving vs criticism
 
 **Q6.16** How do you feel if your partner watches adult videos?
-**Format:** single
+- **Format:** single
 - (A) Completely fine — it's normal and healthy
 - (B) Fine in moderation, as long as it doesn't affect our relationship
 - (C) Uncomfortable — I'd prefer they didn't
@@ -917,7 +917,7 @@ Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health
 - **Measures:** emotional labor awareness; equity perception
 
 **Q7.19**  How do you feel about spending time with friends vs. couple time?
-**Format:** single
+- **Format:** single
 - (A) I need weekly time with my friends
 - (B) A mix — some couple time, some friend time, some mutual friend time
 - (C) I'd want to develop shared friendships and spend most social time together
@@ -946,6 +946,24 @@ Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health
 - 4 = Some compatibility preferred but not essential
 - 7 = Important — significant income disparity creates challenges
 - 10 = Very important — I need a partner at a similar financial level
+
+**Q7.23** What music genres do you enjoy? (Select up to 5):
+- **Format:** multi | **Weight:** standard
+- [ ] Pop
+- [ ] Rock
+- [ ] Hip-Hop/Rap
+- [ ] Country
+- [ ] R&B/Soul
+- [ ] Jazz
+- [ ] Electronic/EDM
+- [ ] Classical
+- [ ] Indie
+- [ ] Metal
+- [ ] Latin
+- [ ] Folk
+- [ ] K-Pop
+- [ ] Disco
+- [ ] Reggae
 
 ---
 
