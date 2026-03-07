@@ -1,52 +1,14 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/slices/authSlice';
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
 
 /**
  * Layout component - Main layout wrapper for pages with navigation
+ * Includes the premium Header component
  */
 function Layout() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate('/login');
-  };
-
   return (
     <div className="layout">
-      <nav className="navbar">
-        <div className="navbar-content">
-          <Link to="/" className="navbar-brand">
-            <h2>💕 Dating App</h2>
-          </Link>
-          <ul className="nav-menu">
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/preferences">Preferences</Link>
-            </li>
-            <li>
-              <Link to="/questionnaires">Questionnaires</Link>
-            </li>
-            <li>
-              <Link to="/discover">Discover</Link>
-            </li>
-            <li>
-              <Link to="/matches">Matches</Link>
-            </li>
-          </ul>
-          <div className="navbar-user">
-            {user && <span className="user-name">{user.firstName}</span>}
-            <button className="logout-button" onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Header />
       <main className="main-content">
         <Outlet />
       </main>

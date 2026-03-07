@@ -1,0 +1,89 @@
+.under-construction-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f1ff 0%, #fff8fa 100%);
+  padding: var(--spacing-lg);
+}
+
+.construction-container {
+  text-align: center;
+  max-width: 500px;
+}
+
+.construction-icon {
+  font-size: 5rem;
+  margin-bottom: var(--spacing-lg);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.construction-container h1 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.construction-message {
+  font-size: 1.125rem;
+  color: var(--color-text-2);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.construction-progress {
+  margin: var(--spacing-2xl) 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-cta);
+  border-radius: var(--radius-full);
+  width: 65%;
+  animation: load 2s ease-in-out;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 65%;
+  }
+}
+
+.progress-text {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+  .construction-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .construction-message {
+    font-size: 1rem;
+  }
+}

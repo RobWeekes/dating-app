@@ -8,6 +8,7 @@ import Profile from '../pages/Profile';
 import Preferences from '../pages/Preferences';
 import Discovery from '../pages/Discovery';
 import Matches from '../pages/Matches';
+import UnderConstruction from '../pages/UnderConstruction';
 import Layout from '../components/Layout';
 import ProtectedRoute from '../components/ProtectedRoute';
 
@@ -16,6 +17,87 @@ import ProtectedRoute from '../components/ProtectedRoute';
  * Using React Router v6 with createBrowserRouter
  */
 export const routes = createBrowserRouter([
+  // Public routes with layout (includes header)
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: 'under-construction',
+        element: <UnderConstruction />,
+      },
+      // Protected routes
+      {
+        path: 'questionnaires',
+        element: (
+          <ProtectedRoute>
+            <Questionnaires />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'questionnaire/:type',
+        element: (
+          <ProtectedRoute>
+            <QuestionnairePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'profile/edit',
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'preferences',
+        element: (
+          <ProtectedRoute>
+            <Preferences />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'discovery',
+        element: (
+          <ProtectedRoute>
+            <Discovery />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'discover',
+        element: (
+          <ProtectedRoute>
+            <Discovery />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'matches',
+        element: (
+          <ProtectedRoute>
+            <Matches />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+
   // Auth routes (no layout)
   {
     path: '/login',
@@ -24,50 +106,6 @@ export const routes = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
-  },
-
-  // Protected routes with layout
-  {
-    path: '/',
-    element: (
-      <ProtectedRoute>
-        <Layout />
-      </ProtectedRoute>
-    ),
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: 'questionnaires',
-        element: <Questionnaires />,
-      },
-      {
-        path: 'questionnaire/:type',
-        element: <QuestionnairePage />,
-      },
-      {
-        path: 'profile',
-        element: <Profile />,
-      },
-      {
-        path: 'profile/edit',
-        element: <Profile />,
-      },
-      {
-        path: 'preferences',
-        element: <Preferences />,
-      },
-      {
-        path: 'discover',
-        element: <Discovery />,
-      },
-      {
-        path: 'matches',
-        element: <Matches />,
-      },
-    ],
   },
 ], {
   future: {
