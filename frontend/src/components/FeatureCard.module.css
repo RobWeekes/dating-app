@@ -7,6 +7,9 @@
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 240px;
 }
 
 .feature-card::before {

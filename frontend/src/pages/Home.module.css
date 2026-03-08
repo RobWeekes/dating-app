@@ -29,6 +29,8 @@
   grid-template-columns: 1fr auto 1fr auto 1fr;
   gap: var(--spacing-lg);
   align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .step-arrow {
@@ -37,6 +39,65 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
+}
+
+/* ===== PROBLEM SECTION ===== */
+
+.problem-section {
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  background-color: #f8f5ff;
+  text-align: center;
+}
+
+.problem-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.problem-section>p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.problem-card {
+  padding: var(--spacing-lg);
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-base);
+}
+
+.problem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.problem-card-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.problem-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text);
+}
+
+.problem-card p {
+  font-size: 0.875rem;
+  color: #888;
+  line-height: 1.5;
 }
 
 /* ===== WHY AFFINITY SECTION ===== */
@@ -312,6 +373,15 @@
 
 /* Mobile: < 600px */
 @media (max-width: 599px) {
+  .problem-section {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
+  .problem-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
   .how-it-works {
     padding: var(--spacing-2xl) var(--spacing-md);
   }
@@ -319,6 +389,7 @@
   .features-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+    align-items: stretch;
   }
 
   .step-arrow {
@@ -383,5 +454,16 @@
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--spacing-lg);
+  }
+}
+
+/* Desktop: > 1024px */
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: minmax(240px, 1fr) auto minmax(240px, 1fr) auto minmax(240px, 1fr);
+  }
+
+  .why-content {
+    grid-template-columns: 1fr 1fr;
   }
 }

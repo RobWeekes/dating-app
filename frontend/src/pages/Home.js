@@ -21,41 +21,68 @@ function LandingPage() {
     <div className={styles['home-page']}>
       {/* Hero Section */}
       <Hero
-        title="Find Love Through Intelligence"
-        subtitle="Affinity uses advanced compatibility matching to connect you with someone special. Real connections start with real understanding."
-        cta1Text="Create Your Profile"
+        title="Stop Swiping. Start Connecting."
+        subtitle="Meet people based on who you actually are—not just what you look like. Affinity uses personality compatibility science to find your true match."
+        cta1Text="Find Your Match"
         cta1Link="/register"
         cta2Text="Already have an account?"
         cta2Link="/login"
         backgroundImage="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&h=600&fit=crop"
       />
 
+      {/* The Problem */}
+      <section className={styles['problem-section']}>
+        <div className="container">
+          <h2>Tired of Surface-Level Dating?</h2>
+          <p>
+            Dating apps left you overwhelmed by endless choices, bored by shallow profiles, and frustrated by people who aren't serious about real connections.
+          </p>
+          <div className={styles['problem-grid']}>
+            <div className={styles['problem-card']}>
+              <div className={styles['problem-card-icon']}>❌</div>
+              <h3>Too Many Choices</h3>
+              <p>Decision fatigue from swiping through hundreds of people</p>
+            </div>
+            <div className={styles['problem-card']}>
+              <div className={styles['problem-card-icon']}>❌</div>
+              <h3>Photos First</h3>
+              <p>Shallow matching that ignores personality compatibility</p>
+            </div>
+            <div className={styles['problem-card']}>
+              <div className={styles['problem-card-icon']}>❌</div>
+              <h3>No Intention</h3>
+              <p>Matching with people who aren't serious about relationships</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section className={styles['how-it-works']}>
         <div className="container">
-          <h2>How It Works</h2>
+          <h2>How to Find Your Perfect Match</h2>
           <p className={styles['section-subtitle']}>
-            Three simple steps to meet your perfect match
+            Three simple steps to discover real compatibility
           </p>
           <div className={styles['features-grid']}>
             <FeatureCard
-              icon="👤"
+              icon="📝"
               title="Create Your Profile"
-              description="Tell us about yourself. Upload photos, share your bio, and let your personality shine."
+              description="Tell us about yourself in 2 minutes. Add photos and share your story. Real people, real profiles."
               link="/register"
             />
             <div className={styles['step-arrow']}>→</div>
             <FeatureCard
               icon="🧠"
               title="Answer Questionnaires"
-              description="Complete personality, lifestyle, and compatibility questionnaires. The more you share, the better your matches."
+              description="Complete thoughtful personality and values questionnaires. The more you share, the better we match you."
               link="/register"
             />
             <div className={styles['step-arrow']}>→</div>
             <FeatureCard
               icon="💕"
-              title="Discover Matches"
-              description="Explore profiles of compatible singles in your area. Our smart matching ensures meaningful connections."
+              title="Connect With Your Match"
+              description="Explore compatible matches based on personality fit. Start meaningful conversations with people who actually get you."
               link="/register"
             />
           </div>
@@ -69,17 +96,17 @@ function LandingPage() {
             <div className={styles['why-text']}>
               <h2>Why Choose Affinity?</h2>
               <p>
-                Tired of endless swiping with no real connection? Affinity uses intelligent compatibility scoring based on personality, values, lifestyle, and relationships goals—not just photos.
+                You're looking for something real. An authentic connection built on shared values, compatibility, and genuine understanding—not endless swiping. Affinity matches you on personality, values, and life goals. Better matches mean real conversations. Real conversations mean real connections.
               </p>
               <ul className={styles['why-list']}>
-                <li>✓ Science-backed compatibility matching</li>
-                <li>✓ Verified profiles you can trust</li>
-                <li>✓ Deep questionnaires for meaningful connections</li>
-                <li>✓ Privacy-first approach</li>
-                <li>✓ Meet people ready for real relationships</li>
+                <li>✓ Personality-based matching (not photo-based)</li>
+                <li>✓ Verified, intention-focused community</li>
+                <li>✓ Fewer matches = better quality connections</li>
+                <li>✓ Your privacy is our priority</li>
+                <li>✓ Join people serious about real relationships</li>
               </ul>
               <Link to="/register" className="btn btn-primary btn-lg">
-                Join Today
+                Find Your Match Today
               </Link>
             </div>
             <div className={styles['why-image']}>
@@ -190,13 +217,13 @@ function LandingPage() {
         <div className="container container-sm text-center">
           <h2>Ready to Find Your Match?</h2>
           <p>
-            Join thousands of people finding meaningful connections every day. Create your profile in minutes and get matched with compatible singles in your area.
+            Join thousands of people discovering real connections through personality compatibility. Create your profile in 2 minutes—personality assessment comes after you sign up.
           </p>
           <Link to="/register" className="btn btn-primary btn-lg">
-            Sign Up Now
+            Create My Profile
           </Link>
           <p className={styles['cta-footer']}>
-            Already a member? <Link to="/login">Log in here</Link>
+            💬 No spam. No credit card required. Already a member? <Link to="/login">Log in here</Link>
           </p>
         </div>
       </section>
