@@ -35,7 +35,7 @@ function LandingPage() {
         <div className="container">
           <h2>Tired of Surface-Level Dating?</h2>
           <p>
-            Dating apps left you overwhelmed by endless choices, bored by shallow profiles, and frustrated by people who aren't serious about real connections.
+            Most dating apps left you overwhelmed by endless choices, bored by shallow profiles, and frustrated by people who aren't serious about real connections.
           </p>
           <div className={styles['problem-grid']}>
             <div className={styles['problem-card']}>
@@ -46,7 +46,7 @@ function LandingPage() {
             <div className={styles['problem-card']}>
               <div className={styles['problem-card-icon']}>❌</div>
               <h3>Photos First</h3>
-              <p>Shallow matching that ignores personality compatibility</p>
+              <p>Shallow matching that ignores personal compatibility</p>
             </div>
             <div className={styles['problem-card']}>
               <div className={styles['problem-card-icon']}>❌</div>
@@ -132,7 +132,7 @@ function LandingPage() {
             <div className={styles['premium-feature']}>
               <div className={styles['feature-badge']}>🎯</div>
               <h3>Smart Matching</h3>
-              <p>AI-powered algorithm finds your ideal partners</p>
+              <p>Science-backed algorithm finds your ideal partners</p>
             </div>
             <div className={styles['premium-feature']}>
               <div className={styles['feature-badge']}>🛡️</div>
