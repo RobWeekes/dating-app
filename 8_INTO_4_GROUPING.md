@@ -83,9 +83,9 @@
 
 | Group | Questionnaire 1 | Questionnaire 2 | Combined Tests | Research Priority |
 |-------|---|---|---|---|
-| **1** | Attachment (1) | Emotional Regulation (4) | Stress resilience, emotional safety | HIGH/HIGH |
-| **2** | Communication (2) | Commitment (5) | Repair patterns, willingness to fight | MOD/VERY HIGH |
-| **3** | Values (3) | Lifestyle (7) | Life fit, dealbreaker screening | VERY HIGH/VERY HIGH |
+| **1** | Values (3) | Lifestyle (7) | Life fit, dealbreaker screening | VERY HIGH/VERY HIGH |
+| **2** | Attachment (1) | Emotional Regulation (4) | Stress resilience, emotional safety | HIGH/HIGH |
+| **3** | Communication (2) | Commitment (5) | Repair patterns, willingness to fight | MOD/VERY HIGH |
 | **4** | Intimacy (6) | Friendship & Meaning (8) | Bonding & appreciation | MOD/VERY HIGH |
 
 ---
