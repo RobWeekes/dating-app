@@ -43,104 +43,121 @@ Core values alignment (religion, politics, children, relationship model, locatio
 **Importance weight: VERY HIGH for initial compatibility; VERY HIGH for long-term success**
 
 ### Questions (20)
+// clarify -> "my partner" = someone I'm in a good relationship with
 
+// -------------- Values & Life Goals --------------
 **Q1.1** How important is religion or spirituality in your daily life? ⚠️ DEALBREAKER
 - **Format:** slider | **Weight:** critical
-- **Anchors:** 1 = Not at all important · 4 = Somewhat important · 7 = Important · 10 = Central to my life
+- **Anchors:** 1 = Not important — I am not religious or spiritual · 4 = Somewhat important — I have beliefs but they're private · 7 = Important — it shapes many of my decisions & values · 10 = Central — faith/spirituality is the foundation of my life
 - **Measures:** religiosity; assortative mating
+// make sure religion selection is in profile
 
-**Q1.2** How important is it that your partner shares your religious beliefs? ⚠️ DEALBREAKER
-- **Format:** slider | **Weight:** critical
-- **Anchors:** 1 = Not important · 4 = Somewhat preferred · 7 = Important alignment · 10 = Essential dealbreaker
-- **Measures:** religious values tolerance
-
-**Q1.3** How important is it that your partner shares your political views?
+**Q1.2** Which best describes your political orientation?
 - **Format:** single | **Weight:** critical
-- **Options:** A) Doesn't matter · B) Prefer alignment but can tolerate differences · C) Important—agree on major issues · D) Essential—dealbreaker
-- **Measures:** political values tolerance
+- (A) Very progressive / liberal
+- (B) Somewhat liberal, left-leaning
+- (C) Moderate/centrist, independent
+- (D) Somewhat conservative, right-leaning
+- (E) Very conservative / traditional
+- (F) Libertarian
+- (G) Not politically engaged
+- **Measures:** political values
 
-**Q1.4** Do you want children? ⚠️ DEALBREAKER
+**Q1.3** My long-term relationship model is… ⚠️ DEALBREAKER
+- **Format:** single | **Weight:** critical
+- **Options:** A) Monogamous · B) Monogamish (some flexibility) · C) Open/"poly" relationship · D) Unsure
+- **Measures:** relationship structure dealbreaker
+
+**Q3.4** Which best describes your relationship goal?
+- **Format:** single | **Weight:** critical
+- (A) Marriage / lifelong partnership
+- (B) Long-term, committed without necessarily marrying
+- (C) Serious relationship — see where it goes
+- (D) Casual dating — not looking for anything serious right now
+- (E) Unsure — figuring out what I want
+- **Measures:** institution orientation; commitment pathway
+
+**Q3.5** What is your preferred pace for building a life together (cohabitation, merging routines)?
+- **Format:** single | **Weight:** standard
+- **Options:** A) <6 months · B) 6–12 months · C) 1–2 years · D) 2+ years · E) move in after married · F) prefer not to cohabit
+- **Measures:** life-merge pacing; stability preferences
+
+**Q1.6** Do you want children? ⚠️ DEALBREAKER
 - **Format:** single | **Weight:** critical
 - **Options:** A) Yes · B) No · C) Unsure · D) Open to partner preference · E) Already have and want more · F) Already have and don't want more
 - **Measures:** parenting goal dealbreaker
 
-**Q1.5** If you want children, how many do you envision?
+**Q1.7** If you want children, how many do you envision?
 - **Format:** single | **Weight:** standard
 - **Options:** A) Don't want children · B) 1 child · C) 2-3 · D) 4-5 · E) 6+
 
-**Q1.6** My ideal long-term relationship model is… ⚠️ DEALBREAKER
-- **Format:** single | **Weight:** critical
-- **Options:** A) Monogamous · B) Monogamish (some flexibility) · C) Open relationship · D) Polyamorous · E) Unsure
-- **Measures:** relationship structure dealbreaker
-
-**Q1.7** How do you view the ideal division of career and family responsibilities?
-- **Format:** single | **Weight:** critical
-- **Options:** A) Nearly equal—both share work 50/50 · B) Flexible—whoever is better suited · C) Division of labor—one career-focused · D) Strictly traditional · E) No strong opinion
-- **Measures:** role ideology; equity expectations
-
-**Q1.8** Where do you see yourself living long-term? ⚠️ DEALBREAKER
-- **Format:** single | **Weight:** critical
-- **Options:** A) Major city/urban area · B) Suburb near city · C) Small town or rural · D) Internationally · E) Flexible · F) Near family of origin
-- **Measures:** geographic rootedness |dealbreaker
-
-**Q1.9** How do you feel about pets in the household? ⚠️ DEALBREAKER
-- **Format:** single | **Weight:** critical
-- **Options:** A) Love pets—family members · B) Open to pets with limits · C) Prefer no pets · D) Allergic/strict constraints · E) No strong opinion
-- **Measures:** pet ownership dealbreaker
-
-**Q1.10** If you had kids, which parenting philosophy appeals to you?
+**Q1.8** If you had kids, which parenting philosophy appeals to you?
 - **Format:** single | **Weight:** critical
 - **Options:** A) Strict/disciplined · B) Structured · C) Gentle/flexible · D) Mixed/depends · E) I don't want kids
 - **Measures:** parenting style alignment
 
-**Q1.11** How often do you drink alcohol? ⚠️ DEALBREAKER
+**Q1.9** How do you view the division of career and family responsibilities?
 - **Format:** single | **Weight:** critical
-- **Options:** A) Never · B) Rarely—few times/year · C) Occasionally—few times/month · D) Regularly—few times/week · E) Daily/near-daily
+- **Options:** A) Nearly equal — both share career and family work 50/50 · B) Flexible — whoever is better suited, subject to change · C) Division of labor — one focuses more on career, the other more on home/family · D) Traditional gender roles — man provides financially, woman manages home · E) No strong opinion
+- **Measures:** role ideology; equity expectations
+
+**Q3.10** Which best describes your life goals?(Select your top 3):
+- **Format:** multi | **Weight:** standard
+- **Options:** A) career growth/achievement · B) balanced life · C) family-centered · D) freedom/travel · E) service/community impact · F) growth/learning
+- **Measures:** life direction alignment, guiding values (Schwartz-like)
+
+**Q1.11** Where do you see yourself living long-term? ⚠️ DEALBREAKER
+- **Format:** single | **Weight:** critical
+- **Options:** A) Major city/urban area · B) Suburb near city · C) Small town or rural · D) Internationally · E) Flexible · F) Near family of origin
+- **Measures:** geographic rootedness |dealbreaker
+
+**Q1.12** How do you feel about pets in the household? ⚠️ DEALBREAKER
+- **Format:** single | **Weight:** critical
+- **Options:** A) Love pets — they're family · B) Open to pets with limits · C) Prefer no pets · D) Allergic/strict constraints · E) No strong opinion
+- **Measures:** pet ownership dealbreaker
+
+// -------------- Lifestyle & Home Work --------------
+**Q1.13** How often do you drink alcohol? ⚠️ DEALBREAKER
+- **Format:** single | **Weight:** critical
+- **Options:** A) Never · B) Rarely — few times/year · C) Occasionally — few times/month · D) Regularly — few times/week · E) Daily/near-daily
 - **Measures:** substance use; assortative mating
 
-**Q1.12** Which substance use habits would be a dealbreaker? (Select your top 3)
+**Q1.14** Which substance use habits would be a dealbreaker? (Select up to 3)
 - **Format:** multi | **Weight:** critical
-- **Options:** A) Vape/cigarettes · B) Frequent cannabis · C) Heavy drinking · D) Other recreational drugs · E) Gambling · F) None are dealbreakers
-- **Measures:** lifestyle dealbreakers
+- **Options:** A) Vape/tobacco · B) Frequent cannabis · C) Heavy drinking · D) Other recreational drugs · E) Gambling · F) None are dealbreakers
+- **Measures:** lifestyle dealbreakers[]
 
-**Q1.13** Scenario: You move in together. Dishes pile up. You typically…
+**Q7.15** My home / bedroom is usually...
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = Messy / "Controlled chaos" · 4 = Relaxed · 7 = Mostly organized · 10 = Very clean & tidy
+- **Measures:** orderliness expectations
+
+**Q1.16** Scenario: You move in together. Dishes pile up. You typically…
 - **Format:** single | **Weight:** critical
-- **Options:** A) Do them and discuss later · B) Ask for a chore system · C) Wait to see if partner does them · D) Get resentful and passive-aggressive · E) Criticize partner's character
+- **Options:** A) Do them and discuss later · B) Ask for a chore system · C) Wait to see if partner does them · D) Get resentful / passive-aggressive · E) Criticize partner
 - **Measures:** equity response; resentment risk
 
-**Q1.14** How do you prefer to split household labor?
+**Q1.17** How do you prefer to split household labor?
 - **Format:** single | **Weight:** critical
-- **Options:** A) 50/50 always · B) Proportional to work hours · C) Based on strengths/preferences · D) One partner leads home tasks · E) Depends—figure it out
+- **Options:** A) 50/50 always · B) Proportional to work hours · C) Based on strengths/preferences · D) One partner leads home tasks · E) Depends — figure it out
 - **Measures:** fairness model; cohabitation fit
 
-**Q1.15** Scenario: Your partner works long hours for a season. You expect them to…
-- **Format:** single | **Weight:** critical
-- **Options:** A) Still contribute at home · B) Contribute less, temporarily · C) Focus on work; home tasks wait · D) Pay for help · E) Unsure
-- **Measures:** equity under stress; VSA response
-
-**Q1.16** Scenario: Your partner forgets their chores repeatedly. You…
-- **Format:** single | **Weight:** critical
-- **Options:** A) Reset system and clarify expectations · B) Remind gently each time · C) Do it and resent them · D) Shame/criticize them · E) Withdraw affection
-- **Measures:** resentment/contempt risk; repair vs escalation
-
-**Q1.17** If you had kids, how should childcare be split?
+**Q1.18** If you had kids, how should childcare be split?
 - **Format:** single | **Weight:** critical
 - **Options:** A) Equal time & effort · B) Proportional to work hours · C) One primary caregiver · D) Extended family focus · E) I don't want kids
 - **Measures:** equity expectations in parenting (high-stress phase)
 
-**Q1.18** How social are you?
+**Q7.19** How important is health & physical fitness in your own life?
 - **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = Very introverted · 4 = Somewhat introverted · 7 = Somewhat extroverted · 10 = Very extroverted
+- 1 = Not a priority
+- 4 = I make some effort but it's not central to my identity
+- 7 = Important — I exercise regularly and eat reasonably well
+- 10 = Very important — fitness and nutrition are core parts of my lifestyle
+
+**Q1.20** How social are you?
+- **Format:** slider | **Weight:** standard
+- **Anchors:** 1 = Very introverted — I need a lot of "me" time, small social doses · 4 = Somewhat introverted — I enjoy socializing but need time to recharge · 7 = Somewhat extroverted — I enjoy regular social activity · 10 = Very extroverted — I thrive on social interaction and feel bored when alone
 - **Measures:** social energy compatibility
-
-**Q1.19** I'm comfortable discussing money regularly without conflict.
-- **Format:** likert | **Weight:** standard
-- **Measures:** financial communication readiness
-
-**Q1.20** How important is it that a partner maintains similar income/lifestyle to yours?
-- **Format:** slider | **Weight:** standard
-- **Anchors:** 1 = Not important · 4 = Some preference · 7 = Important · 10 = Very important
-- **Measures:** financial parity expectations
 
 ---
 
@@ -155,6 +172,7 @@ Attachment orientation (secure/anxious/avoidant), emotional stability (low neuro
 **Importance weight: HIGH for initial compatibility; HIGH for long-term success**
 
 ### Questions (20)
+// clarify -> "my partner" = someone I'm in a good relationship with
 
 **Q2.1** When someone I'm dating takes longer than usual to reply, I typically…
 - **Format:** single | **Weight:** critical
@@ -166,33 +184,34 @@ Attachment orientation (secure/anxious/avoidant), emotional stability (low neuro
 - **Options:** A) Gently check in later · B) Ask repeatedly in the moment · C) Give space and wait · D) Get frustrated and disengage · E) Change topic to avoid conflict
 - **Measures:** responsiveness; pursue-withdraw pattern
 
-**Q2.3** In the first 2-3 months of dating, how much clarity do you prefer about exclusivity?
+**Q2.3** In the first 2-3 months of dating, how much clarity do you prefer about exclusivity/intentions?
 - **Format:** slider | **Weight:** critical
-- **Anchors:** 1 = Very casual/undefined fine · 10 = I want clear definitions early
+- **Anchors:** 1 = Very casual/define it later · 5 = depends on the connection · 10 = I want clear definitions early
 - **Measures:** tolerance for ambiguity; attachment activation
 
 **Q2.4** If I feel hurt by something my partner did, I can tell them directly without fearing abandonment.
 - **Format:** likert | **Weight:** critical
 - **Measures:** secure communication; fear of abandonment
 
-**Q2.5** If my partner needs reassurance (jealousy, insecurity), my reaction is typically…
+**Q2.5** If my partner needs reassurance (shows jealousy, insecurity), my reaction is …
 - **Format:** single | **Weight:** critical
-- **Options:** A) Reassure warmly · B) Reassure but feel drained · C) Get defensive ("you should trust me") · D) Withdraw/avoid · E) Become annoyed and criticize
+- **Options:** A) Reassure warmly · B) Reassure but feel drained · C) Get defensive ("you should trust me") · D) Withdraw/avoid · E) Become annoyed & criticize
 - **Measures:** responsiveness; partner influence acceptance
 
 **Q2.6** Scenario: You're excited about someone, but they're inconsistent (hot/cold). You usually…
 - **Format:** single | **Weight:** critical
-- **Options:** A) Ask directly for clarity · B) Try harder to "win" consistency · C) Accept it and keep casual · D) Lose interest and move on · E) Feel obsessed/anxious and ruminate
+- **Options:** A) Ask directly for clarity · B) Try harder to "win" consistency · C) Accept and keep things casual · D) Lose interest and move on · E) Feel obsessed/anxious and ruminate
 - **Measures:** anxious activation; pursuit-withdrawal
 
-**Q2.7** When I sense my partner is pulling away, I: ⚠️ CRITICAL
+**Q2.7** When I sense my partner is pulling away, I tend to: ⚠️ CRITICAL
 - **Format:** single | **Weight:** critical
-- **Options:** A) Calmly address and ask what's going on · B) Give space but show availability · C) Pursue intensely—texts/affection/demands · D) Pull away myself · E) Assume it's ending
+- **Options:** A) Calmly address it, ask what's going on · B) Give them space but show availability · C) Pursue more intensely — texts, affection, demands · D) Pull away myself · E) Assume relationship is ending
 - **Measures:** pursue-withdraw; abandonment defenses
 
-**Q2.8** I can ask for what I need without making my partner responsible for my emotions.
-- **Format:** likert | **Weight:** critical
-- **Measures:** secure needs expression; emotional responsibility
+**Q2.8** When in a relationship, I view my feelings as...
+- **Format:** slider | **Weight:** critical
+- **Anchors:** 1 = Largely my own interpretation/ take responsiblity · 5 = depends on the situation · 10 = My partner must be causing me to feel a certain way
+- **Measures:** emotional responsibility
 
 **Q2.9** If a partner wants more closeness than I do, I typically…
 - **Format:** single | **Weight:** critical

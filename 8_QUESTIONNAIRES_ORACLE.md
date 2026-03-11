@@ -964,6 +964,7 @@ Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health
 - [ ] K-Pop
 - [ ] Disco
 - [ ] Reggae
+// put Q in profile
 
 ---
 

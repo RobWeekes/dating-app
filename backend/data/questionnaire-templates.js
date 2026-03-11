@@ -54,7 +54,7 @@ function getQuestionnaireTemplates() {
       ],
     },
 
-    // =============== PASSION & PARTNERSHIP (18 questions) ===============
+    // =============== PASSION & PARTNERSHIP (X questions) ===============
     // Description:
     {
       type: 'passion',

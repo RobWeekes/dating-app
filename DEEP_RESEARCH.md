@@ -413,6 +413,87 @@ Based on this research, the most effective compatibility questionnaires should:
 
 ---
 
+***18-Dimension Relationship Compatibility Framework***
+
+**1. Emotional Functioning**
+
+How people handle feelings and emotional stress.
+
+  1. Emotional Regulation – ability to manage emotions during conflict or stress
+  2. Attachment Security – comfort with intimacy, trust, and dependence
+  3. Emotional Awareness – ability to recognize and understand one's feelings
+
+These predict **conflict intensity and emotional safety.**
+
+**2. Communication Dynamics**
+
+How partners express needs and resolve disagreements.
+
+  4. Direct Communication – expressing needs clearly
+  5. Conflict Resolution Style – problem-solving vs escalation
+  6. Repair Ability – willingness to apologize, reconnect, and de-escalate
+
+These strongly influence **relationship resilience.**
+
+**3. Relational Orientation**
+
+How someone approaches relationships psychologically.
+
+  7. Commitment Orientation – desire for long-term investment
+  8. Emotional Responsibility – owning feelings vs blaming others
+  9. Dependability – reliability and follow-through
+
+These dimensions predict **relationship durability.**
+
+**4. Lifestyle & Values Alignment**
+
+Compatibility in how partners want to live.
+
+  10. Life Goals Alignment – family, career, lifestyle priorities
+  11. Relationship Structure – monogamous, open, poly, etc.
+  12. Time & Lifestyle Compatibility – routines, social habits, priorities
+
+These predict **practical compatibility.**
+
+**5. Intimacy & Affection Style**
+
+How partners give and receive closeness.
+
+  13. Affection Style – physical affection, warmth, touch
+  14. Sexual Compatibility Orientation – libido, sexual values
+  15. Emotional Intimacy Preference – depth of emotional sharing
+
+These drive **romantic satisfaction.**
+
+**6. Growth & Adaptability**
+
+How partners evolve together over time.
+
+  16. Self-Reflection – willingness to examine one's behavior
+  17. Personal Growth Orientation – openness to change and development
+  18. Relationship Effort Mindset – belief that relationships require work
+
+These predict **long-term relationship success.**
+
+---
+
+**Why this framework is powerful**
+
+It separates three things many apps mix together:
+
+Category	Examples
+Emotional patterns	attachment, regulation
+Behavioral skills	communication, repair
+Structural compatibility	values, lifestyle
+
+That separation allows much more accurate compatibility scoring.
+
+✅ Key insight:
+Research consistently shows that **emotional regulation, conflict repair,** and **values alignment** are among the strongest predictors of long-term relationship stability.
+
+---
+
+
 ## Complete Reference List
 
 1. Acevedo, B. P., Aron, A., Fisher, H. E., & Brown, L. L. (2011). Neural correlates of long-term intense romantic love. *Social Cognitive and Affective Neuroscience*, 7(2), 145–159.
