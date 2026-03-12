@@ -573,11 +573,11 @@ The third component defines **how much incompatibility matters**.
 
 Without it, compatibility systems struggle to model real relationship tradeoffs.
 
-# The Fourth Hidden Variable: Answer Confidence (or Certainty)
+<!-- # The Fourth Hidden Variable: Answer Confidence (or Certainty)
 
 - **Answer confidence measures how sure someone is about their response.** Two people may give the same answer but differ in certainty (e.g., “definitely wants kids” vs “probably wants kids”).
 - **Certainty predicts stability.** Low-confidence answers are more likely to change over time, so algorithms can weight them less heavily in compatibility scoring.
-- **It improves matching accuracy** by distinguishing between **core convictions** and **tentative preferences**, something the first three components cannot detect.
+- **It improves matching accuracy** by distinguishing between **core convictions** and **tentative preferences**, something the first three components cannot detect. -->
 
 ---
 
@@ -591,10 +591,11 @@ Without it, compatibility systems struggle to model real relationship tradeoffs.
         - Own answer
         - Acceptable partner answers
         - Importance
-        - Confidence (optional fourth variable)
+        <!-- - Confidence (optional fourth variable) -->
 - Example vector:
     ```
-    [Q1_self, Q1_accept, Q1_weight, Q1_confidence, ..., Qn_self, Qn_accept, Qn_weight, Qn_confidence]
+    [Q1_self, Q1_accept, Q1_weight, ...,
+    Qn_self, Qn_accept, Qn_weight]
     ```
 
 - This converts matching into a **vector similarity problem**.
@@ -700,8 +701,7 @@ User Questionnaire Responses
 │ Encode Responses into   │
 │ Weighted Vectors        │
 │ (Own answer, Acceptable │
-│ answers, Importance,    │
-│ Confidence)             │
+│ answers, Importance)    │
 └─────────────────────────┘
 │
 ▼
@@ -748,8 +748,234 @@ User Questionnaire Responses
 
 - **Hierarchical filtering**: eliminates obviously incompatible candidates before heavy computation.
 - **ANN Index**: makes top-k retrieval scalable (tens of millions of users) without computing all O(n²) scores.
-- **Embeddings**: capture **preference, tolerance, importance, and confidence** in a compact vector.
+- **Embeddings**: capture **preference, tolerance, and importance** in a compact vector.
 - **Re-ranking**: allows custom weighting or per-questionnaire scoring after ANN retrieval.
 - **Incremental Updates**: new users or updated answers can be added to the index without rebuilding from scratch.
 
 This design scales to **millions of users**, supports **per-category scoring**, and maintains **fast response times for recommendations**.
+
+---
+
+Here’s a clear framework for implementing Three-Weight questions in a dating app that balances compatibility accuracy with ease of use for the user:
+
+# Three-Weight Questionnaire Design for Dating Apps
+
+## Components
+
+1. **User’s Own Answer**
+   - Ask users about their **preference or behavior**.
+   - Keep questions **simple and relatable**.
+   - Example:
+     > Do you want children in the future?
+     - Yes
+     - No
+     - Unsure
+
+2. **Acceptable Partner Answers**
+   - Ask which responses from a partner are **compatible or tolerable**.
+   - Present as **a checklist or multiple choice** that mirrors the first question.
+   - Example:
+     > Which answers would be acceptable to you in a partner?
+     - Yes
+     - No
+     - Unsure
+
+   **Tip:** Use **“Select all that apply”** style to make it intuitive.
+
+3. **Importance of the Question**
+   - Ask users **how much this question matters** for compatibility.
+   - Use a **simple, 3–5 point scale**:
+     - Irrelevant / Doesn’t matter
+     - Somewhat important
+     - Very important / Dealbreaker
+   - Example:
+     > How important is this to you in a partner?
+     - Not important
+     - Somewhat important
+     - Very important
+
+---
+
+## UX Recommendations
+
+- **Combine in one screen** for simplicity:
+
+[Question]
+[Your answer: Single choice]
+[Partner acceptable answers: Multi-select]
+[Importance: 3-button scale]
+
+
+- **Use progressive disclosure**: avoid overwhelming users with all questions at once.
+- **Default selections**: pre-fill common tolerances or medium importance to speed completion.
+- **Optional explanations**: tooltips for “importance” can clarify what “dealbreaker” means.
+
+---
+
+## Matching Logic
+
+1. **Compute compatibility per question**
+ - If partner’s answer is in the user’s **acceptable answers**, proceed.
+ - Multiply match by **importance weight** to account for priority.
+
+2. **Aggregate across all questions**
+ - Weighted sum or average → overall compatibility score.
+ - Can also track **per-category scores** (values, lifestyle, habits).
+
+<!-- 3. **Optional bonus: confidence weighting**
+ - If you also ask how certain a user is about their answer, weight highly confident answers more in scoring. -->
+
+---
+
+## Advantages
+
+- Captures **preference, tolerance, and priority** → more realistic matching.
+- Users **see and understand** all components easily.
+- Enables **flexible scoring** and **per-category breakdowns** for nuanced matches.
+- Scalable for large user bases using **vector embeddings + ANN indexing**.
+
+---
+
+## Example UI Flow
+
+Q: Do you want children in the future?
+[ ] Yes
+[ ] No
+[ ] Unsure
+
+Which answers would you accept in a partner?
+[ ] Yes
+[ ] No
+[ ] Unsure
+
+How important is this in a partner?
+[ ] Not important
+[ ] Somewhat important
+[ ] Very important
+
+---
+
+# Scalable Three-Weight Scoring Formula
+
+## Definitions
+
+For each question *i*:
+
+- **Aᵤᵢ** = User’s own answer (encoded numerically or as a one-hot vector)
+- **Tᵤᵢ** = Acceptable answers for a partner (binary vector)
+- **Wᵤᵢ** = Importance weight (normalized, e.g., 0–1)
+<!-- - **Cᵤᵢ** = Confidence in answer (optional, 0–1) -->
+- **Aₚᵢ** = Partner’s answer
+
+---
+
+## Step 1: Per-question match score
+
+1. Encode **Aₚᵢ ∈ Tᵤᵢ** → 1 if partner’s answer is acceptable, 0 if not
+2. Multiply by **importance**:
+
+```
+Matchᵢ = Indicator(Aₚᵢ ∈ Tᵤᵢ) × Wᵤᵢ
+```
+
+
+- Indicator = 1 if partner’s answer is acceptable, 0 otherwise
+<!-- - If you include confidence, Cᵤᵢ = 1 for “not used” -->
+
+---
+
+## Step 2: Aggregate across all questions
+
+```
+Compatibility_score = Σᵢ Matchᵢ / Σᵢ Wᵤᵢ
+```
+
+
+- Weighted average ensures **more important questions contribute more**
+- Optional: compute **category-level scores** by summing only relevant questions
+
+---
+
+## Step 3: Bidirectional Scoring
+
+For symmetry:
+
+```
+Compatibility(A → B) = Σᵢ Indicator(Aᵦᵢ ∈ Tᵤᵢ) × Wᵤᵢ
+Compatibility(B → A) = Σᵢ Indicator(Aᵤᵢ ∈ Tᵦᵢ) × Wᵦᵢ
+Overall compatibility = √(Compatibility(A → B) × Compatibility(B → A))
+```
+
+
+- Geometric mean ensures **both users’ preferences matter**
+- Avoids one-sided compatibility inflation
+
+---
+
+## Step 4: Vectorized Implementation
+
+- Encode all users as **vectors**:
+  - Partner answers → vector
+  - Tolerance masks → binary vector
+  - Importance → weight vector
+  <!-- - Confidence → weight vector -->
+- Compute **matrix of top-k candidate scores** using:
+  - Element-wise multiplication
+  - Sum along questions
+- Efficient for **millions of users** with **matrix multiplication / GPU acceleration**
+- Use ANN search on precomputed embeddings for **top-k retrieval**
+
+---
+
+## Optional Enhancements
+
+1. **Dealbreakers:** Questions marked “mandatory” → score = 0 if not acceptable
+2. **Normalized weights:** Convert importance scale (e.g., 1–5) → 0–1
+3. **Partial matches:** For multi-select questions, compute fraction of overlap instead of strict binary
+
+---
+
+✅ **Benefits of this approach**
+
+- Handles **preference, tolerance, and importance** naturally
+- Scales efficiently to **tens of millions of users**
+- Supports **category-level breakdowns** and **overall scores**
+- Compatible with **ANN embeddings** for fast top-k candidate retrieval
+
+---
+
+# Three-Weight Scoring Example
+
+## Users
+
+**User A**
+- Q1: Wants children → Yes
+- Q2: Favorite lifestyle → Active
+- Q3: Political alignment → Progressive
+
+**User B**
+- Q1: Wants children → No
+- Q2: Favorite lifestyle → Active
+- Q3: Political alignment → Moderate
+
+### Acceptable Answers (Tolerance)
+
+| Question | User A Acceptable | User B Acceptable |
+|----------|-----------------|-----------------|
+| Q1       | Yes             | Yes, No         |
+| Q2       | Active, Relaxed | Active          |
+| Q3       | Progressive     | Progressive, Moderate |
+
+### Importance Weight (Wᵢ)
+
+| Question | User A | User B |
+|----------|--------|--------|
+| Q1       | 1.0    | 1.0    |
+| Q2       | 0.5    | 0.5    |
+| Q3       | 0.8    | 0.8    |
+
+---
+
+## Step 1: Compute A → B Compatibility
+
+**Formula per question:**
