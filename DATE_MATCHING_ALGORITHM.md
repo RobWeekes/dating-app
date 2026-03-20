@@ -103,11 +103,7 @@ Where:
 
 Complementarity captures dimensions where **fit is not based on similarity**, but on how two people’s tendencies interact to create balance, polarity, or strain. Unlike similarity (distance minimization), complementarity uses **shape functions** that reward _asymmetry within bounds_ and penalize extremes.
 
-Example:
-
-- High assertiveness + low assertiveness → positive
-- High + high → conflict risk
-- Low + low → stagnation risk
+---
 
 ### Core Complementarity Dimensions (High Priority)
 
@@ -336,13 +332,162 @@ Penalty += large_constant
 
 ## 4. Constraint Bonus / Filters
 
-Hard filters applied before scoring:
+This layer enforces **non-negotiable compatibility constraints** and optionally rewards strong alignment. These constraints operate differently from similarity and complementarity—they are about **feasibility**, not optimization.
 
-- Relationship intent mismatch → exclude
-- Location incompatibility → exclude or penalize
-- Life goals mismatch (e.g., children) → exclude
+---
 
-Optional soft bonuses for strong alignment.
+### Hard Filters (Pre-Scoring Exclusion)
+
+These are binary or near-binary constraints that determine whether a match should be considered at all.
+
+#### Common Hard Filters
+
+- **Relationship Intent Mismatch** (e.g., casual vs marriage)
+- **Location Incompatibility** (distance beyond acceptable range)
+- **Life Goals Misalignment** (e.g., children, lifestyle constraints)
+
+#### Implementation (Vectorized)
+
+Hard filters can be implemented within the same vector framework using **constraint masks**:
+
+```
+F_i(A,B) = 1 if compatible
+F_i(A,B) = 0 if incompatible
+```
+
+Overall feasibility:
+
+```
+Feasibility = Π F_i(A,B)
+```
+
+If any constraint = 0 → match is excluded before scoring.
+
+---
+
+### Softening Hard Filters (Scalable Relaxation)
+
+Strict exclusion can reduce match pool size at scale. Instead, convert some filters into **soft constraints**:
+
+```
+F_i(A,B) = exp(-k * mismatch)
+```
+
+Examples:
+
+#### Location (continuous)
+
+```
+d = geographic_distance(A,B)
+F_location = exp(-k * d)
+```
+
+Allows:
+
+- Nearby → ~1
+- Far away → smoothly decays instead of hard cutoff
+
+#### Life Goals (categorical embedding)
+
+Encode goals as vectors and compute:
+
+```
+F_goals = cosine_similarity(G_A, G_B)
+```
+
+---
+
+### Hybrid Approach (Recommended)
+
+Split constraints into tiers:
+
+#### Tier 1: True Hard Filters (non-negotiable)
+
+- Relationship intent (if strongly incompatible)
+- Critical life goals (e.g., wants kids vs never)
+
+#### Tier 2: Soft Constraints
+
+- Location radius
+- Lifestyle preferences
+- Timeline differences
+
+---
+
+### Constraint Integration into Scoring
+
+Instead of separate stages, constraints can be integrated directly:
+
+```
+Match Score = Feasibility * BaseScore
+```
+
+Where:
+
+- Feasibility = product of constraint functions (0–1)
+- BaseScore = similarity + complementarity − penalties
+
+This allows:
+
+- Full exclusion (Feasibility = 0)
+- Gradual downranking (0 < Feasibility < 1)
+
+---
+
+### Optional Constraint Bonuses
+
+Strong alignment on key constraints can be rewarded:
+
+```
+Bonus += w * indicator(strong_alignment)
+```
+
+Examples:
+
+- Same long-term goals + timeline → bonus
+- Same location + high flexibility → bonus
+
+---
+
+### Embedding-Based Constraints (Advanced / Scalable)
+
+For large-scale systems, constraints can be embedded into the same vector space:
+
+- Encode categorical attributes (intent, goals) as vectors
+- Learn embeddings from user behavior (matches, conversations, outcomes)
+
+Then:
+
+```
+F(A,B) = sigmoid( dot(E_A, E_B) )
+```
+
+Advantages:
+
+- Fully vectorized
+- Learns implicit compatibility beyond explicit rules
+- Scales efficiently with ANN (Approximate Nearest Neighbor) search
+
+---
+
+### Practical Tradeoffs
+
+| Approach           | Pros                 | Cons                  |
+| ------------------ | -------------------- | --------------------- |
+| Hard filters       | Clean, interpretable | Reduces match pool    |
+| Soft constraints   | Flexible, scalable   | May allow bad matches |
+| Hybrid             | Best balance         | More complex tuning   |
+| Learned embeddings | Highly scalable      | Less interpretable    |
+
+---
+
+### Key Design Principle
+
+Treat constraints as **probabilistic feasibility gates**, not just binary switches. This allows:
+
+- Better scalability
+- More diverse matches
+- Graceful degradation instead of hard rejection
 
 ---
 
@@ -357,62 +502,178 @@ Optional soft bonuses for strong alignment.
 
 ### Optimization
 
-Weights should be learned via:
+Weights should be learned and continuously refined using real-world behavioral and outcome data:
 
-- A/B testing
-- Outcome tracking (conversation length, dates, relationship formation)
-- Long-term retention and satisfaction signals
+- **Conversation quality metrics** (length, reciprocity, sentiment)
+- **Reply rates / ghosting rates**
+- **Date conversion rates** (matches → real-world meetings)
+- **Short-term retention** (continued engagement between matched users)
+- **Long-term outcomes** (relationship formation, duration, reported satisfaction)
+
+#### Learning Methods
+
+- Gradient-based optimization on match success labels
+- Multi-armed bandit approaches for online weight tuning
+- Reinforcement learning from delayed outcomes (e.g., relationship success signals)
 
 ---
 
 ## Normalization & Scaling
 
-- Normalize all indices to comparable ranges
-- Apply z-score or min-max scaling
-- Clip extreme values to reduce outlier dominance
+To ensure comparability across dimensions:
+
+- Normalize all indices to a common range (e.g., [0,1])
+- Apply **z-score normalization** for population-relative positioning
+- Use **clipping** to reduce the influence of extreme outliers
+
+```
+x_normalized = (x - mean) / std
+```
+
+Optional:
+
+- Apply nonlinear transforms (e.g., sigmoid) to compress extremes
+
+---
+
+## Candidate Generation (Scalable Retrieval Layer)
+
+Before full scoring, reduce the search space using **Approximate Nearest Neighbor (ANN)** methods.
+
+### Steps
+
+1. **Pre-filter candidates** using hard/soft constraints
+2. **Embed users into vector space** (subset of key dimensions)
+3. Retrieve top-K nearest candidates using ANN (e.g., FAISS, ScaNN)
+4. Apply full scoring pipeline on reduced candidate set
+
+### Benefits
+
+- Reduces computational cost from O(N²)
+- Enables real-time matching at scale
 
 ---
 
 ## Cold Start Strategy
 
-- Use population priors
-- Infer traits from early behavior (messaging style, response latency)
-- Update vector dynamically as more data is collected
+For new users with limited data:
+
+- Initialize vectors using questionnaire responses
+- Use **population priors** for missing dimensions
+- Infer traits from early behavioral signals:
+  - Messaging latency
+  - Message length and tone
+  - Response consistency
+
+Gradually update vector as more data is observed.
 
 ---
 
-## Continuous Learning
+## Dynamic Updating
 
-Update model using:
+User vectors should evolve over time:
 
-- Match success feedback
-- Conversation quality metrics
-- Relationship duration (if available)
+```
+U_t+1 = (1 - α) * U_t + α * NewSignal
+```
 
-Incorporate into:
+Where:
 
-- Weight updates
-- New interaction penalties
-- Feature refinement
+- α = learning rate (decay factor)
+- NewSignal = inferred trait updates from behavior
 
 ---
 
-## Key Design Principles
+## Interaction Feedback Loop
 
-1. Avoid purely similarity-based matching
-2. Model interaction effects explicitly
-3. Penalize known toxic pairings
-4. Use forced-choice inputs to reduce bias
-5. Optimize for long-term outcomes, not just engagement
+Incorporate feedback from matches:
+
+- Explicit feedback (likes, ratings)
+- Implicit feedback (conversation continuation, unmatching)
+
+Update:
+
+- Feature weights
+- Interaction penalties
+- Constraint thresholds
+
+---
+
+## Evaluation Metrics
+
+### Offline Metrics
+
+- AUC / ROC for match success prediction
+- Precision@K for top matches
+
+### Online Metrics
+
+- Match acceptance rate
+- Conversation start rate
+- Conversation depth (messages per match)
+- Date conversion rate
+- Retention (7-day, 30-day)
+
+---
+
+## Fairness & Bias Considerations
+
+- Monitor for demographic bias in matching outcomes
+- Avoid reinforcing popularity loops (rich-get-richer dynamics)
+- Introduce exploration mechanisms to surface diverse candidates
+
+---
+
+## Exploration vs Exploitation
+
+Use a hybrid strategy:
+
+- **Exploitation:** show high-scoring matches
+- **Exploration:** inject some diverse / lower-confidence matches
+
+Example:
+
+```
+FinalCandidates = 0.8 * TopMatches + 0.2 * ExploratoryMatches
+```
+
+---
+
+## System Architecture Overview
+
+1. User completes questionnaire → initial vector
+2. Constraints applied → feasible candidate pool
+3. ANN retrieval → top-K candidates
+4. Full scoring:
+   - Similarity
+   - Complementarity
+   - Risk penalties
+   - Constraints
+
+5. Ranking + diversity injection
+6. Feedback loop updates system
+
+---
+
+## Key Design Principles (Extended)
+
+1. Optimize for **long-term relationship success**, not just engagement
+2. Explicitly model **interaction effects**, not just individual traits
+3. Use **forced-choice inputs** to reduce bias
+4. Combine **hard constraints + soft scoring**
+5. Continuously learn from behavioral data
+6. Balance **precision with exploration**
 
 ---
 
 ## Summary
 
-This system combines:
+This extended system provides:
 
-- Individual trait scoring (vectorization)
-- Pairwise interaction modeling
-- Nonlinear risk penalties
+- A fully vectorized representation of users
+- Scalable candidate retrieval
+- Multi-layered scoring (similarity, complementarity, risk)
+- Constraint-aware filtering
+- Continuous learning and optimization
 
-Result: a scalable, high-signal compatibility engine designed to predict not just attraction—but relationship success.
+Result: a robust, scalable matching engine capable of improving over time and aligning users not just on attraction—but on compatibility and long-term success.
