@@ -1,4 +1,20 @@
+PROMPT
+
+---
+
+I'm making questionnaires for a dating app. I want to reduce social desirability bias from my questions:
+
 # REDUCING RESPONSE BIAS
+
+**Best Practices**
+* **Shift from identity** → frequency/likelihood reduces pressure to “perform maturity”
+* **Softened language** (“find myself,” “how often,” "I tend to") lowers defensiveness
+* **Avoid idealized language/absolute phrasing** avoids triggering idealized self-perception
+* **Forced choice framing** forces a tradeoff between two equally plausible (socially acceptable) tendencies
+
+Help me condense this question into 2 high signal forced choices:
+
+---
 
 **✅ Pro tip used in top psychometric scales**
 
@@ -66,9 +82,6 @@ Use *two opposite items:*
 *Qb* When I feel upset in my relationship, I usually focus on what my partner did wrong.
 
 (Reverse-score one.)
-
-✅ My recommendation: Option 5 if this is a serious assessment instrument.
-It reduces agreement bias and increases reliability.
 
 ✅ Pro tip used in psychology scales:
 Include one reverse-scored item to detect overly agreeable responses. Example:
