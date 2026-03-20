@@ -12,7 +12,7 @@ I'm making questionnaires for a dating app. I want to reduce social desirability
 * **Avoid idealized language/absolute phrasing** avoids triggering idealized self-perception
 * **Forced choice framing** forces a tradeoff between two equally plausible (socially acceptable) tendencies
 
-Help me condense this question into 2 high signal forced choices:
+Help me condense this question into 2 or 3 high signal, low-bias forced choices:
 
 ---
 

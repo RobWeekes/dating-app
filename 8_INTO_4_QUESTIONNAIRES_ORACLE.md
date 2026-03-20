@@ -43,14 +43,13 @@ Core values alignment (religion, politics, children, relationship model, locatio
 **Importance weight: VERY HIGH for initial compatibility; VERY HIGH for long-term success**
 
 ### Questions (20)
-// clarify -> "my partner" = someone I'm in a good relationship with
 
-// -------------- Values & Life Goals --------------
+-------------- Values & Life Goals --------------
 **Q1.1** How important is religion or spirituality in your daily life? ⚠️ DEALBREAKER
 - **Format:** slider | **Weight:** critical
 - **Anchors:** 1 = Not important — I am not religious or spiritual · 4 = Somewhat important — I have beliefs but they're private · 7 = Important — it shapes many of my decisions & values · 10 = Central — faith/spirituality is the foundation of my life
 - **Measures:** religiosity; assortative mating
-// make sure religion selection is in profile
+<!-- make sure religion selection is in profile -->
 
 **Q1.2** Which best describes your political orientation?
 - **Format:** single | **Weight:** critical
@@ -116,7 +115,7 @@ Core values alignment (religion, politics, children, relationship model, locatio
 - **Options:** A) Love pets — they're family · B) Open to pets with limits · C) Prefer no pets · D) Allergic/strict constraints · E) No strong opinion
 - **Measures:** pet ownership dealbreaker
 
-// -------------- Lifestyle & Home Work --------------
+-------------- Lifestyle & Home Work --------------
 **Q1.13** How often do you drink alcohol? ⚠️ DEALBREAKER
 - **Format:** single | **Weight:** critical
 - **Options:** A) Never · B) Rarely — few times/year · C) Occasionally — few times/month · D) Regularly — few times/week · E) Daily/near-daily
@@ -214,14 +213,17 @@ B) Start to feel drained and pull back
 - **Options:** A) Ask directly for clarity · B) Try harder to "win" consistency · C) Accept and keep things casual · D) Lose interest and move on · E) Feel obsessed/anxious and ruminate
 - **Measures:** anxious activation; pursuit-withdrawal
 
-**Q2.7** When I sense my partner is pulling away, I tend to: ⚠️ CRITICAL
+**Q2.7** When I sense my partner is pulling away, I tend to:
 - **Format:** single | **Weight:** critical
-- **Options:** A) Calmly address it, ask what's going on · B) Give them space but show availability · C) Pursue more intensely — texts, affection, demands · D) Pull away myself · E) Assume relationship is ending
+- **Options:** 
+A) Reach out and address it directly
+B) Give them space but stay available
+C) Feel like something’s wrong and react (chase or pull back)
 - **Measures:** pursue-withdraw; abandonment defenses
 
 **Q2.8** When in a relationship, I view my feelings as …
 - **Format:** slider | **Weight:** critical
-- **Anchors:** 1 = Largely my own interpretation/ take responsiblity · 5 = depends on the situation · 10 = My partner must be causing me to feel a certain way
+- **Anchors:** 1 = Largely my own interpretation · 5 = depends on the situation · 10 = My partner must be causing me to feel a certain way
 - **Measures:** emotional responsibility
 
 **Q2.9** If a partner wants more closeness than I do, I usually …
@@ -233,10 +235,10 @@ C) Pull back or see them as too needy
 - **Measures:** avoidant deactivation; contempt risk
 
 **Q2.10** When I'm stressed, I usually prefer my partner to …
-- **Format:** multi | **Weight:** standard
+- **Format:** single | **Weight:** standard
 - **Options:** 
 A) Sit with me and offer emotional support
-B) Help me think through or take action
+B) Help me think it through or take action
 C) Give me space or distract me from it
 - **Measures:** support needs; co-regulation
 
