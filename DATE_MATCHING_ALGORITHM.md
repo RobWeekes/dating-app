@@ -103,6 +103,12 @@ Where:
 
 Complementarity captures dimensions where **fit is not based on similarity**, but on how two people’s tendencies interact to create balance, polarity, or strain. Unlike similarity (distance minimization), complementarity uses **shape functions** that reward _asymmetry within bounds_ and penalize extremes.
 
+Example:
+
+- High assertiveness + low assertiveness → positive
+- High + high → conflict risk
+- Low + low → stagnation risk
+
 ### Core Complementarity Dimensions (High Priority)
 
 #### 1) Emotional Regulation Style (Self ↔ Co-regulation)
