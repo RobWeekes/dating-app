@@ -12,40 +12,104 @@ Each user is represented as a multidimensional vector of standardized indices de
 
 ---
 
-## Index List (Unified)
+Here’s a **clean, consolidated list of the highest-value indices** for predicting dating outcomes (match success, satisfaction, duration, commitment). This is optimized for **signal, orthogonality, and scalability** in a vector system.
 
-### Core Relational Dynamics
+---
 
-1. Attachment Anxiety (pursuit tendency)
-2. Attachment Avoidance (withdrawal tendency)
-3. Responsiveness / Partner Orientation
-4. Emotional Responsibility (internal vs external attribution)
-5. Emotional Regulation Style (self vs co-regulation)
+# 🧠 Core Predictive Indices for Dating & Relationship Success
 
-### Conflict & Repair
+## Behavioral Dynamics
 
-6. Conflict Repair Ability
-7. Negative Conflict Style (criticism, defensiveness, contempt, stonewalling)
+### 1. Attachment Anxiety (AA)
+- Pursuit, reassurance-seeking, abandonment sensitivity  
 
-### Compatibility & Friction
+### 2. Attachment Avoidance (AV)
+- Withdrawal, emotional distancing, independence preference  
 
-8. Closeness–Autonomy Preference
-9. Effort & Investment Norms
-10. Communication Directness
-11. Mind-Reading Expectation
-12. Jealousy / Threat Sensitivity
+### 3. Emotional Regulation (ER)
+- Stability vs reactivity under stress  
 
-### Values & Life Alignment
+### 4. Responsiveness (RS)
+- Turning toward vs away from partner bids  
 
-13. Long-Term Orientation (casual → marriage)
-14. Life Structure Alignment (kids, lifestyle, geography)
-15. Risk & Novelty Preference
+### 5. Emotional Responsibility (ER2)
+- Internal vs external attribution of one’s feelings  
 
-### Personality & Stability
+---
 
-16. Emotional Stability (neuroticism)
-17. Conscientiousness / Reliability
-18. Agreeableness vs Assertiveness Balance
+## ⚔️ Conflict & Repair (Highest Impact)
+
+### 6. Conflict Engagement (CE)
+- Engage vs withdraw during conflict  
+
+### 7. Conflict Repair Ability (CR)
+- Ability to de-escalate and reconnect  
+
+### 8. Negative Conflict Style (NC)
+- Criticism, defensiveness, contempt, escalation  
+
+---
+
+## ⚖️ Compatibility & Friction
+
+### 9. Closeness–Autonomy Preference (CA)
+- Desired level of intimacy vs independence  
+
+### 10. Closeness Tolerance (CT)
+- Flexibility around mismatch in closeness  
+
+### 11. Communication Directness (CD)
+- Explicit vs implicit communication  
+
+### 12. Mind-Reading Expectation (MR)
+- Expectation partner should “just know”  
+
+### 13. Jealousy / Threat Sensitivity (JS)
+- Reactivity to ambiguity or perceived distance
+
+### 14. Effort & Investment Norms (EN)
+- Expected level of relationship effort 
+
+---
+
+## ❤️ Values & Alignment
+
+### 15. Long-Term Orientation (LT)
+- Casual vs serious vs marriage intent  
+
+### 16. Life Structure Alignment (LS)
+- Kids, lifestyle, geography, priorities  
+
+### 17. Novelty vs Stability Preference (NS)
+- Desire for excitement vs routine  
+
+---
+
+## 🧩 Personality & Stability
+
+### 18. Emotional Stability (ES)
+- Baseline mood volatility (inverse neuroticism)  
+
+### 19. Conscientiousness / Reliability (CO)
+- Follow-through, consistency  
+
+### 20. Assertiveness–Agreeableness Balance (AG)
+- Balance between needs vs harmony  
+
+---
+
+# 🔑 Key Insight
+
+The strongest predictors are not just traits, but **interactions between them**, especially:
+
+- **AA × AV → volatility**
+- **NC × low CR → breakup risk**
+- **CA mismatch → chronic dissatisfaction**
+- **ER × partner reactivity → stabilization vs escalation**
+
+---
+
+* Build a **correlation / redundancy matrix** to ensure your indices stay orthogonal and efficient
 
 ---
 
@@ -396,6 +460,370 @@ F_goals = cosine_similarity(G_A, G_B)
 ```
 
 ---
+
+**Q2.12** When I'm very upset with someone, my impulse is to …
+
+- **Format:** single | **Weight:** critical
+- **Options:**
+  A) Stay engaged and try to work it out
+  B) Pull back to settle myself first
+  C) React strongly (push, vent, or seek reassurance)
+- **Measures:** regulation strategy; risk behaviors
+
+# Question → Index Mapping (Condensed)
+
+## Question
+
+**When I’m very upset with someone, I tend to…**
+A) Stay engaged and try to work it out
+B) Pull back to settle myself first
+C) Get more reactive (e.g., push, vent, or seek reassurance)
+
+---
+
+## Target Indexes
+
+- **CE**: Conflict Engagement
+- **ER**: Emotional Regulation
+- **AA**: Attachment Anxiety
+- **AV**: Attachment Avoidance
+- **NC**: Negative Conflict Style
+
+All indices normalized to **[0,1]**.
+
+---
+
+## Response → Delta Mapping
+
+```python
+# Option A — Engage
+CE += +0.7; ER += +0.6; AA += -0.2; AV += -0.4; NC += -0.5
+
+# Option B — Withdraw
+CE += -0.5; ER += +0.5; AA += -0.3; AV += +0.6; NC += -0.2
+
+# Option C — Reactive
+CE += +0.3; ER += -0.7; AA += +0.6; AV += +0.2; NC += +0.8
+```
+
+---
+
+## Aggregation
+
+```python
+Index_final = Σ (question_weight * response_delta)
+Index_score = sigmoid(Index_final)
+```
+
+**Suggested weight:** `question_weight ≈ 1.2–1.5`
+
+---
+
+## Disambiguation Rule
+
+```python
+if AV high across items:
+    pattern = "avoidant"
+elif ER high and AV low:
+    pattern = "healthy self-regulation"
+```
+
+---
+
+## System Impact
+
+- **Complementarity:** AA × AV → penalty; ER can stabilize reactive partner
+- **Risk:** High NC + low repair → high risk
+- **Similarity:** Engagement style alignment → higher satisfaction
+
+---
+
+# 🧠 Latent Feature: State vs Trait Gap
+
+## Definition
+
+The **state vs trait gap** measures how much a person’s behavior **changes under emotional stress** compared to their **baseline tendencies**.
+
+```python
+stress_response_gap = State_response (Q1.4) - Trait_response (Q2.1)
+```
+
+* **Q2.1 (Trait)** → how they *usually* handle low-stakes conflict
+* **Q1.4 (State)** → how they behave when *emotionally overwhelmed*
+
+---
+
+## 🔍 What the gap represents
+
+### Small gap → **Behavioral consistency**
+
+* Acts similarly in calm and stressful situations
+* Predictable, stable partner
+* Higher likelihood of **trust + repair success**
+
+---
+
+### Large gap → **Stress-induced divergence**
+
+* Behavior shifts significantly under pressure
+* “Different person when upset” effect
+* Higher risk of:
+
+  * escalation
+  * withdrawal
+  * emotional volatility
+
+---
+
+## 📊 Example patterns
+
+### 1. Consistent & secure
+
+* Q2.1 → A (engaged)
+* Q1.4 → A (engaged)
+
+👉 Gap ≈ 0 → **stable, reliable conflict behavior**
+
+---
+
+### 2. Regulated but avoidant
+
+* Q2.1 → B (space)
+* Q1.4 → B (space)
+
+👉 Gap ≈ 0 → **consistent strategy (low volatility, lower intimacy)**
+
+---
+
+### 3. Escalates under stress
+
+* Q2.1 → A (engaged)
+* Q1.4 → C (reactive)
+
+👉 Large gap → **hidden volatility risk**
+
+---
+
+### 4. Shuts down under pressure
+
+* Q2.1 → A (engaged)
+* Q1.4 → B or C (withdraw/react)
+
+👉 Moderate–large gap → **breakdown under stress**
+
+---
+
+## ⚙️ How to compute it (practical)
+
+First, encode answers on a consistent scale:
+
+```python
+# Example encoding (engagement → withdrawal / reactivity)
+A = 0.0   # engaged
+B = 0.5   # regulated distance
+C = 1.0   # reactive / withdraw
+```
+
+Then:
+
+```python
+stress_response_gap = abs(Q1_4 - Q2_1)
+```
+
+Optional directional split:
+
+```python
+escalation_shift = max(0, Q1_4 - Q2_1)
+withdrawal_shift = max(0, Q2_1 - Q1_4)
+```
+
+---
+
+## 🔗 Why this is a high-value predictor
+
+### 1. Captures **nonlinear risk**
+
+Most models only measure traits. This captures:
+
+* **how traits fail under stress**
+
+👉 That’s where relationships actually break.
+
+---
+
+### 2. Predicts **partner experience**
+
+Large gap → partner experiences:
+
+* inconsistency
+* confusion (“which version is real?”)
+* reduced trust
+
+---
+
+### 3. Interacts with other indices
+
+```python
+Risk += stress_response_gap * (1 - ER)
+Risk += stress_response_gap * NC
+```
+
+* High gap + low regulation → **explosive**
+* High gap + high NC → **toxic conflict cycles**
+
+---
+
+## 🧩 How to use it in matching
+
+### Penalize unstable pairings
+
+```python
+if gap_A high and gap_B high:
+    Risk += strong_penalty
+```
+
+---
+
+### Allow stabilizing matches
+
+```python
+if gap_A high and ER_B high:
+    partial_buffer
+```
+
+---
+
+## ✅ Summary
+
+* **State vs trait gap = consistency under stress**
+* Small gap → stable, predictable
+* Large gap → volatile, context-dependent behavior
+
+> This feature is powerful because it captures not just *who someone is*—
+> but *who they become when it matters most*.
+
+---
+
+# Is Q2.2 redundant?
+
+## Short answer
+👉 **No — Q2.2 is not redundant.**  
+It is one of the **highest-value, non-redundant questions** in your entire set.
+
+---
+
+# 🧠 What Q2.2 uniquely captures
+
+**Q2.2 → Conflict Repair Ability (CR)**
+
+> *What happens **after** tension?*
+
+This is fundamentally different from:
+- **Q2.1** → behavior **during** low-intensity conflict  
+- **Q1.4** → behavior **during high emotional arousal**
+
+👉 Q2.2 measures the **recovery phase**, which neither of those capture.
+
+---
+
+# ⚠️ Why this matters (a lot)
+
+Research and real-world data consistently show:
+
+> **Repair ability > conflict style** for predicting long-term success
+
+Two couples can:
+- fight the same amount  
+- have similar conflict styles  
+
+…but differ dramatically in:
+- how quickly they repair  
+- whether they reconnect  
+
+👉 That difference determines **relationship survival**
+
+---
+
+# 🔍 What signal Q2.2 adds (that you don’t have elsewhere)
+
+## 1. **Time-to-repair**
+- Immediate (A)
+- Delayed but reliable (B)
+- Avoidant / passive (C)
+
+👉 This is not captured by any other item.
+
+---
+
+## 2. **Ownership of reconnection**
+
+Option C is especially important:
+
+> “wait for them to bring it up”
+
+This captures:
+- low responsibility for repair  
+- passive avoidance  
+- hidden resentment accumulation  
+
+👉 Strong predictor of **relationship decay**
+
+---
+
+## 3. **Repair reliability vs intention**
+
+Compare:
+
+| Q2.1 | Q2.2 | Insight |
+|------|------|--------|
+| Engages | Repairs quickly | Healthy |
+| Engages | Doesn’t repair | **High risk** |
+| Withdraws | Repairs later | Recoverable |
+| Withdraws | Doesn’t repair | **Silent disconnection** |
+
+👉 Q2.2 reveals whether conflict actually **gets resolved**
+
+---
+
+# 🔗 Interaction power (why it’s critical)
+
+## With Negative Conflict Style (NC)
+
+```
+Risk += (1 - CR) * NC
+```
+
+High NC + low CR → toxic loop
+High NC + high CR → manageable conflict
+With Attachment Avoidance (AV)
+
+```
+if AV high and CR low:
+    Risk += disconnection_penalty
+```
+👉 Classic “distance + no repair” pattern
+
+**With Responsiveness (RS)**
+```
+RepairEffectiveness = CR * RS
+```
+👉 Repair only works if partner responds
+
+---
+
+## Design Pattern
+
+- Update **3–5 indices per question**
+- Include **positive + negative deltas**
+- Focus on **behavior under stress**
+
+---
+
+## Optional (Learned Mapping)
+
+```python
+delta = learned_matrix[question_id][answer]
+```
 
 ### Hybrid Approach (Recommended)
 
