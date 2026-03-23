@@ -266,7 +266,25 @@ Target: top 6–8 gaps
 | Reactivity Gap               | ❌ overlaps with STG             |
 | Intent–Perception            | ❌ not questionnaire-based       |
 
-**Add 4-6 additional gap questions**
+**Added 4-6 additional gap questions:**
+
+| Gap                          | New Question | Role                          |
+| ---------------------------- | ------------ | ----------------------------- |
+| Communication Gap            | Q3.10        | Expression behavior anchor    |
+| Closeness Gap                | Q3.11        | Sustained closeness tolerance |
+| Emotional Responsibility Gap | Q1.7         | Stress-state attribution      |
+| Effort Gap                   | Q3.12        | Effort reciprocity behavior   |
+
+
+Every major gap is now *explicitly measurable,* not inferred
+
+That’s the point where your system shifts from:
+
+“good personality model”
+
+to
+
+behavioral prediction engine
 
 ### 1. Coverage pattern (critical)
 

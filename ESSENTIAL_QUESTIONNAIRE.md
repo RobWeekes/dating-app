@@ -117,6 +117,20 @@
 - **Maps to:** 2. Attachment Avoidance (AV), 3. Emotional Regulation (ER), 4. Responsiveness (RS), 9. Closeness–Autonomy Preference (CA)
 - **Note:** Efficiently captures support style and dependence/autonomy balance.
 
+### Emotional Responsibility Gap (ERG)
+
+Q1.7 When I’m really upset in a relationship, I tend to …
+Format: single | Weight: critical
+Options:
+A) Notice my reaction and try to understand where it’s coming from
+B) Feel caught between my reaction and what they did
+C) Feel like they’re the reason I’m upset
+
+- **Measures:** emotional attribution under stress
+- **Maps to:** 5. Emotional Responsibility (ER2), 8. Negative Conflict Style (NC), 3. Emotional Regulation (ER)
+- **Note:** Gap role: State anchor for ERG
+  Pairs cleanly with: Q1.5 (belief about emotions)
+
 ---
 
 ## Conflict & Repair
@@ -253,6 +267,49 @@
   C) Focus on what’s most urgent and circle back later
 - **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN), 4. Responsiveness (RS), 3. Emotional Regulation (ER)
 - **Note:** Primary: reliability under load (state behavior). Secondary: prioritization norms; emotional vs behavioral follow-through
+
+### Communication Gap (CG)
+
+**Q3.10** When something is important to me in a relationship, I usually …
+
+- **Format:** single | Weight: high
+- **Options:**
+  A) Say it clearly, even if it feels a bit uncomfortable
+  B) Try to imply it or ease into it
+  C) Assume they’ll pick up on it without me saying much
+- **Measures:** expression vs expectation gap
+- **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness (AG)
+- **Note:** Gap role: State anchor for Communication Gap
+
+### Closeness Gap (CG2 refinement)
+
+**Q3.11** After a lot of closeness or time together, I usually …
+
+- **Format:** single | Weight: high
+  Options:
+  A) Still feel comfortable staying connected
+  B) Need a bit of space to recharge
+  C) Start to feel overwhelmed or want distance
+- **Measures:** tolerance under sustained closeness
+- **Maps to:** 2. Attachment Avoidance (AV), 10. Closeness Tolerance (CT), 3. Emotional Regulation (ER)
+- **Note:** State anchor for Closeness Gap
+  This complements: Q3.2 (preference), Q3.3 (mismatch tolerance)
+  and makes CG2 much cleaner.
+
+### Effort–Expectation Gap (EEG)
+
+**Q3.12** In a relationship, when effort starts to feel uneven, I usually …
+Format: single | Weight: high
+Options:
+A) Try to match the level of effort I want to see
+B) Notice it, but adjust depending on the situation
+C) Feel frustrated if I’m not getting the effort I expect
+
+- **Measures:** effort reciprocity vs expectation asymmetry
+- **Maps to:** 14. Effort & Investment Norms (EN), 19. Conscientiousness / Reliability (CO), 4. Responsiveness (RS)
+- **Note:** Gap role: Behavioral anchor for Effort Gap
+- **Complements:** Q3.7 (expectation),
+  Q3.8 / Q3.9 (behavior)
 
 ---
 
