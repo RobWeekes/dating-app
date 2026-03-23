@@ -154,17 +154,6 @@
 - **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Excellent discriminator for conflict toxicity.
 
-**Q2.4** If conflict keeps coming up around the same issue, I usually …
-
-- **Format:** single | **Weight:** high
-- **Options:**
-  A) Keep working toward a workable middle ground  
-  B) Go along with it, but feel resentful or trapped  
-  C) Pull back more or lose interest
-- **Measures:** negotiation vs compliance vs deactivation
-- **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 10. Closeness Tolerance (CT)
-- **Note:** Strong repeated-conflict realism; useful for long-term compatibility.
-
 **Q2.5** When I realize I hurt a partner, I’m most likely to …
 
 - **Format:** single | **Weight:** high
@@ -211,17 +200,6 @@
 - **Maps to:** 2. Attachment Avoidance (AV), 9. Closeness–Autonomy Preference (CA)
 - **Note:** Simple baseline preference anchor.
 
-**Q3.3** If my partner’s attachment style is more clingy or more distant than mine, I usually …
-
-- **Format:** single | **Weight:** high
-- **Options:**
-  A) Can adjust if the relationship feels good overall  
-  B) Notice it, but it depends how big the mismatch is  
-  C) Get drained or dissatisfied pretty quickly
-- **Measures:** mismatch flexibility; tolerance bandwidth
-- **Maps to:** 10. Closeness Tolerance (CT), 9. Closeness–Autonomy Preference (CA), 18. Emotional Stability (ES)
-- **Note:** Pure tolerance item; important to keep distinct from preference.
-
 **Q3.4** When something concerns me in a relationship, I’m more likely to …
 
 - **Format:** single | **Weight:** high
@@ -254,17 +232,6 @@
 - **Measures:** threat sensitivity; interpretive bias
 - **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
 - **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
-
-**Q3.7** In a relationship, I usually think it should feel …
-
-- **Format:** single | **Weight:** high
-- **Options:**
-  A) Challenging in a healthy way sometimes  
-  B) Mostly natural, with some work when needed  
-  C) Easy enough that it shouldn’t take much effort
-- **Measures:** expected effort norm
-- **Maps to:** 14. Effort & Investment Norms (EN), 7. Conflict Repair Ability (CR), 19. Conscientiousness / Reliability (CO)
-- **Note:** Helpful mismatch driver; often underestimated.
 
 **Q3.8** When a relationship matters to me, I’m more likely to …
 
@@ -349,17 +316,6 @@
 - **Measures:** assertiveness vs accommodation
 - **Maps to:** 20. Assertiveness–Agreeableness Balance (AG), 11. Communication Directness (CD), 8. Negative Conflict Style (NC)
 - **Note:** Useful balance item; avoids “I’m assertive” identity framing.
-
-**Q5.3** When plans change unexpectedly, I’m usually …
-
-- **Format:** single | **Weight:** medium
-- **Options:**
-  A) Pretty adaptable  
-  B) Fine if there’s a good reason
-  C) Easily thrown off or irritated
-- **Measures:** flexibility; baseline reactivity
-- **Maps to:** 18. Emotional Stability (ES), 3. Emotional Regulation (ER), 19. Conscientiousness / Reliability (CO)
-- **Note:** Small but useful incremental trait-recovery item.
 
 ---
 
