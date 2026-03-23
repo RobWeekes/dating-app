@@ -5,7 +5,7 @@
 - Recover all **20 indices** with a **minimal but high-signal** item set
 - Use **more items for the most predictive indices**
 - Favor **behavior under stress / ambiguity** over identity statements
-- Use **2–3 forced choices** with **low desirability bias**
+- Use **3 forced choices** with **low desirability bias**
 - Let each item update **multiple indices**, not just one
 
 ## Weight scale
@@ -132,7 +132,7 @@
 - **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 3. Emotional Regulation (ER)
 - **Note:** Low-intensity baseline to contrast with high-stress response (Q1.4)
 
-**Q2.2** After an argument with a partner, I usually …
+**Q2.2** After a conflict with a partner, I usually …
 
 - **Format:** single | **Weight:** critical
 - **Options:**
@@ -176,6 +176,15 @@
 - **Maps to:** 5. Emotional Responsibility (ER2), 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 19. Conscientiousness / Reliability (CO)
 - **Note:** Clean accountability item without using idealized language like “I always apologize.”
 
+**Q2.6** After an argument, when things still feel tense, I usually …
+
+- **Format:** single | **Weight:** critical
+- **Options:**
+  A) Try to smooth things over, even if it's a bit uncomfortable
+  B) Give it some time, then come back and reconnect
+  C) Wait for the tension to pass, or for them to reach out first
+- **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
+
 ---
 
 ## Compatibility & Friction
@@ -185,7 +194,7 @@
 - **Format:** single | **Weight:** critical
 - **Options:**
   A) Try to find a middle ground
-  B) Go along with it, but feel trapped or annoyed 
+  B) Go along with it, but feel trapped or annoyed
   C) Start to pull back or see them as too needy
 - **Measures:** closeness preference; tolerance for mismatch
 - **Maps to:** 2. Attachment Avoidance (AV), 9. Closeness–Autonomy Preference (CA), 10. Closeness Tolerance (CT), 14. Effort & Investment Norms (EN)
@@ -228,7 +237,7 @@
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Understand most important needs even if not everything is said  
+  A) Understand most needs even if not everything is said  
   B) Understand some things, but clear communication still matters  
   C) Not be expected to know unless it’s said directly
 - **Measures:** mind-reading expectation
@@ -239,7 +248,7 @@
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Assume it probably isn’t a big deal  
+  A) Assume it’s probably nothing and move on  
   B) Notice it and want some clarity  
   C) Read into it and feel unsettled
 - **Measures:** threat sensitivity; interpretive bias
@@ -250,23 +259,33 @@
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Effortful in a healthy way sometimes  
+  A) Challenging in a healthy way sometimes  
   B) Mostly natural, with some work when needed  
   C) Easy enough that it shouldn’t take much effort
 - **Measures:** expected effort norm
 - **Maps to:** 14. Effort & Investment Norms (EN), 7. Conflict Repair Ability (CR), 19. Conscientiousness / Reliability (CO)
 - **Note:** Helpful mismatch driver; often underestimated.
 
-**Q3.8** When a relationship matters to me, I tend to show it by …
+**Q3.8** When a relationship matters to me, I’m more likely to …
 
 - **Format:** single | **Weight:** medium
 - **Options:**
-  A) Following through consistently  
-  B) Being emotionally expressive  
-  C) Being present when it counts, even if inconsistently
+  A) Show it through consistent actions over time
+  B) Feel it strongly, even if my actions aren’t always consistent
+  C) Step up in key moments, even if I’m not steady day-to-day
 - **Measures:** investment expression; reliability
-- **Maps to:** 14. Effort & Investment Norms (EN), 19. Conscientiousness / Reliability (CO), 4. Responsiveness (RS)
+- **Maps to:** 14. Effort & Investment Norms (EN) → strong, 19. Conscientiousness / Reliability (CO) → primary signal (A ↔ C gradient), 4. Responsiveness (RS) → B/C (different forms: emotional vs situational)
 - **Note:** Helps separate intention from dependable follow-through.
+
+**Q3.9** When life gets busy or stressful, I usually …
+
+- **Format:** single | Weight: critical
+- **Options:**
+  A) Keep showing up pretty consistently
+  B) Try to stay connected, but I can become less responsive
+  C) Focus on what’s most urgent and circle back later
+- **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN), 4. Responsiveness (RS), 3. Emotional Regulation (ER)
+- **Note:** Primary: reliability under load (state behavior). Secondary: prioritization norms; emotional vs behavioral follow-through
 
 ---
 
@@ -309,12 +328,12 @@
 
 ## Personality & Stability
 
-**Q5.1** People close to me would probably say I’m …
+**Q5.1** People close to me would likely say I’m …
 
 - **Format:** single | **Weight:** high
 - **Options:**
   A) Dependable and consistent  
-  B) Warm but a bit variable in follow-through  
+  B) Warm but a little unpredictable
   C) More spontaneous than consistent
 - **Measures:** reliability; conscientiousness
 - **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN)
@@ -336,7 +355,7 @@
 - **Format:** single | **Weight:** medium
 - **Options:**
   A) Pretty adaptable  
-  B) Fine if there’s a good reason and some clarity  
+  B) Fine if there’s a good reason
   C) Easily thrown off or irritated
 - **Measures:** flexibility; baseline reactivity
 - **Maps to:** 18. Emotional Stability (ES), 3. Emotional Regulation (ER), 19. Conscientiousness / Reliability (CO)
