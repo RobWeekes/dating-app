@@ -979,3 +979,211 @@ Overall compatibility = √(Compatibility(A → B) × Compatibility(B → A))
 ## Step 1: Compute A → B Compatibility
 
 **Formula per question:**
+
+```
+Matchᵢ = Indicator(PartnerAnswer ∈ Tolerance) × Importance
+```
+
+
+| Question | B Answer | A Tolerance | Indicator | Importance | Matchᵢ |
+|----------|---------|------------|-----------|------------|---------|
+| Q1       | No      | Yes        | 0         | 1.0        | 0       |
+| Q2       | Active  | Active, Relaxed | 1   | 0.5        | 0.5     |
+| Q3       | Moderate| Progressive | 0         | 0.8        | 0       |
+
+**Weighted sum / total importance:**
+
+```
+Compatibility(A→B) = Σ Matchᵢ / Σ Importance
+= (0 + 0.5 + 0) / (1 + 0.5 + 0.8)
+= 0.5 / 2.3 ≈ 0.217
+```
+
+
+---
+
+## Step 2: Compute B → A Compatibility
+
+| Question | A Answer | B Tolerance | Indicator | Importance | Matchᵢ |
+|----------|---------|------------|-----------|------------|---------|
+| Q1       | Yes     | Yes, No    | 1         | 1.0        | 1.0     |
+| Q2       | Active  | Active     | 1         | 0.5        | 0.5     |
+| Q3       | Progressive | Progressive, Moderate | 1 | 0.8  | 0.8     |
+
+```
+Compatibility(B→A) = Σ Matchᵢ / Σ Importance
+= (1.0 + 0.5 + 0.8) / (1 + 0.5 + 0.8)
+= 2.3 / 2.3 = 1.0
+```
+
+
+---
+
+## Step 3: Compute Overall Compatibility (Bidirectional)
+
+**Geometric mean:**
+
+```
+Overall Compatibility = √(Compatibility(A→B) × Compatibility(B→A))
+= √(0.217 × 1.0)
+≈ 0.466
+```
+
+
+---
+
+## Step 4: Optional: Per-Category Scores
+
+- Children / Family: 0 (dealbreaker for A)
+- Lifestyle: 0.5 / 0.5 (moderate match)
+- Politics: 0 (A does not accept B’s political alignment)
+
+---
+
+## ✅ Observations
+
+- Even though B is fully compatible with A’s tolerance, **A finds B unacceptable on two questions**, lowering overall score.
+- Importance weights allow questions like Q1 (family) to **strongly impact the score**.
+- The system naturally reflects **both users’ perspectives**.
+
+---
+
+This approach **scales easily** because all computations are vectorizable:
+
+- Each user’s **answers, tolerance, and importance** can be stored as vectors
+- **Element-wise multiplication + sum** gives compatibility quickly
+- Can be used with ANN search for **top-k candidate retrieval**
+
+# Visual Diagram: Three-Weight Scoring Example
+
+             ┌───────────────┐
+             │   User A      │
+             │ Own Answers:  │
+             │ Q1: Yes       │
+             │ Q2: Active    │
+             │ Q3: Progressive │
+             │ Importance:   │
+             │ Q1: 1.0       │
+             │ Q2: 0.5       │
+             │ Q3: 0.8       │
+             └───────────────┘
+                      │
+     Tolerance Mask   │
+     Q1: Yes          │
+     Q2: Active,Relaxed
+     Q3: Progressive
+                      ▼
+             ┌───────────────┐
+             │   User B      │
+             │ Own Answers:  │
+             │ Q1: No        │
+             │ Q2: Active    │
+             │ Q3: Moderate  │
+             │ Importance:   │
+             │ Q1: 1.0       │
+             │ Q2: 0.5       │
+             │ Q3: 0.8       │
+             └───────────────┘
+
+```
+Step 1: A → B Match Calculation
+──────────────────────────────
+Q1: No ∉ A tolerance → 0 × 1.0 = 0
+Q2: Active ∈ A tolerance → 1 × 0.5 = 0.5
+Q3: Moderate ∉ A tolerance → 0 × 0.8 = 0
+Weighted sum / total importance = 0.5 / 2.3 ≈ 0.217
+
+Step 2: B → A Match Calculation
+──────────────────────────────
+Q1: Yes ∈ B tolerance → 1 × 1.0 = 1.0
+Q2: Active ∈ B tolerance → 1 × 0.5 = 0.5
+Q3: Progressive ∈ B tolerance → 1 × 0.8 = 0.8
+Weighted sum / total importance = 2.3 / 2.3 = 1.0
+
+Step 3: Overall Compatibility
+──────────────────────────────
+√(A→B × B→A) = √(0.217 × 1.0) ≈ 0.466
+
+Per-category breakdown (optional):
+
+* Children / Family: 0 (dealbreaker for A)
+* Lifestyle: 0.5 (moderate match)
+* Politics: 0 (A does not accept B)
+```
+
+
+### Visual Notes
+
+- **Arrows indicate tolerance checking**: if partner’s answer ∈ user’s tolerance → match = 1
+- **Importance weights scale each question** → dealbreakers have stronger effect
+- **Bidirectional scoring** ensures both users’ preferences count
+- **Geometric mean** gives final overall score
+
+This diagram can be **converted to a UI mockup** showing:
+
+- Each question with **own answer**, **acceptable answers**, **importance slider**
+- Resulting **per-question match** and **overall compatibility**
+
+---
+
+Here’s an infographic-style visual layout for the Three-Weight scoring example. It’s designed to clearly show answers, tolerances, importance, per-question matches, and overall compatibility in a way that’s easy to present to product or design teams.
+
+┌───────────────┐ ┌───────────────┐
+│ User A │ │ User B │
+│ Own Answers │ │ Own Answers │
+│ Q1: Yes │ │ Q1: No │
+│ Q2: Active │ │ Q2: Active │
+│ Q3: Progressive│ │ Q3: Moderate │
+│ Importance │ │ Importance │
+│ Q1: 1.0 │ │ Q1: 1.0 │
+│ Q2: 0.5 │ │ Q2: 0.5 │
+│ Q3: 0.8 │ │ Q3: 0.8 │
+└───────────────┘ └───────────────┘
+│ ▲
+│ │
+│ Tolerance / Acceptable Answers
+▼ │
+┌─────────────────────────────────────────────────────────────────┐
+│ Per-question Matching (A → B) │
+│ Q1: B=No ∉ A tolerance → Match=0 × Importance=1.0 → 0 │
+│ Q2: B=Active ∈ A tolerance → Match=1 × Importance=0.5 → 0.5 │
+│ Q3: B=Moderate ∉ A tolerance → Match=0 × Importance=0.8 → 0 │
+│ Weighted Sum / Total Importance = 0.5 / 2.3 ≈ 0.217 │
+└─────────────────────────────────────────────────────────────────┘
+│
+▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Per-question Matching (B → A) │
+│ Q1: A=Yes ∈ B tolerance → 1 × 1.0 → 1.0 │
+│ Q2: A=Active ∈ B tolerance → 1 × 0.5 → 0.5 │
+│ Q3: A=Progressive ∈ B tolerance → 1 × 0.8 → 0.8 │
+│ Weighted Sum / Total Importance = 2.3 / 2.3 = 1.0 │
+└─────────────────────────────────────────────────────────────────┘
+│
+▼
+┌─────────────────────────────┐
+│ Overall Compatibility Score │
+│ √(0.217 × 1.0) ≈ 0.466 │
+└─────────────────────────────┘
+
+Per-category breakdown:
+
+* Children/Family: 0 (dealbreaker for A)
+* Lifestyle: 0.5 (moderate match)
+* Politics: 0 (A does not accept B)
+
+
+### Infographic Highlights
+
+- **Users on left/right** with answers & importance
+- **Arrows** indicate tolerance check for each question
+- **Per-question match boxes** show calculations clearly
+- **Overall compatibility box** summarizes result
+- **Color coding suggestion:**
+  - Green → match
+  - Yellow → partial / moderate match
+  - Red → mismatch / dealbreaker
+
+---
+
+This layout can be **directly adapted into a UI mockup** or slide for presentations.
