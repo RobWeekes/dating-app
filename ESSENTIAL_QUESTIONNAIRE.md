@@ -168,7 +168,6 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Excellent discriminator for conflict toxicity.
 
-<!-- changed from Q2.5 to -->
 **Q2.4** When I realize I hurt a partner, I’m most likely to …
 
 - **Format:** single | **Weight:** high
@@ -180,7 +179,6 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 5. Emotional Responsibility (ER2), 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 19. Conscientiousness / Reliability (CO)
 - **Note:** Clean accountability item without using idealized language like “I always apologize.”
 
-<!-- changed from Q2.6 to -->
 **Q2.5** After an argument, when things still feel tense, I usually …
 
 - **Format:** single | **Weight:** critical
@@ -228,7 +226,6 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Very efficient expression-vs-expectation item.
 
-<!-- changed from Q3.5 to -->
 **Q3.4** In relationships, I usually feel that a good partner should …
 
 - **Format:** single | **Weight:** high
@@ -240,7 +237,6 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 12. Mind-Reading Expectation (MR), 11. Communication Directness (CD), 4. Responsiveness (RS)
 - **Note:** Captures expectation side separately from expression side.
 
-<!-- changed from Q3.6 to -->
 **Q3.5** If something about a partner’s behavior feels ambiguous, I tend to …
 
 - **Format:** single | **Weight:** high
@@ -252,8 +248,19 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
 - **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
 
-<!-- changed from Q3.8 to -->
-**Q3.6** When a relationship matters to me, I’m more likely to …
+<!-- new Q -->
+**Q3.6** If a partner suddenly seems less available or attentive than usual, I’m most likely to …
+
+- **Format:** single | **Weight:** high
+- **Options:**
+  A) Assume something else is probably going on and check in if needed
+  B) Notice it and feel unsure until I understand why
+  C) Feel unsettled and start wondering what it means about us
+- **Measures:** response to perceived distance; threat activation under mild relational ambiguity
+- **Maps to:** 13. Jealousy / Threat Sensitivity (JS), 1. Attachment Anxiety (AA), 18. Emotional Stability (ES)
+- **Note:** Complements Q3.5 by using availability change rather than general ambiguity, improving JS reliability without using obvious jealousy language.
+
+**Q3.7** When a relationship matters to me, I’m more likely to …
 
 - **Format:** single | **Weight:** medium
 - **Options:**
@@ -264,8 +271,7 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 14. Effort & Investment Norms (EN) → strong, 19. Conscientiousness / Reliability (CO) → primary signal (A ↔ C gradient), 4. Responsiveness (RS) → B/C (different forms: emotional vs situational)
 - **Note:** Helps separate intention from dependable follow-through.
 
-<!-- changed from Q3.9 to -->
-**Q3.7** When life gets busy or stressful, I usually …
+**Q3.8** When life gets busy or stressful, I usually …
 
 - **Format:** single | Weight: critical
 - **Options:**
@@ -277,8 +283,7 @@ C) Feel like my partner is the cause of it
 
 ### Communication Gap (CG)
 
-<!-- changed from Q3.10 to -->
-**Q3.8** When something is important to me in a relationship, I usually …
+**Q3.9** When something is important to me in a relationship, I usually …
 
 - **Format:** single | Weight: high
 - **Options:**
@@ -291,8 +296,7 @@ C) Feel like my partner is the cause of it
 
 ### Closeness Gap (CG2 refinement)
 
-<!-- changed from Q3.11 to -->
-**Q3.9** After a lot of closeness or time together, I usually …
+**Q3.10** After a lot of closeness or time together, I usually …
 
 - **Format:** single | Weight: high
   Options:
@@ -307,8 +311,7 @@ C) Feel like my partner is the cause of it
 
 ### Effort–Expectation Gap (EEG)
 
-<!-- changed from Q3.12 to -->
-**Q3.10** In a relationship, when effort starts to feel uneven, I usually …
+**Q3.11** In a relationship, when effort starts to feel uneven, I usually …
 Format: single | Weight: high
 Options:
 A) Try to match the level of effort I want to see
@@ -347,7 +350,19 @@ C) Feel frustrated if I’m not getting the effort I expect
 - **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
 - **Note:** Measures how strongly LS should function as a hard filter.
 
-**Q4.3** In a long-term relationship, I usually want life to feel more …
+<!-- new Q -->
+**Q4.3** If someone I really like has a different timeline or level of certainty around major life decisions, I usually …
+
+- **Format:** single | **Weight:** high
+- **Options:**
+  A) Need strong alignment fairly early to feel good about continuing
+  B) Can keep exploring if the mismatch doesn’t seem too big
+  C) Am comfortable letting it stay open for quite a while
+- **Measures:**tolerance for life-structure mismatch; rigidity vs flexibility around major decisions
+- **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
+- **Note:** Adds a behavioral / relational anchor for LS instead of relying only on self-described clarity
+
+**Q4.4** In a long-term relationship, I usually want life to feel more …
 
 - **Format:** single | **Weight:** high
 - **Options:**
@@ -357,6 +372,18 @@ C) Feel frustrated if I’m not getting the effort I expect
 - **Measures:** novelty vs stability preference
 - **Maps to:** 17. Novelty vs Stability Preference (NS), 9. Closeness–Autonomy Preference (CA)
 - **Note:** Best kept as a preference item, not a personality claim.
+
+<!-- new Q -->
+**Q4.5** After a relationship settles into a routine, I usually …
+
+- **Format:** single | **Weight:** high
+- **Options:**
+  A) Like the steadiness and don’t need much change
+  B) Like some routine, but need occasional new experiences mixed in
+  C) Start wanting more change, spontaneity, or intensity
+- **Measures:** behavior under routine; need for stimulation once novelty fades
+- **Maps to:** 17. Novelty vs Stability Preference (NS), 18. Emotional Stability (ES)
+- **Note:** Behavioral anchor for NS; complements Q4.4 by measuring what happens after novelty wears off.
 
 ---
 
@@ -386,119 +413,295 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-# Coverage by Index (Updated)
 
-## 1. Attachment Anxiety (AA)
 
-* Q1.1, Q1.2, Q1.4, Q3.5
+# Added Questions + Updated Numbering / References
 
-## 2. Attachment Avoidance (AV)
+## Compatibility & Friction
+
+**Q3.5** If something about a partner’s behavior feels ambiguous, I tend to …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Assume it’s probably nothing and move on
+  B) Notice it and want some clarity
+  C) Read into it and feel unsettled
+* **Measures:** threat sensitivity; interpretive bias
+* **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
+* **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
+
+### Jealousy / Threat Sensitivity (JS)
+
+**Q3.6** If a partner suddenly seems less available or attentive than usual, I’m most likely to …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Assume something else is probably going on and check in if needed
+  B) Notice it and feel unsure until I understand why
+  C) Feel unsettled and start wondering what it means about us
+* **Measures:** response to perceived distance; threat activation under mild relational ambiguity
+* **Maps to:** 13. Jealousy / Threat Sensitivity (JS), 1. Attachment Anxiety (AA), 18. Emotional Stability (ES)
+* **Note:** Complements Q3.5 by using **availability change** rather than general ambiguity, improving JS reliability without using obvious jealousy language.
+
+**Q3.7** When a relationship matters to me, I’m more likely to …
+
+* **Format:** single | **Weight:** medium
+* **Options:**
+  A) Show it through consistent actions over time
+  B) Feel it strongly, even if my actions aren’t always consistent
+  C) Step up in key moments, even if I’m not steady day-to-day
+* **Measures:** investment expression; reliability
+* **Maps to:** 14. Effort & Investment Norms (EN) → strong, 19. Conscientiousness / Reliability (CO) → primary signal, 4. Responsiveness (RS) → B/C (different forms: emotional vs situational)
+* **Note:** Helps separate intention from dependable follow-through.
+
+**Q3.8** When life gets busy or stressful, I usually …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Keep showing up pretty consistently
+  B) Try to stay connected, but I can become less responsive
+  C) Focus on what’s most urgent and circle back later
+* **Measures:** reliability under load; prioritization under stress
+* **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN), 4. Responsiveness (RS), 3. Emotional Regulation (ER)
+* **Note:** Primary: reliability under load (state behavior). Secondary: prioritization norms; emotional vs behavioral follow-through.
+
+### Communication Gap (CG)
+
+**Q3.9** When something is important to me in a relationship, I usually …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Say it clearly, even if it feels a bit uncomfortable
+  B) Try to imply it or ease into it
+  C) Assume they’ll pick up on it without me saying much
+* **Measures:** expression vs expectation gap
+* **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness Balance (AG)
+* **Note:** Gap role: state anchor for Communication Gap.
+
+### Closeness Gap (CG2 refinement)
+
+**Q3.10** After a lot of closeness or time together, I usually …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Still feel comfortable staying connected
+  B) Need a bit of space to recharge
+  C) Start to feel overwhelmed or want distance
+* **Measures:** tolerance under sustained closeness
+* **Maps to:** 2. Attachment Avoidance (AV), 10. Closeness Tolerance (CT), 3. Emotional Regulation (ER)
+* **Note:** State anchor for Closeness Gap; complements Q3.2.
+
+### Effort–Expectation Gap (EEG)
+
+**Q3.11** In a relationship, when effort starts to feel uneven, I usually …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Try to match the level of effort I want to see
+  B) Notice it, but adjust depending on the situation
+  C) Feel frustrated if I’m not getting the effort I expect
+* **Measures:** effort reciprocity vs expectation asymmetry
+* **Maps to:** 14. Effort & Investment Norms (EN), 19. Conscientiousness / Reliability (CO), 4. Responsiveness (RS)
+* **Note:** Gap role: behavioral anchor for Effort Gap.
+
+---
+
+## Values & Alignment
+
+**Q4.1** Right now, I’m dating mainly for …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Something meaningful and long-term
+  B) Openness to either casual or serious, depending on fit
+  C) Something more casual or short-term
+* **Measures:** relationship intent
+* **Maps to:** 15. Long-Term Orientation (LT)
+
+**Q4.2** On major life choices (like kids, home base, or lifestyle), I tend to be …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Pretty clear about what I want
+  B) Open, but within some limits
+  C) Flexible and still figuring it out
+* **Measures:** life-structure rigidity vs openness
+* **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
+
+### Life Structure Alignment (LS)
+
+**Q4.3** If someone I really like has a different timeline or level of certainty around major life decisions, I usually …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Need strong alignment fairly early to feel good about continuing
+  B) Can keep exploring if the mismatch doesn’t seem too big
+  C) Am comfortable letting it stay open for quite a while
+* **Measures:** tolerance for life-structure mismatch; rigidity vs flexibility around major decisions
+* **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
+* **Note:** Adds a behavioral / relational anchor for LS instead of relying only on self-described clarity.
+
+**Q4.4** In a long-term relationship, I usually want life to feel more …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Grounded and predictable
+  B) Balanced between routine and novelty
+  C) Fresh, stimulating, and changing
+* **Measures:** novelty vs stability preference
+* **Maps to:** 17. Novelty vs Stability Preference (NS), 9. Closeness–Autonomy Preference (CA)
+* **Note:** Best kept as a preference item, not a personality claim.
+
+### Novelty vs Stability (NS)
+
+**Q4.5** After a relationship settles into a routine, I usually …
+
+* **Format:** single | **Weight:** high
+* **Options:**
+  A) Like the steadiness and don’t need much change
+  B) Like some routine, but need occasional new experiences mixed in
+  C) Start wanting more change, spontaneity, or intensity
+* **Measures:** behavior under routine; need for stimulation once novelty fades
+* **Maps to:** 17. Novelty vs Stability Preference (NS), 18. Emotional Stability (ES)
+* **Note:** Behavioral anchor for NS; complements Q4.4 by measuring what happens after novelty wears off.
+
+---
+
+# Updated Mapping References
+
+## Coverage by Index
+
+### 1. Attachment Anxiety (AA)
+
+* Q1.1, Q1.2, Q1.4, Q3.5, Q3.6
+
+### 2. Attachment Avoidance (AV)
 
 * Q1.1, Q1.2, Q1.4, Q1.6
-* Q2.1, Q2.2, Q2.4
-* Q3.1, Q3.2, Q3.9
+* Q2.1, Q2.2, Q2.5
+* Q3.1, Q3.2, Q3.10
 
-## 3. Emotional Regulation (ER)
+### 3. Emotional Regulation (ER)
 
 * Q1.1, Q1.3, Q1.4, Q1.6, Q1.7
-* Q2.1
-* Q3.7, Q3.9
+* Q2.1, Q2.5
+* Q3.8, Q3.10
 
-## 4. Responsiveness (RS)
+### 4. Responsiveness (RS)
 
 * Q1.2, Q1.6
 * Q2.2, Q2.5
-* Q3.6, Q3.7, Q3.10
+* Q3.7, Q3.8, Q3.11
 
-## 5. Emotional Responsibility (ER2)
+### 5. Emotional Responsibility (ER2)
 
 * Q1.5, Q1.7
 * Q2.3, Q2.4
 
-## 6. Conflict Engagement (CE)
+### 6. Conflict Engagement (CE)
 
 * Q1.1, Q1.4
 * Q2.1
 
-## 7. Conflict Repair Ability (CR)
+### 7. Conflict Repair Ability (CR)
 
 * Q2.2, Q2.3, Q2.4, Q2.5
-* (optional light) Q3.7
+* (optional light) Q3.8
 
-## 8. Negative Conflict Style (NC)
+### 8. Negative Conflict Style (NC)
 
 * Q1.2, Q1.4, Q1.5, Q1.7
 * Q2.3, Q2.4, Q2.5
 * Q5.2
 
-## 9. Closeness–Autonomy Preference (CA)
+### 9. Closeness–Autonomy Preference (CA)
 
 * Q1.6
 * Q3.1, Q3.2
-* (optional light) Q4.3
+* (optional light) Q4.4
 
-## 10. Closeness Tolerance (CT)
+### 10. Closeness Tolerance (CT)
 
 * Q3.1
-* Q3.9
+* Q3.10
 
-## 11. Communication Directness (CD)
+### 11. Communication Directness (CD)
 
-* Q3.3
-* Q3.4
-* Q3.8
+* Q3.3, Q3.4, Q3.9
 * Q5.2
 
-## 12. Mind-Reading Expectation (MR)
+### 12. Mind-Reading Expectation (MR)
 
-* Q3.4
-* Q3.8
+* Q3.4, Q3.9
 
-## 13. Jealousy / Threat Sensitivity (JS)
+### 13. Jealousy / Threat Sensitivity (JS)
 
-* Q3.5
+* Q3.5, Q3.6
 
-## 14. Effort & Investment Norms (EN)
+### 14. Effort & Investment Norms (EN)
 
 * Q1.2
 * Q3.1
-* Q3.6, Q3.7, Q3.10
+* Q3.7, Q3.8, Q3.11
 * Q5.1
 
-## 15. Long-Term Orientation (LT)
+### 15. Long-Term Orientation (LT)
 
-* Q4.1, Q4.2
+* Q4.1, Q4.2, Q4.3
 
-## 16. Life Structure Alignment (LS)
+### 16. Life Structure Alignment (LS)
 
-* Q4.2
+* Q4.2, Q4.3
 
-## 17. Novelty vs Stability Preference (NS)
+### 17. Novelty vs Stability Preference (NS)
 
-* Q4.3
+* Q4.4, Q4.5
 
-## 18. Emotional Stability (ES)
+### 18. Emotional Stability (ES)
 
 * Q1.3
-* Q3.5
+* Q3.5, Q3.6
+* Q4.5
 
-## 19. Conscientiousness / Reliability (CO)
+### 19. Conscientiousness / Reliability (CO)
 
 * Q2.2, Q2.4, Q2.5
-* Q3.6, Q3.7, Q3.10
+* Q3.7, Q3.8, Q3.11
 * Q5.1
 
-## 20. Assertiveness–Agreeableness Balance (AG)
+### 20. Assertiveness–Agreeableness Balance (AG)
 
 * Q1.5
 * Q2.3
-* Q3.3
-* Q3.8
+* Q3.3, Q3.9
 * Q5.2
 
 ---
 
-# Notes on Efficiency (Updated)
+## Updated Weighting References
+
+### Critical Weight
+
+* Q1.1, Q1.3, Q1.4, Q1.7
+* Q2.1, Q2.2, Q2.3, Q2.5
+* Q3.1, Q3.8
+* Q4.1, Q4.2
+
+### High Weight
+
+* Q1.2, Q1.5, Q1.6
+* Q2.4
+* Q3.3, Q3.4, Q3.5, Q3.6, Q3.9, Q3.10, Q3.11
+* Q4.3, Q4.4, Q4.5
+* Q5.1, Q5.2
+
+### Medium Weight
+
+* Q3.7
+
+---
+
+# Notes on Efficiency
 
 ## Why this is near-minimal
 
@@ -565,73 +768,6 @@ Because:
 * <20 questions → underfit (miss key dynamics)
 * **25–32 questions → optimal signal density**
 * > 40 questions → fatigue + noisier data
-
----
-
-# Weighting (Updated)
-
-## Critical Weight (highest impact)
-
-Use strongest weights for:
-
-* Q1.1 (attachment activation)
-
-* Q1.3 (baseline stability)
-
-* Q1.4 (conflict stress behavior)
-
-* Q1.7 (ERG state anchor)
-
-* Q2.1 (low-stakes conflict behavior)
-
-* Q2.2 (repair speed)
-
-* Q2.3 (defensiveness / escalation)
-
-* Q2.5 (repair under tension)
-
-* Q3.1 (closeness mismatch)
-
-* Q3.7 (reliability under stress)
-
-* Q4.1 (relationship intent)
-
-* Q4.2 (life structure constraints)
-
----
-
-## High Weight
-
-* Q1.2 (responsiveness to partner needs)
-
-* Q1.5 (emotional responsibility trait)
-
-* Q1.6 (support preference)
-
-* Q2.4 (accountability behavior)
-
-* Q3.3 (communication behavior)
-
-* Q3.4 (mind-reading expectation)
-
-* Q3.5 (threat sensitivity)
-
-* Q3.8 (communication gap anchor)
-
-* Q3.9 (closeness tolerance under load)
-
-* Q3.10 (effort gap behavior)
-
-* Q5.1 (reliability perception)
-
-* Q5.2 (assertiveness balance)
-
----
-
-## Medium Weight
-
-* Q3.6 (investment expression)
-* Q4.3 (novelty vs stability)
 
 ---
 
@@ -709,3 +845,19 @@ For highest-value traits, use later behavioral refresh items:
 That lets you improve the vector after onboarding without making the signup questionnaire much longer.
 
 ---
+
+## Updated Notes on Efficiency
+
+This set now strengthens three previously fragile indices:
+
+* **JS** now has two distinct triggers: ambiguity (**Q3.5**) and changed availability (**Q3.6**)
+* **LS** now has both self-described clarity (**Q4.2**) and mismatch tolerance in practice (**Q4.3**)
+* **NS** now has both preference (**Q4.4**) and behavioral routine response (**Q4.5**)
+
+That improves variance reliability without adding much redundancy, because each new item uses a **different context** rather than repeating the same construct in slightly different wording.
+
+The questionnaire remains compact because the added questions also contribute secondary signal to adjacent indices:
+
+* **Q3.6** → AA, ES
+* **Q4.3** → LT
+* **Q4.5** → ES
