@@ -64,8 +64,14 @@ Attachment orientation (secure vs. anxious vs. avoidant), comfort with emotional
 - **Anchors:** 1 = "Very casual/undefined is fine" · 10 = "I want clear definitions early"
 - **Measures:** tolerance for ambiguity; attachment activation
 
-**Q1.5** If I feel hurt by something my partner did, I can tell them directly without fearing they'll leave.
-- **Format:** likert | **Weight:** critical
+**Q1.5** When something my partner does hurts me, I tend to (Select 2)…
+- **Format:** multi | **Weight:** critical
+- **Options:** 
+A) Keep it to myself for quite a while
+B) Wait before bringing it up 
+C) Sometimes bring it up, sometimes wait
+D) Bring it up fairly soon 
+E) Bring it up right away 
 - **Measures:** secure communication; fear of abandonment
 
 **Q1.6** When I'm stressed, I prefer my partner to…
@@ -964,7 +970,7 @@ Daily lifestyle preferences (sleep, social energy, cleanliness, spending, health
 - [ ] K-Pop
 - [ ] Disco
 - [ ] Reggae
-// put Q in profile
+<!-- profile question -->
 
 ---
 
