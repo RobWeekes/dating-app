@@ -173,7 +173,7 @@ But miss that they:
 
 Use this:
 
-**Q2.6** After an argument, when things still feel tense, I usually …
+**Q2.5** After an argument, when things still feel tense, I usually …
 
 - **Format:** single | **Weight:** critical
 - **Options:**
@@ -210,4 +210,3 @@ Most items measure:
 This one measures:
 
 - what they do when repair feels uncomfortable and effortful
-

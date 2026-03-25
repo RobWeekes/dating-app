@@ -66,8 +66,8 @@
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Offer reassurance even if it takes effort  
-  B) Feel myself pulling back or getting drained  
+  A) Offer reassurance even if it takes effort
+  B) Feel myself pulling back or getting drained
   C) Get reactive or defensive about it
 - **Measures:** responsiveness to insecurity; tolerance for partner needs
 - **Maps to:** 1. Attachment Anxiety (AA), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 8. Negative Conflict Style (NC), 14. Effort & Investment Norms (EN)
@@ -77,8 +77,8 @@
 
 - **Format:** single | **Weight:** critical
 - **Options:**
-  A) Tends toward worry, tension, or feeling low  
-  B) Stays fairly steady  
+  A) Tends toward worry, tension, or feeling low
+  B) Stays fairly steady
   C) Fluctuates quite a bit
 - **Measures:** emotional stability; neuroticism
 - **Maps to:** 3. Emotional Regulation (ER), 18. Emotional Stability (ES)
@@ -88,8 +88,8 @@
 
 - **Format:** single | **Weight:** critical
 - **Options:**
-  A) Stay engaged and try to work it out  
-  B) Pull back to settle myself first  
+  A) Stay engaged and try to work it out
+  B) Pull back to settle myself first
   C) React strongly (push, vent, or seek reassurance)
 - **Measures:** regulation under conflict; withdrawal vs escalation
 - **Maps to:** 1. Attachment Anxiety (AA), 2. Attachment Avoidance (AV), 3. Emotional Regulation (ER), 6. Conflict Engagement (CE), 8. Negative Conflict Style (NC)
@@ -110,7 +110,7 @@
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Be present and emotionally supportive  
+  A) Be present and emotionally supportive
   B) Help me think it through or take action
   C) Give me space or distract me from it
 - **Measures:** co-regulation needs; support preference
@@ -119,12 +119,12 @@
 
 ### Emotional Responsibility Gap (ERG)
 
-Q1.7 When I’m really upset in a relationship, I tend to …
+**Q1.7**  When I’m really upset in a relationship, I tend to …
 Format: single | Weight: critical
 Options:
-A) Notice my reaction and try to understand where it’s coming from
-B) Feel caught between my reaction and what they did
-C) Feel like they’re the reason I’m upset
+A) Notice my reaction and try to understand it
+B) Feel caught between my reaction and what my partner did
+C) Feel like my partner is the cause of it
 
 - **Measures:** emotional attribution under stress
 - **Maps to:** 5. Emotional Responsibility (ER2), 8. Negative Conflict Style (NC), 3. Emotional Regulation (ER)
@@ -150,7 +150,7 @@ C) Feel like they’re the reason I’m upset
 
 - **Format:** single | **Weight:** critical
 - **Options:**
-  A) Try to make up fairly quickly  
+  A) Try to make up fairly quickly
   B) Need some time, but come back to it
   C) Step back and wait for them to bring it up
 - **Measures:** repair style; reconnection speed
@@ -168,18 +168,20 @@ C) Feel like they’re the reason I’m upset
 - **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Excellent discriminator for conflict toxicity.
 
-**Q2.5** When I realize I hurt a partner, I’m most likely to …
+<!-- changed from Q2.5 to -->
+**Q2.4** When I realize I hurt a partner, I’m most likely to …
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Acknowledge and try to fix things  
+  A) Acknowledge and try to fix things
   B) Feel bad, but change the subject
   C) Explain why my reaction made sense
 - **Measures:** accountability; repair willingness
 - **Maps to:** 5. Emotional Responsibility (ER2), 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 19. Conscientiousness / Reliability (CO)
 - **Note:** Clean accountability item without using idealized language like “I always apologize.”
 
-**Q2.6** After an argument, when things still feel tense, I usually …
+<!-- changed from Q2.6 to -->
+**Q2.5** After an argument, when things still feel tense, I usually …
 
 - **Format:** single | **Weight:** critical
 - **Options:**
@@ -207,47 +209,51 @@ C) Feel like they’re the reason I’m upset
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) A lot of connection and regular closeness  
-  B) A balance of closeness and independence  
+  A) A lot of connection and regular closeness
+  B) A balance of closeness and independence
   C) Plenty of space and autonomy
 - **Measures:** baseline intimacy preference
 - **Maps to:** 2. Attachment Avoidance (AV), 9. Closeness–Autonomy Preference (CA)
 - **Note:** Simple baseline preference anchor.
 
-**Q3.4** When something concerns me in a relationship, I’m more likely to …
+<!-- changed from Q3.4 to -->
+**Q3.3** When something concerns me in a relationship, I’m more likely to …
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Point it out pretty directly  
-  B) Hint at it and hope it’s picked up  
+  A) Point it out pretty directly
+  B) Hint at it and hope it’s picked up
   C) Wait to see if they notice on their own
 - **Measures:** directness; indirect signaling
 - **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Very efficient expression-vs-expectation item.
 
-**Q3.5** In relationships, I usually feel that a good partner should …
+<!-- changed from Q3.5 to -->
+**Q3.4** In relationships, I usually feel that a good partner should …
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Understand most needs even if not everything is said  
-  B) Understand some things, but clear communication still matters  
+  A) Understand most needs even if not everything is said
+  B) Understand some things, but clear communication still matters
   C) Not be expected to know unless it’s said directly
 - **Measures:** mind-reading expectation
 - **Maps to:** 12. Mind-Reading Expectation (MR), 11. Communication Directness (CD), 4. Responsiveness (RS)
 - **Note:** Captures expectation side separately from expression side.
 
-**Q3.6** If something about a partner’s behavior feels ambiguous, I tend to …
+<!-- changed from Q3.6 to -->
+**Q3.5** If something about a partner’s behavior feels ambiguous, I tend to …
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Assume it’s probably nothing and move on  
-  B) Notice it and want some clarity  
+  A) Assume it’s probably nothing and move on
+  B) Notice it and want some clarity
   C) Read into it and feel unsettled
 - **Measures:** threat sensitivity; interpretive bias
 - **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
 - **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
 
-**Q3.8** When a relationship matters to me, I’m more likely to …
+<!-- changed from Q3.8 to -->
+**Q3.6** When a relationship matters to me, I’m more likely to …
 
 - **Format:** single | **Weight:** medium
 - **Options:**
@@ -258,7 +264,8 @@ C) Feel like they’re the reason I’m upset
 - **Maps to:** 14. Effort & Investment Norms (EN) → strong, 19. Conscientiousness / Reliability (CO) → primary signal (A ↔ C gradient), 4. Responsiveness (RS) → B/C (different forms: emotional vs situational)
 - **Note:** Helps separate intention from dependable follow-through.
 
-**Q3.9** When life gets busy or stressful, I usually …
+<!-- changed from Q3.9 to -->
+**Q3.7** When life gets busy or stressful, I usually …
 
 - **Format:** single | Weight: critical
 - **Options:**
@@ -270,7 +277,8 @@ C) Feel like they’re the reason I’m upset
 
 ### Communication Gap (CG)
 
-**Q3.10** When something is important to me in a relationship, I usually …
+<!-- changed from Q3.10 to -->
+**Q3.8** When something is important to me in a relationship, I usually …
 
 - **Format:** single | Weight: high
 - **Options:**
@@ -283,7 +291,8 @@ C) Feel like they’re the reason I’m upset
 
 ### Closeness Gap (CG2 refinement)
 
-**Q3.11** After a lot of closeness or time together, I usually …
+<!-- changed from Q3.11 to -->
+**Q3.9** After a lot of closeness or time together, I usually …
 
 - **Format:** single | Weight: high
   Options:
@@ -298,7 +307,8 @@ C) Feel like they’re the reason I’m upset
 
 ### Effort–Expectation Gap (EEG)
 
-**Q3.12** In a relationship, when effort starts to feel uneven, I usually …
+<!-- changed from Q3.12 to -->
+**Q3.10** In a relationship, when effort starts to feel uneven, I usually …
 Format: single | Weight: high
 Options:
 A) Try to match the level of effort I want to see
@@ -319,8 +329,8 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 - **Format:** single | **Weight:** critical
 - **Options:**
-  A) Something meaningful and long-term  
-  B) Openness to either casual or serious, depending on fit  
+  A) Something meaningful and long-term
+  B) Openness to either casual or serious, depending on fit
   C) Something more casual or short-term
 - **Measures:** relationship intent
 - **Maps to:** 15. Long-Term Orientation (LT)
@@ -330,8 +340,8 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 - **Format:** single | **Weight:** critical
 - **Options:**
-  A) Pretty clear about what I want  
-  B) Open, but within some limits  
+  A) Pretty clear about what I want
+  B) Open, but within some limits
   C) Flexible and still figuring it out
 - **Measures:** life-structure rigidity vs openness
 - **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
@@ -341,8 +351,8 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Grounded and predictable  
-  B) Balanced between routine and novelty  
+  A) Grounded and predictable
+  B) Balanced between routine and novelty
   C) Fresh, stimulating, and changing
 - **Measures:** novelty vs stability preference
 - **Maps to:** 17. Novelty vs Stability Preference (NS), 9. Closeness–Autonomy Preference (CA)
@@ -356,7 +366,7 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Dependable and consistent  
+  A) Dependable and consistent
   B) Warm but a little unpredictable
   C) More spontaneous than consistent
 - **Measures:** reliability; conscientiousness
@@ -367,8 +377,8 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 - **Format:** single | **Weight:** high
 - **Options:**
-  A) Say what I need while trying to keep things respectful  
-  B) Keep the peace even if I hold things in  
+  A) Say what I need while trying to keep things respectful
+  B) Keep the peace even if I hold things in
   C) Push my point even if it creates tension
 - **Measures:** assertiveness vs accommodation
 - **Maps to:** 20. Assertiveness–Agreeableness Balance (AG), 11. Communication Directness (CD), 8. Negative Conflict Style (NC)
@@ -376,116 +386,283 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-# Coverage by Index
+# Coverage by Index (Updated)
 
 ## 1. Attachment Anxiety (AA)
 
-- Q1.1, Q1.2, Q1.4, Q3.6
+* Q1.1, Q1.2, Q1.4, Q3.5
 
 ## 2. Attachment Avoidance (AV)
 
-- Q1.1, Q1.2, Q1.4, Q1.6, Q2.1, Q2.2, Q2.4, Q3.1, Q3.2
+* Q1.1, Q1.2, Q1.4, Q1.6
+* Q2.1, Q2.2, Q2.4
+* Q3.1, Q3.2, Q3.9
 
 ## 3. Emotional Regulation (ER)
 
-- Q1.1, Q1.3, Q1.4, Q1.6, Q2.1, Q5.3
+* Q1.1, Q1.3, Q1.4, Q1.6, Q1.7
+* Q2.1
+* Q3.7, Q3.9
 
 ## 4. Responsiveness (RS)
 
-- Q1.2, Q1.6, Q2.2, Q3.5, Q3.8
+* Q1.2, Q1.6
+* Q2.2, Q2.5
+* Q3.6, Q3.7, Q3.10
 
 ## 5. Emotional Responsibility (ER2)
 
-- Q1.5, Q2.3, Q2.5
+* Q1.5, Q1.7
+* Q2.3, Q2.4
 
 ## 6. Conflict Engagement (CE)
 
-- Q1.1, Q1.4, Q2.1, Q2.4
+* Q1.1, Q1.4
+* Q2.1
 
 ## 7. Conflict Repair Ability (CR)
 
-- Q2.2, Q2.3, Q2.4, Q2.5, Q3.7
+* Q2.2, Q2.3, Q2.4, Q2.5
+* (optional light) Q3.7
 
 ## 8. Negative Conflict Style (NC)
 
-- Q1.2, Q1.4, Q1.5, Q2.3, Q2.4, Q2.5, Q5.2
+* Q1.2, Q1.4, Q1.5, Q1.7
+* Q2.3, Q2.4, Q2.5
+* Q5.2
 
 ## 9. Closeness–Autonomy Preference (CA)
 
-- Q1.6, Q3.1, Q3.2, Q3.3, Q4.3
+* Q1.6
+* Q3.1, Q3.2
+* (optional light) Q4.3
 
 ## 10. Closeness Tolerance (CT)
 
-- Q2.4, Q3.1, Q3.3
+* Q3.1
+* Q3.9
 
 ## 11. Communication Directness (CD)
 
-- Q3.4, Q3.5, Q5.2
+* Q3.3
+* Q3.4
+* Q3.8
+* Q5.2
 
 ## 12. Mind-Reading Expectation (MR)
 
-- Q3.4, Q3.5
+* Q3.4
+* Q3.8
 
 ## 13. Jealousy / Threat Sensitivity (JS)
 
-- Q3.6
+* Q3.5
 
 ## 14. Effort & Investment Norms (EN)
 
-- Q1.2, Q3.1, Q3.7, Q3.8, Q5.1
+* Q1.2
+* Q3.1
+* Q3.6, Q3.7, Q3.10
+* Q5.1
 
 ## 15. Long-Term Orientation (LT)
 
-- Q4.1, Q4.2
+* Q4.1, Q4.2
 
 ## 16. Life Structure Alignment (LS)
 
-- Q4.2
+* Q4.2
 
 ## 17. Novelty vs Stability Preference (NS)
 
-- Q4.3
+* Q4.3
 
 ## 18. Emotional Stability (ES)
 
-- Q1.3, Q3.3, Q3.6, Q5.3
+* Q1.3
+* Q3.5
 
 ## 19. Conscientiousness / Reliability (CO)
 
-- Q2.2, Q2.5, Q3.7, Q3.8, Q5.1, Q5.3
+* Q2.2, Q2.4, Q2.5
+* Q3.6, Q3.7, Q3.10
+* Q5.1
 
 ## 20. Assertiveness–Agreeableness Balance (AG)
 
-- Q1.5, Q2.3, Q3.4, Q5.2
+* Q1.5
+* Q2.3
+* Q3.3
+* Q3.8
+* Q5.2
 
 ---
 
-# Notes on efficiency
+# Notes on Efficiency (Updated)
 
 ## Why this is near-minimal
 
-This set uses **25 questions** to recover **20 indices**, while still giving extra coverage to the most important ones:
+This set uses **~25–26 questions** to recover **20 indices + key behavioral gaps**, while prioritizing:
 
-- attachment system
-- regulation/stability
-- conflict style and repair
-- closeness and communication friction
+* high predictive domains (attachment, regulation, conflict)
+* behavior under stress rather than identity claims
+* multi-index signal extraction per item
 
-That is fairly lean for a model of this breadth, because many questions intentionally update **multiple indices**.
+Each question is designed to:
 
-## Which indices are lightest
+* update **2–5 indices simultaneously**
+* contribute to at least one **gap calculation (trait vs state)** where possible
 
-These are currently measured more lightly and may eventually benefit from one extra item each if you want stronger estimation:
+---
 
-- 13. Jealousy / Threat Sensitivity (JS)
-- 16. Life Structure Alignment (LS)
-- 17. Novelty vs Stability Preference (NS)
+## Where efficiency comes from
 
-They are lighter here because:
+### 1. Shared signal structure
 
-- LS often also comes from explicit profile fields
-- LT is partly a hard filter
-- NS is useful, but not as central as repair/regulation/conflict
+Examples:
+
+* Q1.4 → AA, AV, ER, CE, NC
+* Q2.3 → CR, NC, ER2, AG
+* Q3.8 → CD, MR, AG + Communication Gap
+
+👉 This reduces the need for separate items per construct
+
+---
+
+### 2. Gap pairing (high leverage)
+
+Key constructs are measured twice:
+
+* **Trait (baseline)** + **State (stress / constraint)**
+
+Examples:
+
+* ER2 → Q1.5 (trait) + Q1.7 (state)
+* Reliability → Q3.6 (trait) + Q3.7 (state)
+* Communication → Q3.3 / Q3.4 (trait) + Q3.8 (state)
+
+👉 This dramatically increases predictive power without increasing length
+
+---
+
+### 3. Strategic undercoverage
+
+Some indices are intentionally lighter:
+
+* JS (13)
+* LS (16)
+* NS (17)
+
+Because:
+
+* they are lower-frequency drivers of failure
+* or can be supplemented by profile data
+
+---
+
+## Efficiency Tradeoff
+
+* <20 questions → underfit (miss key dynamics)
+* **25–32 questions → optimal signal density**
+* > 40 questions → fatigue + noisier data
+
+---
+
+# Weighting (Updated)
+
+## Critical Weight (highest impact)
+
+Use strongest weights for:
+
+* Q1.1 (attachment activation)
+
+* Q1.3 (baseline stability)
+
+* Q1.4 (conflict stress behavior)
+
+* Q1.7 (ERG state anchor)
+
+* Q2.1 (low-stakes conflict behavior)
+
+* Q2.2 (repair speed)
+
+* Q2.3 (defensiveness / escalation)
+
+* Q2.5 (repair under tension)
+
+* Q3.1 (closeness mismatch)
+
+* Q3.7 (reliability under stress)
+
+* Q4.1 (relationship intent)
+
+* Q4.2 (life structure constraints)
+
+---
+
+## High Weight
+
+* Q1.2 (responsiveness to partner needs)
+
+* Q1.5 (emotional responsibility trait)
+
+* Q1.6 (support preference)
+
+* Q2.4 (accountability behavior)
+
+* Q3.3 (communication behavior)
+
+* Q3.4 (mind-reading expectation)
+
+* Q3.5 (threat sensitivity)
+
+* Q3.8 (communication gap anchor)
+
+* Q3.9 (closeness tolerance under load)
+
+* Q3.10 (effort gap behavior)
+
+* Q5.1 (reliability perception)
+
+* Q5.2 (assertiveness balance)
+
+---
+
+## Medium Weight
+
+* Q3.6 (investment expression)
+* Q4.3 (novelty vs stability)
+
+---
+
+## Weighting Principles
+
+### 1. Weight by predictive power, not face importance
+
+* Conflict + repair > preferences
+* Stress behavior > stated beliefs
+
+---
+
+### 2. Upweight state items in gap pairs
+
+```python
+weight_state > weight_trait
+```
+
+Because:
+
+* behavior under stress is more predictive
+
+---
+
+### 3. Interaction-aware weighting
+
+Key interactions should amplify impact:
+
+* AA × AV → volatility
+* NC × low CR → high risk
+* Gaps × low ER → instability
 
 ---
 
@@ -498,14 +675,19 @@ Each answer should produce:
 - a **primary signal** for the target construct
 - **secondary deltas** for adjacent constructs
 
-## Weighting
+Final scoring should normalize per index:
 
-Use larger per-item weights for:
+```python
+Index_score = sigmoid(Σ(weight_i * response_delta_i))
+```
 
-- Q1.1, Q1.3, Q1.4
-- Q2.1, Q2.2, Q2.3
-- Q3.1
-- Q4.1, Q4.2
+Then apply:
+
+* similarity
+* complementarity
+* risk penalties (including gaps)
+
+for final match scoring.
 
 ## Randomization
 
@@ -527,13 +709,3 @@ For highest-value traits, use later behavioral refresh items:
 That lets you improve the vector after onboarding without making the signup questionnaire much longer.
 
 ---
-
-# Short version
-
-If you want the cleanest minimal production set:
-
-- start with these **25 items**
-- collect explicit profile fields separately for LS-related specifics
-- later add **2–4 adaptive follow-up items** only where confidence is low
-
-That provides a strong scalable questionnaire without bloating onboarding.
