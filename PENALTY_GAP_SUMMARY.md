@@ -20,6 +20,172 @@ Each high-value gap needs:
 
 ---
 
+# 🧠 Core Behavioral Gaps for Relationship Prediction
+
+## 🔥 Tier 1 — High Predictive Power (Must Include)
+
+These capture **where relationships actually break**.
+
+---
+
+### 1. State–Trait Conflict Gap (STG)
+
+> “Do you behave differently when upset vs calm?”
+
+* **Trait:** Q2.1 (low-stakes conflict)
+* **State:** Q1.4 (high-stress conflict)
+* **Captures:** escalation, withdrawal under pressure
+* **Why critical:** most conflicts fail under stress, not in theory
+
+---
+
+### 2. Reliability Gap (RGI)
+
+> “Do you show up consistently when life gets hard?”
+
+* **Trait:** Q3.7 (effort expectations)
+* **State:** Q3.9 (behavior under stress/busyness)
+* **Captures:** follow-through vs intention
+* **Why critical:** strongest predictor of long-term trust
+
+---
+
+### 3. Repair Gap (RG2)
+
+> “Do you actually repair when it matters?”
+
+* **Trait:** Q2.3 (repair willingness / style)
+* **State:** Q2.4 (post-conflict tension behavior)
+* **Captures:** repair breakdown under emotional residue
+* **Why critical:** repair ability > conflict frequency
+
+---
+
+### 4. Communication Gap (CG)
+
+> “Do you say what you expect—or expect mind-reading?”
+
+* **Trait:** Q3.5 (mind-reading expectation)
+* **State:** Q3.4 / Q3.10 (actual communication behavior)
+* **Captures:** implicit expectations vs explicit expression
+* **Why critical:** major driver of chronic misunderstanding
+
+---
+
+### 5. Closeness Tolerance Gap (CG2)
+
+> “Do you handle closeness as well as you think you do?”
+
+* **Trait:** Q3.3 (tolerance claim)
+* **State:** Q3.11 (reaction after sustained closeness)
+* **Captures:** overwhelm → distancing
+* **Why critical:** hidden avoidant drift
+
+---
+
+### 6. Emotional Responsibility Gap (ERG)
+
+> “Do you own your feelings under stress?”
+
+* **Trait:** Q1.5 (belief about emotions)
+* **State:** Q1.7 (reaction when upset)
+* **Captures:** blame vs ownership under activation
+* **Why critical:** drives defensiveness and escalation
+
+---
+
+## ⚡ Tier 2 — High Value (Add if You Want Stronger Modeling)
+
+---
+
+### 7. Effort–Expectation Gap (EEG)
+
+> “Do you expect more effort than you give?”
+
+* **Trait:** Q3.7 (effort norm)
+* **State:** Q3.8 / Q3.9 (actual behavior)
+* **Captures:** entitlement vs reciprocity mismatch
+* **Why it matters:** resentment asymmetry
+
+---
+
+### 8. Reactivity Gap (ReG)
+
+> “How much worse do you get under stress?”
+
+* **Trait:** Q1.3 (baseline stability)
+* **State:** Q1.4 / Q2.3 (conflict behavior)
+* **Captures:** volatility amplification
+* **Note:** partially overlaps with STG → optional
+
+---
+
+## 🧩 Tier 3 — Advanced (Differentiation / Future Expansion)
+
+---
+
+### 9. Intent–Perception Gap (IPG)
+
+> “Do others experience you the way you think you show up?”
+
+* Requires:
+
+  * behavioral telemetry
+  * partner feedback
+
+* **Captures:** blind spots, miscalibration
+
+* **Why powerful:** predicts mismatch in perceived effort, care, tone
+
+---
+
+# 📊 Summary Table
+
+| Gap | Core Function             | Primary Role              |
+| --- | ------------------------- | ------------------------- |
+| STG | Stress consistency        | Stability                 |
+| RGI | Follow-through            | Trust                     |
+| RG2 | Repair under strain       | Longevity                 |
+| CG  | Expression vs expectation | Communication             |
+| CG2 | Closeness capacity        | Compatibility + stability |
+| ERG | Emotional ownership       | Conflict quality          |
+| EEG | Effort asymmetry          | Fairness                  |
+| ReG | Stress amplification      | Risk                      |
+| IPG | Perception mismatch       | Advanced calibration      |
+
+---
+
+# 🔥 Final Recommendation
+
+For a **production-grade system**, prioritize:
+
+### Minimum viable (high performance)
+
+* STG
+* RGI
+* RG2
+* CG
+* CG2
+* ERG
+
+### Full system (best predictive power)
+
+* * EEG
+* * (optional) ReG
+
+---
+
+# 💡 Key Insight
+
+> Traits tell you who someone is
+>
+> Gaps tell you who they become **when it matters**
+
+The best matching systems don’t just match personalities—
+they match **failure modes**.
+
+---
+
 # 🔍 Core Gaps
 
 ## 1. ⚡ State–Trait Gap (STG)

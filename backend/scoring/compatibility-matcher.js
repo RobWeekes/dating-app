@@ -27,9 +27,11 @@ class CompatibilityMatcher {
    *
    * @param {Object} userAScores - User A's index scores { indexId → score }
    * @param {Object} userBScores - User B's index scores { indexId → score }
+   * @param {Object} userAGaps - User A's behavioral gaps (optional)
+   * @param {Object} userBGaps - User B's behavioral gaps (optional)
    * @returns {Object} Detailed compatibility analysis
    */
-  computeCompatibility(userAScores, userBScores) {
+  computeCompatibility(userAScores, userBScores, userAGaps = null, userBGaps = null) {
     if (!userAScores || !userBScores) {
       throw new Error('Both user scores required');
     }
@@ -58,8 +60,8 @@ class CompatibilityMatcher {
     // Identify dealbreakers
     const dealbreakers = this.identifyDealbreakers(userAScores, userBScores);
 
-    // Risk assessment
-    const riskFactors = this.assessRisks(userAScores, userBScores);
+    // Risk assessment (including gap-based risks)
+    const riskFactors = this.assessRisks(userAScores, userBScores, userAGaps, userBGaps);
 
     return {
       overallCompatibility: overallPct,
@@ -207,9 +209,11 @@ class CompatibilityMatcher {
    *
    * @param {Object} userAScores - User A's scores
    * @param {Object} userBScores - User B's scores
+   * @param {Object} userAGaps - User A's behavioral gaps (optional)
+   * @param {Object} userBGaps - User B's behavioral gaps (optional)
    * @returns {Object} Risk factors and their severity
    */
-  assessRisks(userAScores, userBScores) {
+  assessRisks(userAScores, userBScores, userAGaps = null, userBGaps = null) {
     const risks = [];
 
     // Risk 1: High Attachment Anxiety + Low Emotional Regulation
@@ -276,6 +280,82 @@ class CompatibilityMatcher {
         severity: 'high',
         description: 'Neither partner can effectively repair after conflict'
       });
+    }
+
+    // ========== GAP-BASED RISK FACTORS ==========
+    // High gaps indicate behavior breaks under pressure
+
+    if (userAGaps && userBGaps) {
+      // Gap Risk 1: ERG × ReG = Blame + Escalation (highly toxic)
+      const aERG = userAGaps.ERG ?? 0;
+      const aReG = userAGaps.ReG ?? 0;
+      const bERG = userBGaps.ERG ?? 0;
+      const bReG = userBGaps.ReG ?? 0;
+
+      if ((aERG > 0.4 && aReG > 0.35) || (bERG > 0.4 && bReG > 0.35)) {
+        risks.push({
+          name: 'Blame + Escalation Pattern',
+          severity: 'high',
+          affectedUser: (aERG > 0.4 && aReG > 0.35) ? 'A' : 'B',
+          description: 'Combines blame-shifting with emotional escalation under stress - high toxicity risk'
+        });
+      }
+
+      // Gap Risk 2: CG × CG2 = Communication + Closeness Issues
+      const aCG = userAGaps.CG ?? 0;
+      const aCG2 = userAGaps.CG2 ?? 0;
+      const bCG = userBGaps.CG ?? 0;
+      const bCG2 = userBGaps.CG2 ?? 0;
+
+      if ((aCG > 0.35 && aCG2 > 0.35) || (bCG > 0.35 && bCG2 > 0.35)) {
+        risks.push({
+          name: 'Communication + Intimacy Gaps',
+          severity: 'medium',
+          affectedUser: (aCG > 0.35 && aCG2 > 0.35) ? 'A' : 'B',
+          description: 'Unclear expectations about closeness combined with indirect communication'
+        });
+      }
+
+      // Gap Risk 3: RGI + RG2 = Unreliability + Repair Failure
+      const aRGI = userAGaps.RGI ?? 0;
+      const aRG2 = userAGaps.RG2 ?? 0;
+      const bRGI = userBGaps.RGI ?? 0;
+      const bRG2 = userBGaps.RG2 ?? 0;
+
+      if ((aRGI > 0.4 && aRG2 > 0.35) || (bRGI > 0.4 && bRG2 > 0.35)) {
+        risks.push({
+          name: 'Trust Erosion Pattern',
+          severity: 'high',
+          affectedUser: (aRGI > 0.4 && aRG2 > 0.35) ? 'A' : 'B',
+          description: 'Disappears when life demanding + fails to repair = trust collapse'
+        });
+      }
+
+      // Gap Risk 4: EEG (Effort-Expectation Gap)
+      const aEEG = userAGaps.EEG ?? 0;
+      const bEEG = userBGaps.EEG ?? 0;
+
+      if (aEEG > 0.4 || bEEG > 0.4) {
+        risks.push({
+          name: 'Effortless/Generosity Mismatch',
+          severity: 'medium',
+          affectedUser: aEEG > bEEG ? 'A' : 'B',
+          description: 'Expects high effort from partner but doesn\'t deliver personally'
+        });
+      }
+
+      // Gap Risk 5: STG (State-Trait Gap - High Volatility)
+      const aSTG = userAGaps.STG ?? 0;
+      const bSTG = userBGaps.STG ?? 0;
+
+      if (aSTG > 0.4 || bSTG > 0.4) {
+        risks.push({
+          name: 'High Emotional Volatility',
+          severity: 'medium',
+          affectedUser: aSTG > bSTG ? 'A' : 'B',
+          description: 'Becomes noticeably different person under stress - unpredictability risk'
+        });
+      }
     }
 
     return {

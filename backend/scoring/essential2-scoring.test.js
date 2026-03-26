@@ -145,10 +145,16 @@ function runTests() {
   testCompatibility(scorer, matcher, 'Secure User', 'Secure User (Clone)',
     secureUserResponses, secureUserResponses);
 
-  // Test 6: Vector Dimensions
-  console.log('\nTEST 6: Vector Dimensions');
+  // Test 7: Behavioral Gap Calculations
+  console.log('\nTEST 7: Behavioral Gap Calculations');
   console.log('─────────────────────────────────────────────────────────────');
-  testVectorDimensions(scorer, secureUserResponses);
+  testGapCalculations(scorer, 'Secure User', secureUserResponses, 'Anxious User', anxiousUserResponses);
+
+  // Test 8: Gap-Based Risk Penalties
+  console.log('\nTEST 8: Gap-Based Risk Penalties in Matching');
+  console.log('─────────────────────────────────────────────────────────────');
+  testGapPenalties(scorer, matcher, 'Secure User', 'Anxious User',
+    secureUserResponses, anxiousUserResponses);
 
   console.log('\n═══════════════════════════════════════════════════════════════');
   console.log('  All Tests Complete');
@@ -297,6 +303,81 @@ function testVectorDimensions(scorer, responses) {
     return result;
   } catch (err) {
     console.error(`✗ Error creating vector:`, err.message);
+    return null;
+  }
+}
+
+function testGapCalculations(scorer, userName1, responses1, userName2, responses2) {
+  try {
+    const result1 = scorer.scoreResponses(responses1);
+    const result2 = scorer.scoreResponses(responses2);
+
+    console.log(`✓ Gap calculations complete for ${userName1} and ${userName2}`);
+    console.log(`\n  ${userName1} - Behavioral Gaps:`);
+
+    const gapOrder = ['STG', 'RGI', 'RG2', 'ERG', 'CG2', 'EEG', 'ReG', 'CG'];
+    for (const gapId of gapOrder) {
+      const gapScore = result1.gaps[gapId];
+      const isRisk = result1.gapRisks[gapId];
+      const riskIndicator = isRisk ? '⚠️ RISK' : '✓';
+      console.log(`    ${gapId}: ${(gapScore * 100).toFixed(1)}% ${riskIndicator}`);
+    }
+
+    console.log(`\n  Overall Gap Risk: ${(result1.overallGapRisk * 100).toFixed(1)}%`);
+    console.log(`  Gap Summary: ${result1.metadata.gapSummary}`);
+
+    console.log(`\n  ${userName2} - Behavioral Gaps:`);
+    for (const gapId of gapOrder) {
+      const gapScore = result2.gaps[gapId];
+      const isRisk = result2.gapRisks[gapId];
+      const riskIndicator = isRisk ? '⚠️ RISK' : '✓';
+      console.log(`    ${gapId}: ${(gapScore * 100).toFixed(1)}% ${riskIndicator}`);
+    }
+
+    console.log(`\n  Overall Gap Risk: ${(result2.overallGapRisk * 100).toFixed(1)}%`);
+    console.log(`  Gap Summary: ${result2.metadata.gapSummary}`);
+
+    return { result1, result2 };
+  } catch (err) {
+    console.error(`✗ Error calculating gaps:`, err.message);
+    return null;
+  }
+}
+
+function testGapPenalties(scorer, matcher, userName1, userName2, responses1, responses2) {
+  try {
+    const result1 = scorer.scoreResponses(responses1);
+    const result2 = scorer.scoreResponses(responses2);
+
+    // Compute compatibility WITH gap penalties
+    const compatibility = matcher.computeCompatibility(
+      result1.indices,
+      result2.indices,
+      result1.gaps,
+      result2.gaps
+    );
+
+    console.log(`✓ Gap-based risk assessment complete`);
+    console.log(`\n  Overall Compatibility: ${(compatibility.overallCompatibility * 100).toFixed(1)}%`);
+
+    console.log(`\n  Risk Factors with Gap Penalties:`);
+    if (compatibility.riskFactors.risks.length === 0) {
+      console.log('    No significant risk factors detected');
+    } else {
+      for (const risk of compatibility.riskFactors.risks) {
+        const severity = risk.severity === 'high' ? '🔴' :
+          risk.severity === 'medium' ? '🟡' : '🟢';
+        console.log(`    ${severity} ${risk.name} (${risk.severity})`);
+        console.log(`       ${risk.description}`);
+      }
+    }
+
+    console.log(`\n  Total Risks: ${compatibility.riskFactors.riskCount}`);
+    console.log(`  High-Severity Risks: ${compatibility.riskFactors.hasHighRisk ? 'Yes' : 'No'}`);
+
+    return compatibility;
+  } catch (err) {
+    console.error(`✗ Error computing gap penalties:`, err.message);
     return null;
   }
 }

@@ -3,7 +3,7 @@
  *
  * Vectorized scoring system for millions of users
  * Maps 29 question responses → 20 relationship compatibility indices
- * Includes bias detection and consistency validation
+ * Includes bias detection, consistency validation, and behavioral gap scoring
  */
 
 const {
@@ -12,6 +12,8 @@ const {
   WEIGHT_MULTIPLIERS,
   INDEX_IMPORTANCE
 } = require('./essential2-scoring-config');
+
+const GapCalculator = require('./gap-calculator');
 
 /**
  * Sigmoid function for normalizing scores to 0-1 range
@@ -55,6 +57,7 @@ function normalizeScore(rawScore, normalization = 'sigmoid') {
 class Essential2Scorer {
   constructor() {
     this.indexIds = Object.keys(INDICES);
+    this.gapCalculator = new GapCalculator();
   }
 
   /**
@@ -132,18 +135,25 @@ class Essential2Scorer {
     // Detect biases and consistency issues
     const biasDetection = this.detectBiases(indexScores, responsePatterns, responses);
 
+    // Calculate behavioral gaps (trait vs state under pressure)
+    const gapResults = this.gapCalculator.calculateAllGaps(responses, indexScores);
+
     // Create response vector for ANN indexing and compatibility matching
-    const vector = this.createResponseVector(indexScores, biasDetection);
+    const vector = this.createResponseVector(indexScores, biasDetection, gapResults);
 
     return {
       indices: indexScores,
       vector,
       consistency: biasDetection.consistency,
       biasFlags: biasDetection.flags,
+      gaps: gapResults.gaps,
+      gapRisks: gapResults.riskFlags,
+      overallGapRisk: gapResults.overallGapRisk,
       metadata: {
         respondedQuestions: Object.keys(responses).length,
         totalQuestions: Object.keys(QUESTION_INDEX_MAPPINGS).length,
         patterns: this.summarizePatterns(responsePatterns),
+        gapSummary: this.gapCalculator.generateGapSummary(gapResults),
         timestamp: new Date().toISOString()
       }
     };
@@ -260,17 +270,20 @@ class Essential2Scorer {
    *
    * @param {Object} indexScores - All 20 index scores
    * @param {Object} biasDetection - Bias information
-   * @returns {Float32Array} Vectorized user representation
+   * @param {Object} gapResults - Gap calculation results
+   * @returns {Float32Array} Vectorized user representation (43 dimensions)
    */
-  createResponseVector(indexScores, biasDetection) {
-    // Vector structure:
+  createResponseVector(indexScores, biasDetection, gapResults) {
+    // Vector structure (43 total dimensions):
     // Slots 0-19: Index scores (20 indices)
     // Slot 20: Consistency score
     // Slots 21-24: Bias flags (boolean as 0/1)
     // Slots 25-34: "Risk" scores derived from critical indices
-    // Total: 35 dimensions
+    // Slots 35-42: Gap scores (8 behavioral gaps)
+    // Slot 43: Overall gap risk
+    // Total: 44 dimensions
 
-    const vector = new Float32Array(35);
+    const vector = new Float32Array(44);
 
     // Populate index scores
     let idx = 0;
@@ -299,6 +312,15 @@ class Essential2Scorer {
         vector[idx++] = 1 - score; // Invert: low score = risk
       }
     }
+
+    // Behavioral gap scores (8 gaps: STG, RGI, RG2, ERG, CG2, EEG, ReG, CG)
+    const gapOrder = ['STG', 'RGI', 'RG2', 'ERG', 'CG2', 'EEG', 'ReG', 'CG'];
+    for (const gapId of gapOrder) {
+      vector[idx++] = gapResults.gaps[gapId] ?? 0.5;
+    }
+
+    // Overall gap risk score
+    vector[idx++] = gapResults.overallGapRisk;
 
     return vector;
   }
