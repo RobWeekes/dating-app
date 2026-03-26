@@ -135,50 +135,56 @@ C) Feel like my partner is the cause of it
 
 ## Conflict & Repair
 
-**Q2.1** When a small disagreement comes up, I’m more likely to …
+## Conflict & Repair (Reordered)
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+**Q2.1** If there's a small disagreement, I usually …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
   A) Stay engaged and address it directly
   B) Take some space before dealing with it
   C) Let it go or distance myself from it
-- **Measures:** conflict engagement; avoidance under tension
-- **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 3. Emotional Regulation (ER)
-- **Note:** Low-intensity baseline to contrast with high-stress response (Q1.4)
+* **Measures:** conflict engagement; avoidance under tension
+* **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 3. Emotional Regulation (ER)
+* **Note:** Low-intensity baseline to contrast with high-stress response (Q1.4)
 
-**Q2.2** After a conflict with a partner, I usually …
+---
 
-- **Format:** single | **Weight:** critical
-- **Options:**
-  A) Try to make up fairly quickly
-  B) Need some time, but come back to it
-  C) Step back and wait for them to bring it up
-- **Measures:** repair style; reconnection speed
-- **Maps to:** 7. Conflict Repair Ability (CR), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 19. Conscientiousness / Reliability (CO)
-- **Note:** One of the strongest longevity predictors; should be weighted heavily.
+**Q2.2** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
 
-**Q2.3** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
-
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single | **Weight:** critical
+* **Options:**
   A) Try to see their view and take responsibility where I can
   B) Explain my side first, then come back to fix things
   C) Get defensive or point out what they did wrong
-- **Measures:** defensiveness + accountability + repair readiness
-- **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
-- **Note:** Excellent discriminator for conflict toxicity.
+* **Measures:** defensiveness + accountability + repair readiness
+* **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
+* **Note:** Excellent discriminator for conflict toxicity.
 
-<!-- consolidated Q2.4 into 2.3 -->
-<!-- adjust references from Q2.5 to Q2.4 -->
+---
 
-**Q2.4** After an argument, when things still feel tense, I usually …
+**Q2.3** After a conflict with a partner, I often …
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Try to make up fairly quickly
+  B) Need some time, but come back to it
+  C) Step back and wait for them to bring it up
+* **Measures:** repair style; reconnection speed
+* **Maps to:** 7. Conflict Repair Ability (CR), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 19. Conscientiousness / Reliability (CO)
+* **Note:** One of the strongest longevity predictors; should be weighted heavily.
+
+---
+
+**Q2.4** If things still feel tense after a conflict, I usually …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
   A) Try to smooth things over, even if it's a bit uncomfortable
   B) Give it some time, then come back and reconnect
   C) Wait for the tension to pass, or for them to reach out first
-- **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
+* **Measures:** 
+* **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
 
 ---
 
@@ -559,123 +565,55 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-# Updated Mapping References
+# Updated Mapping References (Corrected)
 
-## Coverage by Index
+### 5. Emotional Responsibility (ER2)
 
-### 1. Attachment Anxiety (AA)
+* Q1.5, Q1.7
+* **Q2.2**
 
-* Q1.1, Q1.2, Q1.4, Q3.5, Q3.6
+### 7. Conflict Repair Ability (CR)
+
+* Q2.2, Q2.3, Q2.4
+
+### 8. Negative Conflict Style (NC)
+
+* Q1.2, Q1.4, Q1.5, Q1.7
+* **Q2.2, Q2.4**
+* Q5.2
+
+### 19. Conscientiousness / Reliability (CO)
+
+* **Q2.3, Q2.4**
+* Q3.7, Q3.8, Q3.11
+* Q5.1
+
+### 4. Responsiveness (RS)
+
+* Q1.2, Q1.6
+* **Q2.3, Q2.4**
+* Q3.7, Q3.8, Q3.11
 
 ### 2. Attachment Avoidance (AV)
 
 * Q1.1, Q1.2, Q1.4, Q1.6
-* Q2.1, Q2.2, Q2.4
+* Q2.1, **Q2.3, Q2.4**
 * Q3.1, Q3.2, Q3.10
 
 ### 3. Emotional Regulation (ER)
 
 * Q1.1, Q1.3, Q1.4, Q1.6, Q1.7
-* Q2.1, Q2.4
+* Q2.1, **Q2.4**
 * Q3.8, Q3.10
-
-### 4. Responsiveness (RS)
-
-* Q1.2, Q1.6
-* Q2.2, Q2.4
-* Q3.7, Q3.8, Q3.11
-
-### 5. Emotional Responsibility (ER2)
-
-* Q1.5, Q1.7
-* Q2.3
-
-### 6. Conflict Engagement (CE)
-
-* Q1.1, Q1.4
-* Q2.1
-
-### 7. Conflict Repair Ability (CR)
-
-* Q2.2, Q2.3, Q2.4
-* (optional light) Q3.8
-
-### 8. Negative Conflict Style (NC)
-
-* Q1.2, Q1.4, Q1.5, Q1.7
-* Q2.3, Q2.4
-* Q5.2
-
-### 9. Closeness–Autonomy Preference (CA)
-
-* Q1.6
-* Q3.1, Q3.2
-* (optional light) Q4.4
-
-### 10. Closeness Tolerance (CT)
-
-* Q3.1
-* Q3.10
-
-### 11. Communication Directness (CD)
-
-* Q3.3, Q3.4, Q3.9
-* Q5.2
-
-### 12. Mind-Reading Expectation (MR)
-
-* Q3.4, Q3.9
-
-### 13. Jealousy / Threat Sensitivity (JS)
-
-* Q3.5, Q3.6
-
-### 14. Effort & Investment Norms (EN)
-
-* Q1.2
-* Q3.1
-* Q3.7, Q3.8, Q3.11
-* Q5.1
-
-### 15. Long-Term Orientation (LT)
-
-* Q4.1, Q4.2, Q4.3
-
-### 16. Life Structure Alignment (LS)
-
-* Q4.2, Q4.3
-
-### 17. Novelty vs Stability Preference (NS)
-
-* Q4.4, Q4.5
-
-### 18. Emotional Stability (ES)
-
-* Q1.3
-* Q3.5, Q3.6
-* Q4.5
-
-### 19. Conscientiousness / Reliability (CO)
-
-* Q2.2, Q2.4
-* Q3.7, Q3.8, Q3.11
-* Q5.1
-
-### 20. Assertiveness–Agreeableness Balance (AG)
-
-* Q1.5
-* Q2.3
-* Q3.3, Q3.9
-* Q5.2
 
 ---
 
-# Updated Weighting References
+# Updated Weighting References (Adjusted)
 
 ## Critical Weight
 
 * Q1.1, Q1.3, Q1.4, Q1.7
-* Q2.1, Q2.2, Q2.3, Q2.4
+* **Q2.1, Q2.2, Q2.3, Q2.4**
 * Q3.1, Q3.8
 * Q4.1, Q4.2
 
