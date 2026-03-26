@@ -384,6 +384,280 @@ phi(g) = max(0, g - tau)**2
 
 ---
 
+# 🔗 High-Value Gap Interactions (for Scoring & Matching)
+
+Below are the **most predictive cross-gap interactions** to model explicitly. Each one captures a *failure mode* that single gaps miss.
+
+---
+
+## 🔥 Tier 1 — Must-Model Interactions (Nonlinear Risk)
+
+### 1) **STG × ERG → Escalation Loop**
+
+> “Inconsistent under stress” × “externalizes blame”
+
+```python
+risk += w * STG * (1 - ERG)
+```
+
+**Implication**
+
+* Big swings in behavior **+ low ownership** → fast escalation, low learning
+* High false-positives if modeled separately; together they predict **toxic conflict cycles**
+
+---
+
+### 2) **RG2 × NC → Repair Failure Cascade**
+
+> “Poor repair under strain” × “toxic conflict style”
+
+```python
+risk += w * (1 - RG2) * NC
+```
+
+**Implication**
+
+* Criticism/defensiveness + weak repair → **compounding damage**
+* Strongest predictor of **relationship breakdown after conflicts**
+
+---
+
+### 3) **CG × MR → Chronic Misunderstanding**
+
+> “Indirect communication” × “expects mind-reading”
+
+```python
+risk += w * CG * MR
+```
+
+**Implication**
+
+* Unspoken needs + high expectations → **persistent friction without clear events**
+* Drives **low-grade dissatisfaction** and “you should’ve known” loops
+
+---
+
+### 4) **CG2 × AV → Avoidant Drift Under Load**
+
+> “Closeness breakdown” × “preference for distance”
+
+```python
+effective_withdrawal = AV + CG2
+risk += w * effective_withdrawal
+```
+
+**Implication**
+
+* Preference + capacity failure → **accelerating distancing over time**
+* Looks fine early; degrades with intimacy
+
+---
+
+### 5) **RGI × EEG → Effort Asymmetry**
+
+> “Low follow-through” × “high expectations”
+
+```python
+risk += w * (1 - RGI) * EEG
+```
+
+**Implication**
+
+* Expects more than they deliver → **resentment asymmetry**
+* Key driver of “I do more than you” narratives
+
+---
+
+### 6) **STG × ReG → Volatility Spike**
+
+> “State–trait inconsistency” × “stress amplification”
+
+```python
+risk += w * STG * ReG
+```
+
+**Implication**
+
+* Not only different under stress—**much worse**
+* Predicts **blow-ups / shutdowns** after otherwise calm periods
+
+---
+
+## ⚡ Tier 2 — Compatibility & Buffering Effects
+
+### 7) **CG2 × ER → Stability Buffer**
+
+> “Closeness strain” × “good regulation”
+
+```python
+buffer = k * CG2 * ER
+risk -= buffer
+```
+
+**Implication**
+
+* Regulation can **absorb closeness stress**
+* Enables otherwise risky pairs to **function with effort**
+
+---
+
+### 8) **RG2 × RGI → Durable Repair**
+
+> “Repairs well” × “actually follows through”
+
+```python
+bonus += w * RG2 * RGI
+```
+
+**Implication**
+
+* Apologies + consistent action → **trust compounding**
+* Strong predictor of **long-term resilience**
+
+---
+
+### 9) **CG × CD (inverse) → Expression Alignment**
+
+> “Low gap” × “high directness”
+
+```python
+bonus += w * (1 - CG) * CD
+```
+
+**Implication**
+
+* Says what they need and expects it → **clean coordination**
+* Improves **satisfaction even with moderate mismatches**
+
+---
+
+### 10) **CG2 × CT → Feasible Closeness**
+
+> “Low breakdown” × “high tolerance”
+
+```python
+effective_CT = CT * (1 - CG2)
+compat += w * effective_CT
+```
+
+**Implication**
+
+* Real (not claimed) flexibility → **fewer closeness conflicts**
+* Reduces overestimation errors in matching
+
+---
+
+## 🧩 Tier 3 — Cross-Partner Interactions (Critical in Matching)
+
+### 11) **AA_A × AV_B + AA_B × AV_A → Pursue–Withdraw Loop**
+
+```python
+risk += w * (AA_A * AV_B + AA_B * AV_A)
+```
+
+**Implication**
+
+* Classic instability pattern; amplify if **CG2 or STG** is high on either side
+
+---
+
+### 12) **CG_A × CD_B (and vice versa) → One-Sided Clarity**
+
+```python
+risk += w * (CG_A * (1 - CD_B) + CG_B * (1 - CD_A))
+```
+
+**Implication**
+
+* One expects clarity, the other is indirect → **asymmetric frustration**
+
+---
+
+### 13) **RG2_A × RGI_B (and vice versa) → Repair–Action Mismatch**
+
+```python
+risk += w * (RG2_A * (1 - RGI_B) + RG2_B * (1 - RGI_A))
+```
+
+**Implication**
+
+* One repairs, the other doesn’t follow through → **trust erosion**
+
+---
+
+### 14) **CG2_A × CA_B (and vice versa) → Overwhelm Mismatch**
+
+```python
+delta = abs(CA_A - CA_B)
+risk += w * (CG2_A * delta + CG2_B * delta)
+```
+
+**Implication**
+
+* High desired closeness paired with low real tolerance → **burnout cycles**
+
+---
+
+## ⚙️ Integration into Your Scoring Stack
+
+### Risk Penalty (nonlinear, dominant)
+
+* Include Tier 1 + cross-partner risks
+* Use **multiplicative terms** and **threshold boosts**
+
+```python
+Risk = Σ interactions + threshold_penalties
+```
+
+---
+
+### Similarity / Complementarity (secondary)
+
+* Use Tier 2 for **bonuses / buffers**
+* Keep weights **< risk penalties**
+
+---
+
+### Normalization
+
+* Clamp all interaction outputs to [0,1]
+* Apply smooth functions (e.g., sigmoid / exp decay)
+
+---
+
+## 🔥 Design Principles
+
+1. **Model failures, not just traits**
+
+   * Interactions reveal breakdown patterns
+
+2. **Use asymmetry explicitly**
+
+   * A→B and B→A are not interchangeable
+
+3. **Prioritize multiplicative terms**
+
+   * Risk is rarely additive in relationships
+
+4. **Buffering matters**
+
+   * Some traits (ER, RGI) can **offset** risks
+
+---
+
+## 💡 Key Insight
+
+> The highest-value signals come from **how two gaps collide**—
+> not from any single gap alone.
+
+Model these interactions well, and your system moves from:
+
+* “personality matching”
+  to
+* **relationship outcome prediction**
+
+---
+
 # 🔥 Final Insight
 
 > **Traits describe people — gaps predict outcomes**
