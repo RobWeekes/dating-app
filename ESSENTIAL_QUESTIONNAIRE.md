@@ -559,52 +559,6 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-## Conflict & Repair
-
-**Q2.1** When a small disagreement comes up, I’m more likely to …
-
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Stay engaged and address it directly
-  B) Take some space before dealing with it
-  C) Let it go or distance myself from it
-* **Measures:** conflict engagement; avoidance under tension
-* **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 3. Emotional Regulation (ER)
-* **Note:** Low-intensity baseline to contrast with high-stress response (Q1.4)
-
-**Q2.2** After a conflict with a partner, I usually …
-
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Try to make up fairly quickly
-  B) Need some time, but come back to it
-  C) Step back and wait for them to bring it up
-* **Measures:** repair style; reconnection speed
-* **Maps to:** 7. Conflict Repair Ability (CR), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 19. Conscientiousness / Reliability (CO)
-* **Note:** One of the strongest longevity predictors; should be weighted heavily.
-
-**Q2.3** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
-
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Try to see their view and take responsibility where I can
-  B) Explain my side first, then come back to fix things
-  C) Get defensive or point out what they did wrong
-* **Measures:** defensiveness + accountability + repair readiness
-* **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
-* **Note:** Excellent discriminator for conflict toxicity.
-
-**Q2.4** After an argument, when things still feel tense, I usually …
-
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Try to smooth things over, even if it's a bit uncomfortable
-  B) Give it some time, then come back and reconnect
-  C) Wait for the tension to pass, or for them to reach out first
-* **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
-
----
-
 # Updated Mapping References
 
 ## Coverage by Index
