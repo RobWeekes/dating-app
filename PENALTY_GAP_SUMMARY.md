@@ -251,32 +251,40 @@ Optimal:
 - ~18–22 questions → covers 20 indices
 - each question maps to multiple indices
 
-**Step 2: Add gap coverage efficiently**
+**Step 2: Gap Coverage Summary**
 Target: top 6–8 gaps
 
-| Gap                          | Needs new question?             |
-| ---------------------------- | ------------------------------- |
-| State-Trait Gap (STG)                          | ❌ already covered |
-| Reliability Gap Index (RGI)                          | ❌ already covered               |
-| Repair Gap (RG2)                  | ❌ already covered                        |
-| Communication Gap            | ⚠️ add 1                        |
-| Closeness Gap                | ⚠️ add 1         |
-| Emotional Responsibility Gap (ERG) | ⚠️ add 1                        |
-| Effort Gap                   | ⚠️ optional                     |
-| Reactivity Gap               | ❌ overlaps with STG             |
-| Intent–Perception            | ❌ not questionnaire-based       |
+| Gap                          | Coverage             |
+| ---------------------------- | ---------------------- |
+| State-Trait Gap (STG)        | ✅ Q3 vs Q4 |
+| Reliability Gap Index (RGI)  | ✅ Q18 vs Q19 |
+| Repair Gap (RG2)             | ✅ Q10 vs Q11 |
+| Emotional Responsibility Gap (ERG) | ✅ Q5 vs Q7 |
+| Closeness Gap (CG2)          | ✅ Q12 vs Q21 |
+| Reactivity Gap               | ✅ Covered by STG (Q1, Q4, Q8) |
+| Communication Gap            | ⚠️ Partial (Q14, Q20 directness; sentiment tracking needed) |
+| Intent–Perception Gap        | ❌ Requires partner feedback (not questionnaire-based) |
 
-**Added 4-6 additional gap questions:**
+**Gap Coverage in Current System (29 questions):**
 
-| Gap                          | New Question | Role                          |
-| ---------------------------- | ------------ | ----------------------------- |
-| Communication Gap            | Q3.10        | Expression behavior anchor    |
-| Closeness Gap                | Q3.11        | Sustained closeness tolerance |
-| Emotional Responsibility Gap | Q1.7         | Stress-state attribution      |
-| Effort Gap                   | Q3.12        | Effort reciprocity behavior   |
+| Gap                          | Trait Question | State Question | Role                          |
+| ---------------------------- | ------------ | ------------ | ----------------------------- |
+| State-Trait Gap (STG)        | Q3 (baseline ES/ER) | Q4 (upset behavior) | Emotional volatility under stress |
+| Emotional Responsibility Gap (ERG) | Q5 (attribution belief) | Q7 (attribution under stress) | Ownership vs blame under pressure |
+| Repair Gap (RG2)             | Q10 (repair baseline) | Q11 (repair sustained) | Actual vs committed repair |
+| Communication Gap (CG)       | Q14 or Q20 (directness) | Implicit (partner feedback needed) | Expression behavior anchor |
+| Closeness Gap (CG2)          | Q12 (preference) | Q21 (tolerance after time) | Desire vs capacity for closeness |
+| Effort–Reliability Gap (RGI) | Q18 (effort trait) | Q19 (effort under stress) | Consistency when pressure rises |
 
 
-Every major gap is now *explicitly measurable,* not inferred
+**Explicitly Measurable Gaps (Current System)**
+
+The system covers 5 of 8 major gaps with paired trait-state questions:
+- ✅ **STG** (Volatility): Q3 baseline → Q4 upset = emotional stability delta
+- ✅ **RGI** (Reliability): Q18 effort trait → Q19 under stress = consistency delta
+- ✅ **RG2** (Repair): Q10 baseline → Q11 sustained = repair strength delta
+- ✅ **ERG** (Attribution): Q5 belief → Q7 under stress = accountability delta
+- ✅ **CG2** (Closeness): Q12 preference → Q21 tolerance = capacity mismatch delta
 
 That’s the point where your system shifts from:
 
