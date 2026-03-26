@@ -51,6 +51,8 @@
 
 ## Behavioral Dynamics
 
+<!-- Should we mix up the options order for each question randomly so there is not a clear directional gradient from A to C, positive or negative ? -->
+
 **Q1.1** When I sense my partner pulling away, I tend to:
 
 - **Format:** single | **Weight:** critical
@@ -78,6 +80,7 @@
 - **Format:** single | **Weight:** critical
 - **Options:**
   A) Tends toward worry, tension, or feeling low
+  <!-- B) Stays fairly positive? ask chat -->
   B) Stays fairly steady
   C) Fluctuates quite a bit
 - **Measures:** emotional stability; neuroticism
@@ -95,6 +98,7 @@
 - **Maps to:** 1. Attachment Anxiety (AA), 2. Attachment Avoidance (AV), 3. Emotional Regulation (ER), 6. Conflict Engagement (CE), 8. Negative Conflict Style (NC)
 - **Note:** High-value item because it updates several core risk variables at once.
 
+<!-- In a relationship, when my partner upsets me, ? ask chat -->
 **Q1.5** In a relationship, when I have a strong reaction, I tend to see it as …
 
 - **Format:** single | **Weight:** high
@@ -106,6 +110,7 @@
 - **Maps to:** 5. Emotional Responsibility (ER2), 8. Negative Conflict Style (NC), 20.Assertiveness–Agreeableness Balance (AG)
 - **Note:** Useful for distinguishing accountability from blame orientation.
 
+<!-- When I'm stressed, the first thing I want my partner to do is … ? ask chat -->
 **Q1.6** When I'm stressed, I usually want my partner to …
 
 - **Format:** single | **Weight:** high
@@ -150,6 +155,7 @@ C) Feel like my partner is the cause of it
 
 ---
 
+<!-- When tension rises in a disagreement (I feel criticized or hurt), I tend to … ? ask chat -->
 **Q2.2** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
 
 * **Format:** single | **Weight:** critical
@@ -183,13 +189,15 @@ C) Feel like my partner is the cause of it
   A) Try to smooth things over, even if it's a bit uncomfortable
   B) Give it some time, then come back and reconnect
   C) Wait for the tension to pass, or for them to reach out first
-* **Measures:** 
+* **Measures:**
 * **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
 
 ---
 
 ## Compatibility & Friction
 
+<!-- Ask chat - should this apply to relationship closeness or situational closeness (in the moment) - narrow or widely scoped? -->
+<!-- Ask if this is improvement: If my partner says "I love you" but you don't want to say it back, how would you handle the situation? -->
 **Q3.1** If a partner wants more closeness than I do, I tend to …
 
 - **Format:** single | **Weight:** critical
@@ -224,6 +232,7 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Very efficient expression-vs-expectation item.
 
+<!-- Ask chat - which answer is most desirable, and could the wording be improved so C feels less ambivalent ?  -->
 **Q3.4** In relationships, I usually feel that a good partner should …
 
 - **Format:** single | **Weight:** high
@@ -349,7 +358,7 @@ C) Feel frustrated if I’m not getting the effort I expect
 - **Note:** Measures how strongly LS should function as a hard filter.
 
 <!-- new Q -->
-**Q4.3** If someone I really like has a different timeline or level of certainty around major life decisions, I usually …
+**Q4.3** If someone I really like has a different timeline or certainty around major life decisions, I usually …
 
 - **Format:** single | **Weight:** high
 - **Options:**

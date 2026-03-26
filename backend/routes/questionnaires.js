@@ -110,7 +110,7 @@ router.get('/responses/me', authenticateToken, async (req, res) => {
 router.get('/responses/user/me/questionnaire/:questionnaireId', authenticateToken, async (req, res) => {
   try {
     const userId = req.user?.id;
-    const { questionnaireId } = req.params;
+    const questionnaireId = parseInt(req.params.questionnaireId, 10);
 
     if (!userId) {
       return res.status(401).json({ error: 'Authentication required' });
