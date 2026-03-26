@@ -196,3 +196,64 @@ Where:
 4. **High AV, High CG2**
 - Avoidant + unstable
   - **👉 High-risk pairing profile**
+
+---
+
+## 🧩 Using AV vs CG2 in Your Matching System
+
+### 1. Matching (Compatibility Layer)
+
+Use **Attachment Avoidance (AV)** to model alignment in closeness preferences:
+
+```python
+compatibility += f(CA_A, CA_B, AV_A, AV_B)
+```
+
+* Captures **desired level of closeness vs independence**
+* Drives **long-term satisfaction**
+* Determines whether two people *want the same relationship style*
+
+---
+
+### 2. Risk Modeling (Stability Layer)
+
+Use **Closeness Tolerance Gap (CG2)** to model breakdown under sustained closeness:
+
+```python
+Risk += CG2_A * (1 - ER_A)
+Risk += CG2_B * (1 - ER_B)
+```
+
+* Captures **instability over time**
+* Predicts **withdrawal, overwhelm, and push–pull dynamics**
+* Especially important in otherwise “good-on-paper” matches
+
+---
+
+### 3. Combined Behavioral Effect
+
+```python
+Effective_withdrawal = AV + CG2
+```
+
+* **AV** = expected, preference-driven distance
+* **CG2** = unexpected, stress-driven withdrawal
+
+👉 Same behavior, different cause
+
+---
+
+### ⚠️ Key Rule
+
+* Use **AV for matching (fit)**
+* Use **CG2 for risk (stability)**
+
+Do not treat them as interchangeable.
+
+---
+
+## 🔥 Key Insight
+
+> AV predicts whether a relationship *fits*
+>
+> CG2 predicts whether it *holds up over time*

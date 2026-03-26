@@ -90,7 +90,7 @@ comm_gap = max(0, Need_for_clarity - Communication_directness)
 
 ---
 
-## 5. 🤝 Closeness Gap (CG2)
+## 5. 🤝 Closeness Tolerance Gap (CG2)
 
 ### Definition
 
