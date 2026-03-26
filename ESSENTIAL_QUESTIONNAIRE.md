@@ -157,29 +157,21 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 7. Conflict Repair Ability (CR), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 19. Conscientiousness / Reliability (CO)
 - **Note:** One of the strongest longevity predictors; should be weighted heavily.
 
-**Q2.3** When I feel criticized by my partner, I tend to …
+**Q2.3** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
 
 - **Format:** single | **Weight:** critical
 - **Options:**
-  A) Try to hear the point / ask for specifics
-  B) Get defensive or explain myself quickly
-  C) Point out their mistakes
-- **Measures:** defensiveness; criticism reciprocity
+  A) Try to see their view and take responsibility where I can
+  B) Explain my side first, then come back to fix things
+  C) Get defensive or point out what they did wrong
+- **Measures:** defensiveness + accountability + repair readiness
 - **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
 - **Note:** Excellent discriminator for conflict toxicity.
 
-**Q2.4** When I realize I hurt a partner, I’m most likely to …
+<!-- consolidated Q2.4 into 2.3 -->
+<!-- adjust references from Q2.5 to Q2.4 -->
 
-- **Format:** single | **Weight:** high
-- **Options:**
-  A) Acknowledge and try to fix things
-  B) Feel bad, but change the subject
-  C) Explain why my reaction made sense
-- **Measures:** accountability; repair willingness
-- **Maps to:** 5. Emotional Responsibility (ER2), 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 19. Conscientiousness / Reliability (CO)
-- **Note:** Clean accountability item without using idealized language like “I always apologize.”
-
-**Q2.5** After an argument, when things still feel tense, I usually …
+**Q2.4** After an argument, when things still feel tense, I usually …
 
 - **Format:** single | **Weight:** critical
 - **Options:**
@@ -567,6 +559,52 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
+## Conflict & Repair
+
+**Q2.1** When a small disagreement comes up, I’m more likely to …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Stay engaged and address it directly
+  B) Take some space before dealing with it
+  C) Let it go or distance myself from it
+* **Measures:** conflict engagement; avoidance under tension
+* **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 3. Emotional Regulation (ER)
+* **Note:** Low-intensity baseline to contrast with high-stress response (Q1.4)
+
+**Q2.2** After a conflict with a partner, I usually …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Try to make up fairly quickly
+  B) Need some time, but come back to it
+  C) Step back and wait for them to bring it up
+* **Measures:** repair style; reconnection speed
+* **Maps to:** 7. Conflict Repair Ability (CR), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 19. Conscientiousness / Reliability (CO)
+* **Note:** One of the strongest longevity predictors; should be weighted heavily.
+
+**Q2.3** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Try to see their view and take responsibility where I can
+  B) Explain my side first, then come back to fix things
+  C) Get defensive or point out what they did wrong
+* **Measures:** defensiveness + accountability + repair readiness
+* **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
+* **Note:** Excellent discriminator for conflict toxicity.
+
+**Q2.4** After an argument, when things still feel tense, I usually …
+
+* **Format:** single | **Weight:** critical
+* **Options:**
+  A) Try to smooth things over, even if it's a bit uncomfortable
+  B) Give it some time, then come back and reconnect
+  C) Wait for the tension to pass, or for them to reach out first
+* **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
+
+---
+
 # Updated Mapping References
 
 ## Coverage by Index
@@ -578,25 +616,25 @@ C) Feel frustrated if I’m not getting the effort I expect
 ### 2. Attachment Avoidance (AV)
 
 * Q1.1, Q1.2, Q1.4, Q1.6
-* Q2.1, Q2.2, Q2.5
+* Q2.1, Q2.2, Q2.4
 * Q3.1, Q3.2, Q3.10
 
 ### 3. Emotional Regulation (ER)
 
 * Q1.1, Q1.3, Q1.4, Q1.6, Q1.7
-* Q2.1, Q2.5
+* Q2.1, Q2.4
 * Q3.8, Q3.10
 
 ### 4. Responsiveness (RS)
 
 * Q1.2, Q1.6
-* Q2.2, Q2.5
+* Q2.2, Q2.4
 * Q3.7, Q3.8, Q3.11
 
 ### 5. Emotional Responsibility (ER2)
 
 * Q1.5, Q1.7
-* Q2.3, Q2.4
+* Q2.3
 
 ### 6. Conflict Engagement (CE)
 
@@ -605,13 +643,13 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ### 7. Conflict Repair Ability (CR)
 
-* Q2.2, Q2.3, Q2.4, Q2.5
+* Q2.2, Q2.3, Q2.4
 * (optional light) Q3.8
 
 ### 8. Negative Conflict Style (NC)
 
 * Q1.2, Q1.4, Q1.5, Q1.7
-* Q2.3, Q2.4, Q2.5
+* Q2.3, Q2.4
 * Q5.2
 
 ### 9. Closeness–Autonomy Preference (CA)
@@ -665,7 +703,7 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ### 19. Conscientiousness / Reliability (CO)
 
-* Q2.2, Q2.4, Q2.5
+* Q2.2, Q2.4
 * Q3.7, Q3.8, Q3.11
 * Q5.1
 
@@ -678,131 +716,74 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-## Updated Weighting References
+# Updated Weighting References
 
-### Critical Weight
+## Critical Weight
 
 * Q1.1, Q1.3, Q1.4, Q1.7
-* Q2.1, Q2.2, Q2.3, Q2.5
+* Q2.1, Q2.2, Q2.3, Q2.4
 * Q3.1, Q3.8
 * Q4.1, Q4.2
 
-### High Weight
+---
+
+## High Weight
 
 * Q1.2, Q1.5, Q1.6
-* Q2.4
 * Q3.3, Q3.4, Q3.5, Q3.6, Q3.9, Q3.10, Q3.11
 * Q4.3, Q4.4, Q4.5
 * Q5.1, Q5.2
 
-### Medium Weight
+---
+
+## Medium Weight
 
 * Q3.7
 
 ---
 
-# Notes on Efficiency
-
-## Why this is near-minimal
-
-This set uses **~25–26 questions** to recover **20 indices + key behavioral gaps**, while prioritizing:
-
-* high predictive domains (attachment, regulation, conflict)
-* behavior under stress rather than identity claims
-* multi-index signal extraction per item
-
-Each question is designed to:
-
-* update **2–5 indices simultaneously**
-* contribute to at least one **gap calculation (trait vs state)** where possible
-
----
-
-## Where efficiency comes from
-
-### 1. Shared signal structure
-
-Examples:
-
-* Q1.4 → AA, AV, ER, CE, NC
-* Q2.3 → CR, NC, ER2, AG
-* Q3.8 → CD, MR, AG + Communication Gap
-
-👉 This reduces the need for separate items per construct
-
----
-
-### 2. Gap pairing (high leverage)
-
-Key constructs are measured twice:
-
-* **Trait (baseline)** + **State (stress / constraint)**
-
-Examples:
-
-* ER2 → Q1.5 (trait) + Q1.7 (state)
-* Reliability → Q3.6 (trait) + Q3.7 (state)
-* Communication → Q3.3 / Q3.4 (trait) + Q3.8 (state)
-
-👉 This dramatically increases predictive power without increasing length
-
----
-
-### 3. Strategic undercoverage
-
-Some indices are intentionally lighter:
-
-* JS (13)
-* LS (16)
-* NS (17)
-
-Because:
-
-* they are lower-frequency drivers of failure
-* or can be supplemented by profile data
-
----
-
-## Efficiency Tradeoff
-
-* <20 questions → underfit (miss key dynamics)
-* **25–32 questions → optimal signal density**
-* > 40 questions → fatigue + noisier data
-
----
-
 ## Weighting Principles
 
-### 1. Weight by predictive power, not face importance
+### 1. Prioritize stress behavior over stated beliefs
 
-* Conflict + repair > preferences
-* Stress behavior > stated beliefs
-
----
-
-### 2. Upweight state items in gap pairs
-
-```python
-weight_state > weight_trait
-```
-
-Because:
-
-* behavior under stress is more predictive
+* Conflict, repair, and emotional activation items receive higher weights
+* Preference or identity-based items receive lower weights
 
 ---
 
-### 3. Interaction-aware weighting
+### 2. Preserve gap sensitivity
 
-Key interactions should amplify impact:
+For paired constructs:
+
+* **State items > Trait items**
+
+Example:
+
+* Reliability: Q3.8 (state) > Q3.7 (trait)
+* ER2: Q1.7 (state) > Q1.5 (trait)
+
+---
+
+### 3. Avoid over-dominance
+
+Even high-frequency indices (AV, NC) should be:
+
+* normalized post-aggregation
+* not allowed to dominate due to item count alone
+
+---
+
+### 4. Interaction amplification
+
+Weight interactions more than isolated traits:
 
 * AA × AV → volatility
 * NC × low CR → high risk
-* Gaps × low ER → instability
+* Gap × low ER → instability
 
 ---
 
-# Recommended implementation notes
+## Implementation Notes
 
 ## Scoring
 
@@ -817,11 +798,11 @@ Final scoring should normalize per index:
 Index_score = sigmoid(Σ(weight_i * response_delta_i))
 ```
 
-Then apply:
+Then integrate into:
 
-* similarity
-* complementarity
-* risk penalties (including gaps)
+* similarity score
+* complementarity functions
+* risk penalties (including gap-based penalties)
 
 for final match scoring.
 
