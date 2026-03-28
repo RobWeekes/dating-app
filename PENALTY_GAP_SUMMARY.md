@@ -6,8 +6,8 @@ The most predictive signals are gaps between intention, identity, and behavior u
 
 > **Gaps measure where behavior breaks under pressure or mismatch**
 
-* **Indices** → what you are (traits, preferences)
-* **Gaps** → how consistently those traits hold when tested
+- **Indices** → what you are (traits, preferences)
+- **Gaps** → how consistently those traits hold when tested
 
 These are **high-signal predictors of friction, trust erosion, and long-term outcomes**
 
@@ -34,8 +34,8 @@ STG = abs(State_behavior - Trait_behavior)
 
 > “Do you become a different person under emotional stress?”
 
-* Domain: conflict / emotional regulation
-* Risk: **volatility, unpredictability**
+- Domain: conflict / emotional regulation
+- Risk: **volatility, unpredictability**
 
 ---
 
@@ -51,8 +51,8 @@ RGI = max(0, Reliability_trait - Reliability_stress)
 
 > “Do you stop showing up when life gets demanding?”
 
-* Domain: follow-through / consistency
-* Risk: **trust erosion, feeling deprioritized**
+- Domain: follow-through / consistency
+- Risk: **trust erosion, feeling deprioritized**
 
 ---
 
@@ -68,8 +68,8 @@ repair_gap = max(0, Repair_trait - Repair_state)
 
 > “Do you actually repair when it matters?”
 
-* Domain: conflict recovery
-* Risk: **lingering disconnection, unresolved cycles**
+- Domain: conflict recovery
+- Risk: **lingering disconnection, unresolved cycles**
 
 ---
 
@@ -85,8 +85,8 @@ comm_gap = max(0, Need_for_clarity - Communication_directness)
 
 > “Do you say what you expect—or expect mind-reading?”
 
-* Domain: expectations vs expression
-* Risk: **misunderstanding, silent frustration**
+- Domain: expectations vs expression
+- Risk: **misunderstanding, silent frustration**
 
 ---
 
@@ -102,8 +102,8 @@ closeness_gap = max(0, Closeness_preference - Closeness_tolerance)
 
 > “Do you want more closeness than you can actually tolerate?”
 
-* Domain: intimacy regulation
-* Risk: **push–pull dynamics**
+- Domain: intimacy regulation
+- Risk: **push–pull dynamics**
 
 ---
 
@@ -119,8 +119,8 @@ emotion_gap = max(0, ER2_trait - ER2_state)
 
 > “Do you take ownership of your emotions—or blame your partner under stress?”
 
-* Domain: emotional attribution
-* Risk: **blame, defensiveness, escalation**
+- Domain: emotional attribution
+- Risk: **blame, defensiveness, escalation**
 
 ---
 
@@ -136,9 +136,9 @@ effort_gap = max(0, Expected_EN - Actual_EN)
 
 > “Do you expect high effort but don’t personally deliver it?”
 
-* Indices: **EN (14), CO (19)**
-* Domain: fairness / reciprocity
-* Risk: **resentment asymmetry, perceived unfairness**
+- Indices: **EN (14), CO (19)**
+- Domain: fairness / reciprocity
+- Risk: **resentment asymmetry, perceived unfairness**
 
 ---
 
@@ -154,9 +154,9 @@ reactivity_gap = increase_in_NC_under_stress
 
 > “How much worse do they get under stress?”
 
-* Indices: **ER (3), NC (8)**
-* Domain: escalation delta
-* Risk: **conflict spikes, emotional damage**
+- Indices: **ER (3), NC (8)**
+- Domain: escalation delta
+- Risk: **conflict spikes, emotional damage**
 
 ---
 
@@ -172,9 +172,9 @@ intent_perception_gap = self_rating - partner_feedback
 
 > “How different is how you think you show up vs how partners experience you?”
 
-* Requires: **behavioral data + partner feedback**
-* Domain: self-awareness / calibration
-* Risk: **chronic misalignment, blind spots**
+- Requires: **behavioral data + partner feedback**
+- Domain: self-awareness / calibration
+- Risk: **chronic misalignment, blind spots**
 
 ---
 
@@ -182,10 +182,10 @@ intent_perception_gap = self_rating - partner_feedback
 
 These gaps predict:
 
-* **Trust breakdown** → RGI, Repair Gap, EEG
-* **Conflict escalation** → STG, ReG, ERG
-* **Chronic friction** → Communication Gap, Closeness Gap
-* **Hidden misalignment** → Intent–Perception Gap
+- **Trust breakdown** → RGI, Repair Gap, EEG
+- **Conflict escalation** → STG, ReG, ERG
+- **Chronic friction** → Communication Gap, Closeness Gap
+- **Hidden misalignment** → Intent–Perception Gap
 
 ---
 
@@ -208,13 +208,13 @@ phi(g) = max(0, g - tau)**2
 
 ## Interaction Examples
 
-* **RGI × JS / AA** → insecurity loops
-* **Repair Gap × NC** → toxic conflict cycles
-* **Communication Gap × MR** → “you should have known”
-* **Closeness Gap × AV** → push–pull instability
-* **ERG × low ER** → blame + escalation
-* **EEG × low CO** → resentment / imbalance
-* **ReG × low ER** → explosive escalation
+- **RGI × JS / AA** → insecurity loops
+- **Repair Gap × NC** → toxic conflict cycles
+- **Communication Gap × MR** → “you should have known”
+- **Closeness Gap × AV** → push–pull instability
+- **ERG × low ER** → blame + escalation
+- **EEG × low CO** → resentment / imbalance
+- **ReG × low ER** → explosive escalation
 
 ---
 
@@ -224,8 +224,8 @@ phi(g) = max(0, g - tau)**2
 
 Two users can look identical on indices, but:
 
-* small gaps → stable, predictable
-* large gaps → inconsistent, frustrating
+- small gaps → stable, predictable
+- large gaps → inconsistent, frustrating
 
 ---
 
@@ -237,34 +237,36 @@ Behavioral gaps let your system model:
 
 That’s where:
 
-* relationships succeed
-* or quietly fail
+- relationships succeed
+- or quietly fail
 
 ---
 
 ## 🎯 Recommended Architecture
+
 **Step 1: Start from indices (your base layer)**
 
 You have 20 indices
 
 Optimal:
+
 - ~18–22 questions → covers 20 indices
 - each question maps to multiple indices
 
 **Step 2: Add gap coverage efficiently**
 Target: top 6–8 gaps
 
-| Gap                          | Needs new question?             |
-| ---------------------------- | ------------------------------- |
-| State-Trait Gap (STG)                          | ❌ already covered |
-| Reliability Gap Index (RGI)                          | ❌ already covered               |
-| Repair Gap (RG2)                  | ❌ already covered                        |
-| Communication Gap            | ⚠️ add 1                        |
-| Closeness Gap                | ⚠️ add 1         |
-| Emotional Responsibility Gap (ERG) | ⚠️ add 1                        |
-| Effort Gap                   | ⚠️ optional                     |
-| Reactivity Gap               | ❌ overlaps with STG             |
-| Intent–Perception            | ❌ not questionnaire-based       |
+| Gap                                | Needs new question?        |
+| ---------------------------------- | -------------------------- |
+| State-Trait Gap (STG)              | ❌ already covered         |
+| Reliability Gap Index (RGI)        | ❌ already covered         |
+| Repair Gap (RG2)                   | ❌ already covered         |
+| Communication Gap                  | ⚠️ add 1                   |
+| Closeness Gap                      | ⚠️ add 1                   |
+| Emotional Responsibility Gap (ERG) | ⚠️ add 1                   |
+| Effort Gap                         | ⚠️ optional                |
+| Reactivity Gap                     | ❌ overlaps with STG       |
+| Intent–Perception                  | ❌ not questionnaire-based |
 
 **Added 4-6 additional gap questions:**
 
@@ -275,8 +277,7 @@ Target: top 6–8 gaps
 | Emotional Responsibility Gap | Q1.7         | Stress-state attribution      |
 | Effort Gap                   | Q3.12        | Effort reciprocity behavior   |
 
-
-Every major gap is now *explicitly measurable,* not inferred
+Every major gap is now _explicitly measurable,_ not inferred
 
 That’s the point where your system shifts from:
 
@@ -295,7 +296,9 @@ Trait (calm / identity)
 +
 State (stress / constraint)
 ```
+
 Not:
+
 ```python
 Trait + Trait + Trait  ❌
 ```
@@ -305,14 +308,15 @@ Trait + Trait + Trait  ❌
 Example:
 
 - Q2.3 (criticism response) feeds:
-    - Repair Gap
-    - Reactivity Gap
-    - STG
-    - ER, NC, CR indices
+  - Repair Gap
+  - Reactivity Gap
+  - STG
+  - ER, NC, CR indices
 
 👉 One question = multiple roles
 
 ### 3. Diminishing returns curve
+
 - <20 questions → underfit (miss dynamics)
 - 28–32 → optimal
 - 40 → noise + fatigue + worse data quality
