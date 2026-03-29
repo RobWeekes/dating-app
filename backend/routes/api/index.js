@@ -9,7 +9,7 @@ const likesRouter = require("./likes.js");
 
 // imports used for session/authorization functions:
 
-// const { restoreUser } = require("../../utils/auth.js");
+const { restoreUser } = require("../../utils/auth.js");
 
 // these imports used for test routes, inactive:
 // const { setTokenCookie } = require("../../utils/auth.js");
@@ -36,7 +36,12 @@ router.use('/preferences', preferencesRouter);
 router.use('/likes', likesRouter);
 // router.use('/mvp-scoring', mvpScoringRouter);
 
+// Health check endpoint
+router.get('/health', (req, res) => {
+  res.json({ status: 'API is running' });
+});
 
+// Test route to verify req.body parsing, remove when verified working on frontend
 router.post("/test", (req, res) => {
   res.json({ requestBody: req.body });
 });

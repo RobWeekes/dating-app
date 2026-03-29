@@ -2,16 +2,13 @@
 
 // create an Express router, create /api/csrf/restore route below
 const express = require('express');
+const path = require("path");
 const router = express.Router();
-
-// Health check endpoint
-router.get('/api/health', (req, res) => {
-  res.json({ status: 'API is running' });
-});
 
 // All the API routes will be served at URL"s starting with /api/
 const apiRouter = require('./api');
 
+// Mount all API routes at /api
 // All the URLs of the routes in the api router will be prefixed with /api
 router.use('/api', apiRouter);
 // This is the key piece that turns it into a single-page app instead of a server that only serves /
@@ -21,17 +18,17 @@ router.use('/api', apiRouter);
 
 
 // Static routes
-// Serve React build files in production
+
+// Production-only frontend serving
 if (process.env.NODE_ENV === "production") {
-  const path = require("path");
   const frontendBuildPath = path.resolve(__dirname, "../../frontend/build");
   const indexHtmlPath = path.join(frontendBuildPath, "index.html");
 
   // Serve the frontend's index.html file at the root route
-  router.get("/", (req, res) => {
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    return res.sendFile(indexHtmlPath);
-  });
+  // router.get("/", (req, res) => {
+  //   res.cookie("XSRF-TOKEN", req.csrfToken());
+  //   return res.sendFile(indexHtmlPath);
+  // });
 
   // Serve the static assets in the frontend's build folder
   router.use(express.static(frontendBuildPath));
@@ -44,25 +41,24 @@ if (process.env.NODE_ENV === "production") {
 } // This route is essential for proper functioning of a React single page app with client-side routing when deployed to production, where both the frontend & backend are served from the same server. It ensures that all non-API routes serve the React application, allowing React Router to handle the client-side routing.
 
 
-// In this test route, set a cookie on the response with the name "XSRF-TOKEN" to the value of the req.csrfToken method"s return. Then, send "Hello World!" as the response body
-// router.get("/hello/world", function (req, res) {
-//   res.cookie("XSRF-TOKEN", req.csrfToken());
-//   res.send("Hello World!");
-// });
-
-
+// Development-only CSRF restore route
 // Add a route, GET /api/csrf/restore to allow any developer to reset the CSRF token cookie "XSRF-TOKEN". *Add script to Postman as shown below \/
 if (process.env.NODE_ENV !== "production") {
   router.get("/api/csrf/restore", (req, res) => {
     const csrfToken = req.csrfToken();
     res.cookie("XSRF-TOKEN", csrfToken);
     // return res.json({});  // sends token without displaying it
-    res.status(200).json({
+    return res.status(200).json({
       "XSRF-Token": csrfToken
     });  // code from backend starter
   });
 }
 
+// In this test route, set a cookie on the response with the name "XSRF-TOKEN" to the value of the req.csrfToken method"s return. Then, send "Hello World!" as the response body
+// router.get("/hello/world", function (req, res) {
+//   res.cookie("XSRF-TOKEN", req.csrfToken());
+//   res.send("Hello World!");
+// });
 
 
 module.exports = router;
