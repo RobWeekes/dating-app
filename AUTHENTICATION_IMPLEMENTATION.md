@@ -19,7 +19,7 @@ A full JWT-based authentication system has been implemented with login, registra
   - Added `toPublicJSON()` method to exclude password from responses
 
 #### 2. Authentication Routes
-- **File**: `backend/routes/auth.js` (NEW)
+- **File**: `backend/utils/auth.js` (NEW)
 - **Endpoints**:
   - `POST /auth/register` - Register new user
   - `POST /auth/login` - Login user
@@ -305,7 +305,9 @@ backend/
 ├── middleware/
 │   └── authentication.js (NEW)
 ├── .env.example (UPDATED)
-└── package.json (UPDATED)
+├── package.json (UPDATED)
+└── utils/
+    └── auth.js (NEW)
 
 frontend/src/
 ├── redux/

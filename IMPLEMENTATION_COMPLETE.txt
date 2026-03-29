@@ -16,7 +16,7 @@ BACKEND (6 files modified/created)
    - Password validation methods
    - Secure response generation (no password in responses)
 
-✅ Auth Routes (NEW FILE: backend/routes/auth.js)
+✅ Auth Routes (NEW FILE: backend/utils/auth.js)
    - POST /auth/register - Register new user
    - POST /auth/login - Login with email/password
    - GET /auth/me - Get current user (protected)
@@ -190,7 +190,7 @@ BACKEND
 ✓ backend/models/User.js
 ✓ backend/routes/index.js
 ✓ backend/routes/users.js
-✓ backend/routes/auth.js (NEW)
+✓ backend/utils/auth.js (NEW)
 ✓ backend/middleware/authentication.js (NEW)
 ✓ backend/package.json
 ✓ backend/.env.example

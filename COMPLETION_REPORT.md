@@ -36,7 +36,7 @@ The dating app now has a complete JWT-based authentication system with multi-use
 ### Backend Authentication (6 files)
 
 #### New Files:
-1. **`backend/routes/auth.js`** (140 lines)
+1. **`backend/utils/auth.js`** (140 lines)
    - POST /auth/register - User registration
    - POST /auth/login - User login
    - GET /auth/me - Get authenticated user
