@@ -1,14 +1,15 @@
 // backend/routes/api/index.js
 
 const router = require("express").Router();
-const authRouter = require("../../utils/auth.js");
-// const usersRouter = require("./users.js");
+const authRouter = require("./auth.js");
+const usersRouter = require("./users.js");
 const preferencesRouter = require("./preferences.js");
 const questionnairesRouter = require("./questionnaires.js");
 const likesRouter = require("./likes.js");
 
 // imports used for session/authorization functions:
-const { restoreUser } = require("../../utils/auth.js");
+
+// const { restoreUser } = require("../../utils/auth.js");
 
 // these imports used for test routes, inactive:
 // const { setTokenCookie } = require("../../utils/auth.js");
@@ -29,11 +30,11 @@ router.use(restoreUser);
 
 // API routes
 router.use('/auth', authRouter);
-// router.use('/users', usersRouter);
+router.use('/users', usersRouter);
 router.use('/questionnaires', questionnairesRouter);
 router.use('/preferences', preferencesRouter);
 router.use('/likes', likesRouter);
-router.use('/mvp-scoring', mvpScoringRouter);
+// router.use('/mvp-scoring', mvpScoringRouter);
 
 
 router.post("/test", (req, res) => {
