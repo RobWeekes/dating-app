@@ -9,8 +9,6 @@ router.get('/api/health', (req, res) => {
   res.json({ status: 'API is running' });
 });
 
-//
-
 // All the API routes will be served at URL"s starting with /api/
 const apiRouter = require('./api');
 
@@ -21,27 +19,27 @@ router.use('/api', apiRouter);
 // Restore the XSRF-TOKEN cookie
 // In production, the backend also serves up all the frontend assets, including the index.html and any JS files in the frontend/build folder after running "npm run build" in frontend dir. The XSRF-TOKEN will be attached to the index.html file in the frontend/build folder. Serve this index.html file at the / route and any routes that don"t start with /api
 
+
 // Static routes
 // Serve React build files in production
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
-  // Serve the frontend"s index.html file at the root route
+  const frontendBuildPath = path.resolve(__dirname, "../../frontend/build");
+  const indexHtmlPath = path.join(frontendBuildPath, "index.html");
+
+  // Serve the frontend's index.html file at the root route
   router.get("/", (req, res) => {
     res.cookie("XSRF-TOKEN", req.csrfToken());
-    return res.sendFile(
-      path.resolve(__dirname, "../../frontend", "build", "index.html")
-    );
+    return res.sendFile(indexHtmlPath);
   });
 
-  // Serve the static assets in the frontend"s build folder
-  router.use(express.static(path.resolve("../frontend/build")));
+  // Serve the static assets in the frontend's build folder
+  router.use(express.static(frontendBuildPath));
 
-  // Serve the frontend"s index.html file at all other routes NOT starting with /api
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
   router.get(/^(?!\/?api).*/, (req, res) => {
     res.cookie("XSRF-TOKEN", req.csrfToken());
-    return res.sendFile(
-      path.resolve(__dirname, "../../frontend", "build", "index.html")
-    );
+    return res.sendFile(indexHtmlPath);
   });
 } // This route is essential for proper functioning of a React single page app with client-side routing when deployed to production, where both the frontend & backend are served from the same server. It ensures that all non-API routes serve the React application, allowing React Router to handle the client-side routing.
 
