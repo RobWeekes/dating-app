@@ -11,6 +11,8 @@
     "migrate:undo:all": "sequelize-cli db:migrate:undo:all",
     "seed": "sequelize-cli db:seed:all",
     "seed:undo": "sequelize-cli db:seed:undo:all",
+    "sequelize": "sequelize",
+    "sequelize-cli": "sequelize-cli",
     "test": "jest"
   },
   "keywords": [

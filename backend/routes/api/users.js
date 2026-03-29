@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { User, Preference } = require('../models');
-const { authenticateToken, optionalAuthenticateToken } = require('../middleware/authentication');
+const { User, Preference } = require('../../models');
+const { authenticateToken, optionalAuthenticateToken } = require('../../middleware/authentication');
 
 // GET matching users for discovery (filtered by current user's preferences)
 router.get('/discover/:userId', async (req, res) => {

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { Questionnaire, Question, QuestionnaireResponse, Answer, User } = require('../models');
-const sequelize = require('../models').sequelize;
+const { Questionnaire, Question, QuestionnaireResponse, Answer, User } = require('../../models');
+const sequelize = require('../../models').sequelize;
 const { Op } = require('sequelize');
-const { authenticateToken } = require('../middleware/authentication');
+const { authenticateToken } = require('../../middleware/authentication');
 
 /**
  * QUESTIONNAIRE TEMPLATE ROUTES

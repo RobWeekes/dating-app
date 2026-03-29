@@ -43,7 +43,7 @@ cd frontend && npm start
 
 ### Backend
 ```
-backend/routes/auth.js              # Auth endpoints
+backend/utils/auth.js              # Auth endpoints
 backend/middleware/authentication.js # JWT middleware
 backend/models/User.js              # User model with passwords
 backend/.env.example                # Add JWT_SECRET

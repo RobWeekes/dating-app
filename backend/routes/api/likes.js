@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Like, User } = require('../models');
+const { Like, User } = require('../../models');
 const { Op } = require('sequelize');
 
 // GET all likes for a user (who they liked)

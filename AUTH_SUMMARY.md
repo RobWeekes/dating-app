@@ -15,7 +15,7 @@ A complete JWT-based authentication system has been implemented for the dating a
 | File | Changes | Purpose |
 |------|---------|---------|
 | `backend/models/User.js` | Added password field, bcryptjs hashing, password validation methods | Secure password handling |
-| `backend/routes/auth.js` | NEW - Created authentication endpoints | Register, login, get user, logout |
+| `backend/utils/auth.js` | NEW - Created authentication endpoints | Register, login, get user, logout |
 | `backend/middleware/authentication.js` | NEW - JWT verification middleware | Protect routes |
 | `backend/routes/users.js` | Updated to require auth, exclude passwords from responses | Secure user data |
 | `backend/package.json` | Added bcryptjs, jsonwebtoken | Dependencies |
@@ -166,7 +166,7 @@ See `AUTH_QUICK_START.md` for:
 ## Files Created
 
 **Backend:**
-- `backend/routes/auth.js` - 140 lines
+- `backend/utils/auth.js` - 140 lines
 - `backend/middleware/authentication.js` - 45 lines
 
 **Frontend:**

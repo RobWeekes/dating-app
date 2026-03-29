@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { User, QuestionnaireResponse, Answer, Question, MVPQuestionnaireScore } = require('../models');
-const MVPQuestionnaireScorer = require('../services/MVPQuestionnaireScorer');
-const { authenticateToken } = require('../middleware/authentication');
+const { User, QuestionnaireResponse, Answer, Question, MVPQuestionnaireScore } = require('../../models');
+const MVPQuestionnaireScorer = require('../../services/MVPQuestionnaireScorer');
+const { authenticateToken } = require('../../middleware/authentication');
 
 /**
  * MVP QUESTIONNAIRE SCORING ROUTES
