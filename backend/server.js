@@ -15,42 +15,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database connection and initialization
-models.sequelize
-  .authenticate()
-  .then(() => {
-    console.log('✓ Database connection successful');
-    // Enable foreign keys for SQLite
-    return models.sequelize.query('PRAGMA foreign_keys = ON');
-  })
-  .then(() => {
-    // Sync database schema
-    console.log('\n🔄 Initializing database...');
-    console.log('📋 Creating database schema...');
-    return models.sequelize.sync({ force: false, alter: false });
-  })
-  .then(() => {
-    console.log('✅ Database schema created');
-  })
-  .then(() => {
-    // Seed questionnaire templates
-    console.log('📋 Seeding questionnaire templates...');
-    return seedQuestionnaireTemplates();
-  })
-  .then(() => {
-    console.log('✅ Database initialization complete\n');
-  })
-  .catch((err) => {
-    console.error('✗ Database error:', err.message);
-    console.error('💡 If you see SQLITE_IOERR, try: rm -rf dating_app.db* && npm run dev');
-  });
-
 // Seed questionnaire templates on startup using templates data file
 async function seedQuestionnaireTemplates() {
   const templates = getQuestionnaireTemplates();
 
   for (const template of templates) {
-    // Find or create the questionnaire
     const [questionnaire, created] = await models.Questionnaire.findOrCreate({
       where: { type: template.type },
       defaults: {
@@ -66,7 +35,6 @@ async function seedQuestionnaireTemplates() {
       console.log(`  ✓ Created ${template.type} questionnaire (ID: ${questionnaire.id})`);
     }
 
-    // Upsert questions by (questionnaireId, order)
     let upserted = 0;
     for (const q of template.questions) {
       const [question, qCreated] = await models.Question.findOrCreate({
@@ -85,7 +53,6 @@ async function seedQuestionnaireTemplates() {
       });
 
       if (!qCreated) {
-        // Update existing question with latest template data
         await question.update({
           text: q.text,
           type: q.type,
@@ -98,10 +65,13 @@ async function seedQuestionnaireTemplates() {
           conditional: q.conditional,
         });
       }
+
       upserted++;
     }
+
     console.log(`  ✓ ${template.type}: ${upserted} questions synced`);
   }
+
   console.log('✅ Questionnaire templates seeded');
 }
 
@@ -122,10 +92,35 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`✓ Server running on port ${PORT}`);
-  console.log(`✓ API available at http://localhost:${PORT}/api`);
-});
+async function startServer() {
+  try {
+    await models.sequelize.authenticate();
+    console.log('✓ Database connection successful');
+
+    if (process.env.NODE_ENV === 'development') {
+      await models.sequelize.query('PRAGMA foreign_keys = ON');
+      console.log('✓ SQLite foreign keys enabled');
+
+      console.log('\n🔄 Initializing database...');
+      console.log('📋 Creating database schema...');
+      await models.sequelize.sync({ force: false, alter: false });
+      console.log('✅ Database schema created');
+    }
+
+    await seedQuestionnaireTemplates();
+    console.log('✅ Database initialization complete\n');
+
+    app.listen(PORT, () => {
+      console.log(`✓ Server running on port ${PORT}`);
+      console.log(`✓ API available at /api`);
+    });
+  } catch (err) {
+    console.error('✗ Database error:', err.message);
+    process.exit(1);
+  }
+}
+
+startServer();
+
 
 module.exports = app;
