@@ -1,28 +1,63 @@
-require('dotenv').config();
-const Sequelize = require('sequelize');
+// backend/config/database.js
 
-const dialect = process.env.DB_DIALECT || 'sqlite';
+require("dotenv").config();
 
-let sequelize;
+module.exports = {
+  development: {
+    dialect: "sqlite",
+    storage: process.env.DB_STORAGE || "dating_app.db",
+    logging: console.log
+  },
 
-if (dialect === 'sqlite') {
-  sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: process.env.DB_STORAGE || './dating_app.db',
-    logging: process.env.NODE_ENV === 'development' ? console.log : false,
-  });
-} else {
-  sequelize = new Sequelize(
-    process.env.DB_NAME || 'dating_app_db',
-    process.env.DB_USER || 'root',
-    process.env.DB_PASSWORD || '',
-    {
-      host: process.env.DB_HOST || 'localhost',
-      port: process.env.DB_PORT || 5432,
-      dialect: process.env.DB_DIALECT || 'postgres',
-      logging: process.env.NODE_ENV === 'development' ? console.log : false,
+  test: {
+    dialect: "sqlite",
+    storage: ":memory:",
+    logging: false
+  },
+
+  production: {
+    use_env_variable: "DATABASE_URL",
+    dialect: "postgres",
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
     }
-  );
-}
+  }
+};
 
-module.exports = sequelize;
+// OLD --
+
+// const config = require("./index");
+
+// module.exports = {
+//   development: {
+//     storage: config.dbFile,
+//     dialect: "sqlite",
+//     seederStorage: "sequelize",
+//     logQueryParameters: true,
+//     typeValidation: true
+//   },
+//   production: {
+//     use_env_variable: "DATABASE_URL",
+//     dialect: "postgres",
+//     seederStorage: "sequelize",
+//     dialectOptions: {
+//       ssl: {
+//         require: true,
+//         rejectUnauthorized: false
+//       }
+//     },
+//     define: {
+//       schema: process.env.SCHEMA
+//     }
+//   }
+// };
+
+
+// This will allow you to load the database configuration environment variables from the .env file into the config/index.js, as well as define the global schema for the project.
+
+// When you deploy application to production, the database will be read from a URL path instead of a local database file. 
+// Also use PostgresQL in production rather than SQLite3 as a SQL database management system. SQLite3 should be used ONLY in development.

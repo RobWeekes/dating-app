@@ -1,8 +1,22 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  config: path.resolve('config', 'sequelize-config.js'),
-  'migrations-path': path.resolve('migrations'),
-  'seeders-path': path.resolve('seeders'),
-  'models-path': path.resolve('models'),
+  config: path.resolve(__dirname, "config", "database.js"),
+  "models-path": path.resolve(__dirname, "models"),
+  "seeders-path": path.resolve(__dirname, "seeders"),
+  "migrations-path": path.resolve(__dirname, "migrations")
 };
+
+// Always use __dirname for .sequelizerc to ensure correct path resolution regardless of where the command is run from. This will allow you to load the 
+// database configuration environment variables from the .env file into the config/index.js, as well as define the global schema for the project.
+
+// when ready, add backend/db folder, put these folders in and update paths:
+
+// const path = require("path");
+
+// module.exports = {
+//   config: path.resolve("config", "database.js"),
+//   "models-path": path.resolve("db", "models"),
+//   "seeders-path": path.resolve("db", "seeders"),
+//   "migrations-path": path.resolve("db", "migrations")
+// };

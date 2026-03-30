@@ -40,7 +40,8 @@ module.exports = {
     });
 
     await queryInterface.addIndex('likes', ['fromUserId', 'toUserId'], {
-      unique: true
+      unique: true,
+      name: 'unique_like'
     });
   },
 
