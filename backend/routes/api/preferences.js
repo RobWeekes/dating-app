@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Preference } = require('../../models');
+const { Preference } = require('../../db/models');
 
 // GET all preferences
 router.get('/', async (req, res) => {

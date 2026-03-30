@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const models = require('./models');
+const models = require('./db/models');
 const routes = require('./routes');
 const { getQuestionnaireTemplates } = require('./data/questionnaire-templates');
 

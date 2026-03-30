@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Preference } = require('../../models');
+const { User, Preference } = require('../../db/models');
 const { authenticateToken, optionalAuthenticateToken } = require('../../middleware/authentication');
 
 // GET matching users for discovery (filtered by current user's preferences)

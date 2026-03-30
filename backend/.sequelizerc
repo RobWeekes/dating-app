@@ -2,9 +2,9 @@ const path = require("path");
 
 module.exports = {
   config: path.resolve(__dirname, "config", "database.js"),
-  "models-path": path.resolve(__dirname, "models"),
-  "seeders-path": path.resolve(__dirname, "seeders"),
-  "migrations-path": path.resolve(__dirname, "migrations")
+  "models-path": path.resolve(__dirname, "db", "models"),
+  "seeders-path": path.resolve(__dirname, "db", "seeders"),
+  "migrations-path": path.resolve(__dirname, "db", "migrations")
 };
 
 // Always use __dirname for .sequelizerc to ensure correct path resolution regardless of where the command is run from. This will allow you to load the 
