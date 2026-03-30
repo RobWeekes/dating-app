@@ -1,11 +1,12 @@
 // backend/config/database.js
 
 require("dotenv").config();
+const path = require("path");
 
 module.exports = {
   development: {
     dialect: "sqlite",
-    storage: process.env.DB_STORAGE || "dating_app.db",
+    storage: process.env.DB_STORAGE || path.resolve(__dirname, "../db/dating_app.db"),
     logging: console.log
   },
 

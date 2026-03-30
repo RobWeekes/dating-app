@@ -13,7 +13,7 @@
  * - Physical Preferences: 2.5% (adjustment)
  */
 
-const { QuestionnaireResponse, Answer, Question, Questionnaire, User, MVPQuestionnaireScore } = require('../models');
+const { QuestionnaireResponse, Answer, Question, Questionnaire, User, MVPQuestionnaireScore } = require('../db/models');
 
 class MVPQuestionnaireScorer {
   /**

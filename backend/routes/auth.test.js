@@ -4,7 +4,7 @@
  */
 const request = require('supertest');
 const express = require('express');
-const { User } = require('../models');
+const { User } = require('../db/models');
 const authRoutes = require('./auth');
 
 // Create a test Express app
