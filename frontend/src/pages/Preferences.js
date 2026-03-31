@@ -67,37 +67,100 @@ function Preferences() {
 
   // Load existing preferences on mount
   useEffect(() => {
-    if (!userProfile?.id) return;
+  if (!userProfile?.id) return;
 
-    const loadPreferences = async () => {
-      try {
-        dispatch(setLoading(true));
+  let isCurrent = true;
 
-        const data = await getUserPreferences(userProfile.id);
+  const loadPreferences = async () => {
+    try {
+      dispatch(setLoading(true));
 
-        if (data) {
-          setFormData({
-            minAge: data.minAge || 18,
-            maxAge: data.maxAge || 100,
-            location: data.location || '',
-            locationRadius: data.locationRadius || 50,
-            interests: data.interests || [],
-            relationshipType: data.relationshipType || 'Any',
-          });
+      const data = await getUserPreferences(userProfile.id);
 
-          setExistingPreferences(data);
-          dispatch(setPreferences(data));
-        }
-      } catch (err) {
-        console.log('No existing preferences found - expected for new users');
-      } finally {
+      if (!isCurrent) return;
+
+      if (data) {
+        setFormData({
+          minAge: data.minAge || 18,
+          maxAge: data.maxAge || 100,
+          location: data.location || '',
+          locationRadius: data.locationRadius || 50,
+          interests: data.interests || [],
+          relationshipType: data.relationshipType || 'Any',
+        });
+
+        setExistingPreferences(data);
+        dispatch(setPreferences(data));
+      }
+    } catch (err) {
+      if (!isCurrent) return;
+      console.log('No existing preferences found - this is expected for new users');
+    } finally {
+      if (isCurrent) {
         dispatch(setLoading(false));
       }
-    };
+    }
+  };
 
-    loadPreferences();
-  }, [userProfile?.id, dispatch]);
+  loadPreferences();
 
+  // When the effect reruns or the component unmounts, cleanup sets
+  return () => {
+    isCurrent = false;
+  };
+}, [userProfile?.id, dispatch]);
+useEffect(() => {
+  if (!userProfile?.id) {
+    setExistingPreferences(null);
+    setFormData({
+      minAge: 18,
+      maxAge: 100,
+      location: '',
+      locationRadius: 50,
+      interests: [],
+      relationshipType: 'Any',
+    });
+    return;
+  }
+
+  let isCurrent = true;
+
+  const loadPreferences = async () => {
+    try {
+      dispatch(setLoading(true));
+      const data = await getUserPreferences(userProfile.id);
+
+      if (!isCurrent) return;
+
+      if (data) {
+        setFormData({
+          minAge: data.minAge || 18,
+          maxAge: data.maxAge || 100,
+          location: data.location || '',
+          locationRadius: data.locationRadius || 50,
+          interests: data.interests || [],
+          relationshipType: data.relationshipType || 'Any',
+        });
+        setExistingPreferences(data);
+        dispatch(setPreferences(data));
+      }
+    } catch (err) {
+      if (!isCurrent) return;
+      console.log('No existing preferences found - this is expected for new users');
+    } finally {
+      if (isCurrent) {
+        dispatch(setLoading(false));
+      }
+    }
+  };
+
+  loadPreferences();
+
+  // When the effect reruns or the component unmounts, cleanup sets
+  return () => {
+    isCurrent = false;
+  };
+}, [userProfile?.id, dispatch]);
   // Validate form
   const validateForm = () => {
     const errors = {};
