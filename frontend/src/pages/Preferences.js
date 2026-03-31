@@ -67,28 +67,31 @@ function Preferences() {
 
   // Load existing preferences on mount
   useEffect(() => {
+    if (!userProfile?.id) return;
+
     const loadPreferences = async () => {
-      if (userProfile?.id) {
-        try {
-          dispatch(setLoading(true));
-          const data = await getUserPreferences(userProfile.id);
-          if (data) {
-            setFormData({
-              minAge: data.minAge || 18,
-              maxAge: data.maxAge || 100,
-              location: data.location || '',
-              locationRadius: data.locationRadius || 50,
-              interests: data.interests || [],
-              relationshipType: data.relationshipType || 'Any',
-            });
-            setExistingPreferences(data);
-            dispatch(setPreferences(data));
-          }
-        } catch (err) {
-          console.log('No existing preferences found - this is expected for new users');
-        } finally {
-          dispatch(setLoading(false));
+      try {
+        dispatch(setLoading(true));
+
+        const data = await getUserPreferences(userProfile.id);
+
+        if (data) {
+          setFormData({
+            minAge: data.minAge || 18,
+            maxAge: data.maxAge || 100,
+            location: data.location || '',
+            locationRadius: data.locationRadius || 50,
+            interests: data.interests || [],
+            relationshipType: data.relationshipType || 'Any',
+          });
+
+          setExistingPreferences(data);
+          dispatch(setPreferences(data));
         }
+      } catch (err) {
+        console.log('No existing preferences found - expected for new users');
+      } finally {
+        dispatch(setLoading(false));
       }
     };
 
