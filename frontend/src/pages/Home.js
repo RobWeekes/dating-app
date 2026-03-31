@@ -1,4 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
@@ -6,7 +7,7 @@ import TestimonialCard from '../components/TestimonialCard';
 import styles from './Home.module.css';
 
 function Home() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { isAuthenticated } = useSelector(state => state.auth);
 
   if (isAuthenticated) {

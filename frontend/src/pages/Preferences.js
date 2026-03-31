@@ -1,8 +1,11 @@
+// frontend/src/pages/Preferences.js
+
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setPreferences, setLoading, setError } from '../redux/slices/preferencesSlice';
-import { selectUserProfile, selectIsPreferencesLoading, selectPreferencesError } from '../redux/selectors';
+import { selectUserProfile, selectPreferencesError } from '../redux/selectors';
+// import { selectUserProfile, selectIsPreferencesLoading, selectPreferencesError } from '../redux/selectors';
 import { 
   getUserPreferences, 
   updateUserPreferences, 
@@ -21,8 +24,8 @@ function Preferences() {
 
   // Redux state
   const userProfile = useSelector(selectUserProfile);
-  const isLoading = useSelector(selectIsPreferencesLoading);
   const error = useSelector(selectPreferencesError);
+  // const isLoading = useSelector(selectIsPreferencesLoading);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -90,7 +93,7 @@ function Preferences() {
     };
 
     loadPreferences();
-  }, [userProfile?.id]);
+  }, [userProfile?.id, dispatch]);
 
   // Validate form
   const validateForm = () => {
@@ -446,5 +449,6 @@ function Preferences() {
     </div>
   );
 }
+
 
 export default Preferences;

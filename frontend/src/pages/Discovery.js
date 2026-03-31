@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUsers, setLoading, setError, likeUser, passUser } from '../redux/slices/discoverySlice';
 import { selectUserProfile } from '../redux/selectors';
-import { getDiscoveryUsers, likeUser as likeUserAPI, unlikeUser } from '../services/api';
+// import { getDiscoveryUsers, likeUser as likeUserAPI, unlikeUser } from '../services/api';
+import { getDiscoveryUsers, likeUser as likeUserAPI } from '../services/api';
 import Button from '../components/Button';
 import '../styles/discovery.css';
 
@@ -17,7 +18,8 @@ function Discovery() {
   // Redux state
   const userProfile = useSelector(selectUserProfile);
   const discoveryState = useSelector((state) => state.discovery);
-  const { users, currentIndex, isLoading, error } = discoveryState;
+  // const { users, currentIndex, isLoading, error } = discoveryState;
+  const { users, currentIndex, error } = discoveryState;
 
   const [isLoadingUsers, setIsLoadingUsers] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);

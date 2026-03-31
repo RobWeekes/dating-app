@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+// import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading, setError } from '../redux/slices/userSlice';
 import { selectUserProfile, selectIsUserLoading, selectUserError } from '../redux/selectors';
-import { updateUserProfile, getUserProfile } from '../services/api';
+// import { updateUserProfile, getUserProfile } from '../services/api';
+import { updateUserProfile } from '../services/api';
 import { updateUser } from '../redux/slices/authSlice';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';

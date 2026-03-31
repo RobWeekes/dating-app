@@ -17,7 +17,8 @@ function Matches() {
   // Redux state
   const userProfile = useSelector(selectUserProfile);
   const matchesState = useSelector((state) => state.matches);
-  const { matches, isLoading, error } = matchesState;
+  // const { matches, isLoading, error } = matchesState;
+  const { matches, error } = matchesState;
 
   const [isLoadingMatches, setIsLoadingMatches] = useState(true);
 

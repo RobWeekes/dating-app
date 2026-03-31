@@ -253,7 +253,7 @@ export const checkLike = async (fromUserId, toUserId) => {
   return fetchAPI(`/likes/${fromUserId}/${toUserId}`);
 };
 
-export default {
+const api = {
   getUserProfile,
   updateUserProfile,
   getUserPreferences,
@@ -269,3 +269,6 @@ export default {
   getMatches,
   checkLike,
 };
+
+
+export default api;

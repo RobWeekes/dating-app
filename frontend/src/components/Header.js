@@ -6,7 +6,8 @@ import styles from './Header.module.css';
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector(state => state.auth);
+  // const { isAuthenticated, user } = useSelector(state => state.auth);
+  const { isAuthenticated } = useSelector(state => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
