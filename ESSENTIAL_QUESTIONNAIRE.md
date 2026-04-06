@@ -580,7 +580,7 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 * All indices are **deduplicated and normalized**
 * Each question appears only where it contributes meaningful signal
-* Added Q1.8 strengthens ER, NC, and ES linkage
+* Q1.8 strengthens ER, NC, and ES linkage
 * Gap architecture enables modeling of **behavioral breakdown under stress vs stated preference**
 
 ---
@@ -968,6 +968,110 @@ This lets you distinguish:
 
 ---
 
+# ➕ Extensions: New Index + Gap Integrations (RF, CR Gap, RS Gap)
+
+---
+
+## 🆕 New Index: Rupture Sensitivity / Forgiveness Threshold (RF)
+
+### Definition
+
+> How easily trust is degraded after hurt and how difficult it is to restore relational openness.
+
+* Higher = more **fragile bond / harder to restore trust**
+* Lower = more **forgiving / resilient to rupture**
+
+### Mapping (Index 21 — appended)
+
+* Primary: **Q1.9 (new)**
+* Secondary contributors: Q2.3, Q2.4, Q1.4, Q1.8
+
+### Add to vector (append to end)
+
+```text
+[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RF]
+```
+
+---
+
+## ➕ New Question: Q1.9 (RF anchor)
+
+**Q1.9** After being hurt in a relationship, I tend to …
+
+* **A)** Work through it and stay open
+  `[0,0,+0.5,+0.5,+0.5,0,+1.0,-0.5,0,0,0,0,0,0,0,0,0,+0.5,0,0,-2.0]`
+
+* **B)** Need time, but can reconnect
+  `[0,+0.5,+0.5,0,+0.5,0,+0.5,0,0,0,0,0,0,0,0,0,0,0,0,0,-0.5]`
+
+* **C)** Have a hard time seeing things the same way again
+  `[+0.5,+1.0,-1.0,-0.5,-1.0,-0.5,-1.5,+1.0,0,0,0,0,0,0,0,0,0,-1.0,0,+0.5,+2.0]`
+
+---
+
+## 🔄 New State–Trait Gaps
+
+### 6. Conflict Repair Gap (CR Gap)
+
+* **Trait anchor (inferred):** Q2.2 (repair willingness / accountability intent)
+* **State anchors:** Q2.3, Q2.4
+
+```python
+gap_CR = abs(mean(Q2_3, Q2_4) - Q2_2)
+```
+
+👉 Measures: intent to repair vs actual follow-through
+
+---
+
+### 7. Responsiveness Gap (RS Gap)
+
+* **Trait anchor:** Q1.2 (willingness to respond to needs)
+* **State anchors:** Q3.8, Q3.11
+
+```python
+gap_RS = abs(mean(Q3_8, Q3_11) - Q1_2)
+```
+
+👉 Measures: stated responsiveness vs behavior under load / imbalance
+
+---
+
+### 8. Regulation Gap (ER Gap)
+
+* **Trait anchor (inferred):** Q1.3 (baseline stability)
+* **State anchors:** Q1.4, Q1.8
+
+```python
+gap_ER = abs(mean(Q1_4, Q1_8) - Q1_3)
+```
+
+👉 Measures: perceived stability vs actual emotional control under activation
+
+---
+
+## 🔁 Interaction Amplifiers (Add to Scoring Layer)
+
+```python
+risk += (NC * (1 - ER)) * 1.5
+risk += (AA * RF) * 1.2
+risk += (gap_CR * NC) * 1.5
+risk += (gap_RS * (1 - RS)) * 1.2
+risk += (gap_ER * NC) * 1.3
+```
+
+---
+
+## ⚙️ Integration Notes
+
+* RF is **not a core trait** — treat as **failure amplifier**
+* Gaps should:
+
+  * be normalized to [0,1]
+  * influence **risk, not similarity directly**
+
+---
+
 # ⚙️ Ready for Implementation
 
 This table can directly power:
@@ -989,6 +1093,8 @@ Then add:
 * gap penalties
 * interaction amplification
 * hard-filter logic for LT / LS where appropriate
+
+---
 
 This is now a strong **theoretical starting matrix**, but before production it is recommended to calibrate magnitudes empirically with simulation or live outcome data, especially for:
 
