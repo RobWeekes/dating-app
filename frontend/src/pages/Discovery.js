@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setUsers, setLoading, setError, likeUser, passUser } from '../redux/slices/discoverySlice';
 import { selectUserProfile } from '../redux/selectors';
-// import { getDiscoveryUsers, likeUser as likeUserAPI, unlikeUser } from '../services/api';
-import { getDiscoveryUsers, likeUser as likeUserAPI } from '../services/api';
+import useDiscovery from '../hooks/useDiscovery';
 import Button from '../components/Button';
 import '../styles/discovery.css';
 
@@ -13,69 +10,23 @@ import '../styles/discovery.css';
  */
 function Discovery() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // Redux state
   const userProfile = useSelector(selectUserProfile);
-  const discoveryState = useSelector((state) => state.discovery);
-  // const { users, currentIndex, isLoading, error } = discoveryState;
-  const { users, currentIndex, error } = discoveryState;
-
-  const [isLoadingUsers, setIsLoadingUsers] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Load matching users on component mount
-  useEffect(() => {
-    const loadUsers = async () => {
-      if (userProfile?.id) {
-        try {
-          setIsLoadingUsers(true);
-          dispatch(setLoading(true));
-          dispatch(setError(null));
-
-          const matchingUsers = await getDiscoveryUsers(userProfile.id);
-          dispatch(setUsers(matchingUsers));
-        } catch (err) {
-          console.error('Error loading discovery users:', err);
-          dispatch(setError('Failed to load users. Please check your preferences.'));
-        } finally {
-          setIsLoadingUsers(false);
-          dispatch(setLoading(false));
-        }
-      }
-    };
-
-    loadUsers();
-  }, [userProfile?.id, dispatch]);
-
-  // Handle like - save to database
-  const handleLike = async (userId) => {
-    try {
-      setIsSubmitting(true);
-      // Save like to database
-      await likeUserAPI(userProfile.id, userId);
-      // Update Redux state
-      dispatch(likeUser(userId));
-    } catch (err) {
-      console.error('Error saving like:', err);
-      // Still update UI even if API fails (optimistic update)
-      dispatch(likeUser(userId));
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Handle pass
-  const handlePass = (userId) => {
-    dispatch(passUser(userId));
-  };
-
-  // Get current user
-  const currentUser = users[currentIndex];
-  const hasMoreUsers = currentIndex < users.length;
+  const {
+    currentIndex,
+    currentUser,
+    error,
+    hasMoreUsers,
+    handleLike,
+    handlePass,
+    isLoading,
+    isSubmitting,
+    likes,
+    passes,
+    users,
+  } = useDiscovery(userProfile?.id);
 
   // Loading state
-  if (isLoadingUsers) {
+  if (isLoading) {
     return (
       <div className="discovery-page">
         <div className="loading-spinner">
@@ -127,11 +78,11 @@ function Discovery() {
           <div className="stats">
             <div className="stat-item">
               <span className="stat-label">Likes:</span>
-              <span className="stat-value">{discoveryState.likes.length}</span>
+              <span className="stat-value">{likes.length}</span>
             </div>
             <div className="stat-item">
               <span className="stat-label">Passes:</span>
-              <span className="stat-value">{discoveryState.passes.length}</span>
+              <span className="stat-value">{passes.length}</span>
             </div>
           </div>
           <Button onClick={() => navigate('/profile')} className="btn-primary">

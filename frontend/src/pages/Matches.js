@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setMatches, setLoading, setError } from '../redux/slices/matchesSlice';
 import { selectUserProfile } from '../redux/selectors';
-import { getMatches } from '../services/api';
+import useMatches from '../hooks/useMatches';
 import Button from '../components/Button';
 import '../styles/matches.css';
 
@@ -12,39 +10,12 @@ import '../styles/matches.css';
  */
 function Matches() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // Redux state
   const userProfile = useSelector(selectUserProfile);
-  const matchesState = useSelector((state) => state.matches);
-  // const { matches, isLoading, error } = matchesState;
-  const { matches, error } = matchesState;
-
-  const [isLoadingMatches, setIsLoadingMatches] = useState(true);
-
-  // Load matches on component mount
-  useEffect(() => {
-    const loadMatches = async () => {
-      if (userProfile?.id) {
-        try {
-          setIsLoadingMatches(true);
-          dispatch(setLoading(true));
-          dispatch(setError(null));
-
-          const matchedUsers = await getMatches(userProfile.id);
-          dispatch(setMatches(matchedUsers));
-        } catch (err) {
-          console.error('Error loading matches:', err);
-          dispatch(setError('Failed to load matches. Please try again.'));
-        } finally {
-          setIsLoadingMatches(false);
-          dispatch(setLoading(false));
-        }
-      }
-    };
-
-    loadMatches();
-  }, [userProfile?.id, dispatch]);
+  const {
+    error,
+    isLoading,
+    matches,
+  } = useMatches(userProfile?.id);
 
   // View user profile
   const handleViewProfile = (userId) => {
@@ -59,7 +30,7 @@ function Matches() {
   };
 
   // Loading state
-  if (isLoadingMatches) {
+  if (isLoading) {
     return (
       <div className="matches-page">
         <div className="loading-spinner">
