@@ -125,20 +125,35 @@
 ### Emotional Responsibility Gap (ERG)
 
 **Q1.7**  When I’m really upset in a relationship, I tend to …
-Format: single | Weight: critical
-Options:
-A) Notice my reaction and try to understand it
-B) Feel caught between my reaction and what my partner did
-C) Feel like my partner is the cause of it
+- **Format:** single | Weight: critical
+- **Options:**
+  A) Notice my reaction and try to understand it
+  B) Feel caught between my reaction and what my partner did
+  C) Feel like my partner is the cause of it
 
 - **Measures:** emotional attribution under stress
 - **Maps to:** 5. Emotional Responsibility (ER2), 8. Negative Conflict Style (NC), 3. Emotional Regulation (ER)
 - **Note:** Gap role: State anchor for ERG
   Pairs cleanly with: Q1.5 (belief about emotions)
 
----
+**Q1.8** When I get emotionally overwhelmed, I usually …
+- **Format:** single | Weight: critical
+- **Options:**
+  A) Take a moment to settle myself before reacting
+  B) Try to stay composed, but it’s hard not to show it
+  C) React in the moment and deal with it afterward
+- **Measures:**
+pure emotional regulation capacity (self-soothing vs leakage vs impulsivity)
+- **Maps to:**
+Primary: 3. Emotional Regulation (ER)
+Secondary: 8. Negative Conflict Style (NC), 18. Emotional Stability (ES)
+- **Why this works:**
+- Cleanly isolates **regulation process**, not relationship dynamics
+- Avoids attachment contamination (unlike Q1.1, Q1.4)
+- Captures **impulse control vs modulation vs suppression failure**
+- Keeps **low desirability bias** (B is very plausible)
 
-## Conflict & Repair
+---
 
 ## Conflict & Repair (Reordered)
 
@@ -254,7 +269,8 @@ C) Feel like my partner is the cause of it
 - **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
 - **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
 
-<!-- new Q -->
+### Jealousy / Threat Sensitivity (JS)
+
 **Q3.6** If a partner suddenly seems less available or attentive than usual, I’m most likely to …
 
 - **Format:** single | **Weight:** high
@@ -356,7 +372,6 @@ C) Feel frustrated if I’m not getting the effort I expect
 - **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
 - **Note:** Measures how strongly LS should function as a hard filter.
 
-<!-- new Q -->
 **Q4.3** If someone I really like has a different timeline or certainty around major life decisions, I usually …
 
 - **Format:** single | **Weight:** high
@@ -379,7 +394,8 @@ C) Feel frustrated if I’m not getting the effort I expect
 - **Maps to:** 17. Novelty vs Stability Preference (NS), 9. Closeness–Autonomy Preference (CA)
 - **Note:** Best kept as a preference item, not a personality claim.
 
-<!-- new Q -->
+### Novelty vs Stability (NS)
+
 **Q4.5** After a relationship settles into a routine, I usually …
 
 - **Format:** single | **Weight:** high
@@ -419,157 +435,566 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-
-
-# Added Questions + Updated Numbering / References
-
-## Compatibility & Friction
-
-**Q3.5** If something about a partner’s behavior feels ambiguous, I tend to …
-
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Assume it’s probably nothing and move on
-  B) Notice it and want some clarity
-  C) Read into it and feel unsettled
-* **Measures:** threat sensitivity; interpretive bias
-* **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
-* **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
-
-### Jealousy / Threat Sensitivity (JS)
-
-**Q3.6** If a partner suddenly seems less available or attentive than usual, I’m most likely to …
-
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Assume something else is probably going on and check in if needed
-  B) Notice it and feel unsure until I understand why
-  C) Feel unsettled and start wondering what it means about us
-* **Measures:** response to perceived distance; threat activation under mild relational ambiguity
-* **Maps to:** 13. Jealousy / Threat Sensitivity (JS), 1. Attachment Anxiety (AA), 18. Emotional Stability (ES)
-* **Note:** Complements Q3.5 by using **availability change** rather than general ambiguity, improving JS reliability without using obvious jealousy language.
-
-**Q3.7** When a relationship matters to me, I’m more likely to …
-
-* **Format:** single | **Weight:** medium
-* **Options:**
-  A) Show it through consistent actions over time
-  B) Feel it strongly, even if my actions aren’t always consistent
-  C) Step up in key moments, even if I’m not steady day-to-day
-* **Measures:** investment expression; reliability
-* **Maps to:** 14. Effort & Investment Norms (EN) → strong, 19. Conscientiousness / Reliability (CO) → primary signal, 4. Responsiveness (RS) → B/C (different forms: emotional vs situational)
-* **Note:** Helps separate intention from dependable follow-through.
-
-**Q3.8** When life gets busy or stressful, I usually …
-
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Keep showing up pretty consistently
-  B) Try to stay connected, but I can become less responsive
-  C) Focus on what’s most urgent and circle back later
-* **Measures:** reliability under load; prioritization under stress
-* **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN), 4. Responsiveness (RS), 3. Emotional Regulation (ER)
-* **Note:** Primary: reliability under load (state behavior). Secondary: prioritization norms; emotional vs behavioral follow-through.
-
-### Communication Gap (CG)
-
-**Q3.9** When something is important to me in a relationship, I usually …
-
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Say it clearly, even if it feels a bit uncomfortable
-  B) Try to imply it or ease into it
-  C) Assume they’ll pick up on it without me saying much
-* **Measures:** expression vs expectation gap
-* **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness Balance (AG)
-* **Note:** Gap role: state anchor for Communication Gap.
-
-### Closeness Gap (CG2 refinement)
-
-**Q3.10** After a lot of closeness or time together, I usually …
-
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Still feel comfortable staying connected
-  B) Need a bit of space to recharge
-  C) Start to feel overwhelmed or want distance
-* **Measures:** tolerance under sustained closeness
-* **Maps to:** 2. Attachment Avoidance (AV), 10. Closeness Tolerance (CT), 3. Emotional Regulation (ER)
-* **Note:** State anchor for Closeness Gap; complements Q3.2.
-
-### Effort–Expectation Gap (EEG)
-
-**Q3.11** In a relationship, when effort starts to feel uneven, I usually …
-
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Try to match the level of effort I want to see
-  B) Notice it, but adjust depending on the situation
-  C) Feel frustrated if I’m not getting the effort I expect
-* **Measures:** effort reciprocity vs expectation asymmetry
-* **Maps to:** 14. Effort & Investment Norms (EN), 19. Conscientiousness / Reliability (CO), 4. Responsiveness (RS)
-* **Note:** Gap role: behavioral anchor for Effort Gap.
+# 📊 Master Mapping Table (All 20 Indices + State–Trait Gaps)
 
 ---
 
-## Values & Alignment
+## 🧠 Index → Question Mapping (Normalized)
 
-**Q4.1** Right now, I’m dating mainly for …
+### 1. Attachment Anxiety (AA)
 
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Something meaningful and long-term
-  B) Openness to either casual or serious, depending on fit
-  C) Something more casual or short-term
-* **Measures:** relationship intent
-* **Maps to:** 15. Long-Term Orientation (LT)
+* Q1.1, Q1.4
+* Q3.5, Q3.6
 
-**Q4.2** On major life choices (like kids, home base, or lifestyle), I tend to be …
+### 2. Attachment Avoidance (AV)
 
-* **Format:** single | **Weight:** critical
-* **Options:**
-  A) Pretty clear about what I want
-  B) Open, but within some limits
-  C) Flexible and still figuring it out
-* **Measures:** life-structure rigidity vs openness
-* **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
+* Q1.1, Q1.2, Q1.4, Q1.6
+* Q2.1, Q2.3, Q2.4
+* Q3.1, Q3.2, Q3.10
 
-### Life Structure Alignment (LS)
+### 3. Emotional Regulation (ER)
 
-**Q4.3** If someone I really like has a different timeline or level of certainty around major life decisions, I usually …
+* Q1.1, Q1.3, Q1.4, Q1.6, Q1.7, Q1.8
+* Q2.1, Q2.4
+* Q3.8, Q3.10
 
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Need strong alignment fairly early to feel good about continuing
-  B) Can keep exploring if the mismatch doesn’t seem too big
-  C) Am comfortable letting it stay open for quite a while
-* **Measures:** tolerance for life-structure mismatch; rigidity vs flexibility around major decisions
-* **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
-* **Note:** Adds a behavioral / relational anchor for LS instead of relying only on self-described clarity.
+### 4. Responsiveness (RS)
 
-**Q4.4** In a long-term relationship, I usually want life to feel more …
+* Q1.2, Q1.6
+* Q2.3, Q2.4
+* Q3.7, Q3.8, Q3.11
 
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Grounded and predictable
-  B) Balanced between routine and novelty
-  C) Fresh, stimulating, and changing
-* **Measures:** novelty vs stability preference
-* **Maps to:** 17. Novelty vs Stability Preference (NS), 9. Closeness–Autonomy Preference (CA)
-* **Note:** Best kept as a preference item, not a personality claim.
+### 5. Emotional Responsibility (ER2)
 
-### Novelty vs Stability (NS)
+* Q1.5, Q1.7
+* Q2.2
 
-**Q4.5** After a relationship settles into a routine, I usually …
+### 6. Conflict Engagement (CE)
 
-* **Format:** single | **Weight:** high
-* **Options:**
-  A) Like the steadiness and don’t need much change
-  B) Like some routine, but need occasional new experiences mixed in
-  C) Start wanting more change, spontaneity, or intensity
-* **Measures:** behavior under routine; need for stimulation once novelty fades
-* **Maps to:** 17. Novelty vs Stability Preference (NS), 18. Emotional Stability (ES)
-* **Note:** Behavioral anchor for NS; complements Q4.4 by measuring what happens after novelty wears off.
+* Q1.1, Q1.4
+* Q2.1
+
+### 7. Conflict Repair Ability (CR)
+
+* Q2.2, Q2.3, Q2.4
+
+### 8. Negative Conflict Style (NC)
+
+* Q1.2, Q1.4, Q1.5, Q1.7, Q1.8
+* Q2.2, Q2.4
+* Q5.2
+
+### 9. Closeness–Autonomy Preference (CA)
+
+* Q1.6
+* Q3.1, Q3.2
+* Q4.4
+
+### 10. Closeness Tolerance (CT)
+
+* Q3.1, Q3.10
+
+### 11. Communication Directness (CD)
+
+* Q3.3, Q3.9
+* Q5.2
+
+### 12. Mind-Reading Expectation (MR)
+
+* Q3.3, Q3.4, Q3.9
+
+### 13. Jealousy / Threat Sensitivity (JS)
+
+* Q3.5, Q3.6
+
+### 14. Effort & Investment Norms (EN)
+
+* Q1.2
+* Q3.7, Q3.8, Q3.11
+
+### 15. Long-Term Orientation (LT)
+
+* Q4.1
+* Q4.2, Q4.3
+
+### 16. Life Structure Alignment (LS)
+
+* Q4.2, Q4.3
+
+### 17. Novelty vs Stability Preference (NS)
+
+* Q4.4, Q4.5
+
+### 18. Emotional Stability (ES)
+
+* Q1.3
+* Q3.5, Q3.6
+* Q4.5
+* Q1.8
+
+### 19. Conscientiousness / Reliability (CO)
+
+* Q2.3, Q2.4
+* Q3.7, Q3.8, Q3.11
+* Q5.1
+
+### 20. Assertiveness–Agreeableness Balance (AG)
+
+* Q1.5
+* Q2.2
+* Q3.3, Q3.9
+* Q5.2
+
+---
+
+# 🔄 State–Trait Gap Architecture
+
+## Emotional Responsibility Gap (ERG)
+
+* Trait: Q1.5
+* State: Q1.7
+
+## Conflict Gap (CG-Conflict Behavior)
+
+* Low intensity: Q2.1
+* High intensity: Q1.4
+
+## Communication Gap (CG)
+
+* Trait: Q3.3
+* State: Q3.9
+
+## Closeness Gap (CG2)
+
+* Trait: Q3.2
+* State: Q3.10
+
+## Effort–Expectation Gap (EEG)
+
+* Trait: Q3.7
+* State: Q3.8, Q3.11
+
+---
+
+# 🧩 Notes
+
+* All indices are **deduplicated and normalized**
+* Each question appears only where it contributes meaningful signal
+* Added Q1.8 strengthens ER, NC, and ES linkage
+* Gap architecture enables modeling of **behavioral breakdown under stress vs stated preference**
+
+---
+
+# 🧮 Delta-Weight Matrix (A/B/C → Vector Deltas)
+
+---
+
+## Conventions
+
+### Index order
+
+Use this fixed 20-index vector order for every response delta:
+
+```text
+[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG]
+```
+
+### Delta scale
+
+Use a simple, implementation-safe ordinal scale:
+
+* **+2.0** = strong positive signal toward the construct pole measured by the item
+* **+1.0** = moderate positive signal
+* **+0.5** = weak positive / adjacent signal
+* **0.0** = neutral / no direct update
+* **-0.5** = weak opposite signal
+* **-1.0** = moderate opposite signal
+* **-2.0** = strong opposite signal
+
+### Scoring rule
+
+For each answer option, add the listed vector delta to the user’s running raw score vector.
+Then apply:
+
+```python
+Index_score = sigmoid(sum(weight_i * delta_i))
+```
+
+### Important modeling note
+
+Some indices are **bipolar by interpretation**:
+
+* **AV**: higher = more avoidant
+* **AA**: higher = more anxious / threat-reactive
+* **NC**: higher = more toxic / defensive / escalatory
+* **MR**: higher = stronger mind-reading expectation
+* **JS**: higher = more threat-sensitive / jealous
+
+Others are **health / capacity coded upward**:
+
+* **ER, RS, ER2, CE, CR, CT, CD, EN, LT, LS, ES, CO**
+
+Preference dimensions are not inherently healthy/unhealthy:
+
+* **CA**: higher = more autonomy / space orientation
+* **NS**: higher = more novelty-seeking / stimulation-seeking
+* **AG**: higher = more assertive / lower accommodation
+
+---
+
+## Q1.1 When I sense my partner pulling away, I tend to:
+
+* **A)** Check in and try to understand
+  `[+0.5, -1.0, +1.0, +0.5, 0.0, +1.0, 0.0, -0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **B)** Give them space but stay available
+  `[-0.5, +0.5, +1.0, 0.0, 0.0, +0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **C)** Feel like something’s wrong and react (chase / pull back)
+  `[+2.0, +0.5, -1.5, -0.5, 0.0, -1.0, 0.0, +1.0, 0.0, 0.0, -0.5, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5]`
+
+## Q1.2 If my partner needs reassurance, I tend to …
+
+* **A)** Offer reassurance even if it takes effort
+  `[-0.5, -1.0, +0.5, +2.0, 0.0, 0.0, 0.0, -1.0, -0.5, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **B)** Feel myself pulling back or getting drained
+  `[0.0, +1.5, -0.5, -1.0, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+* **C)** Get reactive or defensive about it
+  `[+0.5, +0.5, -1.0, -1.0, -0.5, 0.0, 0.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5]`
+
+## Q1.3 When things are stressful or uncertain, my mood usually …
+
+* **A)** Tends toward worry, tension, or feeling low
+  `[+1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -2.0, 0.0, 0.0]`
+* **B)** Stays fairly steady
+  `[-0.5, 0.0, +2.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, +2.0, 0.0, 0.0]`
+* **C)** Fluctuates quite a bit
+  `[+0.5, 0.0, -1.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, 0.0]`
+
+## Q1.4 When I’m very upset with someone, I tend to …
+
+* **A)** Stay engaged and try to work it out
+  `[-0.5, -1.0, +1.5, +0.5, 0.0, +2.0, +0.5, -1.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **B)** Pull back to settle myself first
+  `[0.0, +1.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **C)** React strongly (push, vent, or seek reassurance)
+  `[+1.5, +0.5, -1.5, -0.5, -0.5, -1.0, -0.5, +2.0, 0.0, 0.0, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5]`
+
+## Q1.5 In a relationship, when I have a strong reaction, I tend to see it as …
+
+* **A)** Largely my own interpretation
+  `[0.0, 0.0, +0.5, 0.0, +2.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5]`
+* **B)** A mix of my perspective and my partner’s actions
+  `[0.0, 0.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **C)** My partner is causing me to feel a certain way
+  `[+0.5, 0.0, -0.5, 0.0, -2.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +1.0]`
+
+## Q1.6 When I'm stressed, I usually want my partner to …
+
+* **A)** Be present and emotionally supportive
+  `[+0.5, -0.5, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **B)** Help me think it through or take action
+  `[0.0, 0.0, +1.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **C)** Give me space or distract me from it
+  `[-0.5, +1.5, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+
+## Q1.7 When I’m really upset in a relationship, I tend to …
+
+* **A)** Notice my reaction and try to understand it
+  `[0.0, 0.0, +1.0, 0.0, +2.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5]`
+* **B)** Feel caught between my reaction and what my partner did
+  `[+0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+* **C)** Feel like my partner is the cause of it
+  `[+0.5, 0.0, -1.0, 0.0, -2.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +1.0]`
+
+## Q1.8 When I get emotionally overwhelmed, I usually …
+
+* **A)** Take a moment to settle myself before reacting
+  `[0.0, 0.0, +2.0, 0.0, +0.5, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0]`
+* **B)** Try to stay composed, but it’s hard not to show it
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+* **C)** React in the moment and deal with it afterward
+  `[+0.5, 0.0, -2.0, 0.0, -0.5, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, +0.5]`
+
+## Q2.1 If there's a small disagreement, I usually …
+
+* **A)** Stay engaged and address it directly
+  `[-0.5, -1.0, +1.0, 0.0, 0.0, +2.0, +0.5, -0.5, 0.0, 0.0, +1.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **B)** Take some space before dealing with it
+  `[0.0, +0.5, +0.5, 0.0, 0.0, +0.5, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **C)** Let it go or distance myself from it
+  `[0.0, +2.0, -1.0, -0.5, 0.0, -2.0, -1.0, +0.5, +1.0, -0.5, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, -0.5]`
+
+## Q2.2 When I feel criticized or hurt in a disagreement, I tend to …
+
+* **A)** Try to see their view or take responsibility where I can
+  `[-0.5, 0.0, +0.5, +0.5, +2.0, +0.5, +1.0, -1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5]`
+* **B)** Explain my side first, then try to work it out
+  `[0.0, 0.0, +0.5, 0.0, +0.5, +1.0, +0.5, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0]`
+* **C)** Get defensive or point out what they did wrong
+  `[+0.5, +0.5, -1.0, -0.5, -1.5, -1.0, -1.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, +1.5]`
+
+## Q2.3 After a conflict with a partner, I often …
+
+* **A)** Try to make up fairly quickly
+  `[-0.5, -1.0, +0.5, +1.5, 0.0, 0.0, +2.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0]`
+* **B)** Need some time, but come back to it
+  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0]`
+* **C)** Step back and wait for them to bring it up
+  `[0.0, +2.0, -0.5, -1.0, 0.0, -0.5, -2.0, +0.5, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5]`
+
+## Q2.4 If things still feel tense after a conflict, I usually …
+
+* **A)** Try to smooth things over, even if it's a bit uncomfortable
+  `[-0.5, -1.0, +0.5, +1.5, 0.0, +0.5, +2.0, -0.5, -0.5, 0.0, +0.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5]`
+* **B)** Give it some time, then come back and reconnect
+  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0]`
+* **C)** Wait for the tension to pass, or for them to reach out first
+  `[0.0, +2.0, -0.5, -1.0, 0.0, -1.0, -2.0, +1.0, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, 0.0]`
+
+## Q3.1 If a partner wants more closeness than I do, I tend to …
+
+* **A)** Try to find a middle ground
+  `[0.0, -0.5, +0.5, +0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +1.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **B)** Go along with it, but feel trapped or annoyed
+  `[0.0, +1.0, -0.5, 0.0, 0.0, 0.0, -0.5, +0.5, -0.5, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -0.5]`
+* **C)** Start to pull back or see them as too needy
+  `[0.0, +2.0, -1.0, -0.5, 0.0, -0.5, -1.0, +0.5, +1.5, -1.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, +0.5]`
+
+## Q3.2 In a romantic relationship, I want to have …
+
+* **A)** A lot of connection and regular closeness
+  `[+0.5, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **B)** A balance of closeness and independence
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **C)** Plenty of space and autonomy
+  `[-0.5, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +2.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+
+## Q3.3 When something concerns me in a relationship, I’m more likely to …
+
+* **A)** Point it out pretty directly
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0]`
+* **B)** Hint at it and hope it’s picked up
+  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
+* **C)** Wait to see if they notice on their own
+  `[+0.5, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -1.5, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0]`
+
+## Q3.4 In relationships, I usually feel that a good partner should …
+
+* **A)** Understand most needs even if not everything is said
+  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, -1.0, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -0.5]`
+* **B)** Understand some things, but clear communication still matters
+  `[0.0, 0.0, +0.5, +1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **C)** Not be expected to know unless it’s said directly
+  `[-0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +1.5, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+
+## Q3.5 If something about a partner’s behavior feels ambiguous, I tend to …
+
+* **A)** Assume it’s probably nothing and move on
+  `[-1.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -2.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0]`
+* **B)** Notice it and want some clarity
+  `[+0.5, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **C)** Read into it and feel unsettled
+  `[+2.0, 0.0, -1.0, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +2.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5]`
+
+## Q3.6 If a partner suddenly seems less available or attentive than usual, I’m most likely to …
+
+* **A)** Assume something else is probably going on and check in if needed
+  `[-1.0, -0.5, +0.5, +0.5, 0.0, +0.5, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, -1.5, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, +0.5]`
+* **B)** Notice it and feel unsure until I understand why
+  `[+0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **C)** Feel unsettled and start wondering what it means about us
+  `[+2.0, +0.5, -1.0, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +2.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5]`
+
+## Q3.7 When a relationship matters to me, I’m more likely to …
+
+* **A)** Show it through consistent actions over time
+  `[0.0, -0.5, +0.5, +1.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +2.0, 0.0, 0.0, 0.0, +0.5, +2.0, 0.0]`
+* **B)** Feel it strongly, even if my actions aren’t always consistent
+  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5]`
+* **C)** Step up in key moments, even if I’m not steady day-to-day
+  `[0.0, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, -0.5, -0.5, +0.5]`
+
+## Q3.8 When life gets busy or stressful, I usually …
+
+* **A)** Keep showing up pretty consistently
+  `[0.0, -0.5, +1.5, +1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0]`
+* **B)** Try to stay connected, but I can become less responsive
+  `[0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0]`
+* **C)** Focus on what’s most urgent and circle back later
+  `[0.0, +0.5, -1.0, -1.0, 0.0, -0.5, -0.5, +0.5, +0.5, 0.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, -1.5, +0.5]`
+
+## Q3.9 When something is important to me in a relationship, I usually …
+
+* **A)** Say it clearly, even if it feels a bit uncomfortable
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.5, 0.0, -0.5, 0.0, 0.0, +2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +1.0]`
+* **B)** Try to imply it or ease into it
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
+* **C)** Assume they’ll pick up on it without me saying much
+  `[+0.5, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -1.5, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0]`
+
+## Q3.10 After a lot of closeness or time together, I usually …
+
+* **A)** Still feel comfortable staying connected
+  `[-0.5, -1.0, +1.0, +0.5, 0.0, 0.0, 0.0, -0.5, -1.5, +2.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **B)** Need a bit of space to recharge
+  `[0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **C)** Start to feel overwhelmed or want distance
+  `[0.0, +2.0, -1.5, -0.5, 0.0, -0.5, -0.5, +0.5, +1.5, -2.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0]`
+
+## Q3.11 In a relationship, when effort starts to feel uneven, I usually …
+
+* **A)** Try to match the level of effort I want to see
+  `[0.0, -0.5, +0.5, +1.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +1.5, 0.0, 0.0, 0.0, +0.5, +1.0, +0.5]`
+* **B)** Notice it, but adjust depending on the situation
+  `[0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0]`
+* **C)** Feel frustrated if I’m not getting the effort I expect
+  `[+0.5, +0.5, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +0.5, -1.0, 0.0, 0.0, 0.0, -0.5, -0.5, +0.5]`
+
+## Q4.1 Right now, I’m dating mainly for …
+
+* **A)** Something meaningful and long-term
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +2.0, +0.5, 0.0, 0.0, +0.5, 0.0]`
+* **B)** Openness to either casual or serious, depending on fit
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0]`
+* **C)** Something more casual or short-term
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, -2.0, -0.5, +0.5, 0.0, -0.5, 0.0]`
+
+## Q4.2 On major life choices (like kids, home base, or lifestyle), I tend to be …
+
+* **A)** Pretty clear about what I want
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0, +0.5, +0.5]`
+* **B)** Open, but within some limits
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0]`
+* **C)** Flexible and still figuring it out
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, -2.0, 0.0, 0.0, -0.5, -0.5]`
+
+## Q4.3 If someone I really like has a different timeline or level of certainty around major life decisions, I usually …
+
+* **A)** Need strong alignment fairly early to feel good about continuing
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0, +0.5, +0.5]`
+* **B)** Can keep exploring if the mismatch doesn’t seem too big
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, +0.5, 0.0, 0.0]`
+* **C)** Am comfortable letting it stay open for quite a while
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.5, 0.0, 0.0, -0.5, -0.5]`
+
+## Q4.4 In a long-term relationship, I usually want life to feel more …
+
+* **A)** Grounded and predictable
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -2.0, +0.5, +0.5, 0.0]`
+* **B)** Balanced between routine and novelty
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **C)** Fresh, stimulating, and changing
+  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +2.0, -0.5, -0.5, 0.0]`
+
+## Q4.5 After a relationship settles into a routine, I usually …
+
+* **A)** Like the steadiness and don’t need much change
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -2.0, +1.5, +0.5, 0.0]`
+* **B)** Like some routine, but need occasional new experiences mixed in
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0]`
+* **C)** Start wanting more change, spontaneity, or intensity
+  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +2.0, -1.5, -0.5, 0.0]`
+
+## Q5.1 People close to me would likely say I’m …
+
+* **A)** Dependable and consistent
+  `[0.0, -0.5, +0.5, +0.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, +0.5, +0.5, -0.5, +0.5, +2.0, 0.0]`
+* **B)** Warm but a little unpredictable
+  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, -0.5, -0.5, -0.5]`
+* **C)** More spontaneous than consistent
+  `[0.0, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, -0.5, -0.5, +1.0, -0.5, -2.0, +0.5]`
+
+## Q5.2 In close relationships, I tend to …
+
+* **A)** Say what I need while trying to keep things respectful
+  `[0.0, -0.5, +0.5, +0.5, +0.5, +0.5, +0.5, -1.0, 0.0, 0.0, +1.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+* **B)** Keep the peace even if I hold things in
+  `[+0.5, 0.0, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, -0.5, 0.0, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0]`
+* **C)** Push my point even if it creates tension
+  `[+0.5, +0.5, -1.0, -0.5, -0.5, +0.5, -0.5, +2.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +2.0]`
+
+---
+
+# 🔄 State–Trait Gap Matrix
+
+## Gap scoring convention
+
+For each gap pair, compute:
+
+```python
+gap_value = abs(state_score - trait_score)
+```
+
+Optionally direction-code:
+
+```python
+gap_direction = state_score - trait_score
+```
+
+This lets you distinguish:
+
+* **positive trait, weak state execution**
+* **low stated need, high stress reactivity**
+* **stable alignment vs breakdown under load**
+
+## 1. Emotional Responsibility Gap (ERG)
+
+* **Trait anchor:** Q1.5
+* **State anchor:** Q1.7
+* Interpretation: accountability belief vs blame under activation
+
+## 2. Conflict Engagement Gap
+
+* **Lower-intensity anchor:** Q2.1
+* **High-intensity anchor:** Q1.4
+* Interpretation: how conflict style changes once emotion rises
+
+## 3. Communication Gap (CG)
+
+* **Trait anchor:** Q3.3
+* **State / importance anchor:** Q3.9
+* Interpretation: baseline directness vs what happens when stakes rise
+
+## 4. Closeness Gap (CG2)
+
+* **Trait anchor:** Q3.2
+* **State anchor:** Q3.10
+* Interpretation: stated intimacy preference vs actual tolerance after sustained closeness
+
+## 5. Effort–Expectation Gap (EEG)
+
+* **Trait anchor:** Q3.7
+* **State anchors:** Q3.8, Q3.11
+* Interpretation: identity-level investment vs consistency under stress and reciprocity pressure
+
+---
+
+# ⚙️ Ready for Implementation
+
+This table can directly power:
+
+* vectorized scoring
+* similarity + complementarity modeling
+* risk interaction layers
+
+Suggested next implementation layer:
+
+```python
+raw_vector += question_option_delta
+weighted_vector += item_weight * question_option_delta
+final_index_scores = sigmoid(weighted_vector)
+```
+
+Then add:
+
+* gap penalties
+* interaction amplification
+* hard-filter logic for LT / LS where appropriate
+
+This is now a strong **theoretical starting matrix**, but before production it is recommended to calibrate magnitudes empirically with simulation or live outcome data, especially for:
+
+* secondary deltas
+* AG / CA / NS polarity effects
+* interaction thresholds for ER×NC, AA×AV, CR×NC
 
 ---
 
@@ -726,24 +1151,6 @@ For highest-value traits, use later behavioral refresh items:
 That lets you improve the vector after onboarding without making the signup questionnaire much longer.
 
 ---
-
-## Updated Notes on Efficiency
-
-This set now strengthens three previously fragile indices:
-
-* **JS** now has two distinct triggers: ambiguity (**Q3.5**) and changed availability (**Q3.6**)
-* **LS** now has both self-described clarity (**Q4.2**) and mismatch tolerance in practice (**Q4.3**)
-* **NS** now has both preference (**Q4.4**) and behavioral routine response (**Q4.5**)
-
-That improves variance reliability without adding much redundancy, because each new item uses a **different context** rather than repeating the same construct in slightly different wording.
-
-The questionnaire remains compact because the added questions also contribute secondary signal to adjacent indices:
-
-* **Q3.6** → AA, ES
-* **Q4.3** → LT
-* **Q4.5** → ES
-
----------------------
 
 # 📊 Evaluation: Questionnaire Completeness & Reliability
 
@@ -938,15 +1345,9 @@ You’re not just measuring traits — you’re measuring:
 
 # 📉 5. Remaining Gaps (minor)
 
-### 🟡 1. Emotional Regulation (ER) could use 1 more pure item
-Currently inferred across contexts.
-
-👉 Optional:
-- add a clean **self-soothing vs escalation** item
-
 ---
 
-### 🟡 2. Conscientiousness (CO) slightly indirect
+### 🟡 1. Conscientiousness (CO) slightly indirect
 Mostly inferred via:
 - effort
 - follow-through
@@ -955,7 +1356,7 @@ Mostly inferred via:
 
 ---
 
-### 🟡 3. Assertiveness–Agreeableness (AG)
+### 🟡 2. Assertiveness–Agreeableness (AG)
 Good coverage, but:
 - slightly entangled with CD + NC
 
