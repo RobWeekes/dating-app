@@ -179,6 +179,40 @@ export const submitQuestionnaire = async (questionnaireData) => {
 };
 
 /**
+ * Get all active questionnaire templates
+ * @returns {Promise<array>} Questionnaire templates
+ */
+export const getQuestionnaires = async () => {
+  return fetchAPI('/questionnaires');
+};
+
+/**
+ * Get all completed/in-progress responses for the authenticated user
+ * @returns {Promise<array>} User questionnaire responses
+ */
+export const getMyQuestionnaireResponses = async () => {
+  return fetchAPI('/questionnaires/responses/me');
+};
+
+/**
+ * Get questionnaire template by type
+ * @param {string} type - Questionnaire type
+ * @returns {Promise<object>} Questionnaire template including questions
+ */
+export const getQuestionnaireTemplateByType = async (type) => {
+  return fetchAPI(`/questionnaires/type/${type}`);
+};
+
+/**
+ * Get authenticated user's response for a questionnaire
+ * @param {number|string} questionnaireId - Questionnaire template ID
+ * @returns {Promise<object>} Existing questionnaire response with answers
+ */
+export const getMyQuestionnaireResponse = async (questionnaireId) => {
+  return fetchAPI(`/questionnaires/responses/user/me/questionnaire/${questionnaireId}`);
+};
+
+/**
  * Update user questionnaire by ID
  * @param {number} questionnaireId - Questionnaire ID
  * @param {object} questionnaireData - Updated questionnaire data
@@ -261,6 +295,10 @@ const api = {
   submitPreferences,
   getUserQuestionnaire,
   submitQuestionnaire,
+  getQuestionnaires,
+  getMyQuestionnaireResponses,
+  getQuestionnaireTemplateByType,
+  getMyQuestionnaireResponse,
   updateUserQuestionnaire,
   getDiscoveryUsers,
   likeUser,
