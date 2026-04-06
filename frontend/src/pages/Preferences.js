@@ -1,16 +1,10 @@
 // frontend/src/pages/Preferences.js
 
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setPreferences, setLoading, setError } from '../redux/slices/preferencesSlice';
-import { selectUserProfile, selectPreferencesError } from '../redux/selectors';
-// import { selectUserProfile, selectIsPreferencesLoading, selectPreferencesError } from '../redux/selectors';
-import {
-  getUserPreferences,
-  updateUserPreferences,
-  submitPreferences
-} from '../services/api';
+import { selectUserProfile } from '../redux/selectors';
+import usePreferences from '../hooks/usePreferences';
 import Button from '../components/Button';
 import '../styles/preferences.css';
 
@@ -20,27 +14,21 @@ import '../styles/preferences.css';
  */
 function Preferences() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // Redux state
   const userProfile = useSelector(selectUserProfile);
-  const error = useSelector(selectPreferencesError);
-  // const isLoading = useSelector(selectIsPreferencesLoading);
-
-  // Form state
-  const [formData, setFormData] = useState({
-    minAge: 18,
-    maxAge: 100,
-    location: '',
-    locationRadius: 50,
-    interests: [],
-    relationshipType: 'Any',
-  });
+  const {
+    error,
+    existingPreferences,
+    formData,
+    formErrors,
+    handleChange,
+    handleInterestChange,
+    handleRangeChange,
+    isSubmitting,
+    resetForm,
+    savePreferences,
+  } = usePreferences(userProfile?.id);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [existingPreferences, setExistingPreferences] = useState(null);
-  const [formErrors, setFormErrors] = useState({});
 
   // Interest options
   const interestOptions = [
@@ -65,205 +53,24 @@ function Preferences() {
   // Relationship type options
   const relationshipTypes = ['Any', 'Monogamous', 'Open relationship', 'Not sure'];
 
-// When userProfile?.id becomes falsy, clear local state so old preferences do not remain visible
-useEffect(() => {
-  if (!userProfile?.id) {
-    setExistingPreferences(null);
-    setFormData({
-      minAge: 18,
-      maxAge: 100,
-      location: '',
-      locationRadius: 50,
-      interests: [],
-      relationshipType: 'Any',
-    });
-    return;
-  }
-
-  let isCurrent = true;
-
-  // Load existing preferences on mount or when userProfile?.id changes
-  const loadPreferences = async () => {
-    try {
-      dispatch(setLoading(true));
-      const data = await getUserPreferences(userProfile.id);
-
-      if (!isCurrent) return;
-
-      if (data) {
-        setFormData({
-          minAge: data.minAge || 18,
-          maxAge: data.maxAge || 100,
-          location: data.location || '',
-          locationRadius: data.locationRadius || 50,
-          interests: data.interests || [],
-          relationshipType: data.relationshipType || 'Any',
-        });
-        setExistingPreferences(data);
-        dispatch(setPreferences(data));
-      }
-    } catch (err) {
-      if (!isCurrent) return;
-      console.log('No existing preferences found - this is expected for new users');
-    } finally {
-      if (isCurrent) {
-        dispatch(setLoading(false));
-      }
-    }
-  };
-
-  loadPreferences();
-
-  // When the effect reruns or the component unmounts, cleanup sets so stale requests are ignored
-  return () => {
-    isCurrent = false;
-  };
-}, [userProfile?.id, dispatch]);
-  // Validate form
-  const validateForm = () => {
-    const errors = {};
-
-    if (formData.minAge < 18 || formData.minAge > 120) {
-      errors.minAge = 'Minimum age must be between 18 and 120';
-    }
-
-    if (formData.maxAge < 18 || formData.maxAge > 120) {
-      errors.maxAge = 'Maximum age must be between 18 and 120';
-    }
-
-    if (formData.minAge > formData.maxAge) {
-      errors.ageRange = 'Minimum age cannot be greater than maximum age';
-    }
-
-    if (formData.locationRadius < 1 || formData.locationRadius > 500) {
-      errors.locationRadius = 'Location radius must be between 1 and 500 miles';
-    }
-
-    if (formData.interests.length === 0) {
-      errors.interests = 'Please select at least one interest';
-    }
-
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  // Handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: name === 'minAge' || name === 'maxAge' || name === 'locationRadius'
-        ? parseInt(value, 10)
-        : value,
-    }));
-
-    // Clear error when user starts typing
-    if (formErrors[name]) {
-      setFormErrors((prev) => {
-        const updated = { ...prev };
-        delete updated[name];
-        return updated;
-      });
-    }
-  };
-
-  // Handle range slider changes
-  const handleRangeChange = (e) => {
-    const { name, value } = e.target;
-    const numValue = parseInt(value, 10);
-
-    if (name === 'minAge' && numValue <= formData.maxAge) {
-      setFormData((prev) => ({ ...prev, minAge: numValue }));
-    } else if (name === 'maxAge' && numValue >= formData.minAge) {
-      setFormData((prev) => ({ ...prev, maxAge: numValue }));
-    }
-
-    if (formErrors.ageRange) {
-      setFormErrors((prev) => {
-        const updated = { ...prev };
-        delete updated.ageRange;
-        return updated;
-      });
-    }
-  };
-
-  // Handle interest selection
-  const handleInterestChange = (interest) => {
-    setFormData((prev) => {
-      const interests = prev.interests.includes(interest)
-        ? prev.interests.filter((i) => i !== interest)
-        : [...prev.interests, interest];
-
-      return { ...prev, interests };
-    });
-
-    if (formErrors.interests) {
-      setFormErrors((prev) => {
-        const updated = { ...prev };
-        delete updated.interests;
-        return updated;
-      });
-    }
-  };
-
   // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    const result = await savePreferences();
 
-    try {
-      setIsSubmitting(true);
-      dispatch(setLoading(true));
-      dispatch(setError(null));
-
-      const preferencesData = {
-        userId: userProfile.id,
-        minAge: formData.minAge,
-        maxAge: formData.maxAge,
-        location: formData.location,
-        locationRadius: formData.locationRadius,
-        interests: formData.interests,
-        relationshipType: formData.relationshipType,
-      };
-
-      const result = existingPreferences
-        ? await updateUserPreferences(userProfile.id, preferencesData)
-        : await submitPreferences(preferencesData);
-
-      setExistingPreferences(result);
-      dispatch(setPreferences(result));
+    if (result.success) {
       setIsEditing(false);
-
-      // Show success notification
       setTimeout(() => {
         navigate('/profile');
       }, 1000);
-    } catch (err) {
-      console.error('Error saving preferences:', err);
-      dispatch(setError(err.message || 'Failed to save preferences'));
-    } finally {
-      setIsSubmitting(false);
-      dispatch(setLoading(false));
     }
   };
 
   // Handle cancel
   const handleCancel = () => {
     setIsEditing(false);
-    if (existingPreferences) {
-      setFormData({
-        minAge: existingPreferences.minAge,
-        maxAge: existingPreferences.maxAge,
-        location: existingPreferences.location || '',
-        locationRadius: existingPreferences.locationRadius,
-        interests: existingPreferences.interests || [],
-        relationshipType: existingPreferences.relationshipType,
-      });
-    }
+    resetForm();
   };
 
   // Render view mode

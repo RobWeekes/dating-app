@@ -155,16 +155,15 @@ C) Feel like my partner is the cause of it
 
 ---
 
-<!-- When tension rises in a disagreement (I feel criticized or hurt), I tend to … ? ask chat -->
-**Q2.2** When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …
+**Q2.2** When I feel criticized or hurt in a disagreement, I tend to …
 
 * **Format:** single | **Weight:** critical
 * **Options:**
-  A) Try to see their view and take responsibility where I can
-  B) Explain my side first, then come back to fix things
+  A) Try to see their view or take responsibility where I can
+  B) Explain my side first, then try to work it out
   C) Get defensive or point out what they did wrong
 * **Measures:** defensiveness + accountability + repair readiness
-* **Maps to:** 7. Conflict Repair Ability (CR), 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG)
+* **Maps to:** 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG), minor: 7. Conflict Repair Ability (CR)
 * **Note:** Excellent discriminator for conflict toxicity.
 
 ---
