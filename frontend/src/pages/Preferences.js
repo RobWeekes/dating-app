@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { setPreferences, setLoading, setError } from '../redux/slices/preferencesSlice';
 import { selectUserProfile, selectPreferencesError } from '../redux/selectors';
 // import { selectUserProfile, selectIsPreferencesLoading, selectPreferencesError } from '../redux/selectors';
-import { 
-  getUserPreferences, 
-  updateUserPreferences, 
-  submitPreferences 
+import {
+  getUserPreferences,
+  updateUserPreferences,
+  submitPreferences
 } from '../services/api';
 import Button from '../components/Button';
 import '../styles/preferences.css';
@@ -65,50 +65,7 @@ function Preferences() {
   // Relationship type options
   const relationshipTypes = ['Any', 'Monogamous', 'Open relationship', 'Not sure'];
 
-  // Load existing preferences on mount
-  useEffect(() => {
-  if (!userProfile?.id) return;
-
-  let isCurrent = true;
-
-  const loadPreferences = async () => {
-    try {
-      dispatch(setLoading(true));
-
-      const data = await getUserPreferences(userProfile.id);
-
-      if (!isCurrent) return;
-
-      if (data) {
-        setFormData({
-          minAge: data.minAge || 18,
-          maxAge: data.maxAge || 100,
-          location: data.location || '',
-          locationRadius: data.locationRadius || 50,
-          interests: data.interests || [],
-          relationshipType: data.relationshipType || 'Any',
-        });
-
-        setExistingPreferences(data);
-        dispatch(setPreferences(data));
-      }
-    } catch (err) {
-      if (!isCurrent) return;
-      console.log('No existing preferences found - this is expected for new users');
-    } finally {
-      if (isCurrent) {
-        dispatch(setLoading(false));
-      }
-    }
-  };
-
-  loadPreferences();
-
-  // When the effect reruns or the component unmounts, cleanup sets
-  return () => {
-    isCurrent = false;
-  };
-}, [userProfile?.id, dispatch]);
+// When userProfile?.id becomes falsy, clear local state so old preferences do not remain visible
 useEffect(() => {
   if (!userProfile?.id) {
     setExistingPreferences(null);
@@ -125,6 +82,7 @@ useEffect(() => {
 
   let isCurrent = true;
 
+  // Load existing preferences on mount or when userProfile?.id changes
   const loadPreferences = async () => {
     try {
       dispatch(setLoading(true));
@@ -156,7 +114,7 @@ useEffect(() => {
 
   loadPreferences();
 
-  // When the effect reruns or the component unmounts, cleanup sets
+  // When the effect reruns or the component unmounts, cleanup sets so stale requests are ignored
   return () => {
     isCurrent = false;
   };
@@ -195,8 +153,8 @@ useEffect(() => {
 
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'minAge' || name === 'maxAge' || name === 'locationRadius' 
-        ? parseInt(value, 10) 
+      [name]: name === 'minAge' || name === 'maxAge' || name === 'locationRadius'
+        ? parseInt(value, 10)
         : value,
     }));
 

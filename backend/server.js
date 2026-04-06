@@ -141,6 +141,13 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`✓ Server running on port ${PORT}`);
       console.log(`✓ API available at /api`);
+    // prevent crashes from EADDRINUSE - if backend already running
+    }).on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${PORT} is already in use`);
+      } else {
+        throw err;
+      }
     });
 
   } catch (err) {
