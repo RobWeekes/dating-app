@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import QuestionnaireForm from '../components/QuestionnaireForm';
-import { submitQuestionnaire } from '../services/api';
+import useQuestionnairePage from '../hooks/useQuestionnairePage';
 import '../styles/questionnaire-form.css';
 
 /**
@@ -11,110 +10,20 @@ import '../styles/questionnaire-form.css';
 function QuestionnairePage() {
   const { type } = useParams();
   const navigate = useNavigate();
-
-  const [questions, setQuestions] = useState([]);
-  const [questionnaireId, setQuestionnaireId] = useState(null);
-  const [initialValues, setInitialValues] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
-
-  // Fetch questionnaire template on mount
-  useEffect(() => {
-    const fetchTemplate = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const token = localStorage.getItem('authToken');
-        if (!token) {
-          setError('Authentication token not found. Please log in again.');
-          setLoading(false);
-          return;
-        }
-
-        const response = await fetch(`http://localhost:3001/api/questionnaires/type/${type}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Failed to load questionnaire: ${response.status}`);
-        }
-
-        const template = await response.json();
-        const sorted = (template.Questions || []).sort((a, b) => a.order - b.order);
-        setQuestions(sorted);
-        setQuestionnaireId(template.id);
-      } catch (err) {
-        setError(err.message || 'Failed to load questionnaire');
-        setLoading(false);
-      }
-    };
-
-    fetchTemplate();
-  }, [type]);
-
-  // Fetch existing responses after questionnaireId is set
-  useEffect(() => {
-    if (!questionnaireId) return;
-
-    const fetchResponses = async () => {
-      try {
-        const token = localStorage.getItem('authToken');
-        if (!token) {
-          setLoading(false);
-          return;
-        }
-
-        const response = await fetch(
-          `http://localhost:3001/api/questionnaires/responses/user/me/questionnaire/${questionnaireId}`,
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          const values = {};
-
-          if (data.Answers) {
-            data.Answers.forEach(answer => {
-              let val;
-              try {
-                val = JSON.parse(answer.value);
-              } catch {
-                const num = parseInt(answer.value);
-                val = isNaN(num) ? answer.value : num;
-              }
-              values[answer.questionId] = val;
-            });
-          }
-
-          setInitialValues(values);
-        }
-        // 404 means no existing responses - that's fine
-      } catch (err) {
-        console.error('Error fetching existing responses:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchResponses();
-  }, [questionnaireId]);
+  const {
+    error,
+    initialValues,
+    loading,
+    questions,
+    sectioned,
+    submitAnswers,
+    submitted,
+  } = useQuestionnairePage(type);
 
   const handleSubmit = async (values) => {
-    try {
-      setError(null);
-      await submitQuestionnaire({ type, responses: values });
-      setSubmitted(true);
+    const result = await submitAnswers(values);
+    if (result.success) {
       navigate('/profile');
-    } catch (err) {
-      setError(err.message || 'Failed to submit questionnaire');
     }
   };
 
@@ -159,7 +68,7 @@ function QuestionnairePage() {
           initialValues={initialValues}
           onSubmit={handleSubmit}
           onCancel={() => navigate('/')}
-          sectioned={type === 'MVP'}
+          sectioned={sectioned}
         />
       </div>
     </div>

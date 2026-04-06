@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react';
 // import { useParams, useNavigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLoading, setError } from '../redux/slices/userSlice';
-import { selectUserProfile, selectIsUserLoading, selectUserError } from '../redux/selectors';
-// import { updateUserProfile, getUserProfile } from '../services/api';
-import { updateUserProfile } from '../services/api';
-import { updateUser } from '../redux/slices/authSlice';
+import { useSelector } from 'react-redux';
+import { selectUserProfile } from '../redux/selectors';
+import useProfile from '../hooks/useProfile';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import '../styles/profile.css';
@@ -16,178 +12,39 @@ import '../styles/profile.css';
  */
 function Profile() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  
-  // Get current user from Redux
   const userProfile = useSelector(selectUserProfile);
-  const isLoading = useSelector(selectIsUserLoading);
-  const error = useSelector(selectUserError);
+  const {
+    error,
+    formData,
+    formErrors,
+    handleInputChange,
+    isLoading,
+    isProfileComplete,
+    isSubmitting,
+    resetForm,
+    saveProfile,
+  } = useProfile(userProfile);
   
   // Check if we're in edit mode (URL contains /edit or from route)
   const isEditMode = window.location.pathname.includes('/edit');
   
-  // Form state
-  const [formData, setFormData] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    age: '',
-    location: '',
-    bodyType: '',
-    bmi: '',
-    politics: '',
-    religion: '',
-    ethnicity: '',
-    family: '',
-    familyGoals: '',
-    bio: '',
-    profilePhotoUrl: ''
-  });
-  
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Check if profile is complete
-  const isProfileComplete = () => {
-    if (!userProfile) return false;
-    return (
-      userProfile.age &&
-      userProfile.location &&
-      userProfile.bodyType &&
-      userProfile.bmi &&
-      userProfile.politics &&
-      userProfile.religion &&
-      userProfile.ethnicity &&
-      userProfile.family &&
-      userProfile.familyGoals &&
-      userProfile.bio
-    );
-  };
-
-  // Initialize form with user data
-  useEffect(() => {
-    if (userProfile) {
-      setFormData({
-        email: userProfile.email || '',
-        firstName: userProfile.firstName || '',
-        lastName: userProfile.lastName || '',
-        age: userProfile.age || '',
-        location: userProfile.location || '',
-        bodyType: userProfile.bodyType || '',
-        bmi: userProfile.bmi || '',
-        politics: userProfile.politics || '',
-        religion: userProfile.religion || '',
-        ethnicity: userProfile.ethnicity || '',
-        family: userProfile.family || '',
-        familyGoals: userProfile.familyGoals || '',
-        bio: userProfile.bio || '',
-        profilePhotoUrl: userProfile.profilePhotoUrl || ''
-      });
-    }
-  }, [userProfile]);
-
-  // Validate form inputs
-  const validateForm = () => {
-    const errors = {};
-    
-    if (!formData.email) {
-      errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Email is invalid';
-    }
-    
-    if (!formData.firstName) {
-      errors.firstName = 'First name is required';
-    }
-    
-    if (!formData.lastName) {
-      errors.lastName = 'Last name is required';
-    }
-    
-    if (formData.age && (isNaN(formData.age) || formData.age < 18 || formData.age > 120)) {
-      errors.age = 'Age must be between 18 and 120';
-    }
-
-    if (formData.bmi && isNaN(formData.bmi)) {
-      errors.bmi = 'BMI must be a valid number';
-    } else if (formData.bmi && (parseFloat(formData.bmi) < 10 || parseFloat(formData.bmi) > 60)) {
-      errors.bmi = 'BMI must be between 10 and 60';
-    }
-    
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  // Handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error for this field
-    if (formErrors[name]) {
-      setFormErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
 
-    setIsSubmitting(true);
-    dispatch(setLoading(true));
+    const result = await saveProfile();
 
-    try {
-      // Update profile via API
-      const updatedProfile = await updateUserProfile(userProfile.id, formData);
-      
-      // Update Redux store (both auth and user slices)
-      dispatch(updateUser(updatedProfile));
-      dispatch(setError(null));
-      
-      // Navigate back to profile view
+    if (result.success) {
       setTimeout(() => {
         navigate('/profile');
       }, 500);
-    } catch (err) {
-      dispatch(setError(err.message || 'Failed to update profile'));
-    } finally {
-      setIsSubmitting(false);
-      dispatch(setLoading(false));
     }
   };
 
   // Handle cancel
   const handleCancel = () => {
-    // Reset form to current user data
-    if (userProfile) {
-      setFormData({
-        email: userProfile.email || '',
-        firstName: userProfile.firstName || '',
-        lastName: userProfile.lastName || '',
-        age: userProfile.age || '',
-        location: userProfile.location || '',
-        bodyType: userProfile.bodyType || '',
-        bmi: userProfile.bmi || '',
-        politics: userProfile.politics || '',
-        religion: userProfile.religion || '',
-        ethnicity: userProfile.ethnicity || '',
-        family: userProfile.family || '',
-        familyGoals: userProfile.familyGoals || '',
-        bio: userProfile.bio || '',
-        profilePhotoUrl: userProfile.profilePhotoUrl || ''
-      });
-    }
-    setFormErrors({});
-    
+    resetForm();
+
     if (isEditMode) {
       navigate('/profile');
     }
@@ -297,7 +154,7 @@ function Profile() {
               )}
             </div>
 
-            {!isProfileComplete() && (
+            {!isProfileComplete && (
               <div className="profile-incomplete-notice">
                 <Button 
                   onClick={() => navigate('/profile/edit')}

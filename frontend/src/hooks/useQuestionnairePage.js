@@ -27,7 +27,6 @@ const mapAnswersToInitialValues = (answers = []) => {
 
 const useQuestionnairePage = (type) => {
   const [questions, setQuestions] = useState([]);
-  const [questionnaireId, setQuestionnaireId] = useState(null);
   const [initialValues, setInitialValues] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -55,7 +54,6 @@ const useQuestionnairePage = (type) => {
 
         const sortedQuestions = sortQuestions(template.Questions || []);
         setQuestions(sortedQuestions);
-        setQuestionnaireId(template.id);
 
         try {
           const response = await getMyQuestionnaireResponse(template.id);
@@ -111,7 +109,6 @@ const useQuestionnairePage = (type) => {
     error,
     initialValues,
     loading,
-    questionnaireId,
     questions,
     submitAnswers,
     submitted,
