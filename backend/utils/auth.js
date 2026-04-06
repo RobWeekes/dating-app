@@ -55,7 +55,9 @@ const setTokenCookie = (res, user) => {
 
 // gets identity of current user**
 const restoreUser = (req, res, next) => {
-  const { token } = req.cookies;
+  // Some API setups (including this project) do not install cookie-parser,
+  // so req.cookies can be undefined on requests like /auth/login.
+  const token = req.cookies?.token;
   req.user = null;
 
   // skip verify if token cookie is not set
