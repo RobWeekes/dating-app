@@ -2,7 +2,7 @@
 
 ## Design goals
 
-- Recover all **20 indices** with a **minimal but high-signal** item set
+- Recover all **21 indices** with a **minimal but high-signal** item set
 - Use **more items for the most predictive indices**
 - Favor **behavior under stress / ambiguity** over identity statements
 - Use **3 forced choices** with **low desirability bias**
@@ -44,6 +44,126 @@
 - 16. Life Structure Alignment (LS)
 - 17. Novelty vs Stability Preference (NS)
 - 19. Conscientiousness / Reliability (CO)
+
+---
+
+# ⚖️ Index & Gap Weighting (Initial Priors)
+
+## 🧠 Weighting Philosophy
+- Weights reflect predictive importance for relationship success & robustness
+* Higher = more influence on:
+* * compatibility scoring
+* * risk penalties
+* * match ranking
+- These are starting priors → should be updated via:
+* * offline simulation
+* * outcome data (retention, satisfaction, breakup)
+
+### Scale
+- 1.0 = baseline importance
+- >1.0 = above-average predictive weight
+- <1.0 = supporting / contextual signal
+
+---
+
+## 📊 Index Weights (21 Indices)
+(needs md formatting)
+
+[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RF]
+
+### Core Stability & Conflict Engine (highest impact)
+Index	Weight	Notes
+ER	1.30	Regulation under stress; central stabilizer
+NC	1.35	Strongest predictor of relationship failure
+CR	1.25	Repair ability; recovery after conflict
+RS	1.20	Responsiveness to needs; emotional availability
+ES	1.20	Baseline stability; volatility dampening
+RF	1.25	Bond fragility after rupture (new)
+
+### Attachment & Threat Dynamics
+Index	Weight	Notes
+AA	1.10	Drives insecurity & reactivity
+AV	1.10	Drives withdrawal & distance
+JS	1.05	Threat sensitivity; amplifies AA
+
+### Conflict Behavior & Responsibility
+Index	Weight	Notes
+CE	1.05	Willingness to engage conflict
+ER2	1.10	Accountability vs blame
+
+### Closeness & Relational Fit
+Index	Weight	Notes
+CA	0.95	Preference dimension (not inherently good/bad)
+CT	1.05	Tolerance under sustained closeness
+
+### Communication Layer
+Index	Weight	Notes
+CD	1.00	Directness in expression
+MR	1.00	Expectation of mind-reading
+
+### Effort & Reliability
+Index	Weight	Notes
+EN	1.05	Effort norms; reciprocity
+CO	1.10	Consistency & follow-through
+
+### Values & Alignment (filter layer)
+Index	Weight	Notes
+LT	1.15	Hard constraint; intent alignment
+LS	1.15	Life structure compatibility
+
+### Preference / Lifestyle Modulators
+Index	Weight	Notes
+NS	0.95	Novelty vs stability preference
+AG	1.00	Assertiveness balance
+
+## 🔄 Gap Weights (Failure Amplifiers)
+
+Gaps influence risk, not similarity directly.
+
+Gap	Weight	Notes
+ER Gap	1.30	Miscalibration of emotional control
+CR Gap	1.35	Intent vs actual repair (very predictive)
+RS Gap	1.25	Showing up vs intending to
+Communication Gap	1.15	Expression vs expectation mismatch
+Closeness Gap	1.10	Preference vs tolerance breakdown
+Effort Gap	1.20	Effort expectations vs behavior
+
+### 🧮 Example Integration
+
+```
+weighted_vector = raw_vector * index_weights
+
+risk_score = (
+    NC * 1.35
+    + RF * 1.25
+    + gap_CR * 1.35
+    + gap_ER * 1.30
+)
+```
+
+---
+
+## ⚙️ Ready for Implementation
+
+This table can directly power:
+
+- vectorized scoring
+- similarity + complementarity modeling
+- risk interaction layers
+
+Suggested next implementation layer:
+
+```
+raw_vector += question_option_delta
+weighted_vector += item_weight * question_option_delta
+final_index_scores = sigmoid(weighted_vector)
+```
+
+Then add:
+
+- gap penalties
+- interaction amplification
+- hard-filter logic for LT / LS where appropriate
 
 ---
 
@@ -141,7 +261,7 @@
 - **Options:**
   A) Take a moment to settle myself before reacting
   B) Try to stay composed, but it’s hard not to show it
-  C) React in the moment and deal with it afterward
+  C) React strongly in the moment and deal with it afterward
 - **Measures:**
 pure emotional regulation capacity (self-soothing vs leakage vs impulsivity)
 - **Maps to:**
@@ -435,7 +555,7 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 ---
 
-# 📊 Master Mapping Table (All 20 Indices + State–Trait Gaps)
+# 📊 Master Mapping Table (All 21 Indices + State–Trait Gaps)
 
 ---
 
@@ -464,7 +584,7 @@ C) Feel frustrated if I’m not getting the effort I expect
 * Q2.3, Q2.4
 * Q3.7, Q3.8, Q3.11
 
-### 5. Emotional Responsibility (ER2)
+### 5. Emotional Responsibility (ER2) Mapping
 
 * Q1.5, Q1.7
 * Q2.2
@@ -544,6 +664,11 @@ C) Feel frustrated if I’m not getting the effort I expect
 * Q2.2
 * Q3.3, Q3.9
 * Q5.2
+
+### 21. Rupture Sensitivity / Forgiveness Threshold (RF)
+
+* Q1.9, Q1.4, Q1.8
+* Q2.3, Q2.4
 
 ---
 
@@ -645,272 +770,283 @@ Preference dimensions are not inherently healthy/unhealthy:
 ## Q1.1 When I sense my partner pulling away, I tend to:
 
 * **A)** Check in and try to understand
-  `[+0.5, -1.0, +1.0, +0.5, 0.0, +1.0, 0.0, -0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[+0.5, -1.0, +1.0, +0.5, 0.0, +1.0, 0.0, -0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 * **B)** Give them space but stay available
-  `[-0.5, +0.5, +1.0, 0.0, 0.0, +0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[-0.5, +0.5, +1.0, 0.0, 0.0, +0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** Feel like something’s wrong and react (chase / pull back)
-  `[+2.0, +0.5, -1.5, -0.5, 0.0, -1.0, 0.0, +1.0, 0.0, 0.0, -0.5, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5]`
+  `[+2.0, +0.5, -1.5, -0.5, 0.0, -1.0, 0.0, +1.0, 0.0, 0.0, -0.5, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5, 0.0]`
 
 ## Q1.2 If my partner needs reassurance, I tend to …
 
 * **A)** Offer reassurance even if it takes effort
-  `[-0.5, -1.0, +0.5, +2.0, 0.0, 0.0, 0.0, -1.0, -0.5, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[-0.5, -1.0, +0.5, +2.0, 0.0, 0.0, 0.0, -1.0, -0.5, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 * **B)** Feel myself pulling back or getting drained
-  `[0.0, +1.5, -0.5, -1.0, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+  `[0.0, +1.5, -0.5, -1.0, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0]`
 * **C)** Get reactive or defensive about it
-  `[+0.5, +0.5, -1.0, -1.0, -0.5, 0.0, 0.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5]`
+  `[+0.5, +0.5, -1.0, -1.0, -0.5, 0.0, 0.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5, 0.0]`
 
 ## Q1.3 When things are stressful or uncertain, my mood usually …
 
 * **A)** Tends toward worry, tension, or feeling low
-  `[+1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -2.0, 0.0, 0.0]`
+  `[+1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -2.0, 0.0, 0.0, 0.0]`
 * **B)** Stays fairly steady
-  `[-0.5, 0.0, +2.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, +2.0, 0.0, 0.0]`
+  `[-0.5, 0.0, +2.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, +2.0, 0.0, 0.0, 0.0]`
 * **C)** Fluctuates quite a bit
-  `[+0.5, 0.0, -1.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, 0.0]`
+  `[+0.5, 0.0, -1.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, 0.0, 0.0]`
 
 ## Q1.4 When I’m very upset with someone, I tend to …
 
 * **A)** Stay engaged and try to work it out
-  `[-0.5, -1.0, +1.5, +0.5, 0.0, +2.0, +0.5, -1.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[-0.5, -1.0, +1.5, +0.5, 0.0, +2.0, +0.5, -1.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, -0.5]`
 * **B)** Pull back to settle myself first
-  `[0.0, +1.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[0.0, +1.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** React strongly (push, vent, or seek reassurance)
-  `[+1.5, +0.5, -1.5, -0.5, -0.5, -1.0, -0.5, +2.0, 0.0, 0.0, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5]`
+  `[+1.5, +0.5, -1.5, -0.5, -0.5, -1.0, -0.5, +2.0, 0.0, 0.0, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5, +1.0]`
 
 ## Q1.5 In a relationship, when I have a strong reaction, I tend to see it as …
 
 * **A)** Largely my own interpretation
-  `[0.0, 0.0, +0.5, 0.0, +2.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5]`
+  `[0.0, 0.0, +0.5, 0.0, +2.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5, 0.0]`
 * **B)** A mix of my perspective and my partner’s actions
-  `[0.0, 0.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[0.0, 0.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** My partner is causing me to feel a certain way
-  `[+0.5, 0.0, -0.5, 0.0, -2.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +1.0]`
+  `[+0.5, 0.0, -0.5, 0.0, -2.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +1.0, 0.0]`
 
 ## Q1.6 When I'm stressed, I usually want my partner to …
 
 * **A)** Be present and emotionally supportive
-  `[+0.5, -0.5, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[+0.5, -0.5, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **B)** Help me think it through or take action
-  `[0.0, 0.0, +1.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[0.0, 0.0, +1.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 * **C)** Give me space or distract me from it
-  `[-0.5, +1.5, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+  `[-0.5, +1.5, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0]`
 
 ## Q1.7 When I’m really upset in a relationship, I tend to …
 
 * **A)** Notice my reaction and try to understand it
-  `[0.0, 0.0, +1.0, 0.0, +2.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5]`
+  `[0.0, 0.0, +1.0, 0.0, +2.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5, 0.0]`
 * **B)** Feel caught between my reaction and what my partner did
-  `[+0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
+  `[+0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0]`
 * **C)** Feel like my partner is the cause of it
-  `[+0.5, 0.0, -1.0, 0.0, -2.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +1.0]`
+  `[+0.5, 0.0, -1.0, 0.0, -2.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +1.0, 0.0]`
 
 ## Q1.8 When I get emotionally overwhelmed, I usually …
 
 * **A)** Take a moment to settle myself before reacting
-  `[0.0, 0.0, +2.0, 0.0, +0.5, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0]`
+  `[0.0, 0.0, +2.0, 0.0, +0.5, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5]`
 * **B)** Try to stay composed, but it’s hard not to show it
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0]`
-* **C)** React in the moment and deal with it afterward
-  `[+0.5, 0.0, -2.0, 0.0, -0.5, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, +0.5]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5]`
+* **C)** React strongly in the moment and deal with it afterward
+  `[+0.5, 0.0, -2.0, 0.0, -0.5, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, +0.5, +1.0]`
+
+## Q1.9 After being hurt in a relationship, I tend to …
+
+* **A)** Work through it and stay open
+  `[0.0, 0.0, +0.5, +0.5, +0.5, 0.0, +1.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, -2.0]`
+
+* **B)** Need time, but can reconnect
+  `[0.0, +0.5, +0.5, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
+
+* **C)** Have a hard time seeing things the same way again
+  `[+0.5, +1.0, -1.0, -0.5, -1.0, -0.5, -1.5, +1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.0, 0, +0.5, +2.0]`
 
 ## Q2.1 If there's a small disagreement, I usually …
 
 * **A)** Stay engaged and address it directly
-  `[-0.5, -1.0, +1.0, 0.0, 0.0, +2.0, +0.5, -0.5, 0.0, 0.0, +1.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[-0.5, -1.0, +1.0, 0.0, 0.0, +2.0, +0.5, -0.5, 0.0, 0.0, +1.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 * **B)** Take some space before dealing with it
-  `[0.0, +0.5, +0.5, 0.0, 0.0, +0.5, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[0.0, +0.5, +0.5, 0.0, 0.0, +0.5, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **C)** Let it go or distance myself from it
-  `[0.0, +2.0, -1.0, -0.5, 0.0, -2.0, -1.0, +0.5, +1.0, -0.5, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, -0.5]`
+  `[0.0, +2.0, -1.0, -0.5, 0.0, -2.0, -1.0, +0.5, +1.0, -0.5, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, -0.5, 0.0]`
 
 ## Q2.2 When I feel criticized or hurt in a disagreement, I tend to …
 
 * **A)** Try to see their view or take responsibility where I can
-  `[-0.5, 0.0, +0.5, +0.5, +2.0, +0.5, +1.0, -1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5]`
+  `[-0.5, 0.0, +0.5, +0.5, +2.0, +0.5, +1.0, -1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5, 0.0]`
 * **B)** Explain my side first, then try to work it out
-  `[0.0, 0.0, +0.5, 0.0, +0.5, +1.0, +0.5, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0]`
+  `[0.0, 0.0, +0.5, 0.0, +0.5, +1.0, +0.5, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0]`
 * **C)** Get defensive or point out what they did wrong
-  `[+0.5, +0.5, -1.0, -0.5, -1.5, -1.0, -1.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, +1.5]`
+  `[+0.5, +0.5, -1.0, -0.5, -1.5, -1.0, -1.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, +1.5, 0.0]`
 
 ## Q2.3 After a conflict with a partner, I often …
 
 * **A)** Try to make up fairly quickly
-  `[-0.5, -1.0, +0.5, +1.5, 0.0, 0.0, +2.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0]`
+  `[-0.5, -1.0, +0.5, +1.5, 0.0, 0.0, +2.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, -1.0]`
 * **B)** Need some time, but come back to it
-  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0]`
+  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, -0.5]`
 * **C)** Step back and wait for them to bring it up
-  `[0.0, +2.0, -0.5, -1.0, 0.0, -0.5, -2.0, +0.5, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5]`
+  `[0.0, +2.0, -0.5, -1.0, 0.0, -0.5, -2.0, +0.5, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5, +1.5]`
 
 ## Q2.4 If things still feel tense after a conflict, I usually …
 
 * **A)** Try to smooth things over, even if it's a bit uncomfortable
-  `[-0.5, -1.0, +0.5, +1.5, 0.0, +0.5, +2.0, -0.5, -0.5, 0.0, +0.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5]`
+  `[-0.5, -1.0, +0.5, +1.5, 0.0, +0.5, +2.0, -0.5, -0.5, 0.0, +0.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5, -1.0]`
 * **B)** Give it some time, then come back and reconnect
-  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0]`
+  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, -0.5]`
 * **C)** Wait for the tension to pass, or for them to reach out first
-  `[0.0, +2.0, -0.5, -1.0, 0.0, -1.0, -2.0, +1.0, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, 0.0]`
+  `[0.0, +2.0, -0.5, -1.0, 0.0, -1.0, -2.0, +1.0, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, 0.0, +1.5]`
 
 ## Q3.1 If a partner wants more closeness than I do, I tend to …
 
 * **A)** Try to find a middle ground
-  `[0.0, -0.5, +0.5, +0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +1.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[0.0, -0.5, +0.5, +0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +1.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 * **B)** Go along with it, but feel trapped or annoyed
-  `[0.0, +1.0, -0.5, 0.0, 0.0, 0.0, -0.5, +0.5, -0.5, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -0.5]`
+  `[0.0, +1.0, -0.5, 0.0, 0.0, 0.0, -0.5, +0.5, -0.5, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -0.5, 0.0]`
 * **C)** Start to pull back or see them as too needy
-  `[0.0, +2.0, -1.0, -0.5, 0.0, -0.5, -1.0, +0.5, +1.5, -1.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, +0.5]`
+  `[0.0, +2.0, -1.0, -0.5, 0.0, -0.5, -1.0, +0.5, +1.5, -1.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, 0.0, +0.5, 0.0]`
 
 ## Q3.2 In a romantic relationship, I want to have …
 
 * **A)** A lot of connection and regular closeness
-  `[+0.5, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[+0.5, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -2.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **B)** A balance of closeness and independence
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **C)** Plenty of space and autonomy
-  `[-0.5, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +2.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[-0.5, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +2.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 
 ## Q3.3 When something concerns me in a relationship, I’m more likely to …
 
 * **A)** Point it out pretty directly
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0]`
 * **B)** Hint at it and hope it’s picked up
-  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
+  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0]`
 * **C)** Wait to see if they notice on their own
-  `[+0.5, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -1.5, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0]`
+  `[+0.5, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -1.5, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0, 0.0]`
 
 ## Q3.4 In relationships, I usually feel that a good partner should …
 
 * **A)** Understand most needs even if not everything is said
-  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, -1.0, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -0.5]`
+  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, -1.0, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -0.5, 0.0]`
 * **B)** Understand some things, but clear communication still matters
-  `[0.0, 0.0, +0.5, +1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[0.0, 0.0, +0.5, +1.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** Not be expected to know unless it’s said directly
-  `[-0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +1.5, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[-0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +1.5, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 
 ## Q3.5 If something about a partner’s behavior feels ambiguous, I tend to …
 
 * **A)** Assume it’s probably nothing and move on
-  `[-1.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -2.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0]`
+  `[-1.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -2.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0]`
 * **B)** Notice it and want some clarity
-  `[+0.5, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[+0.5, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0]`
 * **C)** Read into it and feel unsettled
-  `[+2.0, 0.0, -1.0, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +2.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5]`
+  `[+2.0, 0.0, -1.0, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +2.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5, 0.0]`
 
 ## Q3.6 If a partner suddenly seems less available or attentive than usual, I’m most likely to …
 
 * **A)** Assume something else is probably going on and check in if needed
-  `[-1.0, -0.5, +0.5, +0.5, 0.0, +0.5, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, -1.5, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, +0.5]`
+  `[-1.0, -0.5, +0.5, +0.5, 0.0, +0.5, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, -1.5, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, +0.5, 0.0]`
 * **B)** Notice it and feel unsure until I understand why
-  `[+0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[+0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **C)** Feel unsettled and start wondering what it means about us
-  `[+2.0, +0.5, -1.0, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +2.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5]`
+  `[+2.0, +0.5, -1.0, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +2.0, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, -0.5, 0.0]`
 
 ## Q3.7 When a relationship matters to me, I’m more likely to …
 
 * **A)** Show it through consistent actions over time
-  `[0.0, -0.5, +0.5, +1.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +2.0, 0.0, 0.0, 0.0, +0.5, +2.0, 0.0]`
+  `[0.0, -0.5, +0.5, +1.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +2.0, 0.0, 0.0, 0.0, +0.5, +2.0, 0.0, 0.0]`
 * **B)** Feel it strongly, even if my actions aren’t always consistent
-  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5]`
+  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0]`
 * **C)** Step up in key moments, even if I’m not steady day-to-day
-  `[0.0, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, -0.5, -0.5, +0.5]`
+  `[0.0, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, -0.5, -0.5, +0.5, 0.0]`
 
 ## Q3.8 When life gets busy or stressful, I usually …
 
 * **A)** Keep showing up pretty consistently
-  `[0.0, -0.5, +1.5, +1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0]`
+  `[0.0, -0.5, +1.5, +1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0]`
 * **B)** Try to stay connected, but I can become less responsive
-  `[0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0]`
+  `[0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
 * **C)** Focus on what’s most urgent and circle back later
-  `[0.0, +0.5, -1.0, -1.0, 0.0, -0.5, -0.5, +0.5, +0.5, 0.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, -1.5, +0.5]`
+  `[0.0, +0.5, -1.0, -1.0, 0.0, -0.5, -0.5, +0.5, +0.5, 0.0, -0.5, +0.5, 0.0, -1.0, 0.0, 0.0, 0.0, -0.5, -1.5, +0.5, 0.0]`
 
 ## Q3.9 When something is important to me in a relationship, I usually …
 
 * **A)** Say it clearly, even if it feels a bit uncomfortable
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.5, 0.0, -0.5, 0.0, 0.0, +2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +1.0]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.5, 0.0, -0.5, 0.0, 0.0, +2.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +1.0, 0.0]`
 * **B)** Try to imply it or ease into it
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0]`
 * **C)** Assume they’ll pick up on it without me saying much
-  `[+0.5, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -1.5, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0]`
+  `[+0.5, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, 0.0, 0.0, -1.5, +2.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0, 0.0]`
 
 ## Q3.10 After a lot of closeness or time together, I usually …
 
 * **A)** Still feel comfortable staying connected
-  `[-0.5, -1.0, +1.0, +0.5, 0.0, 0.0, 0.0, -0.5, -1.5, +2.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[-0.5, -1.0, +1.0, +0.5, 0.0, 0.0, 0.0, -0.5, -1.5, +2.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **B)** Need a bit of space to recharge
-  `[0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **C)** Start to feel overwhelmed or want distance
-  `[0.0, +2.0, -1.5, -0.5, 0.0, -0.5, -0.5, +0.5, +1.5, -2.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0]`
+  `[0.0, +2.0, -1.5, -0.5, 0.0, -0.5, -0.5, +0.5, +1.5, -2.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0]`
 
 ## Q3.11 In a relationship, when effort starts to feel uneven, I usually …
 
 * **A)** Try to match the level of effort I want to see
-  `[0.0, -0.5, +0.5, +1.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +1.5, 0.0, 0.0, 0.0, +0.5, +1.0, +0.5]`
+  `[0.0, -0.5, +0.5, +1.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +1.5, 0.0, 0.0, 0.0, +0.5, +1.0, +0.5, 0.0]`
 * **B)** Notice it, but adjust depending on the situation
-  `[0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0]`
+  `[0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
 * **C)** Feel frustrated if I’m not getting the effort I expect
-  `[+0.5, +0.5, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +0.5, -1.0, 0.0, 0.0, 0.0, -0.5, -0.5, +0.5]`
+  `[+0.5, +0.5, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, 0.0, 0.0, -0.5, +0.5, +0.5, -1.0, 0.0, 0.0, 0.0, -0.5, -0.5, +0.5, 0.0]`
 
 ## Q4.1 Right now, I’m dating mainly for …
 
 * **A)** Something meaningful and long-term
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +2.0, +0.5, 0.0, 0.0, +0.5, 0.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +2.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0]`
 * **B)** Openness to either casual or serious, depending on fit
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **C)** Something more casual or short-term
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, -2.0, -0.5, +0.5, 0.0, -0.5, 0.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, -2.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0]`
 
 ## Q4.2 On major life choices (like kids, home base, or lifestyle), I tend to be …
 
 * **A)** Pretty clear about what I want
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0, +0.5, +0.5]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0, +0.5, +0.5, 0.0]`
 * **B)** Open, but within some limits
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0]`
 * **C)** Flexible and still figuring it out
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, -2.0, 0.0, 0.0, -0.5, -0.5]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, -2.0, 0.0, 0.0, -0.5, -0.5, 0.0]`
 
 ## Q4.3 If someone I really like has a different timeline or level of certainty around major life decisions, I usually …
 
 * **A)** Need strong alignment fairly early to feel good about continuing
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0, +0.5, +0.5]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0, +0.5, +0.5, 0.0]`
 * **B)** Can keep exploring if the mismatch doesn’t seem too big
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, +0.5, 0.0, 0.0]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** Am comfortable letting it stay open for quite a while
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.5, 0.0, 0.0, -0.5, -0.5]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.5, 0.0, 0.0, -0.5, -0.5, 0.0]`
 
 ## Q4.4 In a long-term relationship, I usually want life to feel more …
 
 * **A)** Grounded and predictable
-  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -2.0, +0.5, +0.5, 0.0]`
+  `[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -2.0, +0.5, +0.5, 0.0, 0.0]`
 * **B)** Balanced between routine and novelty
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** Fresh, stimulating, and changing
-  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +2.0, -0.5, -0.5, 0.0]`
+  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +2.0, -0.5, -0.5, 0.0, 0.0]`
 
 ## Q4.5 After a relationship settles into a routine, I usually …
 
 * **A)** Like the steadiness and don’t need much change
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -2.0, +1.5, +0.5, 0.0]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -2.0, +1.5, +0.5, 0.0, 0.0]`
 * **B)** Like some routine, but need occasional new experiences mixed in
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
 * **C)** Start wanting more change, spontaneity, or intensity
-  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +2.0, -1.5, -0.5, 0.0]`
+  `[0.0, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, +2.0, -1.5, -0.5, 0.0, 0.0]`
 
 ## Q5.1 People close to me would likely say I’m …
 
 * **A)** Dependable and consistent
-  `[0.0, -0.5, +0.5, +0.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, +0.5, +0.5, -0.5, +0.5, +2.0, 0.0]`
+  `[0.0, -0.5, +0.5, +0.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, +0.5, +0.5, -0.5, +0.5, +2.0, 0.0, 0.0]`
 * **B)** Warm but a little unpredictable
-  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, -0.5, -0.5, -0.5]`
+  `[+0.5, 0.0, -0.5, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, +0.5, -0.5, -0.5, -0.5, 0.0]`
 * **C)** More spontaneous than consistent
-  `[0.0, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, -0.5, -0.5, +1.0, -0.5, -2.0, +0.5]`
+  `[0.0, +0.5, -0.5, -0.5, 0.0, -0.5, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -0.5, -0.5, -0.5, +1.0, -0.5, -2.0, +0.5, 0.0]`
 
 ## Q5.2 In close relationships, I tend to …
 
 * **A)** Say what I need while trying to keep things respectful
-  `[0.0, -0.5, +0.5, +0.5, +0.5, +0.5, +0.5, -1.0, 0.0, 0.0, +1.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5]`
+  `[0.0, -0.5, +0.5, +0.5, +0.5, +0.5, +0.5, -1.0, 0.0, 0.0, +1.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, -0.25]`
 * **B)** Keep the peace even if I hold things in
-  `[+0.5, 0.0, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, -0.5, 0.0, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0]`
+  `[+0.5, 0.0, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, -0.5, 0.0, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0, +0.25]`
 * **C)** Push my point even if it creates tension
-  `[+0.5, +0.5, -1.0, -0.5, -0.5, +0.5, -0.5, +2.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +2.0]`
+  `[+0.5, +0.5, -1.0, -0.5, -0.5, +0.5, -0.5, +2.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +2.0, +0.5]`
 
 ---
 
@@ -968,7 +1104,7 @@ This lets you distinguish:
 
 ---
 
-# ➕ Extensions: New Index + Gap Integrations (RF, CR Gap, RS Gap)
+# ➕ Update: New Index + Gap Integrations (RF, CR Gap, RS Gap)
 
 ---
 
@@ -977,6 +1113,8 @@ This lets you distinguish:
 ### Definition
 
 > How easily trust is degraded after hurt and how difficult it is to restore relational openness.
+
+> How likely a person is to experience a lasting shift in trust, perception, or emotional openness after relational hurt.
 
 * Higher = more **fragile bond / harder to restore trust**
 * Lower = more **forgiving / resilient to rupture**
@@ -1104,55 +1242,12 @@ This is now a strong **theoretical starting matrix**, but before production it i
 
 ---
 
-# Updated Mapping References (Corrected)
-
-### 5. Emotional Responsibility (ER2)
-
-* Q1.5, Q1.7
-* **Q2.2**
-
-### 7. Conflict Repair Ability (CR)
-
-* Q2.2, Q2.3, Q2.4
-
-### 8. Negative Conflict Style (NC)
-
-* Q1.2, Q1.4, Q1.5, Q1.7
-* **Q2.2, Q2.4**
-* Q5.2
-
-### 19. Conscientiousness / Reliability (CO)
-
-* **Q2.3, Q2.4**
-* Q3.7, Q3.8, Q3.11
-* Q5.1
-
-### 4. Responsiveness (RS)
-
-* Q1.2, Q1.6
-* **Q2.3, Q2.4**
-* Q3.7, Q3.8, Q3.11
-
-### 2. Attachment Avoidance (AV)
-
-* Q1.1, Q1.2, Q1.4, Q1.6
-* Q2.1, **Q2.3, Q2.4**
-* Q3.1, Q3.2, Q3.10
-
-### 3. Emotional Regulation (ER)
-
-* Q1.1, Q1.3, Q1.4, Q1.6, Q1.7
-* Q2.1, **Q2.4**
-* Q3.8, Q3.10
-
----
-
 # Updated Weighting References (Adjusted)
 
 ## Critical Weight
 
 * Q1.1, Q1.3, Q1.4, Q1.7
-* **Q2.1, Q2.2, Q2.3, Q2.4**
+* Q2.1, Q2.2, Q2.3, Q2.4
 * Q3.1, Q3.8
 * Q4.1, Q4.2
 
@@ -1272,7 +1367,7 @@ This is **well above industry standard** (most apps are <50% coverage, mostly se
 
 ---
 
-# ✅ 1. Completeness (20 Indices Coverage)
+# ✅ 1. Completeness (21 Indices Coverage)
 
 ## 🟢 Fully covered (high confidence, multi-item support)
 
