@@ -66,68 +66,93 @@
 
 ---
 
-## 📊 Index Weights (22 Indices)
-(needs md formatting)
+# 📊 Index Weights (22 Indices)
 
+## Index Order
+
+```text
 [AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RFq, RFs]
+```
 
-### Core Stability & Conflict Engine (highest impact)
-Index	Weight	Notes
-ER	1.30	Regulation under stress; central stabilizer
-NC	1.35	Strongest predictor of relationship failure
-CR	1.25	Repair ability; recovery after conflict
-RS	1.20	Responsiveness to needs; emotional availability
-ES	1.20	Baseline stability; volatility dampening
-RF	1.25	Bond fragility after rupture (new)
-<!-- split RF into RFq, RFs -->
+---
 
-### Attachment & Threat Dynamics
-Index	Weight	Notes
-AA	1.10	Drives insecurity & reactivity
-AV	1.10	Drives withdrawal & distance
-JS	1.05	Threat sensitivity; amplifies AA
+## 🔥 Core Stability & Conflict Engine (Highest Impact)
 
-### Conflict Behavior & Responsibility
-Index	Weight	Notes
-CE	1.05	Willingness to engage conflict
-ER2	1.10	Accountability vs blame
+| Index | Weight | Notes                                            |
+| ----- | ------ | ------------------------------------------------ |
+| ER    | 1.30   | Regulation under stress; central stabilizer      |
+| NC    | 1.35   | Strongest predictor of relationship failure      |
+| CR    | 1.25   | Repair ability; recovery after conflict          |
+| RS    | 1.20   | Responsiveness to needs; emotional availability  |
+| ES    | 1.20   | Baseline stability; volatility dampening         |
+| RFq   | 1.15   | Rupture frequency (how often conflict escalates) |
+| RFs   | 1.30   | Rupture stickiness (how long damage persists)    |
 
-### Closeness & Relational Fit
-Index	Weight	Notes
-CA	0.95	Preference dimension (not inherently good/bad)
-CT	1.05	Tolerance under sustained closeness
+---
 
-### Communication Layer
-Index	Weight	Notes
-CD	1.00	Directness in expression
-MR	1.00	Expectation of mind-reading
+## 🧠 Attachment & Threat Dynamics
 
-### Effort & Reliability
-Index	Weight	Notes
-EN	1.05	Effort norms; reciprocity
-CO	1.10	Consistency & follow-through
+| Index | Weight | Notes                            |
+| ----- | ------ | -------------------------------- |
+| AA    | 1.10   | Drives insecurity & reactivity   |
+| AV    | 1.10   | Drives withdrawal & distance     |
+| JS    | 1.05   | Threat sensitivity; amplifies AA |
 
-### Values & Alignment (filter layer)
-Index	Weight	Notes
-LT	1.15	Hard constraint; intent alignment
-LS	1.15	Life structure compatibility
+---
 
-### Preference / Lifestyle Modulators
-Index	Weight	Notes
-NS	0.95	Novelty vs stability preference
-AG	1.00	Assertiveness balance
+## ⚔️ Conflict Behavior & Responsibility
 
-## 🔄 Gap Weights (Failure Amplifiers)
+| Index | Weight | Notes                          |
+| ----- | ------ | ------------------------------ |
+| CE    | 1.05   | Willingness to engage conflict |
+| ER2   | 1.10   | Accountability vs blame        |
 
-Gaps influence risk, not similarity directly.
+---
 
-Gap	Weight	Notes
-ER Gap	1.30	Miscalibration of emotional control
-CR Gap	1.35	Intent vs actual repair (very predictive)
-RS Gap	1.25	Showing up vs intending to
-Communication Gap	1.15	Expression vs expectation mismatch
-Closeness Gap	1.10	Preference vs tolerance breakdown
-Effort Gap	1.20	Effort expectations vs behavior
+## 🤝 Closeness & Relational Fit
+
+| Index | Weight | Notes                                          |
+| ----- | ------ | ---------------------------------------------- |
+| CA    | 0.95   | Preference dimension (not inherently good/bad) |
+| CT    | 1.05   | Tolerance under sustained closeness            |
+
+---
+
+## 💬 Communication Layer
+
+| Index | Weight | Notes                       |
+| ----- | ------ | --------------------------- |
+| CD    | 1.00   | Directness in expression    |
+| MR    | 1.00   | Expectation of mind-reading |
+
+---
+
+## 🧱 Effort & Reliability
+
+| Index | Weight | Notes                        |
+| ----- | ------ | ---------------------------- |
+| EN    | 1.05   | Effort norms; reciprocity    |
+| CO    | 1.10   | Consistency & follow-through |
+
+---
+
+## 🧭 Values & Alignment (Filter Layer)
+
+| Index | Weight | Notes                             |
+| ----- | ------ | --------------------------------- |
+| LT    | 1.15   | Hard constraint; intent alignment |
+| LS    | 1.15   | Life structure compatibility      |
+
+---
+
+## 🎛️ Preference / Lifestyle Modulators
+
+| Index | Weight | Notes                           |
+| ----- | ------ | ------------------------------- |
+| NS    | 0.95   | Novelty vs stability preference |
+| AG    | 1.00   | Assertiveness balance           |
+
+---
 
 ### 🧮 Example Integration
 
@@ -419,7 +444,7 @@ Secondary: 8. Negative Conflict Style (NC), 18. Emotional Stability (ES)
 
 - **Format:** single | Weight: critical
 - **Options:**
-  A) Keep showing up pretty consistently
+  A) Keep showing up for my partner pretty consistently
   B) Try to stay connected, but I can become less responsive
   C) Focus on what’s most urgent and circle back later
 - **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN), 4. Responsiveness (RS), 3. Emotional Regulation (ER)
@@ -965,7 +990,7 @@ Preference dimensions are not inherently healthy/unhealthy:
 
 ## Q3.8 When life gets busy or stressful, I usually …
 
-* **A)** Keep showing up pretty consistently
+* **A)** Keep showing up for my partner pretty consistently
   `[0.0, -0.5, +1.5, +1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, +1.0, +2.0, 0.0, 0.0]`
 * **B)** Try to stay connected, but I can become less responsive
   `[0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0]`
