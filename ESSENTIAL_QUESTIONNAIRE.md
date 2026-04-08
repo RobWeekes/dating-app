@@ -66,10 +66,10 @@
 
 ---
 
-## 📊 Index Weights (21 Indices)
+## 📊 Index Weights (22 Indices)
 (needs md formatting)
 
-[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RF]
+[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RFq, RFs]
 
 ### Core Stability & Conflict Engine (highest impact)
 Index	Weight	Notes
@@ -79,6 +79,7 @@ CR	1.25	Repair ability; recovery after conflict
 RS	1.20	Responsiveness to needs; emotional availability
 ES	1.20	Baseline stability; volatility dampening
 RF	1.25	Bond fragility after rupture (new)
+<!-- split RF into RFq, RFs -->
 
 ### Attachment & Threat Dynamics
 Index	Weight	Notes
@@ -140,6 +141,7 @@ risk_score = (
     + gap_ER * 1.30
 )
 ```
+note RF is split into RFq, RFs
 
 ---
 
@@ -665,10 +667,22 @@ C) Feel frustrated if I’m not getting the effort I expect
 * Q3.3, Q3.9
 * Q5.2
 
-### 21. Rupture Sensitivity / Forgiveness Threshold (RF)
+### 21. Rupture Sensitivity RFq (Frequency / Escalation)
 
-* Q1.9, Q1.4, Q1.8
-* Q2.3, Q2.4
+* Q1.4 → reaction intensity
+* Q1.8 → regulation vs impulsivity
+* Q2.2 → defensiveness vs accountability
+* Q5.2 → conflict style (secondary)
+
+“How easily does tension become rupture?”
+
+### 22. Rupture Sensitivity RFs (Stickiness / Recovery Difficulty)
+
+* Q1.9 → PRIMARY anchor (critical)
+* Q2.3 → post-conflict re-engagement
+* Q2.4 → lingering tension handling
+
+“Once rupture happens, does it persist?”
 
 ---
 
@@ -1119,7 +1133,7 @@ This lets you distinguish:
 * Higher = more **fragile bond / harder to restore trust**
 * Lower = more **forgiving / resilient to rupture**
 
-### Mapping (Index 21 — appended)
+### Mapping (Index 21, 22 — appended)
 
 * Primary: **Q1.9 (new)**
 * Secondary contributors: Q2.3, Q2.4, Q1.4, Q1.8
@@ -1127,7 +1141,7 @@ This lets you distinguish:
 ### Add to vector (append to end)
 
 ```text
-[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RF]
+[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RFq, RFs]
 ```
 
 ---
@@ -1192,13 +1206,42 @@ gap_ER = abs(mean(Q1_4, Q1_8) - Q1_3)
 
 ```python
 risk += (NC * (1 - ER)) * 1.5
+# update RF - split to RFq, RFs
 risk += (AA * RF) * 1.2
 risk += (gap_CR * NC) * 1.5
 risk += (gap_RS * (1 - RS)) * 1.2
 risk += (gap_ER * NC) * 1.3
 ```
 
+risk += RFq * 1.2          # how often things break
+risk += RFs * 1.4          # how long they stay broken
+risk += RFq * RFs * 1.5    # compounding risk (VERY important)
+
 ---
+
+### 💡 Matching Logic Upgrade
+
+This is where it becomes *elite-tier matching*
+
+*Avoid:*
+- High RFq × High RFq → chaotic relationship
+- High RFs × High RFs → cold, unforgiving dynamic
+*Allow:*
+- High RFq + Low RFs → works (repairable intensity)
+- Low RFq + High RFs → sometimes works (if conflict is rare)
+
+## ⚠️ Important Design Principle
+
+Keep these separate:
+
+| Concept                 | Index   |
+| ----------------------- | ------- |
+| Reactivity              | ER / NC |
+| Conflict style          | NC / AG |
+| Repair ability          | CR      |
+| **Rupture frequency**   | RFq     |
+| **Rupture persistence** | RFs     |
+
 
 ## ⚙️ Integration Notes
 
