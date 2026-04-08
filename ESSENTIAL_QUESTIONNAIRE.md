@@ -811,11 +811,11 @@ Preference dimensions are not inherently healthy/unhealthy:
 ## Q1.4 When I’m very upset with someone, I tend to …
 
 * **A)** Stay engaged and try to work it out
-  `[-0.5, -1.0, +1.5, +0.5, 0.0, +2.0, +0.5, -1.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, -0.5]`
+  `[-0.5, -1.0, +1.5, +0.5, 0.0, +2.0, +0.5, -1.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, -0.5, 0.0]`
 * **B)** Pull back to settle myself first
-  `[0.0, +1.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0]`
+  `[0.0, +1.0, +1.0, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0]`
 * **C)** React strongly (push, vent, or seek reassurance)
-  `[+1.5, +0.5, -1.5, -0.5, -0.5, -1.0, -0.5, +2.0, 0.0, 0.0, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5, +1.0]`
+  `[+1.5, +0.5, -1.5, -0.5, -0.5, -1.0, -0.5, +2.0, 0.0, 0.0, -0.5, +0.5, +0.5, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5, +1.0, 0.0]`
 
 ## Q1.5 In a relationship, when I have a strong reaction, I tend to see it as …
 
@@ -847,22 +847,22 @@ Preference dimensions are not inherently healthy/unhealthy:
 ## Q1.8 When I get emotionally overwhelmed, I usually …
 
 * **A)** Take a moment to settle myself before reacting
-  `[0.0, 0.0, +2.0, 0.0, +0.5, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5]`
+  `[0.0, 0.0, +2.0, 0.0, +0.5, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, 0.0]`
 * **B)** Try to stay composed, but it’s hard not to show it
-  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5]`
+  `[0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, 0.0]`
 * **C)** React strongly in the moment and deal with it afterward
-  `[+0.5, 0.0, -2.0, 0.0, -0.5, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, +0.5, +1.0]`
+  `[+0.5, 0.0, -2.0, 0.0, -0.5, 0.0, 0.0, +1.5, 0.0, 0.0, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, -1.5, 0.0, +0.5, +1.0, 0.0]`
 
 ## Q1.9 After being hurt in a relationship, I tend to …
 
 * **A)** Work through it and stay open
-  `[0.0, 0.0, +0.5, +0.5, +0.5, 0.0, +1.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, -2.0]`
+  `[0.0, 0.0, +0.5, +0.5, +0.5, 0.0, +1.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, -2.0]`
 
 * **B)** Need time, but can reconnect
-  `[0.0, +0.5, +0.5, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
+  `[0.0, +0.5, +0.5, 0.0, +0.5, 0.0, +0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5]`
 
 * **C)** Have a hard time seeing things the same way again
-  `[+0.5, +1.0, -1.0, -0.5, -1.0, -0.5, -1.5, +1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.0, 0, +0.5, +2.0]`
+  `[+0.5, +1.0, -1.0, -0.5, -1.0, -0.5, -1.5, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, +0.5, 0.0, +2.0]`
 
 ## Q2.1 If there's a small disagreement, I usually …
 
@@ -876,29 +876,29 @@ Preference dimensions are not inherently healthy/unhealthy:
 ## Q2.2 When I feel criticized or hurt in a disagreement, I tend to …
 
 * **A)** Try to see their view or take responsibility where I can
-  `[-0.5, 0.0, +0.5, +0.5, +2.0, +0.5, +1.0, -1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5, 0.0]`
+  `[-0.5, 0.0, +0.5, +0.5, +2.0, +0.5, +1.0, -1.5, 0.0, 0.0, +0.5, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, -0.5, -0.5, 0.0]`
 * **B)** Explain my side first, then try to work it out
-  `[0.0, 0.0, +0.5, 0.0, +0.5, +1.0, +0.5, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0]`
+  `[0.0, 0.0, +0.5, 0.0, +0.5, +1.0, +0.5, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +1.0, 0.0, 0.0]`
 * **C)** Get defensive or point out what they did wrong
-  `[+0.5, +0.5, -1.0, -0.5, -1.5, -1.0, -1.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, +1.5, 0.0]`
+  `[+0.5, +0.5, -1.0, -0.5, -1.5, -1.0, -1.0, +2.0, 0.0, 0.0, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, +1.5, +1.0, 0.0]`
 
 ## Q2.3 After a conflict with a partner, I often …
 
 * **A)** Try to make up fairly quickly
-  `[-0.5, -1.0, +0.5, +1.5, 0.0, 0.0, +2.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, -1.0]`
+  `[-0.5, -1.0, +0.5, +1.5, 0.0, 0.0, +2.0, -0.5, -0.5, 0.0, 0.0, 0.0, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, 0.0, -1.0]`
 * **B)** Need some time, but come back to it
-  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, -0.5]`
+  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, 0.0, -0.5]`
 * **C)** Step back and wait for them to bring it up
-  `[0.0, +2.0, -0.5, -1.0, 0.0, -0.5, -2.0, +0.5, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5, +1.5]`
+  `[0.0, +2.0, -0.5, -1.0, 0.0, -0.5, -2.0, +0.5, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, +1.5]`
 
 ## Q2.4 If things still feel tense after a conflict, I usually …
 
 * **A)** Try to smooth things over, even if it's a bit uncomfortable
-  `[-0.5, -1.0, +0.5, +1.5, 0.0, +0.5, +2.0, -0.5, -0.5, 0.0, +0.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5, -1.0]`
+  `[-0.5, -1.0, +0.5, +1.5, 0.0, +0.5, +2.0, -0.5, -0.5, 0.0, +0.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, +1.0, -0.5, 0.0, -1.0]`
 * **B)** Give it some time, then come back and reconnect
-  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, -0.5]`
+  `[0.0, +0.5, +1.0, +1.0, 0.0, 0.0, +1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, +0.5, +1.0, 0.0, 0.0, -0.5]`
 * **C)** Wait for the tension to pass, or for them to reach out first
-  `[0.0, +2.0, -0.5, -1.0, 0.0, -1.0, -2.0, +1.0, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, 0.0, +1.5]`
+  `[0.0, +2.0, -0.5, -1.0, 0.0, -1.0, -2.0, +1.0, +1.0, -0.5, -0.5, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -1.0, 0.0, 0.0, +1.5]`
 
 ## Q3.1 If a partner wants more closeness than I do, I tend to …
 
@@ -1056,11 +1056,11 @@ Preference dimensions are not inherently healthy/unhealthy:
 ## Q5.2 In close relationships, I tend to …
 
 * **A)** Say what I need while trying to keep things respectful
-  `[0.0, -0.5, +0.5, +0.5, +0.5, +0.5, +0.5, -1.0, 0.0, 0.0, +1.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, -0.25]`
+  `[0.0, -0.5, +0.5, +0.5, +0.5, +0.5, +0.5, -1.0, 0.0, 0.0, +1.5, -0.5, 0.0, +0.5, 0.0, 0.0, 0.0, +0.5, 0.0, +0.5, -0.25, 0.0]`
 * **B)** Keep the peace even if I hold things in
-  `[+0.5, 0.0, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, -0.5, 0.0, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0, +0.25]`
+  `[+0.5, 0.0, -0.5, -0.5, -0.5, -0.5, -0.5, +0.5, -0.5, 0.0, -1.0, +0.5, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, 0.0, -1.0, +0.25, 0.0]`
 * **C)** Push my point even if it creates tension
-  `[+0.5, +0.5, -1.0, -0.5, -0.5, +0.5, -0.5, +2.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +2.0, +0.5]`
+  `[+0.5, +0.5, -1.0, -0.5, -0.5, +0.5, -0.5, +2.0, +0.5, 0.0, +1.0, 0.0, 0.0, -0.5, 0.0, 0.0, +0.5, -0.5, 0.0, +2.0, +0.5, 0.0]`
 
 ---
 
@@ -1151,13 +1151,13 @@ This lets you distinguish:
 **Q1.9** After being hurt in a relationship, I tend to …
 
 * **A)** Work through it and stay open
-  `[0,0,+0.5,+0.5,+0.5,0,+1.0,-0.5,0,0,0,0,0,0,0,0,0,+0.5,0,0,-2.0]`
+  `[0, 0, +0.5, +0.5, +0.5, 0, +1.0, -0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, +0.5, 0, 0, -2.0]`
 
-* **B)** Need time, but can reconnect
-  `[0,+0.5,+0.5,0,+0.5,0,+0.5,0,0,0,0,0,0,0,0,0,0,0,0,0,-0.5]`
+* **B)** Need time,  but can reconnect
+  `[0, +0.5, +0.5, 0, +0.5, 0, +0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.5]`
 
 * **C)** Have a hard time seeing things the same way again
-  `[+0.5,+1.0,-1.0,-0.5,-1.0,-0.5,-1.5,+1.0,0,0,0,0,0,0,0,0,0,-1.0,0,+0.5,+2.0]`
+  `[+0.5, +1.0, -1.0, -0.5, -1.0, -0.5, -1.5, +1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.0, 0, +0.5, +2.0]`
 
 ---
 
@@ -1216,6 +1216,49 @@ risk += (gap_ER * NC) * 1.3
 risk += RFq * 1.2          # how often things break
 risk += RFs * 1.4          # how long they stay broken
 risk += RFq * RFs * 1.5    # compounding risk (VERY important)
+
+For each user, compute:
+
+user.rf_compound = user.RFq * user.RFs
+
+Precompute it once whenever profiles update.
+Then for a candidate match, you use those precomputed values in pair scoring.
+
+### Pair scoring options
+
+The simplest version is:
+```
+pair_risk = a.rf_compound + b.rf_compound
+```
+A slightly richer version is cross-user sensitivity:
+```
+pair_risk = (
+    a.RFq * a.RFs +
+    b.RFq * b.RFs +
+    a.RFq * b.RFs +
+    b.RFq * a.RFs
+)
+```
+
+For 10M users, full all-pairs matching is impossible in practice regardless of RF terms.
+
+*Practical way to do it*
+
+Use a two-stage system:
+
+**1. Retrieval / candidate generation**
+
+Find a small candidate set per user using:
+
+- hard filters: age range, geography, intent, life structure
+- ANN / vector search on your main compatibility embedding
+- maybe a few coarse buckets for attachment / conflict style
+
+This reduces from millions to maybe 100-500 candidates.
+
+**2. Re-ranking**
+
+Only then compute full pair risk features like above.
 
 ---
 
