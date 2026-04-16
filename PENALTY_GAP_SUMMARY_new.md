@@ -2,6 +2,12 @@
 
 ---
 
+## Recap: 22 Indices:
+
+(Add the list of 22 indices here for reference)
+
+---
+
 ## 🧠 Unifying Principle (Integrated)
 
 > **Gaps measure where behavior breaks under pressure or mismatch**
@@ -17,29 +23,37 @@
 
 ---
 
-# 🧩 Gap Architecture Overview
+# 🧩 Gap Architecture
 
-Each gap =
-
-```text
-Trait (identity / baseline)
-+
-State (behavior under stress)
-```
+Trait (baseline) + State (under pressure)
 
 ---
 
 # 🔥 Tier 1 — Core Gaps
 
-| Gap       | Trait Anchor | State Anchor(s) | Indices     | Equation                       | Interpretation        |
-| --------- | ------------ | --------------- | ----------- | ------------------------------ | --------------------- |
-| ERG       | Q1.5         | Q1.7            | ER2, NC     | `abs(Q1_7 - Q1_5)`             | Ownership vs blame    |
-| CE (STG)  | Q2.1         | Q1.4            | CE, ER, NC  | `abs(Q1_4 - Q2_1)`             | Conflict stability    |
-| CR        | Q2.2         | Q2.3, Q2.4      | CR, RS, RFs | `abs(mean(Q2_3,Q2_4) - Q2_2)`  | Repair follow-through |
-| CG        | Q3.3         | Q3.9            | CD, MR      | `abs(Q3_9 - Q3_3)`             | Expression mismatch   |
-| CG2       | Q3.2         | Q3.10           | CA, CT      | `abs(Q3_10 - Q3_2)`            | Closeness tolerance   |
-| EEG (RGI) | Q3.7         | Q3.8, Q3.11     | EN, CO      | `abs(mean(Q3_8,Q3_11) - Q3_7)` | Effort consistency    |
+| Gap | Trait Anchor | State Anchor(s) | Indices | Equation | Interpretation |
+|-----|-------------|----------------|--------|----------|----------------|
+| ERG | Q1.5 | Q1.7 | ER2, NC | `abs(Q1_7 - Q1_5)` | Ownership vs blame |
+| CE | Q2.1 | Q1.4 | CE, ER, NC | `abs(Q1_4 - Q2_1)` | Conflict stability |
+| CR | Q2.2 | Q2.3, Q2.4 | CR, RS, RFs | `abs(mean(Q2_3,Q2_4) - Q2_2)` | Repair follow-through |
+| CG | Q3.3 | Q3.9 | CD, MR | `abs(Q3_9 - Q3_3)` | Expression mismatch |
+| CG2 | Q3.2 | Q3.10 | CA, CT | `abs(Q3_10 - Q3_2)` | Closeness tolerance |
+| EEG | Q3.7 | Q3.8, Q3.11 | EN, CO | `abs(mean(Q3_8,Q3_11) - Q3_7)` | Effort fairness |
 
+---
+
+## 🔥 NEW — Reliability Gap (RGI)
+
+> “Do you show up when it’s hard?”
+
+| Component | Value |
+|----------|------|
+| Trait | Q3.7 |
+| State | Q3.9 |
+| Indices | CO, EN |
+
+```python
+gap_RGI = abs(Q3_9 - Q3_7)
 ---
 
 # ⚡ Tier 2 — Stress Execution Gaps
@@ -68,9 +82,24 @@ State (behavior under stress)
 | CR  | Repair ability        | Lingering damage |
 | CG  | Communication clarity | Misunderstanding |
 | CG2 | Closeness tolerance   | Push–pull        |
-| EEG | Effort consistency    | Resentment       |
+| EEG | Effort fairness       | Resentment       |
+| RGI | Reliability           | Trust erosion    |
 | RS  | Responsiveness        | Unmet needs      |
 | ER  | Emotional regulation  | Volatility       |
+
+---
+
+# 🔄 Gap Weights
+
+| Gap    | Weight | Notes                      |
+| ------ | ------ | -------------------------- |
+| ER     | 1.30   | Emotional instability      |
+| CR     | 1.35   | Repair failure             |
+| RS     | 1.25   | Responsiveness failure     |
+| EEG    | 1.20   | Fairness imbalance         |
+| RGI    | 1.30   | Trust breakdown (critical) |
+| CG     | 1.15   | Miscommunication           |
+| CG2    | 1.10   | Closeness drift            |
 
 ---
 
@@ -87,6 +116,56 @@ State (behavior under stress)
 | ERG × NC     | Blame escalation       | `gap_ERG * NC`       |
 | CE × AA      | Conflict amplification | `gap_CE * AA`        |
 
+```
+risk += gap_CR * NC * 1.5
+risk += gap_ER * NC * 1.3
+risk += gap_RS * (1 - RS) * 1.2
+risk += gap_EEG * (1 - CO) * 1.1
+risk += gap_CG * MR * 1.1
+risk += gap_CG2 * AV * 1.1
+risk += gap_ERG * NC * 1.2
+risk += gap_CE * AA * 1.0
+```
+---
+
+# 🔗 Cross-Gap Interactions
+
+risk += gap_CE * gap_ER
+risk += gap_CR * gap_ER
+risk += gap_EEG * gap_RS
+risk += gap_CG * gap_CG2
+
+---
+
+# 🔥 NEW (high signals):
+
+risk += gap_RGI * gap_EEG * 1.3
+
+👉 Captures:
+- unreliable + unfair = *maximum relationship instability*
+
+risk += gap_ER * gap_ERG * 1.4
+
+👉 Captures:
+- escalation + blame loop
+- one of the *strongest predictors of toxic conflict cycles*
+
+---
+
+🔥 System Upgrade (What you just added)
+
+By adding RGI, your system now separates:
+
+EEG → fairness
+RGI → reliability
+
+👉 This is a major modeling improvement
+
+Because:
+
+Trust ≠ fairness
+Both fail independently
+Together → strongest failure signal
 
 ---
 
