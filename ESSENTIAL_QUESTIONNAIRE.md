@@ -1,588 +1,1075 @@
-# Minimal Dating Questionnaire for Recovering 20 Relationship Indices
+# Essential Questionnaire — Revised Master Spec
 
-## Design goals
+This document consolidates and corrects the current **Essential Questionnaire** into a cleaner planning reference for future compatibility scoring, risk modeling, and scalable match ranking.
 
-- Recover all **21 indices** with a **minimal but high-signal** item set
-- Use **more items for the most predictive indices**
-- Favor **behavior under stress / ambiguity** over identity statements
-- Use **3 forced choices** with **low desirability bias**
-- Let each item update **multiple indices**, not just one
+It is designed to support:
 
-## Weight scale
-
-- **critical** = strongest predictive value; use multiple items
-- **high** = important and interaction-heavy
-- **medium** = useful, but can be inferred partly from other items
-
-## Index coverage targets
-
-### Heaviest coverage
-
-- 1. Attachment Anxiety (AA)
-- 2. Attachment Avoidance (AV)
-- 3. Emotional Regulation (ER)
-- 4. Responsiveness (RS)
-- 6. Conflict Engagement (CE)
-- 7. Conflict Repair Ability (CR)
-- 8. Negative Conflict Style (NC)
-- 18. Emotional Stability (ES)
-
-### Moderate coverage
-
-- 5. Emotional Responsibility (ER2)
-- 9. Closeness–Autonomy Preference (CA)
-- 10. Closeness Tolerance (CT)
-- 11. Communication Directness (CD)
-- 12. Mind-Reading Expectation (MR)
-- 13. Jealousy / Threat Sensitivity (JS)
-- 14. Effort & Investment Norms (EN)
-- 20. Assertiveness–Agreeableness Balance (AG)
-
-### Lighter coverage
-
-- 15. Long-Term Orientation (LT)
-- 16. Life Structure Alignment (LS)
-- 17. Novelty vs Stability Preference (NS)
-- 19. Conscientiousness / Reliability (CO)
+* efficient onboarding measurement
+* vectorized user scoring
+* state–trait gap detection
+* pairwise compatibility + risk re-ranking
+* future model calibration using real outcome data
 
 ---
 
-# ⚖️ Index & Gap Weighting (Initial Priors)
+# Canvas 1 — Core Design, Index System, and Modeling Rules
 
-## 🧠 Weighting Philosophy
-- Weights reflect predictive importance for relationship success & robustness
-* Higher = more influence on:
-* * compatibility scoring
-* * risk penalties
-* * match ranking
-- These are starting priors → should be updated via:
-* * offline simulation
-* * outcome data (retention, satisfaction, breakup)
+## Purpose
 
-### Scale
-- 1.0 = baseline importance
-- >1.0 = above-average predictive weight
-- <1.0 = supporting / contextual signal
+Build a **minimal but high-signal relationship questionnaire** that recovers the most predictive dating-relevant psychological dimensions with enough structure to support:
+
+1. **per-user latent trait vectors**
+2. **risk amplification layers**
+3. **state–trait inconsistency detection**
+4. **candidate retrieval + re-ranking at scale**
+
+## Core Design Goals
+
+* Recover all **22 modeled indices** with a compact item set
+* Heavily measure the constructs with the highest relationship outcome impact
+* Prefer **behavior under stress, ambiguity, closeness, and conflict** over identity claims
+* Use **3-way forced choices** with low moral obviousness
+* Let each item update **multiple related indices**
+* Keep the system implementable as a **vector + gap + interaction** architecture
+
+## Guiding Principles
+
+### 1. Stress behavior is more predictive than self-description
+
+State behavior under emotional load should generally carry more predictive weight than calm, identity-level statements.
+
+### 2. Gaps matter as much as traits
+
+A person’s stated values may differ from what they do when overwhelmed, hurt, busy, or uncertain. That divergence should be modeled explicitly.
+
+### 3. Preference dimensions should not be moralized
+
+Some indices are compatibility dimensions, not health dimensions. The system should avoid penalizing users simply for preferring more autonomy, more novelty, or more directness.
+
+### 4. Risk is not the same as similarity
+
+A high-similarity pair can still be fragile if both people are highly escalatory, unforgiving, unreliable under stress, or poor at repair.
+
+### 5. Retrieval and re-ranking should be separate
+
+At large scale, use cheap vector retrieval first, then compute heavier pairwise risk features only on the candidate set.
 
 ---
 
-# 📊 Index Weights (22 Indices)
+## Index Set (Canonical 22)
 
-## Index Order
+Use this fixed order throughout modeling and implementation:
 
 ```text
 [AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RFq, RFs]
 ```
 
----
+### Index Definitions
 
-## 🔥 Core Stability & Conflict Engine (Highest Impact)
-
-| Index | Weight | Notes                                            |
-| ----- | ------ | ------------------------------------------------ |
-| ER    | 1.30   | Regulation under stress; central stabilizer      |
-| NC    | 1.35   | Strongest predictor of relationship failure      |
-| CR    | 1.25   | Repair ability; recovery after conflict          |
-| RS    | 1.20   | Responsiveness to needs; emotional availability  |
-| ES    | 1.20   | Baseline stability; volatility dampening         |
-| RFq   | 1.15   | Rupture frequency (how often conflict escalates) |
-| RFs   | 1.30   | Rupture stickiness (how long damage persists)    |
-
----
-
-## 🧠 Attachment & Threat Dynamics
-
-| Index | Weight | Notes                            |
-| ----- | ------ | -------------------------------- |
-| AA    | 1.10   | Drives insecurity & reactivity   |
-| AV    | 1.10   | Drives withdrawal & distance     |
-| JS    | 1.05   | Threat sensitivity; amplifies AA |
-
----
-
-## ⚔️ Conflict Behavior & Responsibility
-
-| Index | Weight | Notes                          |
-| ----- | ------ | ------------------------------ |
-| CE    | 1.05   | Willingness to engage conflict |
-| ER2   | 1.10   | Accountability vs blame        |
+| Code | Index                               | Meaning                                                                         |
+| ---- | ----------------------------------- | ------------------------------------------------------------------------------- |
+| AA   | Attachment Anxiety                  | Threat-reactivity to distance, ambiguity, or disconnection                      |
+| AV   | Attachment Avoidance                | Pullback, distancing, discomfort with dependence or emotional intensity         |
+| ER   | Emotional Regulation                | Ability to regulate activation before escalating behavior                       |
+| RS   | Responsiveness                      | Tendency to notice, respond to, and stay emotionally available                  |
+| ER2  | Emotional Responsibility            | Accountability for one’s reactions vs blame orientation                         |
+| CE   | Conflict Engagement                 | Willingness to address relational tension rather than avoid it                  |
+| CR   | Conflict Repair Ability             | Ability to reconnect, repair, and restore closeness after strain                |
+| NC   | Negative Conflict Style             | Defensiveness, escalation, blame, harshness, or destabilizing conflict behavior |
+| CA   | Closeness–Autonomy Preference       | Preference for more connection vs more space                                    |
+| CT   | Closeness Tolerance                 | Actual tolerance for sustained closeness without overload                       |
+| CD   | Communication Directness            | Willingness to say needs, concerns, and preferences clearly                     |
+| MR   | Mind-Reading Expectation            | Expectation that a partner should infer needs without explicit communication    |
+| JS   | Jealousy / Threat Sensitivity       | Sensitivity to ambiguity, distance, or possible threat cues                     |
+| EN   | Effort & Investment Norms           | Beliefs and expectations about effort, reciprocity, and showing up              |
+| LT   | Long-Term Orientation               | Current orientation toward serious vs casual relationship goals                 |
+| LS   | Life Structure Alignment            | Alignment rigidity / openness around major life plans                           |
+| NS   | Novelty vs Stability Preference     | Preference for stimulation/change vs steadiness/routine                         |
+| ES   | Emotional Stability                 | Baseline steadiness vs fluctuation / fragility                                  |
+| CO   | Conscientiousness / Reliability     | Dependability, consistency, and follow-through                                  |
+| AG   | Assertiveness–Agreeableness Balance | Style of self-assertion vs accommodation / peacemaking                          |
+| RFq  | Rupture Frequency / Escalation      | How easily tension becomes relational rupture                                   |
+| RFs  | Rupture Stickiness / Persistence    | How hard it is to recover trust/openness after hurt                             |
 
 ---
 
-## 🤝 Closeness & Relational Fit
+## Coverage Priorities
 
-| Index | Weight | Notes                                          |
-| ----- | ------ | ---------------------------------------------- |
-| CA    | 0.95   | Preference dimension (not inherently good/bad) |
-| CT    | 1.05   | Tolerance under sustained closeness            |
+### Heaviest coverage
 
----
+These should receive the most total signal because they are most predictive of long-term relationship stability and distress.
 
-## 💬 Communication Layer
+* AA
+* AV
+* ER
+* RS
+* CE
+* CR
+* NC
+* ES
+* RFq
+* RFs
 
-| Index | Weight | Notes                       |
-| ----- | ------ | --------------------------- |
-| CD    | 1.00   | Directness in expression    |
-| MR    | 1.00   | Expectation of mind-reading |
+### Moderate coverage
 
----
+Important, but partially inferable through adjacent behavior.
 
-## 🧱 Effort & Reliability
+* ER2
+* CA
+* CT
+* CD
+* MR
+* JS
+* EN
+* AG
+* CO
 
-| Index | Weight | Notes                        |
-| ----- | ------ | ---------------------------- |
-| EN    | 1.05   | Effort norms; reciprocity    |
-| CO    | 1.10   | Consistency & follow-through |
+### Lighter coverage
 
----
+Useful as filters or preference dimensions; do not need the same redundancy as the core conflict engine.
 
-## 🧭 Values & Alignment (Filter Layer)
-
-| Index | Weight | Notes                             |
-| ----- | ------ | --------------------------------- |
-| LT    | 1.15   | Hard constraint; intent alignment |
-| LS    | 1.15   | Life structure compatibility      |
-
----
-
-## 🎛️ Preference / Lifestyle Modulators
-
-| Index | Weight | Notes                           |
-| ----- | ------ | ------------------------------- |
-| NS    | 0.95   | Novelty vs stability preference |
-| AG    | 1.00   | Assertiveness balance           |
+* LT
+* LS
+* NS
 
 ---
 
-### 🧮 Example Integration
+## Weighting Philosophy (Initial Priors)
 
+These are **starting priors**, not permanent truths. Final weights should be tuned using observed product outcomes such as:
+
+* conversation reciprocity
+* reply persistence
+* date conversion
+* connection survival after early disagreement
+* mutual satisfaction
+* long-term retention or relationship continuation
+
+### Scale
+
+* **1.00** = baseline importance
+* **>1.00** = above-average predictive value
+* **<1.00** = supporting / contextual signal
+
+## Initial Index Weights
+
+### Core Stability & Conflict Engine
+
+| Index | Weight | Rationale                                              |
+| ----- | -----: | ------------------------------------------------------ |
+| ER    |   1.30 | Central stabilizer under activation                    |
+| NC    |   1.35 | Strong failure predictor when elevated                 |
+| CR    |   1.25 | Repair strongly affects longevity                      |
+| RS    |   1.20 | Availability and responsiveness matter across contexts |
+| ES    |   1.20 | Baseline volatility dampener                           |
+| RFq   |   1.15 | Frequency of rupture matters                           |
+| RFs   |   1.30 | Persistence of rupture is especially damaging          |
+
+### Attachment & Threat Dynamics
+
+| Index | Weight | Rationale                                              |
+| ----- | -----: | ------------------------------------------------------ |
+| AA    |   1.10 | Often amplifies reactivity and interpretive threat     |
+| AV    |   1.10 | Strongly shapes closeness, conflict, and repair        |
+| JS    |   1.05 | Secondary amplifier of insecurity / ambiguity response |
+
+### Conflict Responsibility Layer
+
+| Index | Weight | Rationale                                         |
+| ----- | -----: | ------------------------------------------------- |
+| CE    |   1.05 | Important, but must be interpreted with ER / NC   |
+| ER2   |   1.10 | Accountability vs blame affects conflict toxicity |
+
+### Closeness / Fit Layer
+
+| Index | Weight | Rationale                                           |
+| ----- | -----: | --------------------------------------------------- |
+| CA    |   0.95 | Preference dimension, not intrinsically good or bad |
+| CT    |   1.05 | Tolerance matters more than stated preference       |
+
+### Communication Layer
+
+| Index | Weight | Rationale                      |
+| ----- | -----: | ------------------------------ |
+| CD    |   1.00 | Useful but context-dependent   |
+| MR    |   1.00 | Important expectation variable |
+
+### Effort / Reliability Layer
+
+| Index | Weight | Rationale                                          |
+| ----- | -----: | -------------------------------------------------- |
+| EN    |   1.05 | Effort expectations shape fairness and reciprocity |
+| CO    |   1.10 | High-value follow-through construct                |
+
+### Values / Filter Layer
+
+| Index | Weight | Rationale                                    |
+| ----- | -----: | -------------------------------------------- |
+| LT    |   1.15 | Important filter dimension                   |
+| LS    |   1.15 | Important filter / incompatibility dimension |
+
+### Preference / Lifestyle Modulators
+
+| Index | Weight | Rationale             |
+| ----- | -----: | --------------------- |
+| NS    |   0.95 | Preference dimension  |
+| AG    |   1.00 | Interaction-dependent |
+
+---
+
+## Important Corrections and Structural Notes
+
+### Correction 1 — The questionnaire is not 20-index anymore
+
+Any implementation references to a 20-index vector should be updated to the canonical **22-index order** above.
+
+### Correction 2 — Q1.9 must be treated as a real questionnaire item
+
+It appears in mapping and delta sections and is essential for RFs, but must remain explicitly present in the questionnaire and implementation pipeline.
+
+### Correction 3 — RF should remain split
+
+Do **not** collapse RFq and RFs back into a single RF term. Frequency and persistence capture different failure modes and should remain separate.
+
+### Correction 4 — Gap scores should affect risk more than similarity
+
+Most gaps are better used as **risk penalties / stability modifiers** than direct compatibility distance features.
+
+### Correction 5 — Preference mismatch should not be over-penalized
+
+CA, NS, and some AG effects should mostly function through:
+
+* soft fit penalties
+* complementarity modeling
+* user preference tolerances
+
+rather than being treated as pathology.
+
+### Suggestion — Separate “health-coded” vs “preference-coded” indices in code
+
+This prevents accidental over-penalization during optimization.
+
+---
+
+## Implementation Rules
+
+### User vector scoring
+
+At the item level:
+
+```python
+raw_vector += option_delta
+weighted_vector += item_weight * option_delta
 ```
-weighted_vector = raw_vector * index_weights
 
-risk_score = (
-    NC * 1.35
-    + RF * 1.25
-    + gap_CR * 1.35
-    + gap_ER * 1.30
+Then normalize per index:
+
+```python
+index_score = sigmoid(weighted_sum)
+```
+
+### Important normalization note
+
+Because some indices receive more item coverage than others, post-aggregation normalization should correct for:
+
+* item count
+* average item magnitude
+* skew from highly correlated items
+
+### Recommended scoring separation
+
+Maintain three downstream layers:
+
+```python
+trait_vector
+gap_vector
+risk_features
+```
+
+That is cleaner than blending everything into a single monolithic score.
+
+### Recommended pair pipeline
+
+```python
+1. hard filters (LT / LS / geography / age / intent)
+2. ANN retrieval on latent vector similarity / fit embedding
+3. pairwise re-ranking using gaps + interaction risk + preference fit
+```
+
+---
+
+## Interaction Layer (Initial Theoretical Set)
+
+Use interaction terms because isolated traits underperform compared with relational combinations.
+
+### Within-person risk amplifiers
+
+```python
+risk += (NC * (1 - ER)) * 1.5
+risk += (gap_CR * NC) * 1.5
+risk += (gap_RS * (1 - RS)) * 1.2
+risk += (gap_ER * NC) * 1.3
+risk += RFq * 1.2
+risk += RFs * 1.4
+risk += RFq * RFs * 1.5
+```
+
+### Important correction
+
+Replace old references to a single `RF` term with explicit `RFq` and `RFs` everywhere.
+
+### Pairwise risk examples
+
+```python
+pair_risk = (
+    a.RFq * a.RFs +
+    b.RFq * b.RFs +
+    a.RFq * b.RFs +
+    b.RFq * a.RFs
 )
 ```
-note RF is split into RFq, RFs
+
+### Suggestion
+
+Precompute single-user compound features when profiles update, for example:
+
+```python
+user.rf_compound = user.RFq * user.RFs
+user.conflict_fragility = user.NC * (1 - user.ER)
+user.repair_failure_risk = user.gap_CR * user.NC
+```
+
+This keeps re-ranking inexpensive.
 
 ---
 
-## ⚙️ Ready for Implementation
+# Canvas 2 — Revised Questionnaire Spec
 
-This table can directly power:
+## Formatting Rules for Items
 
-- vectorized scoring
-- similarity + complementarity modeling
-- risk interaction layers
+Each item should include:
 
-Suggested next implementation layer:
+* **Format**
+* **Weight**
+* **Options**
+* **Measures**
+* **Maps to**
+* **Implementation note**
 
-```
-raw_vector += question_option_delta
-weighted_vector += item_weight * question_option_delta
-final_index_scores = sigmoid(weighted_vector)
-```
+### Item Design Rules
 
-Then add:
-
-- gap penalties
-- interaction amplification
-- hard-filter logic for LT / LS where appropriate
+* Prefer “I tend to” / “I usually” / “I’m more likely to”
+* Keep all three options plausible
+* Avoid a visible A-good / C-bad moral ladder where possible
+* Randomize option order in production where semantics allow
+* Randomize question order within blocks after validation testing
 
 ---
 
-# Questionnaire
+## Section 1 — Behavioral Dynamics
 
-## Behavioral Dynamics
+### Q1.1 When I sense my partner pulling away, I tend to:
 
-<!-- Should we mix up the options order for each question randomly so there is not a clear directional gradient from A to C, positive or negative ? -->
-
-**Q1.1** When I sense my partner pulling away, I tend to:
-
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Check in and try to understand
   B) Give them space but stay available
   C) Feel like something’s wrong and react (chase / pull back)
-- **Measures:** pursue-withdraw pattern; abandonment defenses
-- **Maps to:** 1. Attachment Anxiety (AA), 2. Attachment Avoidance (AV), 3. Emotional Regulation (ER), 6. Conflict Engagement (CE)
-- **Note:** Very efficient anxious/avoidant split item; high stress realism.
+* **Measures:** pursue-withdraw pattern; threat response to distance
+* **Maps to:** AA, AV, ER, CE
+* **Implementation note:** High-value anxious/avoidant differentiator under relational uncertainty.
 
-**Q1.2** If my partner needs reassurance, I tend to …
+### Q1.2 If my partner needs reassurance, I tend to:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Offer reassurance even if it takes effort
   B) Feel myself pulling back or getting drained
   C) Get reactive or defensive about it
-- **Measures:** responsiveness to insecurity; tolerance for partner needs
-- **Maps to:** 1. Attachment Anxiety (AA), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 8. Negative Conflict Style (NC), 14. Effort & Investment Norms (EN)
-- **Note:** Distinguishes care, depletion, and defensiveness without sounding moralized.
+* **Measures:** tolerance for partner needs; responsiveness vs depletion vs defensiveness
+* **Maps to:** AA, AV, RS, NC, EN
+* **Implementation note:** Good state-adjacent predictor of support style.
 
-**Q1.3** When things are stressful or uncertain, my mood usually …
+### Q1.3 When things are stressful or uncertain, my mood usually:
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Tends toward worry, tension, or feeling low
-  <!-- B) Stays fairly positive? ask chat -->
   B) Stays fairly steady
   C) Fluctuates quite a bit
-- **Measures:** emotional stability; neuroticism
-- **Maps to:** 3. Emotional Regulation (ER), 18. Emotional Stability (ES)
-- **Note:** One of the cleanest baseline stability items.
+* **Measures:** baseline emotional stability
+* **Maps to:** ER, ES
+* **Implementation note:** Baseline trait anchor for regulation/stability.
 
-**Q1.4** When I’m very upset with someone, I tend to …
+### Q1.4 When I’m very upset with someone, I tend to:
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Stay engaged and try to work it out
   B) Pull back to settle myself first
   C) React strongly (push, vent, or seek reassurance)
-- **Measures:** regulation under conflict; withdrawal vs escalation
-- **Maps to:** 1. Attachment Anxiety (AA), 2. Attachment Avoidance (AV), 3. Emotional Regulation (ER), 6. Conflict Engagement (CE), 8. Negative Conflict Style (NC)
-- **Note:** High-value item because it updates several core risk variables at once.
+* **Measures:** regulation under conflict; escalation vs withdrawal
+* **Maps to:** AA, AV, ER, CE, NC, RFq
+* **Implementation note:** Strong high-intensity conflict anchor.
 
-<!-- In a relationship, when my partner upsets me, ? ask chat -->
-**Q1.5** In a relationship, when I have a strong reaction, I tend to see it as …
+### Q1.5 In a relationship, when I have a strong reaction, I tend to see it as:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Largely my own interpretation
   B) A mix of my perspective and my partner’s actions
   C) My partner is causing me to feel a certain way
-- **Measures:** emotional responsibility; attribution style
-- **Maps to:** 5. Emotional Responsibility (ER2), 8. Negative Conflict Style (NC), 20.Assertiveness–Agreeableness Balance (AG)
-- **Note:** Useful for distinguishing accountability from blame orientation.
+* **Measures:** emotional responsibility; attribution style
+* **Maps to:** ER2, NC, AG
+* **Implementation note:** Trait anchor for ERG.
 
-<!-- When I'm stressed, the first thing I want my partner to do is … ? ask chat -->
-**Q1.6** When I'm stressed, I usually want my partner to …
+### Q1.6 When I’m stressed, I usually want my partner to:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Be present and emotionally supportive
   B) Help me think it through or take action
   C) Give me space or distract me from it
-- **Measures:** co-regulation needs; support preference
-- **Maps to:** 2. Attachment Avoidance (AV), 3. Emotional Regulation (ER), 4. Responsiveness (RS), 9. Closeness–Autonomy Preference (CA)
-- **Note:** Efficiently captures support style and dependence/autonomy balance.
+* **Measures:** co-regulation needs; support preference; closeness vs autonomy under stress
+* **Maps to:** AV, ER, RS, CA
+* **Implementation note:** Best treated as a support-preference item, not a “health” item.
 
-### Emotional Responsibility Gap (ERG)
+### Q1.7 When I’m really upset in a relationship, I tend to:
 
-**Q1.7**  When I’m really upset in a relationship, I tend to …
-- **Format:** single | Weight: critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Notice my reaction and try to understand it
   B) Feel caught between my reaction and what my partner did
   C) Feel like my partner is the cause of it
+* **Measures:** emotional attribution under activation
+* **Maps to:** ER2, NC, ER
+* **Implementation note:** State anchor for ERG.
 
-- **Measures:** emotional attribution under stress
-- **Maps to:** 5. Emotional Responsibility (ER2), 8. Negative Conflict Style (NC), 3. Emotional Regulation (ER)
-- **Note:** Gap role: State anchor for ERG
-  Pairs cleanly with: Q1.5 (belief about emotions)
+### Q1.8 When I get emotionally overwhelmed, I usually:
 
-**Q1.8** When I get emotionally overwhelmed, I usually …
-- **Format:** single | Weight: critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Take a moment to settle myself before reacting
   B) Try to stay composed, but it’s hard not to show it
   C) React strongly in the moment and deal with it afterward
-- **Measures:**
-pure emotional regulation capacity (self-soothing vs leakage vs impulsivity)
-- **Maps to:**
-Primary: 3. Emotional Regulation (ER)
-Secondary: 8. Negative Conflict Style (NC), 18. Emotional Stability (ES)
-- **Why this works:**
-- Cleanly isolates **regulation process**, not relationship dynamics
-- Avoids attachment contamination (unlike Q1.1, Q1.4)
-- Captures **impulse control vs modulation vs suppression failure**
-- Keeps **low desirability bias** (B is very plausible)
+* **Measures:** self-regulation process; impulsivity vs modulation
+* **Maps to:** ER, NC, ES, RFq
+* **Implementation note:** Cleaner ER anchor than attachment-heavy conflict items.
+
+### Q1.9 After being hurt in a relationship, I tend to:
+
+* **Format:** single
+* **Weight:** critical
+* **Options:**
+  A) Work through it and stay open
+  B) Need time, but can reconnect
+  C) Have a hard time seeing things the same way again
+* **Measures:** forgiveness threshold; recovery difficulty after hurt
+* **Maps to:** CR, ER, ER2, NC, RFs
+* **Implementation note:** Primary anchor for rupture persistence and recovery difficulty.
 
 ---
 
-## Conflict & Repair (Reordered)
+## Section 2 — Conflict & Repair
 
-**Q2.1** If there's a small disagreement, I usually …
+### Q2.1 If there’s a small disagreement, I usually:
 
-* **Format:** single | **Weight:** critical
+* **Format:** single
+* **Weight:** critical
 * **Options:**
   A) Stay engaged and address it directly
   B) Take some space before dealing with it
   C) Let it go or distance myself from it
-* **Measures:** conflict engagement; avoidance under tension
-* **Maps to:** 2. Attachment Avoidance (AV), 6. Conflict Engagement (CE), 3. Emotional Regulation (ER)
-* **Note:** Low-intensity baseline to contrast with high-stress response (Q1.4)
+* **Measures:** low-intensity conflict engagement
+* **Maps to:** AV, CE, ER
+* **Implementation note:** Low-intensity baseline for conflict gap.
 
----
+### Q2.2 When I feel criticized or hurt in a disagreement, I tend to:
 
-**Q2.2** When I feel criticized or hurt in a disagreement, I tend to …
-
-* **Format:** single | **Weight:** critical
+* **Format:** single
+* **Weight:** critical
 * **Options:**
   A) Try to see their view or take responsibility where I can
   B) Explain my side first, then try to work it out
   C) Get defensive or point out what they did wrong
-* **Measures:** defensiveness + accountability + repair readiness
-* **Maps to:** 8. Negative Conflict Style (NC), 5. Emotional Responsibility (ER2), 20. Assertiveness–Agreeableness Balance (AG), minor: 7. Conflict Repair Ability (CR)
-* **Note:** Excellent discriminator for conflict toxicity.
+* **Measures:** accountability, defensiveness, repair readiness
+* **Maps to:** NC, ER2, AG, CR, RFq
+* **Implementation note:** One of the cleanest conflict-toxicity items in the set.
 
----
+### Q2.3 After a conflict with a partner, I often:
 
-**Q2.3** After a conflict with a partner, I often …
-
-* **Format:** single | **Weight:** critical
+* **Format:** single
+* **Weight:** critical
 * **Options:**
   A) Try to make up fairly quickly
   B) Need some time, but come back to it
   C) Step back and wait for them to bring it up
-* **Measures:** repair style; reconnection speed
-* **Maps to:** 7. Conflict Repair Ability (CR), 2. Attachment Avoidance (AV), 4. Responsiveness (RS), 19. Conscientiousness / Reliability (CO)
-* **Note:** One of the strongest longevity predictors; should be weighted heavily.
+* **Measures:** re-engagement speed; repair style
+* **Maps to:** CR, AV, RS, CO, RFs
+* **Implementation note:** Very strong longevity predictor.
 
----
+### Q2.4 If things still feel tense after a conflict, I usually:
 
-**Q2.4** If things still feel tense after a conflict, I usually …
-
-* **Format:** single | **Weight:** critical
+* **Format:** single
+* **Weight:** critical
 * **Options:**
-  A) Try to smooth things over, even if it's a bit uncomfortable
+  A) Try to smooth things over, even if it’s a bit uncomfortable
   B) Give it some time, then come back and reconnect
   C) Wait for the tension to pass, or for them to reach out first
-* **Measures:**
-* **Maps to:** Primary: CR (7), Secondary: RS (4), AV (2), ER (3) (indirectly)
+* **Measures:** lingering tension handling; follow-through on repair
+* **Maps to:** CR, RS, AV, ER, NC, RFs
+* **Implementation note:** This item was previously incomplete; it now has explicit measures and normalized mapping.
 
 ---
 
-## Compatibility & Friction
+## Section 3 — Compatibility & Friction
 
-<!-- Ask chat - should this apply to relationship closeness or situational closeness (in the moment) - narrow or widely scoped? -->
-<!-- Ask if this is improvement: If my partner says "I love you" but you don't want to say it back, how would you handle the situation? -->
-**Q3.1** If a partner wants more closeness than I do, I tend to …
+### Q3.1 If a partner wants more closeness than I do, I tend to:
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Try to find a middle ground
   B) Go along with it, but feel trapped or annoyed
   C) Start to pull back or see them as too needy
-- **Measures:** closeness preference; tolerance for mismatch
-- **Maps to:** 2. Attachment Avoidance (AV), 9. Closeness–Autonomy Preference (CA), 10. Closeness Tolerance (CT), 14. Effort & Investment Norms (EN)
-- **Note:** High-signal intimacy mismatch item.
+* **Measures:** tolerance for closeness mismatch
+* **Maps to:** AV, CA, CT, EN
+* **Implementation note:** High-signal mismatch-tolerance item.
 
-**Q3.2** In a romantic relationship, I want to have …
+### Q3.2 In a romantic relationship, I want to have:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) A lot of connection and regular closeness
   B) A balance of closeness and independence
   C) Plenty of space and autonomy
-- **Measures:** baseline intimacy preference
-- **Maps to:** 2. Attachment Avoidance (AV), 9. Closeness–Autonomy Preference (CA)
-- **Note:** Simple baseline preference anchor.
+* **Measures:** baseline closeness preference
+* **Maps to:** AV, CA
+* **Implementation note:** Trait anchor for Closeness Gap.
 
-<!-- changed from Q3.4 to -->
-**Q3.3** When something concerns me in a relationship, I’m more likely to …
+### Q3.3 When something concerns me in a relationship, I’m more likely to:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Point it out pretty directly
   B) Hint at it and hope it’s picked up
   C) Wait to see if they notice on their own
-- **Measures:** directness; indirect signaling
-- **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness Balance (AG)
-- **Note:** Very efficient expression-vs-expectation item.
+* **Measures:** expression style; directness vs indirect signaling
+* **Maps to:** CD, MR, AG
+* **Implementation note:** Trait anchor for Communication Gap.
 
-<!-- Ask chat - which answer is most desirable, and could the wording be improved so C feels less ambivalent ?  -->
-**Q3.4** In relationships, I usually feel that a good partner should …
+### Q3.4 In relationships, I usually feel that a good partner should:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Understand most needs even if not everything is said
   B) Understand some things, but clear communication still matters
   C) Not be expected to know unless it’s said directly
-- **Measures:** mind-reading expectation
-- **Maps to:** 12. Mind-Reading Expectation (MR), 11. Communication Directness (CD), 4. Responsiveness (RS)
-- **Note:** Captures expectation side separately from expression side.
+* **Measures:** expectation of inference vs explicitness
+* **Maps to:** MR, CD, RS
+* **Implementation note:** Keep this separate from Q3.3 because expectation and expression are not identical.
 
-**Q3.5** If something about a partner’s behavior feels ambiguous, I tend to …
+### Q3.5 If something about a partner’s behavior feels ambiguous, I tend to:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Assume it’s probably nothing and move on
   B) Notice it and want some clarity
   C) Read into it and feel unsettled
-- **Measures:** threat sensitivity; interpretive bias
-- **Maps to:** 1. Attachment Anxiety (AA), 13. Jealousy / Threat Sensitivity (JS), 18. Emotional Stability (ES)
-- **Note:** Excellent low-bias jealousy proxy without asking directly about jealousy.
+* **Measures:** ambiguity interpretation; threat sensitivity
+* **Maps to:** AA, JS, ES
+* **Implementation note:** Excellent low-bias jealousy proxy.
 
-### Jealousy / Threat Sensitivity (JS)
+### Q3.6 If a partner suddenly seems less available or attentive than usual, I’m most likely to:
 
-**Q3.6** If a partner suddenly seems less available or attentive than usual, I’m most likely to …
-
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Assume something else is probably going on and check in if needed
   B) Notice it and feel unsure until I understand why
   C) Feel unsettled and start wondering what it means about us
-- **Measures:** response to perceived distance; threat activation under mild relational ambiguity
-- **Maps to:** 13. Jealousy / Threat Sensitivity (JS), 1. Attachment Anxiety (AA), 18. Emotional Stability (ES)
-- **Note:** Complements Q3.5 by using availability change rather than general ambiguity, improving JS reliability without using obvious jealousy language.
+* **Measures:** threat activation to mild relational ambiguity
+* **Maps to:** JS, AA, ES
+* **Implementation note:** Complements Q3.5 with a distinct trigger.
 
-**Q3.7** When a relationship matters to me, I’m more likely to …
+### Q3.7 When a relationship matters to me, I’m more likely to:
 
-- **Format:** single | **Weight:** medium
-- **Options:**
+* **Format:** single
+* **Weight:** medium
+* **Options:**
   A) Show it through consistent actions over time
   B) Feel it strongly, even if my actions aren’t always consistent
   C) Step up in key moments, even if I’m not steady day-to-day
-- **Measures:** investment expression; reliability
-- **Maps to:** 14. Effort & Investment Norms (EN) → strong, 19. Conscientiousness / Reliability (CO) → primary signal (A ↔ C gradient), 4. Responsiveness (RS) → B/C (different forms: emotional vs situational)
-- **Note:** Helps separate intention from dependable follow-through.
+* **Measures:** effort style; reliability identity
+* **Maps to:** EN, CO, RS
+* **Implementation note:** Trait anchor for reliability / effort gaps.
 
-**Q3.8** When life gets busy or stressful, I usually …
+### Q3.8 When life gets busy or stressful, I usually:
 
-- **Format:** single | Weight: critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Keep showing up for my partner pretty consistently
   B) Try to stay connected, but I can become less responsive
   C) Focus on what’s most urgent and circle back later
-- **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN), 4. Responsiveness (RS), 3. Emotional Regulation (ER)
-- **Note:** Primary: reliability under load (state behavior). Secondary: prioritization norms; emotional vs behavioral follow-through
+* **Measures:** follow-through under load
+* **Maps to:** CO, EN, RS, ER
+* **Implementation note:** Primary state anchor for reliability under stress.
 
-### Communication Gap (CG)
+### Q3.9 When something is important to me in a relationship, I usually:
 
-**Q3.9** When something is important to me in a relationship, I usually …
-
-- **Format:** single | Weight: high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Say it clearly, even if it feels a bit uncomfortable
   B) Try to imply it or ease into it
   C) Assume they’ll pick up on it without me saying much
-- **Measures:** expression vs expectation gap
-- **Maps to:** 11. Communication Directness (CD), 12. Mind-Reading Expectation (MR), 20. Assertiveness–Agreeableness (AG)
-- **Note:** Gap role: State anchor for Communication Gap
+* **Measures:** communication under stakes
+* **Maps to:** CD, MR, AG
+* **Implementation note:** State anchor for Communication Gap.
 
-### Closeness Gap (CG2 refinement)
+### Q3.10 After a lot of closeness or time together, I usually:
 
-**Q3.10** After a lot of closeness or time together, I usually …
-
-- **Format:** single | Weight: high
-  Options:
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Still feel comfortable staying connected
   B) Need a bit of space to recharge
   C) Start to feel overwhelmed or want distance
-- **Measures:** tolerance under sustained closeness
-- **Maps to:** 2. Attachment Avoidance (AV), 10. Closeness Tolerance (CT), 3. Emotional Regulation (ER)
-- **Note:** State anchor for Closeness Gap
-  This complements: Q3.2 (preference), Q3.3 (mismatch tolerance)
-  and makes CG2 much cleaner.
+* **Measures:** tolerance under sustained closeness
+* **Maps to:** AV, CT, ER
+* **Implementation note:** State anchor for Closeness Gap.
 
-### Effort–Expectation Gap (EEG)
+### Q3.11 In a relationship, when effort starts to feel uneven, I usually:
 
-**Q3.11** In a relationship, when effort starts to feel uneven, I usually …
-Format: single | Weight: high
-Options:
-A) Try to match the level of effort I want to see
-B) Notice it, but adjust depending on the situation
-C) Feel frustrated if I’m not getting the effort I expect
-
-- **Measures:** effort reciprocity vs expectation asymmetry
-- **Maps to:** 14. Effort & Investment Norms (EN), 19. Conscientiousness / Reliability (CO), 4. Responsiveness (RS)
-- **Note:** Gap role: Behavioral anchor for Effort Gap
-- **Complements:** Q3.7 (expectation),
-  Q3.8 / Q3.9 (behavior)
+* **Format:** single
+* **Weight:** high
+* **Options:**
+  A) Try to match the level of effort I want to see
+  B) Notice it, but adjust depending on the situation
+  C) Feel frustrated if I’m not getting the effort I expect
+* **Measures:** reciprocity style; effort expectation asymmetry
+* **Maps to:** EN, CO, RS
+* **Implementation note:** Behavioral anchor for Effort–Expectation Gap.
 
 ---
 
-## Values & Alignment
+## Section 4 — Values & Alignment
 
-**Q4.1** Right now, I’m dating mainly for …
+### Q4.1 Right now, I’m dating mainly for:
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Something meaningful and long-term
   B) Openness to either casual or serious, depending on fit
   C) Something more casual or short-term
-- **Measures:** relationship intent
-- **Maps to:** 15. Long-Term Orientation (LT)
-- **Note:** Hard-constraint anchor; must be explicit.
+* **Measures:** relationship intent
+* **Maps to:** LT
+* **Implementation note:** Strong candidate for a hard or near-hard filter.
 
-**Q4.2** On major life choices (like kids, home base, or lifestyle), I tend to be …
+### Q4.2 On major life choices (like kids, home base, or lifestyle), I tend to be:
 
-- **Format:** single | **Weight:** critical
-- **Options:**
+* **Format:** single
+* **Weight:** critical
+* **Options:**
   A) Pretty clear about what I want
   B) Open, but within some limits
   C) Flexible and still figuring it out
-- **Measures:** life-structure rigidity vs openness
-- **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
-- **Note:** Measures how strongly LS should function as a hard filter.
+* **Measures:** structure clarity and rigidity around major decisions
+* **Maps to:** LS, LT
+* **Implementation note:** Helps determine how strongly LS should act as a filter.
 
-**Q4.3** If someone I really like has a different timeline or certainty around major life decisions, I usually …
+### Q4.3 If someone I really like has a different timeline or certainty around major life decisions, I usually:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Need strong alignment fairly early to feel good about continuing
   B) Can keep exploring if the mismatch doesn’t seem too big
   C) Am comfortable letting it stay open for quite a while
-- **Measures:**tolerance for life-structure mismatch; rigidity vs flexibility around major decisions
-- **Maps to:** 16. Life Structure Alignment (LS), 15. Long-Term Orientation (LT)
-- **Note:** Adds a behavioral / relational anchor for LS instead of relying only on self-described clarity
+* **Measures:** tolerance for life-structure mismatch
+* **Maps to:** LS, LT
+* **Implementation note:** Behavioral complement to Q4.2.
 
-**Q4.4** In a long-term relationship, I usually want life to feel more …
+### Q4.4 In a long-term relationship, I usually want life to feel more:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Grounded and predictable
   B) Balanced between routine and novelty
   C) Fresh, stimulating, and changing
-- **Measures:** novelty vs stability preference
-- **Maps to:** 17. Novelty vs Stability Preference (NS), 9. Closeness–Autonomy Preference (CA)
-- **Note:** Best kept as a preference item, not a personality claim.
+* **Measures:** preferred pace of stability vs stimulation
+* **Maps to:** NS, CA
+* **Implementation note:** Keep as preference-coded, not pathology-coded.
 
-### Novelty vs Stability (NS)
+### Q4.5 After a relationship settles into a routine, I usually:
 
-**Q4.5** After a relationship settles into a routine, I usually …
-
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Like the steadiness and don’t need much change
   B) Like some routine, but need occasional new experiences mixed in
   C) Start wanting more change, spontaneity, or intensity
-- **Measures:** behavior under routine; need for stimulation once novelty fades
-- **Maps to:** 17. Novelty vs Stability Preference (NS), 18. Emotional Stability (ES)
-- **Note:** Behavioral anchor for NS; complements Q4.4 by measuring what happens after novelty wears off.
+* **Measures:** behavior after novelty fades
+* **Maps to:** NS, ES
+* **Implementation note:** Behavioral anchor for NS.
 
 ---
 
-## Personality & Stability
+## Section 5 — Personality & Stability
 
-**Q5.1** People close to me would likely say I’m …
+### Q5.1 People close to me would likely say I’m:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Dependable and consistent
   B) Warm but a little unpredictable
   C) More spontaneous than consistent
-- **Measures:** reliability; conscientiousness
-- **Maps to:** 19. Conscientiousness / Reliability (CO), 14. Effort & Investment Norms (EN)
-- **Note:** Social-observer framing lowers self-enhancement a bit.
+* **Measures:** observer-framed reliability
+* **Maps to:** CO, EN
+* **Implementation note:** Useful social-observer framing to reduce self-enhancement.
 
-**Q5.2** In close relationships, I tend to …
+### Q5.2 In close relationships, I tend to:
 
-- **Format:** single | **Weight:** high
-- **Options:**
+* **Format:** single
+* **Weight:** high
+* **Options:**
   A) Say what I need while trying to keep things respectful
   B) Keep the peace even if I hold things in
   C) Push my point even if it creates tension
-- **Measures:** assertiveness vs accommodation
-- **Maps to:** 20. Assertiveness–Agreeableness Balance (AG), 11. Communication Directness (CD), 8. Negative Conflict Style (NC)
-- **Note:** Useful balance item; avoids “I’m assertive” identity framing.
+* **Measures:** assertiveness vs accommodation vs forcefulness
+* **Maps to:** AG, CD, NC, RFq
+* **Implementation note:** Good AG anchor, though partly entangled with NC by design.
 
 ---
 
-# 📊 Master Mapping Table (All 21 Indices + State–Trait Gaps)
+# Canvas 3 — Mapping, Gap Architecture, and Reliability Notes
+
+## Master Index → Question Mapping
+
+### 1. Attachment Anxiety (AA)
+
+Q1.1, Q1.4, Q3.5, Q3.6
+
+### 2. Attachment Avoidance (AV)
+
+Q1.1, Q1.2, Q1.4, Q1.6, Q2.1, Q2.3, Q2.4, Q3.1, Q3.2, Q3.10
+
+### 3. Emotional Regulation (ER)
+
+Q1.1, Q1.3, Q1.4, Q1.6, Q1.7, Q1.8, Q1.9, Q2.1, Q2.4, Q3.8, Q3.10
+
+### 4. Responsiveness (RS)
+
+Q1.2, Q1.6, Q2.3, Q2.4, Q3.7, Q3.8, Q3.11
+
+### 5. Emotional Responsibility (ER2)
+
+Q1.5, Q1.7, Q1.9, Q2.2
+
+### 6. Conflict Engagement (CE)
+
+Q1.1, Q1.4, Q2.1
+
+### 7. Conflict Repair Ability (CR)
+
+Q2.2, Q2.3, Q2.4, Q1.9
+
+### 8. Negative Conflict Style (NC)
+
+Q1.2, Q1.4, Q1.5, Q1.7, Q1.8, Q1.9, Q2.2, Q2.4, Q5.2
+
+### 9. Closeness–Autonomy Preference (CA)
+
+Q1.6, Q3.1, Q3.2, Q4.4
+
+### 10. Closeness Tolerance (CT)
+
+Q3.1, Q3.10
+
+### 11. Communication Directness (CD)
+
+Q3.3, Q3.4, Q3.9, Q5.2
+
+### 12. Mind-Reading Expectation (MR)
+
+Q3.3, Q3.4, Q3.9
+
+### 13. Jealousy / Threat Sensitivity (JS)
+
+Q3.5, Q3.6
+
+### 14. Effort & Investment Norms (EN)
+
+Q1.2, Q3.7, Q3.8, Q3.11, Q5.1
+
+### 15. Long-Term Orientation (LT)
+
+Q4.1, Q4.2, Q4.3
+
+### 16. Life Structure Alignment (LS)
+
+Q4.2, Q4.3
+
+### 17. Novelty vs Stability Preference (NS)
+
+Q4.4, Q4.5
+
+### 18. Emotional Stability (ES)
+
+Q1.3, Q1.8, Q3.5, Q3.6, Q4.5
+
+### 19. Conscientiousness / Reliability (CO)
+
+Q2.3, Q2.4, Q3.7, Q3.8, Q3.11, Q5.1
+
+### 20. Assertiveness–Agreeableness Balance (AG)
+
+Q1.5, Q2.2, Q3.3, Q3.9, Q5.2
+
+### 21. Rupture Sensitivity - Frequency / Escalation (RFq)
+
+Q1.4, Q1.8, Q2.2, Q5.2
+
+### 22. Rupture Sensitivity - Stickiness / Recovery Difficulty (RFs)
+
+Q1.9, Q2.3, Q2.4
+
+---
+
+## State–Trait Gap Architecture
+
+### 1. Emotional Responsibility Gap (ERG)
+
+* **Trait:** Q1.5
+* **State:** Q1.7
+* **Captures:** accountability belief vs blame under activation
+* **Primary use:** risk penalty / fragility marker
+
+### 2. Conflict Engagement Gap
+
+* **Low intensity:** Q2.1
+* **High intensity:** Q1.4
+* **Captures:** how conflict behavior changes under emotional load
+
+### 3. Communication Gap (CG)
+
+* **Trait:** Q3.3
+* **State:** Q3.9
+* **Captures:** normal expression style vs what happens when stakes rise
+
+### 4. Closeness Gap (CG2)
+
+* **Trait:** Q3.2
+* **State:** Q3.10
+* **Captures:** desired closeness vs actual tolerance after sustained closeness
+
+### 5. Effort–Expectation Gap (EEG)
+
+* **Trait:** Q3.7
+* **State anchors:** Q3.8, Q3.11
+* **Captures:** identity-level investment vs reliability / reciprocity behavior
+
+### 6. Conflict Repair Gap (RG2 / CR Gap)
+
+* **Trait anchor:** Q2.2
+* **State anchors:** Q2.3, Q2.4
+* **Captures:** willingness to repair vs actual repair follow-through
+
+### 7. Responsiveness Gap (RS Gap)
+
+* **Trait anchor:** Q1.2
+* **State anchors:** Q3.8, Q3.11
+* **Captures:** willingness to be responsive vs responsiveness under load / imbalance
+
+### 8. Regulation Gap (ER Gap)
+
+* **Trait anchor:** Q1.3
+* **State anchors:** Q1.4, Q1.8
+* **Captures:** baseline steadiness vs behavior under activation
+
+### 9. Reliability Gap Index (RGI)
+
+* **Trait anchor:** Q3.7
+* **State anchor:** Q3.8
+* **Captures:** dependable identity vs follow-through under stress / busyness
+* **Primary indices:** EN, CO
+* **Interaction risk:** especially important when paired with low RS or elevated EEG
+
+### Important note on RGI vs EEG
+
+These are related but **not identical**.
+
+* **RGI** = consistency under strain
+* **EEG** = expectation / reciprocity asymmetry
+
+A user can be reliable but entitled, or unreliable but not especially entitled.
+
+---
+
+What I corrected and strengthened there:
+
+- unified the system around the canonical 22-index model
+- fixed incomplete sections, especially Q2.4
+- made Q1.9 a proper first-class questionnaire item instead of a half-integrated add-on
+- cleaned up inconsistent references to RF vs RFq/RFs
+- separated trait scoring, gap scoring, risk features, and filter dimensions
+- added strategic implementation notes where they matter most for matching architecture
+- clarified that RGI and EEG are related but distinct
+- tightened the mapping and gap architecture so it is easier to implement directly
+
+I organized it into 3 markdown canvases:
+
+- Core Design, Index System, and Modeling Rules
+- Revised Questionnaire Spec
+- Mapping, Gap Architecture, and Reliability Notes
+
+---
+
+## Gap Scoring Convention
+
+```python
+gap_value = abs(state_score - trait_score)
+gap_direction = state_score - trait_score
+```
+
+### Recommendation
+
+Store both absolute and directional versions.
+
+* **Absolute gap** tells you how inconsistent the person is.
+* **Directional gap** tells you *how* they break down.
+
+Example:
+
+* positive stated value + poor state execution
+* low stated need + high stress reactivity
+* high accountability belief + blame under stress
+
+---
+
+## Reliability / Bias Notes
+
+### Strengths of the current system
+
+* strong behavioral framing
+* unusually good conflict-phase coverage
+* explicit gap architecture
+* strong efficiency through multi-index mapping
+* relatively low social desirability compared with normal dating-app questionnaires
+
+### Remaining weaknesses to watch
+
+#### 1. Some items still show directional desirability
+
+Even after improvements, some A/B/C structures remain easy to game.
+
+**Suggestion:** add occasional answer-order randomization and consider future alternate phrasings for the most obvious items.
+
+#### 2. Some constructs remain intentionally correlated
+
+Expected clusters include:
+
+* AA ↔ JS
+* AV ↔ CE ↔ CT
+* NC ↔ ER2 ↔ RFq
+* CR ↔ RFs ↔ RS
+
+This is acceptable, but modeling should include:
+
+* index normalization
+* interaction terms
+* redundancy checks in calibration
+
+#### 3. CO is still partly inferred through relationship behavior
+
+This is acceptable for a dating product, but future follow-up items could sharpen general follow-through.
+
+#### 4. AG remains partly entangled with CD and NC
+
+That tradeoff is acceptable for efficiency, but AG should be interpreted contextually.
+
+---
+
+## Product and Modeling Suggestions
+
+### Suggestion 1 — Use onboarding + refresh architecture
+
+Do not assume first-session answers are final. Re-ask a few high-value constructs later through lightweight behavior refresh items, especially:
+
+* ER / ES
+* CR / NC
+* AA / AV
+* RS / CO
+* RFs
+
+### Suggestion 2 — Log outcome labels early
+
+To tune this system well, log:
+
+* reply consistency
+* mutual like-to-message conversion
+* conversation survival after disagreement
+* date scheduling success
+* ghosting timing
+* user-reported chemistry / safety / emotional ease
+
+### Suggestion 3 — Keep filters separate from scoring
+
+Use LT and LS as explicit gate or semi-gate variables. Do not bury them inside a global similarity score.
+
+### Suggestion 4 — Preserve interpretable features
+
+Even if you later learn a dense embedding, keep human-readable indices, gaps, and risk features available for:
+
+* explainability
+* debugging
+* experimentation
+* moderation / trust & safety review
+
+### Suggestion 5 — Calibrate before making hard claims
+
+This is a strong theoretical architecture, but thresholding should not become product policy until validated on outcome data.
+
+---
+
+## Final Evaluation
+
+This revised questionnaire is a strong foundation for a scalable matching system because it measures not only preferences, but **how people behave when closeness, uncertainty, hurt, and conflict test the relationship**.
+
+That is the system’s main advantage.
+
+The most important implementation discipline is to keep these layers distinct:
+
+* **trait vector**
+* **gap vector**
+* **risk amplification features**
+* **hard / semi-hard filter dimensions**
+
+That separation will make future optimization much cleaner and more robust.
+
+---
+
+<!-- Should we mix up the options order for each question randomly so there is not a clear directional gradient from A to C, positive or negative ? -->
+
+---
+
+# 📊 Master Mapping Table (All 22 Indices + State–Trait Gaps)
 
 ---
 
@@ -742,9 +1229,8 @@ C) Feel frustrated if I’m not getting the effort I expect
 
 # 🧩 Notes
 
-* All indices are **deduplicated and normalized**
+* All indices are **normalized**
 * Each question appears only where it contributes meaningful signal
-* Q1.8 strengthens ER, NC, and ES linkage
 * Gap architecture enables modeling of **behavioral breakdown under stress vs stated preference**
 
 ---
@@ -1478,7 +1964,7 @@ This is **well above industry standard** (most apps are <50% coverage, mostly se
 
 ---
 
-# ✅ 1. Completeness (21 Indices Coverage)
+# ✅ 1. Completeness (22 Indices Coverage)
 
 ## 🟢 Fully covered (high confidence, multi-item support)
 
