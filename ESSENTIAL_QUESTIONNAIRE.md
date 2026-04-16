@@ -1576,6 +1576,32 @@ This canvas is intended to be implementation-facing and should stay versioned al
 
 ---
 
+4/16/26 Update notes:
+
+Added the new markdown canvas with the full 22-index implementation delta table and updated the item weights where they looked outdated.
+
+Main weight adjustments I made:
+
+- raised *Q1.9, Q2.3, Q2.4, Q3.8* to top-tier anchors
+- slightly reduced more trait-like anchors such as *Q1.5, Q3.2, Q3.3, Q3.4, Q3.7*
+- kept *Q1.4, Q1.8, Q2.2* as core high-impact behavioral items
+- treated *Q4.1* as a strong filter anchor and *Q4.2* as a near-filter structural anchor
+
+I also:
+
+- aligned every delta vector to the canonical 22-index order
+- corrected older drift where some deltas still implicitly assumed the pre-RF split model
+- added derived feature formulas for gaps, within-user risk composites, and pairwise re-ranking features
+- kept the deltas editable so you can tune them later against real data
+
+The new material is now in the canvas as:
+
+- *Canvas 4 — Question-by-Question Implementation Delta Table (22-Index Aligned)*
+
+A strong next step would be turning this into a *compact engine-ready schema* like JSON or TypeScript so your scorer can consume it directly.
+
+---
+
 # 🔄 State–Trait Gap Matrix
 
 ## Gap scoring convention
