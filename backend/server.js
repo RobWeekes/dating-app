@@ -116,9 +116,26 @@ async function seedTestUsers() {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash('TestPass123!', salt);
+    const hashedTestPassword = await bcrypt.hash('Password', salt);
 
     const users = [];
-    for (let i = 1; i <= 1000; i++) {
+
+    // First user: hardcoded test account
+    users.push({
+      email: 'test@aol.com',
+      password: hashedTestPassword,
+      firstName: 'Test',
+      lastName: 'User',
+      age: 28,
+      bio: 'Test account for development',
+      location: 'New York',
+      profilePhotoUrl: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    // Remaining 999 random users
+    for (let i = 1; i <= 999; i++) {
       const isMale = Math.random() > 0.5;
       const firstName = isMale ? firstNames.male[Math.floor(Math.random() * firstNames.male.length)] : firstNames.female[Math.floor(Math.random() * firstNames.female.length)];
       const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
@@ -138,7 +155,7 @@ async function seedTestUsers() {
     }
 
     await models.User.bulkCreate(users);
-    console.log('  ✓ Created 1000 test users');
+    console.log('  ✓ Created 1000 test users (including test@aol.com)');
     console.log('✅ Test users seeded');
   } catch (err) {
     console.error('⚠️  Could not seed test users:', err.message);
