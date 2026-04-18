@@ -1872,6 +1872,76 @@ It will save you from **hard-to-detect scoring errors** later.
 
 ---
 
+## Recommendation: Data-Driven TypeScript Engine
+
+A data-driven TypeScript scoring engine should separate configuration from logic.
+
+### Why This Approach Wins
+
+### 1. Scalability (10M+ users)
+
+- Vectorized scoring (Float32Array) for efficient ANN indexing
+- Stateless, pure functions enable horizontal scaling & caching
+- Batch scoring support for processing millions of profiles
+- Configuration in JSON files avoids runtime overhead
+
+### 2. Readability
+
+- Clean TypeScript interfaces for Index, Weight, Question, Response, ScoringResult
+- Self-documenting code with explicit type contracts
+- Business logic separated from configuration data
+- Single responsibility per class (Scorer, Matcher, GapCalculator)
+
+### 3. Update Weights Without Redeployment
+
+- Configuration files are loaded at startup, not compiled into code
+- Change item-weights.json → scores update on next app restart
+- A/B testing: test different configs simultaneously (load from different files)
+- Zero downtime: swap config, restart container
+
+### 4. Future-Proof Updates
+
+- Add new indices by updating index-config.json + mappings
+- Add new questions: update QUESTION_INDEX_MAPPINGS
+- Modify gap penalties: edit gap-and-feature-config.json
+- All changes apply automatically without logic rewrites
+
+### 5. Plug-and-Play Design
+
+- Pure TypeScript module with no database dependencies (services handle DB if needed)
+- Accept raw responses → return typed scoring results
+- Can be used in API endpoints, batch workers, CLI tools, or exported as NPM package
+
+### What We'll Build
+
+```
+backend/scoring-engine/
+├── config/
+│   ├── index-config.json          # 22 indices with metadata
+│   ├── item-weights.json           # 3-tier weight multipliers
+│   ├── item-deltas.json            # Question → index mappings
+│   └── gap-and-feature-config.json # 8 gap definitions
+├── src/
+│   ├── types.ts                  # Full TypeScript interfaces
+│   ├── ScoringEngine.ts          # Main scorer (vectorized)
+│   ├── CompatibilityMatcher.ts   # Bidirectional matching
+│   ├── GapCalculator.ts          # 8 behavioral gaps
+│   └── utils.ts                  # Sigmoid, normalization, etc.
+├── __tests__/                    # Jest test suite
+└── package.json                  # Export ready for npm or internal use
+```
+
+### Implementation Path
+
+1. **Extract & create the 4 JSON config files** from essential2-scoring-config.js
+2. **Build TypeScript engine** with clean types, vectorized scoring, bias detection
+3. **Create GapCalculator** in TypeScript with configurable gap penalties
+4. **Implement CompatibilityMatcher** with bidirectional, importance-weighted matching
+5. **Write comprehensive tests** (unit + integration)
+6. **Integrate into Express API** via a service layer
+
+---
+
 ## 🔁 Interaction Amplifiers (Add to Scoring Layer)
 
 Rupture example
