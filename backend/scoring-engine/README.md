@@ -41,7 +41,7 @@ import { ScoringEngine, CompatibilityMatcher } from '@dating-app/scoring-engine'
 // Initialize engine with config path
 const engine = new ScoringEngine('./config');
 
-// Score user responses (29 questions)
+// Score user responses (31 questions)
 const result = engine.scoreResponses({
   1: "Check in and try to understand",
   2: "Offer reassurance even if it takes effort",
@@ -111,7 +111,7 @@ Weight multipliers for question contributions:
 
 ### `item-deltas.json`
 
-Maps 29 questions to indices with delta values. Example:
+Maps 31 questions to indices with delta values. Example:
 
 ```json
 {

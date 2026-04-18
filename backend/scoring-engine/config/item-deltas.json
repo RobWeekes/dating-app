@@ -44,7 +44,7 @@
       }
     },
     "2": {
-      "text": "If my partner needs reassurance, I tend to …",
+      "text": "If my partner needs reassurance, I tend to \u2026",
       "section": "Behavioral Dynamics",
       "critical": false,
       "indices": {
@@ -94,7 +94,7 @@
       }
     },
     "3": {
-      "text": "When things are stressful or uncertain, my mood usually …",
+      "text": "When things are stressful or uncertain, my mood usually \u2026",
       "section": "Behavioral Dynamics",
       "critical": true,
       "indices": {
@@ -123,7 +123,7 @@
       }
     },
     "4": {
-      "text": "When I'm very upset with someone, I tend to …",
+      "text": "When I'm very upset with someone, I tend to \u2026",
       "section": "Behavioral Dynamics",
       "critical": true,
       "indices": {
@@ -173,7 +173,7 @@
       }
     },
     "5": {
-      "text": "In a relationship, when I have a strong reaction, I tend to see it as …",
+      "text": "In a relationship, when I have a strong reaction, I tend to see it as \u2026",
       "section": "Behavioral Dynamics",
       "critical": false,
       "indices": {
@@ -209,7 +209,7 @@
       }
     },
     "6": {
-      "text": "When I'm stressed, I usually want my partner to …",
+      "text": "When I'm stressed, I usually want my partner to \u2026",
       "section": "Behavioral Dynamics",
       "critical": false,
       "indices": {
@@ -252,7 +252,7 @@
       }
     },
     "7": {
-      "text": "When I'm really upset in a relationship, I tend to …",
+      "text": "When I'm really upset in a relationship, I tend to \u2026",
       "section": "Behavioral Dynamics",
       "critical": true,
       "indices": {
@@ -288,7 +288,100 @@
       }
     },
     "8": {
-      "text": "If there's a small disagreement, I usually …",
+      "text": "When I get emotionally overwhelmed, I usually \u2026",
+      "section": "Behavioral Dynamics",
+      "critical": true,
+      "indices": {
+        "ER": {
+          "weight": "strong",
+          "direction": 1
+        },
+        "NC": {
+          "weight": "strong",
+          "direction": 1
+        },
+        "ES": {
+          "weight": "strong",
+          "direction": 1
+        },
+        "RFq": {
+          "weight": "medium",
+          "direction": 1
+        }
+      },
+      "responseMapping": {
+        "Take a moment to settle myself before reacting": {
+          "ER": 0.5,
+          "NC": -0.3,
+          "ES": 0.3,
+          "RFq": -0.2
+        },
+        "Try to stay composed, but it's hard not to show it": {
+          "ER": 0.2,
+          "NC": 0.1,
+          "ES": -0.1,
+          "RFq": 0.1
+        },
+        "React strongly in the moment and deal with it afterward": {
+          "ER": -0.4,
+          "NC": 0.4,
+          "ES": -0.3,
+          "RFq": 0.3
+        }
+      }
+    },
+    "9": {
+      "text": "After being hurt in a relationship, I tend to \u2026",
+      "section": "Behavioral Dynamics",
+      "critical": true,
+      "indices": {
+        "CR": {
+          "weight": "strong",
+          "direction": 1
+        },
+        "ER": {
+          "weight": "strong",
+          "direction": 1
+        },
+        "ER2": {
+          "weight": "medium",
+          "direction": 1
+        },
+        "NC": {
+          "weight": "medium",
+          "direction": 1
+        },
+        "RFs": {
+          "weight": "strong",
+          "direction": 1
+        }
+      },
+      "responseMapping": {
+        "Work through it and stay open": {
+          "CR": 0.5,
+          "ER": 0.4,
+          "ER2": 0.3,
+          "NC": -0.3,
+          "RFs": -0.5
+        },
+        "Need time, but can reconnect": {
+          "CR": 0.2,
+          "ER": 0.1,
+          "ER2": 0.1,
+          "NC": 0.0,
+          "RFs": -0.1
+        },
+        "Have a hard time seeing things the same way again": {
+          "CR": -0.4,
+          "ER": -0.3,
+          "ER2": -0.2,
+          "NC": 0.3,
+          "RFs": 0.5
+        }
+      }
+    },
+    "10": {
+      "text": "If there's a small disagreement, I usually \u2026",
       "section": "Conflict & Repair",
       "critical": true,
       "indices": {
@@ -323,8 +416,8 @@
         }
       }
     },
-    "9": {
-      "text": "When tension rises in a disagreement (one of us feels criticized or hurt), I tend to …",
+    "11": {
+      "text": "When tension rises in a disagreement (one of us feels criticized or hurt), I tend to \u2026",
       "section": "Conflict & Repair",
       "critical": true,
       "indices": {
@@ -366,8 +459,8 @@
         }
       }
     },
-    "10": {
-      "text": "After a conflict with a partner, I often …",
+    "12": {
+      "text": "After a conflict with a partner, I often \u2026",
       "section": "Conflict & Repair",
       "critical": true,
       "indices": {
@@ -409,8 +502,8 @@
         }
       }
     },
-    "11": {
-      "text": "If things still feel tense after a conflict, I usually …",
+    "13": {
+      "text": "If things still feel tense after a conflict, I usually \u2026",
       "section": "Conflict & Repair",
       "critical": true,
       "indices": {
@@ -452,8 +545,8 @@
         }
       }
     },
-    "12": {
-      "text": "If a partner wants more closeness than I do, I tend to …",
+    "14": {
+      "text": "If a partner wants more closeness than I do, I tend to \u2026",
       "section": "Compatibility & Friction",
       "critical": true,
       "indices": {
@@ -495,8 +588,8 @@
         }
       }
     },
-    "13": {
-      "text": "In a romantic relationship, I want to have …",
+    "15": {
+      "text": "In a romantic relationship, I want to have \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -524,8 +617,8 @@
         }
       }
     },
-    "14": {
-      "text": "When something concerns me in a relationship, I'm more likely to …",
+    "16": {
+      "text": "When something concerns me in a relationship, I'm more likely to \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -560,8 +653,8 @@
         }
       }
     },
-    "15": {
-      "text": "In relationships, I usually feel that a good partner should …",
+    "17": {
+      "text": "In relationships, I usually feel that a good partner should \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -596,8 +689,8 @@
         }
       }
     },
-    "16": {
-      "text": "If something about a partner's behavior feels ambiguous, I tend to …",
+    "18": {
+      "text": "If something about a partner's behavior feels ambiguous, I tend to \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -632,8 +725,8 @@
         }
       }
     },
-    "17": {
-      "text": "If a partner suddenly seems less available or attentive than usual, I'm most likely to …",
+    "19": {
+      "text": "If a partner suddenly seems less available or attentive than usual, I'm most likely to \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -668,8 +761,8 @@
         }
       }
     },
-    "18": {
-      "text": "When a relationship matters to me, I'm more likely to …",
+    "20": {
+      "text": "When a relationship matters to me, I'm more likely to \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -704,8 +797,8 @@
         }
       }
     },
-    "19": {
-      "text": "When life gets busy or stressful, I usually …",
+    "21": {
+      "text": "When life gets busy or stressful, I usually \u2026",
       "section": "Compatibility & Friction",
       "critical": true,
       "indices": {
@@ -747,8 +840,8 @@
         }
       }
     },
-    "20": {
-      "text": "When something is important to me in a relationship, I usually …",
+    "22": {
+      "text": "When something is important to me in a relationship, I usually \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -783,8 +876,8 @@
         }
       }
     },
-    "21": {
-      "text": "After a lot of closeness or time together, I usually …",
+    "23": {
+      "text": "After a lot of closeness or time together, I usually \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -819,8 +912,8 @@
         }
       }
     },
-    "22": {
-      "text": "In a relationship, when effort starts to feel uneven, I usually …",
+    "24": {
+      "text": "In a relationship, when effort starts to feel uneven, I usually \u2026",
       "section": "Compatibility & Friction",
       "critical": false,
       "indices": {
@@ -855,8 +948,8 @@
         }
       }
     },
-    "23": {
-      "text": "Right now, I'm dating mainly for …",
+    "25": {
+      "text": "Right now, I'm dating mainly for \u2026",
       "section": "Values & Alignment",
       "critical": true,
       "indices": {
@@ -877,8 +970,8 @@
         }
       }
     },
-    "24": {
-      "text": "On major life choices (like kids, home base, or lifestyle), I tend to be …",
+    "26": {
+      "text": "On major life choices (like kids, home base, or lifestyle), I tend to be \u2026",
       "section": "Values & Alignment",
       "critical": true,
       "indices": {
@@ -906,8 +999,8 @@
         }
       }
     },
-    "25": {
-      "text": "If someone I really like has a different timeline or level of certainty around major life decisions, I usually …",
+    "27": {
+      "text": "If someone I really like has a different timeline or level of certainty around major life decisions, I usually \u2026",
       "section": "Values & Alignment",
       "critical": false,
       "indices": {
@@ -935,8 +1028,8 @@
         }
       }
     },
-    "26": {
-      "text": "In a long-term relationship, I usually want life to feel more …",
+    "28": {
+      "text": "In a long-term relationship, I usually want life to feel more \u2026",
       "section": "Values & Alignment",
       "critical": false,
       "indices": {
@@ -964,8 +1057,8 @@
         }
       }
     },
-    "27": {
-      "text": "After a relationship settles into a routine, I usually …",
+    "29": {
+      "text": "After a relationship settles into a routine, I usually \u2026",
       "section": "Values & Alignment",
       "critical": false,
       "indices": {
@@ -993,8 +1086,8 @@
         }
       }
     },
-    "28": {
-      "text": "People close to me would likely say I'm …",
+    "30": {
+      "text": "People close to me would likely say I'm \u2026",
       "section": "Personality & Stability",
       "critical": false,
       "indices": {
@@ -1022,8 +1115,8 @@
         }
       }
     },
-    "29": {
-      "text": "In close relationships, I tend to …",
+    "31": {
+      "text": "In close relationships, I tend to \u2026",
       "section": "Personality & Stability",
       "critical": false,
       "indices": {

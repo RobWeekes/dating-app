@@ -2,7 +2,7 @@
  * Essential2 Scoring Engine
  *
  * Core scoring logic:
- * - Maps 29 question responses to 20 compatibility indices
+ * - Maps 31 question responses to 22 compatibility indices
  * - Implements vectorization for ANN indexing
  * - Includes bias detection and consistency validation
  * - Integrates gap calculation for behavioral under-pressure assessment

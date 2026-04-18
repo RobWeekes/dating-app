@@ -2,23 +2,23 @@
 
 ## Summary
 
-Successfully implemented a production-ready, plug-and-play TypeScript scoring engine for the Essential2 dating compatibility matching system. The engine maps 29 relationship-focused questionnaire responses to 20 compatibility indices with vectorized output for Approximate Nearest Neighbor (ANN) indexing, enabling scalability to tens of millions of users.
+Successfully implemented a production-ready, plug-and-play TypeScript scoring engine for the Essential2 dating compatibility matching system. The engine maps 31 relationship-focused questionnaire responses to 22 compatibility indices with vectorized output for Approximate Nearest Neighbor (ANN) indexing, enabling scalability to tens of millions of users.
 
 ## Project Structure
 
 ```
 backend/scoring-engine/
 ├── config/                          # JSON configuration files (NO CODE CHANGES NEEDED)
-│   ├── index-config.json           # 20 indices definition
+│   ├── index-config.json           # 22 indices definition
 │   ├── item-weights.json           # Weight multipliers
-│   ├── item-deltas.json            # 29 questions → index mappings
+│   ├── item-deltas.json            # 31 questions → index mappings
 │   └── gap-and-feature-config.json # 8 behavioral gaps
 │
 ├── src/                             # TypeScript source code
 │   ├── index.ts                    # Public API exports
 │   ├── types.ts                    # 100+ type definitions
 │   ├── utils.ts                    # Utility functions (math, config loading, vector ops)
-│   ├── ScoringEngine.ts            # Core 20-index scoring system
+│   ├── ScoringEngine.ts            # Core 22-index scoring system
 │   ├── GapCalculator.ts            # 8 behavioral gap calculation
 │   └── CompatibilityMatcher.ts     # Bidirectional matching engine
 │
@@ -42,7 +42,7 @@ backend/scoring-engine/
 ## Key Features Implemented
 
 ### 1. **22-Dimensional Vector Scoring**
-- 20 compatibility indices
+- 22 compatibility indices
 - Consistency score
 - Overall gap risk
 - Float32Array output for ANN indexing
@@ -100,8 +100,8 @@ backend/scoring-engine/
 
 #### ScoringEngine
 - Loads 4 JSON config files
-- Scores 29-question questionnaire
-- Returns 20 index scores (0-1)
+- Scores 31-question questionnaire
+- Returns 22 index scores (0-1)
 - Generates Float32Array vector
 - Detects biases and consistency issues
 - Calculates 8 behavioral gaps
@@ -141,7 +141,7 @@ const compatibility = matcher.computeCompatibility(scoresA, scoresB);
 All system behavior is controlled via JSON, not code:
 
 **index-config.json** (634 bytes)
-- 20 indices with weights and descriptions
+- 22 indices with weights and descriptions
 - Used for: importance weighting, index ordering
 
 **item-weights.json** (334 bytes)
@@ -150,7 +150,7 @@ All system behavior is controlled via JSON, not code:
 - Used for: scaling question contributions
 
 **item-deltas.json** (75+ KB)
-- 29 questions with response mappings
+- 31 questions with response mappings
 - Delta values for each index
 - Used for: computing index scores
 
@@ -174,7 +174,7 @@ All system behavior is controlled via JSON, not code:
 - 100 users: <100ms
 - 1,000 users: <1 second
 - Memory per user: ~100 bytes (indices + metadata)
-- Memory per vector: 80 bytes (Float32Array[20])
+- Memory per vector: 80 bytes (Float32Array[22])
 
 **Test Coverage:**
 - 50+ test cases
@@ -232,7 +232,7 @@ const engine = new ScoringEngine('./config');
 // 2. Score user
 const result = engine.scoreResponses({
   1: "Check in and try to understand",
-  // ... all 29 responses
+  // ... all 31 responses
 });
 
 // 3. Create matcher

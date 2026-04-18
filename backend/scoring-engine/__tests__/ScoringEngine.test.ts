@@ -97,8 +97,8 @@ describe('ScoringEngine', () => {
     });
   });
 
-  describe('Full Questionnaire (29 questions)', () => {
-    test('should score all 29 questions without errors', () => {
+  describe('Full Questionnaire (31 questions)', () => {
+    test('should score all 31 questions without errors', () => {
       const responses: UserResponses = {
         1: "Check in and try to understand",
         2: "Offer reassurance even if it takes effort",
@@ -135,7 +135,7 @@ describe('ScoringEngine', () => {
 
       expect(result).toBeDefined();
       expect(Object.keys(result.indices).length).toBe(20);
-      expect(result.metadata.respondedQuestions).toBe(29);
+      expect(result.metadata.respondedQuestions).toBe(31);
     });
   });
 
@@ -233,7 +233,7 @@ describe('ScoringEngine', () => {
 
       expect(result.metadata).toBeDefined();
       expect(result.metadata.respondedQuestions).toBe(2);
-      expect(result.metadata.totalQuestions).toBe(29);
+      expect(result.metadata.totalQuestions).toBe(31);
       expect(result.metadata.timestamp).toBeDefined();
       expect(result.metadata.gapSummary).toBeDefined();
     });
