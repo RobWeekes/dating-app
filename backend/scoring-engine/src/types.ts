@@ -1,5 +1,5 @@
 /**
- * Essential2 Scoring Engine - TypeScript Type Definitions
+ * Essential Scoring Engine - TypeScript Type Definitions
  *
  * Comprehensive type system for the 20-index relationship compatibility
  * scoring engine with vectorized output for ANN indexing.

@@ -1,10 +1,10 @@
-# Essential2 Scoring Engine
+# Essential Scoring Engine
 
 Plug-and-play TypeScript scoring engine for relationship compatibility matching. Maps 29 relationship-focused questionnaire responses to 20 compatibility indices, with vectorized output for Approximate Nearest Neighbor (ANN) indexing and scalability to tens of millions of users.
 
 ## Overview
 
-The Essential2 Scoring Engine is a relationship compatibility scoring system based on psychological research into attachment, conflict resolution, communication, and life alignment. It combines:
+The Essential Scoring Engine is a relationship compatibility scoring system based on psychological research into attachment, conflict resolution, communication, and life alignment. It combines:
 
 - **22 Compatibility Vectors** - 20 indices + consistency + gap risk score
 - **Vectorized Output** - Float32Array for efficient ANN-based matching
@@ -450,7 +450,7 @@ This is a core module—changes require:
 
 For questions or issues:
 
-- Generate detailed logs: Set `DEBUG=essential2:*`
+- Generate detailed logs: Set `DEBUG=essential:*`
 - Check test files for examples
 - Review configuration files for correct format
 

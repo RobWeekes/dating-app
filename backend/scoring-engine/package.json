@@ -1,7 +1,7 @@
 {
   "name": "@dating-app/scoring-engine",
   "version": "1.0.0",
-  "description": "Essential2 Scoring Engine - Plug-and-play TypeScript dating compatibility scoring for tens of millions of users",
+  "description": "Essential Scoring Engine - Plug-and-play TypeScript dating compatibility scoring for tens of millions of users",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

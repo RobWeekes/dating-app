@@ -1,5 +1,5 @@
 /**
- * Essential2 Scoring Engine
+ * Essential Scoring Engine
  *
  * Core scoring logic:
  * - Maps 31 question responses to 22 compatibility indices

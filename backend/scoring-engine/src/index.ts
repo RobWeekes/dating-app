@@ -1,5 +1,5 @@
 /**
- * Essential2 Scoring Engine - Public API
+ * Essential Scoring Engine - Public API
  *
  * Plug-and-play exports for the complete scoring system
  */

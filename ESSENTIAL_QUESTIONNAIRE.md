@@ -1933,7 +1933,7 @@ backend/scoring-engine/
 
 ### Implementation Path
 
-1. **Extract & create the 4 JSON config files** from essential2-scoring-config.js
+1. **Extract & create the 4 JSON config files** from essential-scoring-config.js
 2. **Build TypeScript engine** with clean types, vectorized scoring, bias detection
 3. **Create GapCalculator** in TypeScript with configurable gap penalties
 4. **Implement CompatibilityMatcher** with bidirectional, importance-weighted matching

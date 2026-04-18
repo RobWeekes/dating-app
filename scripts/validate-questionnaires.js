@@ -11,7 +11,7 @@
  * Usage: node scripts/validate-questionnaires.js [type]
  * Examples:
  *   node scripts/validate-questionnaires.js
- *   node scripts/validate-questionnaires.js essential2
+ *   node scripts/validate-questionnaires.js essential
  */
 
 const fs = require('fs');

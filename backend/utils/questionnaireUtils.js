@@ -8,7 +8,7 @@ const { getQuestionnaireTemplates } = require('../data/questionnaire-templates')
 
 /**
  * Get questionnaire template by type
- * @param {string} type - Questionnaire type (e.g., 'essential2')
+ * @param {string} type - Questionnaire type (e.g., 'essential')
  * @returns {object|null} - Questionnaire template or null if not found
  */
 function getQuestionnaireByType(type) {

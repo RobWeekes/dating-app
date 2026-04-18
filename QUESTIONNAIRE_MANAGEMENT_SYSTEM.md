@@ -32,7 +32,7 @@ Only modify: `backend/data/questionnaire-templates.js`
 ```javascript
 // Simply add/edit/delete questions in the questionnaire object
 {
-  type: 'essential2',
+  type: 'essential',
   title: 'Essential Questionnaire 2',
   questions: [
     {
@@ -56,13 +56,13 @@ Only modify: `backend/data/questionnaire-templates.js`
 - **Frontend**: API endpoint returns dynamic counts
   ```javascript
   // Frontend automatically fetches updated count
-  const { metadata } = useQuestionnaireMetadata('essential2');
+  const { metadata } = useQuestionnaireMetadata('essential');
   console.log(metadata.totalQuestions); // Always current!
   ```
 
 - **Validation**: Check consistency before deployment
   ```bash
-  node scripts/validate-questionnaires.js essential2
+  node scripts/validate-questionnaires.js essential
   ```
 
 ---
@@ -78,7 +78,7 @@ GET /api/questionnaires/metadata/:type
 **Response:**
 ```json
 {
-  "type": "essential2",
+  "type": "essential",
   "title": "Essential Questionnaire 2",
   "totalQuestions": 31,
   "sections": {
@@ -107,7 +107,7 @@ GET /api/questionnaires/metadata/:type
 import useQuestionnaireMetadata from '../hooks/useQuestionnaireMetadata';
 
 function MyComponent() {
-  const { metadata, loading, error } = useQuestionnaireMetadata('essential2');
+  const { metadata, loading, error } = useQuestionnaireMetadata('essential');
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -128,7 +128,7 @@ If the API fails, the system gracefully falls back to hardcoded `QUESTION_COUNTS
 ```javascript
 // Only used as fallback if API is unavailable
 const QUESTION_COUNTS = {
-  essential2: 31,  // Keep this in sync manually if API not available
+  essential: 31,  // Keep this in sync manually if API not available
   // ...
 };
 ```
@@ -144,7 +144,7 @@ const QUESTION_COUNTS = {
 node scripts/validate-questionnaires.js
 
 # Validate specific questionnaire
-node scripts/validate-questionnaires.js essential2
+node scripts/validate-questionnaires.js essential
 ```
 
 **Checks:**
@@ -157,18 +157,18 @@ node scripts/validate-questionnaires.js essential2
 
 ## Workflow: Adding a Question
 
-### Example: Add a new question to Essential2
+### Example: Add a new question to Essential
 
 1. **Edit questionnaire template:**
    ```bash
    # Open: backend/data/questionnaire-templates.js
-   # Find the essential2 questionnaire
+   # Find the essential questionnaire
    # Add new question at the end with order = (lastOrder + 1)
    ```
 
 2. **Validate the changes:**
    ```bash
-   node scripts/validate-questionnaires.js essential2
+   node scripts/validate-questionnaires.js essential
    ```
 
 3. **Reseed the database:**
@@ -220,7 +220,7 @@ For the TypeScript scoring engine:
 1. Clear browser cache (Cmd/Ctrl + Shift + Delete)
 2. Hard refresh (Cmd/Ctrl + Shift + R or Cmd/Ctrl + F5)
 3. Check backend is running: `npm start` in `/backend`
-4. Check API endpoint: `curl http://localhost:3001/api/questionnaires/metadata/essential2`
+4. Check API endpoint: `curl http://localhost:3001/api/questionnaires/metadata/essential`
 
 ### Validation script shows errors
 
@@ -234,7 +234,7 @@ For the TypeScript scoring engine:
 
 1. ✅ **Always validate before seeding:**
    ```bash
-   node scripts/validate-questionnaires.js essential2 && npm run seed
+   node scripts/validate-questionnaires.js essential && npm run seed
    ```
 
 2. ✅ **Keep section names consistent** - Used for UI grouping
@@ -243,7 +243,7 @@ For the TypeScript scoring engine:
 
 4. ✅ **Test metadata endpoint after changes:**
    ```bash
-   curl http://localhost:3001/api/questionnaires/metadata/essential2 | jq
+   curl http://localhost:3001/api/questionnaires/metadata/essential | jq
    ```
 
 5. ❌ **Don't hardcode question counts** in frontend - they become stale

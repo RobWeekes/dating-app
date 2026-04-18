@@ -11,7 +11,7 @@ function getQuestionnaireTemplates() {
     // with focus on behavior under stress, emotional regulation, conflict repair,
     // and compatibility. Optimized for matching with high predictive value.
     {
-      type: 'essential2',
+      type: 'essential',
       title: 'Essential Questionnaire 2',
       description: 'Understanding relationship patterns, communication, and compatibility',
       category: 'Essential',

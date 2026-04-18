@@ -43,12 +43,12 @@ describe('questionnaire hooks', () => {
   });
 
   it('opens questionnaire and parses existing answers into initial values', async () => {
-    getQuestionnaires.mockResolvedValueOnce([{ id: 10, type: 'essential2', title: 'Essential 2' }]);
+    getQuestionnaires.mockResolvedValueOnce([{ id: 10, type: 'essential', title: 'Essential' }]);
     getMyQuestionnaireResponses.mockResolvedValueOnce([]);
 
     getQuestionnaireTemplateByType.mockResolvedValueOnce({
       id: 10,
-      type: 'essential2',
+      type: 'essential',
       Questions: [
         { id: 201, order: 2, text: 'Q2' },
         { id: 200, order: 1, text: 'Q1' },
@@ -69,10 +69,10 @@ describe('questionnaire hooks', () => {
     });
 
     await act(async () => {
-      await result.current.openQuestionnaire({ id: 10, type: 'essential2' });
+      await result.current.openQuestionnaire({ id: 10, type: 'essential' });
     });
 
-    expect(result.current.selectedType).toBe('essential2');
+    expect(result.current.selectedType).toBe('essential');
     expect(result.current.formQuestions.map((question) => question.id)).toEqual([200, 201]);
     expect(result.current.formInitialValues[200]).toBe(3);
     expect(result.current.formInitialValues[201]).toEqual(['A', 'B']);

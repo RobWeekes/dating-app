@@ -11,8 +11,7 @@ import {
 // See backend:api:/questionnaires/metadata/:type
 // If you need to change question counts, update backend/data/questionnaire-templates.js
 const QUESTION_COUNTS = {
-  essential: 27,
-  essential2: 31,
+  essential: 31,
   lifestyle: 21,
   MVP: 50,
   communication: 18,
