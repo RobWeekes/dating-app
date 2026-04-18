@@ -7,9 +7,12 @@ import {
   submitQuestionnaire,
 } from '../services/api';
 
+// ⚠️ DEPRECATED: Don't modify this! Question counts are now computed from API.
+// See backend:api:/questionnaires/metadata/:type
+// If you need to change question counts, update backend/data/questionnaire-templates.js
 const QUESTION_COUNTS = {
   essential: 27,
-  essential2: 29,
+  essential2: 31,
   lifestyle: 21,
   MVP: 50,
   communication: 18,
@@ -17,6 +20,21 @@ const QUESTION_COUNTS = {
   cultural: 19,
   romance: 17,
   future: 18,
+};
+
+// Fetch question count from API metadata endpoint
+const getQuestionCountFromAPI = async (type) => {
+  try {
+    const response = await fetch(`/api/questionnaires/metadata/${type}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data.totalQuestions;
+    }
+  } catch (err) {
+    console.warn(`Could not fetch metadata for ${type}, falling back to hardcoded count`);
+  }
+  // Fallback to hardcoded count if API fails
+  return QUESTION_COUNTS[type] || null;
 };
 
 const parseAnswerValue = (rawValue) => {

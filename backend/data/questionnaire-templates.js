@@ -6,8 +6,8 @@
 
 function getQuestionnaireTemplates() {
   return [
-    // ================= ESSENTIAL QUESTIONNAIRE 2 (29 questions) =================
-    // Description: Minimal dating questionnaire recovering 20 relationship indices
+    // ================= ESSENTIAL QUESTIONNAIRE 2 (31 questions) =================
+    // Description: Comprehensive dating questionnaire recovering 22 relationship indices
     // with focus on behavior under stress, emotional regulation, conflict repair,
     // and compatibility. Optimized for matching with high predictive value.
     {
@@ -130,6 +130,40 @@ function getQuestionnaireTemplates() {
           conditional: null
         },
 
+        // ========== SECTION 1B: BEHAVIORAL DYNAMICS CONT. (2 additional questions) ==========
+        {
+          text: 'When I get emotionally overwhelmed, I usually …',
+          type: 'single',
+          options: [
+            'Take a moment to settle myself before reacting',
+            'Try to stay composed, but it\'s hard not to show it',
+            'React strongly in the moment and deal with it afterward'
+          ],
+          required: true,
+          order: 8,
+          section: 'Behavioral Dynamics',
+          sectionDescription: 'How you respond in relationships',
+          reversed: false,
+          critical: true,
+          conditional: null
+        },
+        {
+          text: 'After being hurt in a relationship, I tend to …',
+          type: 'single',
+          options: [
+            'Work through it and stay open',
+            'Need time, but can reconnect',
+            'Have a hard time seeing things the same way again'
+          ],
+          required: true,
+          order: 9,
+          section: 'Behavioral Dynamics',
+          sectionDescription: 'How you respond in relationships',
+          reversed: false,
+          critical: true,
+          conditional: null
+        },
+
         // ========== SECTION 2: CONFLICT & REPAIR (4 questions) ==========
         {
           text: 'If there\'s a small disagreement, I usually …',
@@ -140,7 +174,7 @@ function getQuestionnaireTemplates() {
             'Let it go or distance myself from it'
           ],
           required: true,
-          order: 8,
+          order: 10,
           section: 'Conflict & Repair',
           sectionDescription: 'How you navigate disagreements',
           reversed: false,
@@ -156,7 +190,7 @@ function getQuestionnaireTemplates() {
             'Get defensive or point out what they did wrong'
           ],
           required: true,
-          order: 9,
+          order: 11,
           section: 'Conflict & Repair',
           sectionDescription: 'How you navigate disagreements',
           reversed: false,
@@ -172,7 +206,7 @@ function getQuestionnaireTemplates() {
             'Step back and wait for them to bring it up'
           ],
           required: true,
-          order: 10,
+          order: 12,
           section: 'Conflict & Repair',
           sectionDescription: 'How you navigate disagreements',
           reversed: false,
@@ -188,7 +222,7 @@ function getQuestionnaireTemplates() {
             'Wait for the tension to pass, or for them to reach out first'
           ],
           required: true,
-          order: 11,
+          order: 13,
           section: 'Conflict & Repair',
           sectionDescription: 'How you navigate disagreements',
           reversed: false,
@@ -206,7 +240,7 @@ function getQuestionnaireTemplates() {
             'Start to pull back or see them as too needy'
           ],
           required: true,
-          order: 12,
+          order: 14,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -222,7 +256,7 @@ function getQuestionnaireTemplates() {
             'Plenty of space and autonomy'
           ],
           required: true,
-          order: 13,
+          order: 15,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -238,7 +272,7 @@ function getQuestionnaireTemplates() {
             'Wait to see if they notice on their own'
           ],
           required: true,
-          order: 14,
+          order: 16,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -254,7 +288,7 @@ function getQuestionnaireTemplates() {
             'Not be expected to know unless it\'s said directly'
           ],
           required: true,
-          order: 15,
+          order: 17,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -270,7 +304,7 @@ function getQuestionnaireTemplates() {
             'Read into it and feel unsettled'
           ],
           required: true,
-          order: 16,
+          order: 18,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -286,7 +320,7 @@ function getQuestionnaireTemplates() {
             'Feel unsettled and start wondering what it means about us'
           ],
           required: true,
-          order: 17,
+          order: 19,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -302,7 +336,7 @@ function getQuestionnaireTemplates() {
             'Step up in key moments, even if I\'m not steady day-to-day'
           ],
           required: true,
-          order: 18,
+          order: 20,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -318,7 +352,7 @@ function getQuestionnaireTemplates() {
             'Focus on what\'s most urgent and circle back later'
           ],
           required: true,
-          order: 19,
+          order: 21,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -334,7 +368,7 @@ function getQuestionnaireTemplates() {
             'Assume they\'ll pick up on it without me saying much'
           ],
           required: true,
-          order: 20,
+          order: 24,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -350,7 +384,7 @@ function getQuestionnaireTemplates() {
             'Start to feel overwhelmed or want distance'
           ],
           required: true,
-          order: 21,
+          order: 23,
           section: 'Compatibility & Friction',
           sectionDescription: 'Intimacy, connection, and communication patterns',
           reversed: false,
@@ -384,7 +418,7 @@ function getQuestionnaireTemplates() {
             'Something more casual or short-term'
           ],
           required: true,
-          order: 23,
+          order: 25,
           section: 'Values & Alignment',
           sectionDescription: 'Life goals, values, and relationship orientation',
           reversed: false,
@@ -400,7 +434,7 @@ function getQuestionnaireTemplates() {
             'Flexible and still figuring it out'
           ],
           required: true,
-          order: 24,
+          order: 26,
           section: 'Values & Alignment',
           sectionDescription: 'Life goals, values, and relationship orientation',
           reversed: false,
@@ -416,7 +450,7 @@ function getQuestionnaireTemplates() {
             'Am comfortable letting it stay open for quite a while'
           ],
           required: true,
-          order: 25,
+          order: 29,
           section: 'Values & Alignment',
           sectionDescription: 'Life goals, values, and relationship orientation',
           reversed: false,
@@ -432,7 +466,7 @@ function getQuestionnaireTemplates() {
             'Fresh, stimulating, and changing'
           ],
           required: true,
-          order: 26,
+          order: 28,
           section: 'Values & Alignment',
           sectionDescription: 'Life goals, values, and relationship orientation',
           reversed: false,
@@ -466,7 +500,7 @@ function getQuestionnaireTemplates() {
             'More spontaneous than consistent'
           ],
           required: true,
-          order: 28,
+          order: 30,
           section: 'Personality & Stability',
           sectionDescription: 'How others perceive you',
           reversed: false,
@@ -482,7 +516,7 @@ function getQuestionnaireTemplates() {
             'Push my point even if it creates tension'
           ],
           required: true,
-          order: 29,
+          order: 31,
           section: 'Personality & Stability',
           sectionDescription: 'How others perceive you',
           reversed: false,

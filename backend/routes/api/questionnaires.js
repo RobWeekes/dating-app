@@ -4,6 +4,7 @@ const { Questionnaire, Question, QuestionnaireResponse, Answer, User } = require
 const sequelize = require('../../db/models').sequelize;
 const { Op } = require('sequelize');
 const { authenticateToken } = require('../../middleware/authentication');
+const { getQuestionnaireMetadata, validateQuestionnaire } = require('../../utils/questionnaireUtils');
 
 /**
  * QUESTIONNAIRE TEMPLATE ROUTES
@@ -71,6 +72,32 @@ router.get('/type/:type', async (req, res) => {
     }
 
     res.json(questionnaire);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET questionnaire metadata (computed from template)
+// This endpoint returns computed metadata like total question count, sections, etc.
+// Useful for frontend to avoid hardcoding values
+router.get('/metadata/:type', async (req, res) => {
+  try {
+    const metadata = getQuestionnaireMetadata(req.params.type);
+
+    if (!metadata) {
+      return res.status(404).json({ error: `Questionnaire type "${req.params.type}" not found` });
+    }
+
+    const validation = validateQuestionnaire(req.params.type);
+
+    res.json({
+      ...metadata,
+      validation: {
+        isValid: validation.isValid,
+        errors: validation.errors || [],
+        warnings: validation.warnings || []
+      }
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
