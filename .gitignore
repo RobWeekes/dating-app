@@ -13,6 +13,8 @@ package-lock.json
 
 # production
 /build
+build/
+**/build/
 
 # Environment
 .env
@@ -40,14 +42,9 @@ yarn-error.log*
 *.swo
 *~
 
-# TypeScript build output
-dist/
-*.js
-*.js.map
-*.d.ts
-*.d.ts.map
-
-# Scoring Engine build output
+# TypeScript build output (only in scoring-engine build dir)
 backend/scoring-engine/dist/
-backend/scoring-engine/*.js.map
-backend/scoring-engine/*.d.ts.map
+backend/scoring-engine/dist/*.js
+backend/scoring-engine/dist/*.js.map
+backend/scoring-engine/dist/*.d.ts
+backend/scoring-engine/dist/*.d.ts.map
