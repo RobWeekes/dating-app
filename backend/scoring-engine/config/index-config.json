@@ -1,0 +1,187 @@
+{
+  "indices": {
+    "AA": {
+      "id": "AA",
+      "name": "Attachment Anxiety",
+      "weight": "critical",
+      "description": "Tendency to worry about relationship security and seek reassurance"
+    },
+    "AV": {
+      "id": "AV",
+      "name": "Attachment Avoidance",
+      "weight": "critical",
+      "description": "Tendency to distance from intimacy and emotional vulnerability"
+    },
+    "ER": {
+      "id": "ER",
+      "name": "Emotional Regulation",
+      "weight": "critical",
+      "description": "Ability to manage emotions without being overwhelmed"
+    },
+    "RS": {
+      "id": "RS",
+      "name": "Responsiveness",
+      "weight": "high",
+      "description": "Willingness to meet partner's emotional needs"
+    },
+    "ER2": {
+      "id": "ER2",
+      "name": "Emotional Responsibility",
+      "weight": "high",
+      "description": "Tendency to own reactions rather than blame partner"
+    },
+    "CE": {
+      "id": "CE",
+      "name": "Conflict Engagement",
+      "weight": "critical",
+      "description": "Willingness to address disagreements directly"
+    },
+    "CR": {
+      "id": "CR",
+      "name": "Conflict Repair Ability",
+      "weight": "critical",
+      "description": "Ability to resolve tension and reconnect after conflict"
+    },
+    "NC": {
+      "id": "NC",
+      "name": "Negative Conflict Style",
+      "weight": "critical",
+      "description": "Tendency toward criticism, defensiveness, or escalation"
+    },
+    "CA": {
+      "id": "CA",
+      "name": "Closeness–Autonomy Preference",
+      "weight": "high",
+      "description": "Balance between desire for togetherness and independence"
+    },
+    "CT": {
+      "id": "CT",
+      "name": "Closeness Tolerance",
+      "weight": "high",
+      "description": "Ability to sustain intimacy without becoming overwhelmed"
+    },
+    "CD": {
+      "id": "CD",
+      "name": "Communication Directness",
+      "weight": "high",
+      "description": "Tendency to express concerns clearly and directly"
+    },
+    "MR": {
+      "id": "MR",
+      "name": "Mind-Reading Expectation",
+      "weight": "high",
+      "description": "Expectation that partner should understand needs without explanation"
+    },
+    "JS": {
+      "id": "JS",
+      "name": "Jealousy / Threat Sensitivity",
+      "weight": "high",
+      "description": "Tendency to feel threatened by ambiguous partner behavior"
+    },
+    "EN": {
+      "id": "EN",
+      "name": "Effort & Investment Norms",
+      "weight": "high",
+      "description": "Expectations about consistent effort and reliability in relationship"
+    },
+    "LT": {
+      "id": "LT",
+      "name": "Long-Term Orientation",
+      "weight": "critical",
+      "description": "Focus on building lasting, committed relationships"
+    },
+    "LS": {
+      "id": "LS",
+      "name": "Life Structure Alignment",
+      "weight": "critical",
+      "description": "Clarity and alignment on major life decisions (kids, location, values)"
+    },
+    "NS": {
+      "id": "NS",
+      "name": "Novelty vs Stability Preference",
+      "weight": "high",
+      "description": "Preference for predictability vs constant change and stimulation"
+    },
+    "ES": {
+      "id": "ES",
+      "name": "Emotional Stability",
+      "weight": "critical",
+      "description": "Overall mood stability and resilience to stress"
+    },
+    "CO": {
+      "id": "CO",
+      "name": "Conscientiousness / Reliability",
+      "weight": "high",
+      "description": "Dependability and follow-through on commitments"
+    },
+    "AG": {
+      "id": "AG",
+      "name": "Assertiveness–Agreeableness Balance",
+      "weight": "high",
+      "description": "Balance between standing up for needs and maintaining harmony"
+    }
+  },
+  "indexImportance": {
+    "critical": 1.0,
+    "high": 0.8,
+    "medium": 0.6,
+    "low": 0.4
+  },
+  "metadata": {
+    "totalIndices": 20,
+    "section1": {
+      "name": "Behavioral Dynamics",
+      "indices": [
+        "AA",
+        "AV",
+        "ER",
+        "RS",
+        "ER2",
+        "CE",
+        "NC"
+      ]
+    },
+    "section2": {
+      "name": "Conflict & Repair",
+      "indices": [
+        "CR",
+        "AV",
+        "CE",
+        "NC"
+      ]
+    },
+    "section3": {
+      "name": "Compatibility & Friction",
+      "indices": [
+        "AV",
+        "CA",
+        "CT",
+        "CD",
+        "MR",
+        "JS",
+        "EN",
+        "CO",
+        "RS",
+        "ER"
+      ]
+    },
+    "section4": {
+      "name": "Values & Alignment",
+      "indices": [
+        "LT",
+        "LS",
+        "NS"
+      ]
+    },
+    "section5": {
+      "name": "Personality & Stability",
+      "indices": [
+        "CO",
+        "EN",
+        "AG",
+        "CD",
+        "NC"
+      ]
+    }
+  }
+}

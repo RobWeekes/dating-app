@@ -1,0 +1,169 @@
+{
+  "gapDefinitions": {
+    "STG": {
+      "id": "STG",
+      "name": "State-Trait Gap",
+      "description": "Emotional volatility: stability under stress",
+      "meaning": "Difference between baseline emotional stability and behavior when very upset",
+      "traitQ": 3,
+      "stateQ": 4,
+      "stateQs": null,
+      "direction": 1,
+      "riskThreshold": 0.4
+    },
+    "RGI": {
+      "id": "RGI",
+      "name": "Reliability Gap Index",
+      "description": "Follow-through: consistency when life demanding",
+      "meaning": "Break between effort norms and actual effort under stress",
+      "traitQ": 18,
+      "stateQ": 19,
+      "stateQs": null,
+      "direction": 1,
+      "riskThreshold": 0.4
+    },
+    "RG2": {
+      "id": "RG2",
+      "name": "Repair Gap",
+      "description": "Conflict repair: actual vs baseline",
+      "meaning": "Deterioration in conflict repair ability when tension persists",
+      "traitQ": 10,
+      "stateQ": 11,
+      "stateQs": null,
+      "direction": 1,
+      "riskThreshold": 0.35
+    },
+    "ERG": {
+      "id": "ERG",
+      "name": "Emotional Responsibility Gap",
+      "description": "Attribution: ownership vs blame under stress",
+      "meaning": "Shift from accountability to blaming partner when upset",
+      "traitQ": 5,
+      "stateQ": 7,
+      "stateQs": null,
+      "direction": 1,
+      "riskThreshold": 0.4
+    },
+    "CG2": {
+      "id": "CG2",
+      "name": "Closeness Gap",
+      "description": "Intimacy: desire vs ability to sustain",
+      "meaning": "Wanting closeness but unable to sustain it over time",
+      "traitQ": 12,
+      "stateQ": 21,
+      "stateQs": null,
+      "direction": 1,
+      "riskThreshold": 0.35
+    },
+    "EEG": {
+      "id": "EEG",
+      "name": "Effort-Expectation Gap",
+      "description": "Fairness: expectations vs delivery",
+      "meaning": "Demanding high effort from partner but not delivering own",
+      "traitQ": 22,
+      "stateQ": 19,
+      "stateQs": null,
+      "direction": 1,
+      "riskThreshold": 0.4
+    },
+    "ReG": {
+      "id": "ReG",
+      "name": "Reactivity Gap",
+      "description": "Escalation: how much worse under stress",
+      "meaning": "Conflict response deteriorates significantly under stress",
+      "traitQ": 8,
+      "stateQ": null,
+      "stateQs": [
+        1,
+        4
+      ],
+      "direction": 1,
+      "riskThreshold": 0.35
+    },
+    "CG": {
+      "id": "CG",
+      "name": "Communication Gap",
+      "description": "Expression: clarity expectations vs directness",
+      "meaning": "Expecting partner to read mind but not being direct oneself",
+      "traitQ": 15,
+      "stateQ": null,
+      "stateQs": [
+        14,
+        20
+      ],
+      "direction": 1,
+      "riskThreshold": 0.35
+    }
+  },
+  "gapSeverityLevels": {
+    "minimal": {
+      "range": [
+        0,
+        0.1
+      ],
+      "description": "No meaningful gap"
+    },
+    "low": {
+      "range": [
+        0.1,
+        null
+      ],
+      "description": "Minor variation, not concerning"
+    },
+    "moderate": {
+      "range": null,
+      "description": "Noticeable gap, monitor for issues"
+    },
+    "high": {
+      "range": null,
+      "description": "Significant concern, likely causes tension"
+    },
+    "critical": {
+      "range": null,
+      "description": "Severe gap, major source of relationship stress"
+    }
+  },
+  "interactionPenalties": {
+    "ERG_and_ReG": {
+      "gaps": [
+        "ERG",
+        "ReG"
+      ],
+      "penaltyValue": 0.15,
+      "description": "Blame + Escalation = highly toxic combination"
+    },
+    "CG_and_EEG": {
+      "gaps": [
+        "CG",
+        "EEG"
+      ],
+      "penaltyValue": 0.1,
+      "description": "Unclear expectations + effort mismatch = resentment"
+    },
+    "RGI_and_RG2": {
+      "gaps": [
+        "RGI",
+        "RG2"
+      ],
+      "penaltyValue": 0.15,
+      "description": "Disappearing + unable to repair = trust collapse"
+    },
+    "CG2_and_CG": {
+      "gaps": [
+        "CG2",
+        "CG"
+      ],
+      "penaltyValue": 0.1,
+      "description": "Closeness desire/tolerance + communication issues"
+    }
+  },
+  "metadata": {
+    "totalGaps": 8,
+    "responseScoring": {
+      "A": 0.8,
+      "B": 0.5,
+      "C": 0.2,
+      "description": "Standard 3-option question response scoring (A=high, B=medium, C=low)"
+    }
+  }
+}

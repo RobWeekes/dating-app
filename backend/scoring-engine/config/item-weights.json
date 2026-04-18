@@ -1,0 +1,19 @@
+{
+  "weightMultipliers": {
+    "strong": 1.0,
+    "medium": 0.65,
+    "weak": 0.3
+  },
+  "description": "Weight multipliers applied to contribution values depending on question importance",
+  "normalizationSettings": {
+    "method": "sigmoid",
+    "sigmoidScaleFactor": 1.5,
+    "min": 0,
+    "max": 1
+  },
+  "metadata": {
+    "strong": "Primary source signal for this index (highest contribution)",
+    "medium": "Secondary signal, useful but not primary (moderate contribution)",
+    "weak": "Tertiary signal for multi-index questions (lowest contribution)"
+  }
+}

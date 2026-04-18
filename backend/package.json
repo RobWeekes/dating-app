@@ -34,8 +34,10 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "jest": "^29.5.0",
     "nodemon": "^3.0.1",
-    "supertest": "^7.1.4"
+    "supertest": "^7.1.4",
+    "typescript": "^6.0.3"
   }
 }
