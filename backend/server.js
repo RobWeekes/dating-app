@@ -85,6 +85,68 @@ async function seedQuestionnaireTemplates() {
 }
 
 // ==============================
+// Seed test users (development only)
+// ==============================
+// Auto-seeds 1000 test users in development for easier testing
+async function seedTestUsers() {
+  if (process.env.NODE_ENV !== 'development') {
+    return; // Only seed in development
+  }
+
+  try {
+    const userCount = await models.User.count();
+
+    if (userCount > 0) {
+      console.log(`  ✓ Database already has ${userCount} users, skipping test user seed`);
+      return;
+    }
+
+    console.log('  📝 Generating 1000 test users...');
+    const bcrypt = require('bcryptjs');
+
+    // Name pools
+    const firstNames = {
+      male: ['James', 'John', 'Robert', 'Michael', 'William', 'David', 'Richard', 'Joseph', 'Thomas', 'Christopher', 'Daniel', 'Matthew', 'Anthony', 'Mark'],
+      female: ['Mary', 'Patricia', 'Jennifer', 'Linda', 'Barbara', 'Elizabeth', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Betty', 'Margaret'],
+    };
+
+    const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Garcia', 'Wilson', 'Anderson'];
+    const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'Austin', 'Denver', 'Seattle', 'Boston', 'Miami'];
+    const bios = ['Adventure seeker and coffee enthusiast', 'Yoga instructor who loves outdoors', 'Travel junkie always exploring', 'Artist and musician', 'Fitness enthusiast', 'Book lover', 'Dog parent'];
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash('TestPass123!', salt);
+
+    const users = [];
+    for (let i = 1; i <= 1000; i++) {
+      const isMale = Math.random() > 0.5;
+      const firstName = isMale ? firstNames.male[Math.floor(Math.random() * firstNames.male.length)] : firstNames.female[Math.floor(Math.random() * firstNames.female.length)];
+      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+
+      users.push({
+        email: `user${i}@datingapp.test`,
+        password: hashedPassword,
+        firstName: firstName,
+        lastName: lastName,
+        age: Math.floor(Math.random() * (65 - 18 + 1)) + 18,
+        bio: bios[Math.floor(Math.random() * bios.length)],
+        location: cities[Math.floor(Math.random() * cities.length)],
+        profilePhotoUrl: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+    }
+
+    await models.User.bulkCreate(users);
+    console.log('  ✓ Created 1000 test users');
+    console.log('✅ Test users seeded');
+  } catch (err) {
+    console.error('⚠️  Could not seed test users:', err.message);
+    // Don't fail startup if seeding fails
+  }
+}
+
+// ==============================
 // Routes
 // ==============================
 // Mount API + frontend routes
@@ -135,13 +197,17 @@ async function startServer() {
 
     // Seed templates (safe in both dev + production)
     await seedQuestionnaireTemplates();
+
+    // Seed test users (development only)
+    await seedTestUsers();
+
     console.log('✅ Database initialization complete\n');
 
     // Start server AFTER DB is ready
     app.listen(PORT, () => {
       console.log(`✓ Server running on port ${PORT}`);
       console.log(`✓ API available at /api`);
-    // prevent crashes from EADDRINUSE - if backend already running
+      // prevent crashes from EADDRINUSE - if backend already running
     }).on('error', (err) => {
       if (err.code === 'EADDRINUSE') {
         console.error(`Port ${PORT} is already in use`);
