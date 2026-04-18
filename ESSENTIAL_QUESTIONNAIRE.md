@@ -1775,6 +1775,103 @@ That will save you a lot of pain once you:
 
 ---
 
+## Canvas 6 — Why Use TypeScript for the Scoring Engine
+
+**Short answer:** TypeScript gives you **safety, clarity, and scalability** for a system this complex.
+
+---
+
+### Key Advantages over JavaScript
+
+#### 1. **Type Safety (prevents silent scoring bugs)**
+Your system has:
+- 22-index vectors
+- strict ordering
+- many config files
+
+TypeScript ensures:
+```ts
+ type IndexVector = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number]; // length = 22
+````
+
+👉 Prevents:
+
+* wrong vector length
+* misordered indices
+* missing fields in config
+
+---
+
+#### 2. **Safer Refactoring**
+
+As you iterate (you will a lot):
+
+* renaming indices
+* adjusting schemas
+* splitting RF → RFq/RFs (already happened)
+
+TypeScript will **catch every broken reference instantly**
+JavaScript will not.
+
+---
+
+#### 3. **Config Validation at Compile Time**
+
+You can strongly type your JSON:
+
+```ts
+interface ItemDelta {
+  [option: string]: number[]; // must match index length
+}
+```
+
+👉 Prevents bad configs from ever reaching production
+
+---
+
+#### 4. **Better Dev Experience**
+
+* autocomplete for indices, gaps, features
+* inline errors instead of runtime crashes
+* easier onboarding later
+
+---
+
+#### 5. **Critical for Scale + ML Integration**
+
+When you:
+
+* plug into ranking pipelines
+* add learned weights
+* move parts to Python/ML
+
+TypeScript acts as a **contract layer** between systems
+
+---
+
+### When JavaScript would be fine
+
+* small apps
+* low complexity logic
+* no evolving schema
+
+👉 Your system is the opposite of this.
+
+---
+
+### Bottom Line
+
+Use **TypeScript** because your system is:
+
+* **vector-based**
+* **config-driven**
+* **iterative**
+* **high-risk for subtle bugs**
+
+It will save you from **hard-to-detect scoring errors** later.
+
+---
+
 ## 🔁 Interaction Amplifiers (Add to Scoring Layer)
 
 Rupture example
