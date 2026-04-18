@@ -64,6 +64,24 @@ Use this fixed order throughout modeling and implementation:
 [AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RFq, RFs]
 ```
 
+Health indices (capacity coded upward):
+
+* ER, RS, ER2, CE, CR, CT, CD, EN, LT, LS, ES, CO
+
+Risk indices (risk coded upward):
+
+* AA, AV, NC, MR, JS, RFq, RFs
+
+Preference dimensions (preference-coded upward):
+
+* CA, NS, AG
+
+update CA index so it is closeness-coded upward, for naming consistency/simplicity
+* CA: higher = more autonomy / space oriented
+* NS: higher = more novelty / stimulation oriented
+* AG: higher = more assertive / less accommodating
+
+
 ### Index Definitions
 
 | Code | Index                               | Meaning                                                                         |
@@ -861,7 +879,7 @@ Q1.9, Q2.3, Q2.4
 * **Captures:** accountability belief vs blame under activation
 * **Primary use:** risk penalty / fragility marker
 
-### 2. Conflict Engagement Gap
+### 2. Conflict Engagement Gap (CE Gap)
 
 * **Low intensity:** Q2.1
 * **High intensity:** Q1.4
@@ -885,11 +903,15 @@ Q1.9, Q2.3, Q2.4
 * **State anchors:** Q3.8, Q3.11
 * **Captures:** identity-level investment vs reliability / reciprocity behavior
 
-### 6. Conflict Repair Gap (RG2 / CR Gap)
+### 6. Conflict Repair Gap (CR Gap)
 
 * **Trait anchor:** Q2.2
 * **State anchors:** Q2.3, Q2.4
 * **Captures:** willingness to repair vs actual repair follow-through
+
+```python
+gap_CR = abs(mean(Q2_3, Q2_4) - Q2_2)
+```
 
 ### 7. Responsiveness Gap (RS Gap)
 
@@ -897,11 +919,19 @@ Q1.9, Q2.3, Q2.4
 * **State anchors:** Q3.8, Q3.11
 * **Captures:** willingness to be responsive vs responsiveness under load / imbalance
 
+```python
+gap_RS = abs(mean(Q3_8, Q3_11) - Q1_2)
+```
+
 ### 8. Regulation Gap (ER Gap)
 
 * **Trait anchor:** Q1.3
 * **State anchors:** Q1.4, Q1.8
 * **Captures:** baseline steadiness vs behavior under activation
+
+```python
+gap_ER = abs(mean(Q1_4, Q1_8) - Q1_3)
+```
 
 ### 9. Reliability Gap Index (RGI)
 
@@ -919,25 +949,6 @@ These are related but **not identical**.
 * **EEG** = expectation / reciprocity asymmetry
 
 A user can be reliable but entitled, or unreliable but not especially entitled.
-
----
-
-What I corrected and strengthened there:
-
-- unified the system around the canonical 22-index model
-- fixed incomplete sections, especially Q2.4
-- made Q1.9 a proper first-class questionnaire item instead of a half-integrated add-on
-- cleaned up inconsistent references to RF vs RFq/RFs
-- separated trait scoring, gap scoring, risk features, and filter dimensions
-- added strategic implementation notes where they matter most for matching architecture
-- clarified that RGI and EEG are related but distinct
-- tightened the mapping and gap architecture so it is easier to implement directly
-
-I organized it into 3 markdown canvases:
-
-- Core Design, Index System, and Modeling Rules
-- Revised Questionnaire Spec
-- Mapping, Gap Architecture, and Reliability Notes
 
 ---
 
@@ -1189,11 +1200,17 @@ weighted_vector += item_weight * delta_vector
 
 ### Important coding note
 
-Some indices are **risk-coded upward**:
+Risk indices are **risk-coded upward**:
 
 * AA, AV, NC, MR, JS, RFq, RFs
 
-Some are **capacity-coded upward**:
+* **AV**: higher = more avoidant
+* **AA**: higher = more anxious / threat-reactive
+* **NC**: higher = more toxic / defensive / escalatory
+* **MR**: higher = stronger mind-reading expectation
+* **JS**: higher = more threat-sensitive / jealous
+
+Health indices are **health / capacity-coded upward**:
 
 * ER, RS, ER2, CE, CR, CT, CD, EN, LT, LS, ES, CO
 
@@ -1202,6 +1219,8 @@ Preference dimensions (not inherently healthy/unhealthy) are **preference-coded*
 * CA: higher = more autonomy / space oriented
 * NS: higher = more novelty / stimulation oriented
 * AG: higher = more assertive / less accommodating
+
+update CA index so it is closeness-coded upward, for naming consistency/simplicity
 
 ---
 
@@ -1576,180 +1595,189 @@ This canvas is intended to be implementation-facing and should stay versioned al
 
 ---
 
-4/16/26 Update notes:
+# Canvas 5 — Engine-Ready JSON Schema (Compact)
 
-Added the new markdown canvas with the full 22-index implementation delta table and updated the item weights where they looked outdated.
+**Suggested production split**
 
-Main weight adjustments I made:
+For actual engine use, consider storing this as 4 smaller files instead of one large blob:
 
-- raised *Q1.9, Q2.3, Q2.4, Q3.8* to top-tier anchors
-- slightly reduced more trait-like anchors such as *Q1.5, Q3.2, Q3.3, Q3.4, Q3.7*
-- kept *Q1.4, Q1.8, Q2.2* as core high-impact behavioral items
-- treated *Q4.1* as a strong filter anchor and *Q4.2* as a near-filter structural anchor
-
-I also:
-
-- aligned every delta vector to the canonical 22-index order
-- corrected older drift where some deltas still implicitly assumed the pre-RF split model
-- added derived feature formulas for gaps, within-user risk composites, and pairwise re-ranking features
-- kept the deltas editable so you can tune them later against real data
-
-The new material is now in the canvas as:
-
-- *Canvas 4 — Question-by-Question Implementation Delta Table (22-Index Aligned)*
-
-A strong next step would be turning this into a *compact engine-ready schema* like JSON or TypeScript so your scorer can consume it directly.
-
----
-
-# 🔄 State–Trait Gap Matrix
-
-## Gap scoring convention
-
-For each gap pair, compute:
-
-```python
-gap_value = abs(state_score - trait_score)
+```
+index-config.json
+item-weights.json
+item-deltas.json
+gap-and-feature-config.json
 ```
 
-Optionally direction-code:
+That makes versioning and calibration easier.
 
-```python
-gap_direction = state_score - trait_score
+**Important implementation note**
+
+The formulas in gaps, derived_features, pair_features, and scoring are intentionally stored as declarative strings here for readability. In production, these should usually be compiled into explicit code rather than evaluated dynamically.
+
+**Summary of Changes**
+
+Added a new markdown canvas section with a compact engine-ready JSON schema.
+
+What’s included there:
+
+- canonical 22-index order for consistent vector alignment
+- updated index weights (emphasizing ER, NC, CR, RS, RFs)
+- revised item weights (higher weight on repair, rupture persistence, and reliability-under-load anchors)
+- full delta vector structure per question (aligned to 22 indices)
+- explicit gap definitions (ERG, RGI, EEG, CR gap, etc.)
+- derived individual risk features (conflict fragility, rupture compound, etc.)
+- pairwise re-ranking features (escalation risk, closeness fit, effort stability)
+- clean scoring pipeline hooks (raw → weighted → normalized)
+- clear separation of:
+- - risk-coded indices
+- - capacity-coded indices
+- - preference-coded dimensions
+
+Also structured so it can be easily split into modular files for production (config, deltas, gaps, features): index-config.json item-weights.json item-deltas.json gap-and-feature-config.json
+
+One important note I included in the canvas: the formulas are stored as declarative strings for readability, but in production they should be implemented as explicit code rather than dynamically evaluated.
+
+How you structure the JSON schema will matter for scale, iteration speed, and experimentation.
+
+## ✅ Best Practice: Split Into Modular Files (Not One Giant JSON)
+
+Instead of one file, use **4 focused config files:**
+
+### 1. index-config.json
+```
+{
+  "index_order": [...],
+  "index_weights": {...},
+  "notes": {...}
+}
+```
+👉 Changes here are **rare but high impact** (model tuning)
+
+### 2. item-weights.json
+```
+{
+  "Q1.1": 1.30,
+  "Q1.2": 1.10
+}
+```
+👉 This is your **A/B testing lever**
+- easiest place to tune model performance
+- can be dynamically swapped
+
+### 3. item-deltas.json
+```
+{
+  "Q1.1": {
+    "A": [...],
+    "B": [...],
+    "C": [...]
+  }
+}
+```
+👉 This is your **core personality encoding**
+- should be **stable**
+- only changed when improving psychometric validity
+
+### 4. gap-and-features.json
+```
+{
+  "gaps": {...},
+  "derived_features": {...},
+  "pair_features": {...}
+}
+```
+👉 This is your **matching intelligence layer**
+- evolves as you learn what predicts success
+
+---
+
+## ⚡ Why This Structure Matters
+
+### 1. Enables Safe Iteration
+
+You can:
+
+- tweak weights without breaking deltas
+- improve matching without touching questionnaire logic
+
+### 2. Supports Experimentation
+
+You can version like:
+
+- item-weights.v1.json
+- item-weights.v2.json
+
+Then:
+```
+if (experimentGroup === "B") use v2
 ```
 
-This lets you distinguish:
+### 3. Prevents Tight Coupling
 
-* **positive trait, weak state execution**
-* **low stated need, high stress reactivity**
-* **stable alignment vs breakdown under load**
+Right now your system has:
 
-## 1. Emotional Responsibility Gap (ERG)
+- psychometrics
+- scoring math
+- matchmaking logic
 
-* **Trait anchor:** Q1.5
-* **State anchor:** Q1.7
-* Interpretation: accountability belief vs blame under activation
+This structure **keeps them decoupled,** which is critical at scale.
 
-## 2. Conflict Engagement Gap
+### 4. Makes Backend + ML Integration Easier Later
 
-* **Lower-intensity anchor:** Q2.1
-* **High-intensity anchor:** Q1.4
-* Interpretation: how conflict style changes once emotion rises
+When you eventually:
 
-## 3. Communication Gap (CG)
+- train models
+- learn weights from data
+- export learned parameters
 
-* **Trait anchor:** Q3.3
-* **State / importance anchor:** Q3.9
-* Interpretation: baseline directness vs what happens when stakes rise
-
-## 4. Closeness Gap (CG2)
-
-* **Trait anchor:** Q3.2
-* **State anchor:** Q3.10
-* Interpretation: stated intimacy preference vs actual tolerance after sustained closeness
-
-## 5. Effort–Expectation Gap (EEG)
-
-* **Trait anchor:** Q3.7
-* **State anchors:** Q3.8, Q3.11
-* Interpretation: identity-level investment vs consistency under stress and reciprocity pressure
+You can **swap only parts of the system,** not everything.
 
 ---
 
-# ➕ Update: New Index + Gap Integrations (RF, CR Gap, RS Gap)
+## 🚫 What NOT to Do
+
+Avoid:
+
+- ❌ one giant JSON file (hard to test + version)
+- ❌ embedding logic (like formulas) that require eval
+- ❌ mixing UI/question text with scoring config
 
 ---
 
-## 🆕 New Index: Rupture Sensitivity / Forgiveness Threshold (RF)
+## 🧠 Small but Important Suggestion
 
-### Definition
+In your backend:
 
-> How easily trust is degraded after hurt and how difficult it is to restore relational openness.
+Create a loader like:
 
-> How likely a person is to experience a lasting shift in trust, perception, or emotional openness after relational hurt.
-
-* Higher = more **fragile bond / harder to restore trust**
-* Lower = more **forgiving / resilient to rupture**
-
-### Mapping (Index 21, 22 — appended)
-
-* Primary: **Q1.9 (new)**
-* Secondary contributors: Q2.3, Q2.4, Q1.4, Q1.8
-
-### Add to vector (append to end)
-
-```text
-[AA, AV, ER, RS, ER2, CE, CR, NC, CA, CT, CD, MR, JS, EN, LT, LS, NS, ES, CO, AG, RFq, RFs]
+```Javascript
+const config = {
+  index: require("./config/index-config.json"),
+  weights: require("./config/item-weights.json"),
+  deltas: require("./config/item-deltas.json"),
+  features: require("./config/gap-and-features.json")
+};
 ```
 
----
+Then your scorer becomes:
 
-## ➕ New Question: Q1.9 (RF anchor)
-
-**Q1.9** After being hurt in a relationship, I tend to …
-
-* **A)** Work through it and stay open
-  `[0, 0, +0.5, +0.5, +0.5, 0, +1.0, -0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, +0.5, 0, 0, -2.0]`
-
-* **B)** Need time,  but can reconnect
-  `[0, +0.5, +0.5, 0, +0.5, 0, +0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.5]`
-
-* **C)** Have a hard time seeing things the same way again
-  `[+0.5, +1.0, -1.0, -0.5, -1.0, -0.5, -1.5, +1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.0, 0, +0.5, +2.0]`
-
----
-
-## 🔄 New State–Trait Gaps
-
-### 6. Conflict Repair Gap (CR Gap)
-
-* **Trait anchor (inferred):** Q2.2 (repair willingness / accountability intent)
-* **State anchors:** Q2.3, Q2.4
-
-```python
-gap_CR = abs(mean(Q2_3, Q2_4) - Q2_2)
+```
+scoreUser(responses, config)
 ```
 
-👉 Measures: intent to repair vs actual follow-through
+Benefits of splitting file into 4.
 
----
+That will save you a lot of pain once you:
 
-### 7. Responsiveness Gap (RS Gap)
-
-* **Trait anchor:** Q1.2 (willingness to respond to needs)
-* **State anchors:** Q3.8, Q3.11
-
-```python
-gap_RS = abs(mean(Q3_8, Q3_11) - Q1_2)
-```
-
-👉 Measures: stated responsiveness vs behavior under load / imbalance
-
----
-
-### 8. Regulation Gap (ER Gap)
-
-* **Trait anchor (inferred):** Q1.3 (baseline stability)
-* **State anchors:** Q1.4, Q1.8
-
-```python
-gap_ER = abs(mean(Q1_4, Q1_8) - Q1_3)
-```
-
-👉 Measures: perceived stability vs actual emotional control under activation
+- start tuning weights
+- run experiments
+- scale to millions of users
 
 ---
 
 ## 🔁 Interaction Amplifiers (Add to Scoring Layer)
 
-```python
-risk += (NC * (1 - ER)) * 1.5
-# update RF - split to RFq, RFs
-risk += (AA * RF) * 1.2
-risk += (gap_CR * NC) * 1.5
-risk += (gap_RS * (1 - RS)) * 1.2
-risk += (gap_ER * NC) * 1.3
-```
+Rupture example
 
 risk += RFq * 1.2          # how often things break
 risk += RFs * 1.4          # how long they stay broken
