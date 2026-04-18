@@ -22,21 +22,6 @@ const QUESTION_COUNTS = {
   future: 18,
 };
 
-// Fetch question count from API metadata endpoint
-const getQuestionCountFromAPI = async (type) => {
-  try {
-    const response = await fetch(`/api/questionnaires/metadata/${type}`);
-    if (response.ok) {
-      const data = await response.json();
-      return data.totalQuestions;
-    }
-  } catch (err) {
-    console.warn(`Could not fetch metadata for ${type}, falling back to hardcoded count`);
-  }
-  // Fallback to hardcoded count if API fails
-  return QUESTION_COUNTS[type] || null;
-};
-
 const parseAnswerValue = (rawValue) => {
   try {
     return JSON.parse(rawValue);
